@@ -1,20 +1,20 @@
-ALCcontext *    : alcCreateContext      : ALCdevice *     : const ALCint *
-ALCboolean      : alcMakeContextCurrent : ALCcontext *
-void            : alcProcessContext     : ALCcontext *
-void            : alcSuspendContext     : ALCcontext *
-void            : alcDestroyContext     : ALCcontext *
-ALCcontext *    : alcGetCurrentContext
-ALCdevice *     : alcGetContextsDevice  : ALCcontext *
-ALCdevice *     : alcOpenDevice         : const ALCchar *
-ALCboolean      : alcCloseDevice        : ALCdevice *
-ALCenum         : alcGetError           : ALCdevice *
-ALCboolean      : alcIsExtensionPresent : ALCdevice *                       : const ALCchar *
-void *          : alcGetProcAddress     : ALCdevice *     : const ALCchar *
-ALCenum         : alcGetEnumValue       : ALCdevice *     : const ALCchar *
-const ALCchar * : alcGetString          : ALCdevice *     : ALCenum
-void            : alcGetIntegerv        : ALCdevice *     : ALCenum         : ALCsizei        : ALCint *
-ALCdevice *     : alcCaptureOpenDevice  : const ALCchar * : ALCuint         : ALCenum         : ALCsizei
-ALCboolean      : alcCaptureCloseDevice : ALCdevice *
-void            : alcCaptureStart       : ALCdevice *
-void            : alcCaptureStop        : ALCdevice *
-void            : alcCaptureSamples     : ALCdevice *     : ALCvoid *       : ALCsizei
+ALCcontext *    alcCreateContext      (ALCdevice *, const ALCint *);
+ALCboolean      alcMakeContextCurrent (ALCcontext *);
+void            alcProcessContext     (ALCcontext *);
+void            alcSuspendContext     (ALCcontext *);
+void            alcDestroyContext     (ALCcontext *);
+ALCcontext *    alcGetCurrentContext  (void);
+ALCdevice *     alcGetContextsDevice  (ALCcontext *);
+ALCdevice *     alcOpenDevice         (const ALCchar *);
+ALCboolean      alcCloseDevice        (ALCdevice *);
+ALCenum         alcGetError           (ALCdevice *);
+ALCboolean      alcIsExtensionPresent (ALCdevice *, const ALCchar *);
+void *          alcGetProcAddress     (ALCdevice *, const ALCchar *);
+ALCenum         alcGetEnumValue       (ALCdevice *, const ALCchar *);
+const ALCchar * alcGetString          (ALCdevice *, ALCenum);
+void            alcGetIntegerv        (ALCdevice *, ALCenum, ALCsizei, ALCint *);
+ALCdevice *     alcCaptureOpenDevice  (const ALCchar *, ALCuint, ALCenum, ALCsizei);
+ALCboolean      alcCaptureCloseDevice (ALCdevice *);
+void            alcCaptureStart       (ALCdevice *);
+void            alcCaptureStop        (ALCdevice *);
+void            alcCaptureSamples     (ALCdevice *, ALCvoid *,  ALCsizei);
