@@ -4,6 +4,7 @@ default: all
 
 all:\
 UNIT_TESTS/init_001 UNIT_TESTS/init_001.ali UNIT_TESTS/init_001.o \
+UNIT_TESTS/init_002 UNIT_TESTS/init_002.ali UNIT_TESTS/init_002.o \
 UNIT_TESTS/test.a UNIT_TESTS/test.ali UNIT_TESTS/test.o openal-alc_thin.ali \
 openal-alc_thin.o openal-buffer.ali openal-buffer.o openal-context-error.ali \
 openal-context-error.o openal-context.ali openal-context.o openal-error.ali \
@@ -26,6 +27,17 @@ UNIT_TESTS/init_001.o UNIT_TESTS/init_001.ali:\
 ada-compile UNIT_TESTS/init_001.adb UNIT_TESTS/test.ali openal-context.ali \
 openal-context-error.ali
 	./ada-compile UNIT_TESTS/init_001.adb
+
+UNIT_TESTS/init_002:\
+ada-bind ada-link UNIT_TESTS/init_002.ald UNIT_TESTS/init_002.ali \
+UNIT_TESTS/test.ali openal.a
+	./ada-bind UNIT_TESTS/init_002.ali
+	./ada-link UNIT_TESTS/init_002 UNIT_TESTS/init_002.ali openal.a
+
+UNIT_TESTS/init_002.o UNIT_TESTS/init_002.ali:\
+ada-compile UNIT_TESTS/init_002.adb UNIT_TESTS/test.ali openal-context.ali \
+openal-context-error.ali
+	./ada-compile UNIT_TESTS/init_002.adb
 
 UNIT_TESTS/test.a:\
 cc-slib UNIT_TESTS/test.sld UNIT_TESTS/test.o
@@ -149,6 +161,7 @@ clean-all: tests_clean obj_clean ext_clean
 clean: obj_clean
 obj_clean:
 	rm -f UNIT_TESTS/init_001 UNIT_TESTS/init_001.ali UNIT_TESTS/init_001.o \
+	UNIT_TESTS/init_002 UNIT_TESTS/init_002.ali UNIT_TESTS/init_002.o \
 	UNIT_TESTS/test.a UNIT_TESTS/test.ali UNIT_TESTS/test.o openal-alc_thin.ali \
 	openal-alc_thin.o openal-buffer.ali openal-buffer.o openal-context-error.ali \
 	openal-context-error.o openal-context.ali openal-context.o openal-error.ali \
