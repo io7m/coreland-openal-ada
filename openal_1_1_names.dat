@@ -1,0 +1,73 @@
+Buffer3f              : Buffer_ID     : Parameter       : Value_1         : Value_2   : Value_3
+Buffer3i              : Buffer_ID     : Parameter       : Value_1         : Value_2   : Value_3
+BufferData            : Buffer_ID     : Format          : Data            : Size      : Frequency
+Bufferf               : Buffer_ID     : Parameter       : Value
+Bufferfv              : Buffer_ID     : Parameter       : Values
+Bufferi               : Buffer_ID     : Parameter       : Value
+Bufferiv              : Buffer_ID     : Parameter       : Values
+DeleteBuffers         : Size          : Sources
+DeleteSources         : Size          : Sources
+Disable               : Capability
+DistanceModel         : Distance_Model
+DopplerFactor         : Value
+DopplerVelocity       : Value
+Enable                : Capability
+GenBuffers            : Size          : Buffers
+GenSources            : Size          : Sources
+GetBoolean            : Parameter
+GetBooleanv           : Parameter     : Data
+GetBuffer3f           : Buffer_ID     : Parameter       : Value_1         : Value_2   : Value_3
+GetBuffer3i           : Buffer_ID     : Parameter       : Value_1         : Value_2   : Value_3
+GetBufferf            : Buffer_ID     : Parameter       : Value
+GetBufferfv           : Buffer_ID     : Parameter       : Values
+GetBufferi            : Buffer_ID     : Parameter       : Value
+GetBufferiv           : Buffer_ID     : Parameter       : Values
+GetDouble             : Parameter
+GetDoublev            : Parameter     : Values
+GetEnumValue          : Name
+GetError
+GetFloat              : Parameter
+GetFloatv             : Parameter     : Values
+GetInteger            : Parameter
+GetIntegerv           : Paremeter     : Values
+GetListener3f         : Parameter     : Value_1         : Value_2         : Value_3
+GetListener3i         : Parameter     : Value_1         : Value_2         : Value_3
+GetListenerf          : Parameter     : Value
+GetListenerfv         : Parameter     : Values
+GetListeneri          : Parameter     : Value
+GetListeneriv         : Parameter     : Values
+GetProcAddress        : Name
+GetSource3f           : Source_ID     : Parameter       : Value_1         : Value_2   : Value_3
+GetSource3i           : Source_ID     : Parameter       : Value_1         : Value_2   : Value_3
+GetSourcef            : Source_ID     : Parameter       : Value
+GetSourcefv           : Source_ID     : Parameter       : Values
+GetSourcei            : Source_ID     : Parameter       : Value
+GetSourceiv           : Source_ID     : Parameter       : Values
+GetString             : Parameter
+IsBuffer              : Buffer_ID
+IsEnabled             : Parameter
+IsExtensionPresent    : Name
+IsSource              : Source_ID
+Listener3f            : Parameter     : Value_1         : Value_2         : Value_3
+Listener3i            : Parameter     : Value_1         : Value_2         : Value_3
+Listenerf             : Parameter     : Value
+Listenerfv            : Parameter     : Values
+Listeneri             : Parameter     : Value
+Listeneriv            : Parameter     : Values
+Source3f              : Source_ID     : ALenum          : Value_1         : Value_2   : Value_3
+Source3i              : Source_ID     : ALenum          : Value_1         : Value_2   : Value_3
+SourcePause           : Source_ID
+SourcePausev          : Size          : Source_IDs
+SourcePlay            : Source_ID
+SourcePlayv           : Size          : Source_IDs
+SourceQueueBuffers    : Source_ID     : Size            : Buffer_IDs
+SourceRewind          : Source_ID
+SourceRewindv         : Size          : Source_IDs
+SourceStop            : Source_ID
+SourceStopv           : Size          : Source_IDs
+SourceUnqueueBuffers  : Source_ID     : Size            : Buffer_IDs
+Sourcef               : Source_ID     : Parameter       : Value
+Sourcefv              : Source_ID     : Parameter       : Values
+Sourcei               : Source_ID     : Parameter       : Value
+Sourceiv              : Source_ID     : Parameter       : Values
+SpeedOfSound          : Value
