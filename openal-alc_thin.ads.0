@@ -1,0 +1,10 @@
+-- Automatically generated, do not edit.
+
+with Interfaces.C;
+with System;
+
+package OpenAL.ALC_Thin is
+  package C renames Interfaces.C;
+
+  -- Constants
+

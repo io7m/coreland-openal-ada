@@ -5,10 +5,14 @@ local io        = require ("io")
 local argv      = arg
 local argc      = table.maxn (argv)
 
-assert (argc == 3)
-local api_types_map = io.open (argv[1])
-local api_names_map = io.open (argv[2])
-local al_types_map  = io.open (argv[3])
+assert (argc == 4)
+
+local prefix        = argv[1]
+local api_types_map = io.open (argv[2])
+local api_names_map = io.open (argv[3])
+local al_types_map  = io.open (argv[4])
+
+assert (prefix)
 assert (api_types_map)
 assert (api_names_map)
 assert (al_types_map)
@@ -214,7 +218,7 @@ local function write_subprogram (sub_name, subprogram)
 
   io.write (";\n")
   io.write ([[
-  pragma Import (C, ]]..sub_name..[[, "al]]..subprogram.name..[[");
+  pragma Import (C, ]]..sub_name..[[, "]]..prefix..subprogram.name..[[");
 
 ]])
 end

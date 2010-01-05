@@ -9,7 +9,7 @@ ALCdevice *     : OpenDevice         : const ALCchar *
 ALCboolean      : CloseDevice        : ALCdevice *
 ALCenum         : GetError           : ALCdevice *
 ALCboolean      : IsExtensionPresent : ALCdevice *     : const ALCchar *
-void *          : GetProcAddress     : ALCdevice *     : const ALCchar *
+ALCvoid *       : GetProcAddress     : ALCdevice *     : const ALCchar *
 ALCenum         : GetEnumValue       : ALCdevice *     : const ALCchar *
 const ALCchar * : GetString          : ALCdevice *     : ALCenum
 void            : GetIntegerv        : ALCdevice *     : ALCenum         : ALCsizei : ALCint *

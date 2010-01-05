@@ -42,3 +42,5 @@ const ALCuint *    : System.Address          : access_constant
 const ALCvoid *    : System.Address          : address
 const ALCsizei *   : System.Address          : access_constant
 const ALCchar *    : System.Address          : access_constant
+ALCdevice *        : Device_t                : address
+ALCcontext *       : Context_t               : address
