@@ -1,0 +1,5 @@
+freebsd 6.3-release-p5 gcc 4.2.2 x86    gnat_fsf 4.2.2
+freebsd 6.4-release-p1 gcc 4.3.2 x86    gnat_fsf 4.3.2
+freebsd 7.2-release-p2 gcc 4.4.0 x86_64 gnat_fsf 4.4.0
+freebsd 7.2-release-p4 gcc 4.4.0 x86_64 gnat_fsf 4.4.0
+freebsd 8.0-release    gcc 4.4.3 x86_64 gnat_fsf 4.4.0
