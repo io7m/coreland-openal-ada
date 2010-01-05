@@ -3,19 +3,46 @@
 default: all
 
 all:\
-openal-alc_thin.ali openal-alc_thin.o openal-buffer.ali openal-buffer.o \
-openal-context.ali openal-context.o openal-error.ali openal-error.o \
-openal-thin.ali openal-thin.o openal-types.ali openal-types.o openal.ali \
-openal.o
+UNIT_TESTS/init_001 UNIT_TESTS/init_001.ali UNIT_TESTS/init_001.o \
+UNIT_TESTS/test.a UNIT_TESTS/test.ali UNIT_TESTS/test.o openal-alc_thin.ali \
+openal-alc_thin.o openal-buffer.ali openal-buffer.o openal-context-error.ali \
+openal-context-error.o openal-context.ali openal-context.o openal-error.ali \
+openal-error.o openal-thin.ali openal-thin.o openal-types.ali openal-types.o \
+openal.a openal.ali openal.o
+
+# Mkf-test
+tests:
+	(cd UNIT_TESTS && make)
+tests_clean:
+	(cd UNIT_TESTS && make clean)
+
+UNIT_TESTS/init_001:\
+ada-bind ada-link UNIT_TESTS/init_001.ald UNIT_TESTS/init_001.ali \
+UNIT_TESTS/test.ali openal.a
+	./ada-bind UNIT_TESTS/init_001.ali
+	./ada-link UNIT_TESTS/init_001 UNIT_TESTS/init_001.ali openal.a
+
+UNIT_TESTS/init_001.o UNIT_TESTS/init_001.ali:\
+ada-compile UNIT_TESTS/init_001.adb UNIT_TESTS/test.ali openal-context.ali \
+openal-context-error.ali
+	./ada-compile UNIT_TESTS/init_001.adb
+
+UNIT_TESTS/test.a:\
+cc-slib UNIT_TESTS/test.sld UNIT_TESTS/test.o
+	./cc-slib UNIT_TESTS/test UNIT_TESTS/test.o
+
+UNIT_TESTS/test.o UNIT_TESTS/test.ali:\
+ada-compile UNIT_TESTS/test.adb UNIT_TESTS/test.ads
+	./ada-compile UNIT_TESTS/test.adb
 
 ada-bind:\
-conf-adabind conf-systype conf-adatype
+conf-adabind conf-systype conf-adatype conf-adafflist flags-cwd
 
 ada-compile:\
-conf-adacomp conf-adatype conf-systype conf-adacflags
+conf-adacomp conf-adatype conf-systype conf-adacflags conf-adafflist flags-cwd
 
 ada-link:\
-conf-adalink conf-adatype conf-systype
+conf-adalink conf-adatype conf-systype conf-aldfflist libs-openal
 
 ada-srcmap:\
 conf-adacomp conf-adatype conf-systype
@@ -78,6 +105,14 @@ openal-buffer.o openal-buffer.ali:\
 ada-compile openal-buffer.adb openal.ali openal-buffer.ads
 	./ada-compile openal-buffer.adb
 
+openal-context-error.ads:\
+openal-context.ali
+
+openal-context-error.o openal-context-error.ali:\
+ada-compile openal-context-error.adb openal-context.ali \
+openal-context-error.ads openal-alc_thin.ali
+	./ada-compile openal-context-error.adb
+
 openal-context.ads:\
 openal.ali openal-alc_thin.ali
 
@@ -100,17 +135,25 @@ openal-types.o openal-types.ali:\
 ada-compile openal-types.ads openal.ali openal-types.ads openal-thin.ali
 	./ada-compile openal-types.ads
 
+openal.a:\
+cc-slib openal.sld openal-alc_thin.o openal-buffer.o openal-context-error.o \
+openal-context.o openal-error.o openal-thin.o openal-types.o
+	./cc-slib openal openal-alc_thin.o openal-buffer.o openal-context-error.o \
+	openal-context.o openal-error.o openal-thin.o openal-types.o
+
 openal.o openal.ali:\
 ada-compile openal.ads openal.ads
 	./ada-compile openal.ads
 
-clean-all: obj_clean ext_clean
+clean-all: tests_clean obj_clean ext_clean
 clean: obj_clean
 obj_clean:
-	rm -f openal-alc_thin.ali openal-alc_thin.o openal-buffer.ali openal-buffer.o \
-	openal-context.ali openal-context.o openal-error.ali openal-error.o \
-	openal-thin.ali openal-thin.o openal-types.ali openal-types.o openal.ali \
-	openal.o
+	rm -f UNIT_TESTS/init_001 UNIT_TESTS/init_001.ali UNIT_TESTS/init_001.o \
+	UNIT_TESTS/test.a UNIT_TESTS/test.ali UNIT_TESTS/test.o openal-alc_thin.ali \
+	openal-alc_thin.o openal-buffer.ali openal-buffer.o openal-context-error.ali \
+	openal-context-error.o openal-context.ali openal-context.o openal-error.ali \
+	openal-error.o openal-thin.ali openal-thin.o openal-types.ali openal-types.o \
+	openal.a openal.ali openal.o
 ext_clean:
 	rm -f conf-adatype conf-cctype conf-ldtype conf-systype mk-ctxt
 

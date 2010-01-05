@@ -6,6 +6,10 @@ pragma source_file_name(OpenAL.ALC_Thin, spec_file_name => "openal-alc_thin.ads"
 pragma source_file_name(OpenAL.Buffer, spec_file_name => "openal-buffer.ads");
 pragma source_file_name(OpenAL.Buffer, body_file_name => "openal-buffer.adb");
 
+-- ./openal-context-error.apk
+pragma source_file_name(OpenAL.Context.Error, spec_file_name => "openal-context-error.ads");
+pragma source_file_name(OpenAL.Context.Error, body_file_name => "openal-context-error.adb");
+
 -- ./openal-context.apk
 pragma source_file_name(OpenAL.Context, spec_file_name => "openal-context.ads");
 pragma source_file_name(OpenAL.Context, body_file_name => "openal-context.adb");
@@ -22,3 +26,7 @@ pragma source_file_name(OpenAL.Types, spec_file_name => "openal-types.ads");
 
 -- ./openal.apk
 pragma source_file_name(OpenAL, spec_file_name => "openal.ads");
+
+-- UNIT_TESTS/test.apk
+pragma source_file_name(Test, spec_file_name => "test.ads");
+pragma source_file_name(Test, body_file_name => "test.adb");

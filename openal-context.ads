@@ -11,6 +11,7 @@ package OpenAL.Context is
 
   Invalid_Device  : constant Device_t;
   Invalid_Context : constant Context_t;
+  Null_Context    : constant Context_t;
 
   --
   -- API
@@ -19,11 +20,19 @@ package OpenAL.Context is
   function Open_Device
     (Specifier : in String) return Device_t;
 
+  function Open_Default_Device return Device_t;
+
   function Close_Device
     (Device : in Device_t) return Boolean;
 
   function Create_Context
     (Device : in Device_t) return Context_t;
+
+  function Make_Context_Current
+    (Context : in Context_t) return Boolean;
+
+  procedure Destroy_Context
+    (Context : in Context_t);
 
 private
 
@@ -32,5 +41,6 @@ private
 
   Invalid_Device  : constant Device_t  := Device_t (ALC_Thin.Invalid_Device);
   Invalid_Context : constant Context_t := Context_t (ALC_Thin.Invalid_Context);
+  Null_Context    : constant Context_t := Invalid_Context;
 
 end OpenAL.Context;
