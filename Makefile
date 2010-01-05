@@ -3,7 +3,8 @@
 default: all
 
 all:\
-openal-thin.ali openal-thin.o openal.ali openal.o
+openal-buffer.ali openal-buffer.o openal-thin.ali openal-thin.o openal.ali \
+openal.o
 
 ada-bind:\
 conf-adabind conf-systype conf-adatype
@@ -64,6 +65,13 @@ conf-cc conf-ld
 mk-systype:\
 conf-cc conf-ld
 
+openal-buffer.ads:\
+openal.ali openal-thin.ali
+
+openal-buffer.o openal-buffer.ali:\
+ada-compile openal-buffer.adb openal.ali openal-buffer.ads
+	./ada-compile openal-buffer.adb
+
 openal-thin.o openal-thin.ali:\
 ada-compile openal-thin.ads openal.ali openal-thin.ads
 	./ada-compile openal-thin.ads
@@ -75,7 +83,8 @@ ada-compile openal.ads openal.ads
 clean-all: obj_clean ext_clean
 clean: obj_clean
 obj_clean:
-	rm -f openal-thin.ali openal-thin.o openal.ali openal.o
+	rm -f openal-buffer.ali openal-buffer.o openal-thin.ali openal-thin.o \
+	openal.ali openal.o
 ext_clean:
 	rm -f conf-adatype conf-cctype conf-ldtype conf-systype mk-ctxt
 
