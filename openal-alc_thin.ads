@@ -37,6 +37,13 @@ package OpenAL.ALC_Thin is
   -- Types
   --
 
+  type Device_t is new System.Address;
+
+  type Context_t is new System.Address;
+
+  Invalid_Device  : constant Device_t  := Device_t (System.Null_Address);
+  Invalid_Context : constant Context_t := Context_t (System.Null_Address);
+
   type String_t is new System.Address;
 
   -- ALCfloat

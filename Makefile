@@ -3,7 +3,8 @@
 default: all
 
 all:\
-openal-buffer.ali openal-buffer.o openal-error.ali openal-error.o \
+openal-alc_thin.ali openal-alc_thin.o openal-buffer.ali openal-buffer.o \
+openal-context.ali openal-context.o openal-error.ali openal-error.o \
 openal-thin.ali openal-thin.o openal-types.ali openal-types.o openal.ali \
 openal.o
 
@@ -66,12 +67,23 @@ conf-cc conf-ld
 mk-systype:\
 conf-cc conf-ld
 
+openal-alc_thin.o openal-alc_thin.ali:\
+ada-compile openal-alc_thin.ads openal-alc_thin.ads
+	./ada-compile openal-alc_thin.ads
+
 openal-buffer.ads:\
 openal.ali openal-thin.ali openal-types.ali
 
 openal-buffer.o openal-buffer.ali:\
 ada-compile openal-buffer.adb openal.ali openal-buffer.ads
 	./ada-compile openal-buffer.adb
+
+openal-context.ads:\
+openal.ali openal-alc_thin.ali
+
+openal-context.o openal-context.ali:\
+ada-compile openal-context.adb openal.ali openal-context.ads
+	./ada-compile openal-context.adb
 
 openal-error.ads:\
 openal.ali
@@ -95,7 +107,8 @@ ada-compile openal.ads openal.ads
 clean-all: obj_clean ext_clean
 clean: obj_clean
 obj_clean:
-	rm -f openal-buffer.ali openal-buffer.o openal-error.ali openal-error.o \
+	rm -f openal-alc_thin.ali openal-alc_thin.o openal-buffer.ali openal-buffer.o \
+	openal-context.ali openal-context.o openal-error.ali openal-error.o \
 	openal-thin.ali openal-thin.o openal-types.ali openal-types.o openal.ali \
 	openal.o
 ext_clean:
