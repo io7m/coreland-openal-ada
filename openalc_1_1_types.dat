@@ -1,0 +1,20 @@
+ALCcontext *    : CreateContext      : ALCdevice *     : const ALCint *
+ALCboolean      : MakeContextCurrent : ALCcontext *
+void            : ProcessContext     : ALCcontext *
+void            : SuspendContext     : ALCcontext *
+void            : DestroyContext     : ALCcontext *
+ALCcontext *    : GetCurrentContext
+ALCdevice *     : GetContextsDevice  : ALCcontext *
+ALCdevice *     : OpenDevice         : const ALCchar *
+ALCboolean      : CloseDevice        : ALCdevice *
+ALCenum         : GetError           : ALCdevice *
+ALCboolean      : IsExtensionPresent : ALCdevice *     : const ALCchar *
+void *          : GetProcAddress     : ALCdevice *     : const ALCchar *
+ALCenum         : GetEnumValue       : ALCdevice *     : const ALCchar *
+const ALCchar * : GetString          : ALCdevice *     : ALCenum
+void            : GetIntegerv        : ALCdevice *     : ALCenum         : ALCsizei : ALCint *
+ALCdevice *     : CaptureOpenDevice  : const ALCchar * : ALCuint         : ALCenum  : ALCsizei
+ALCboolean      : CaptureCloseDevice : ALCdevice *
+void            : CaptureStart       : ALCdevice *
+void            : CaptureStop        : ALCdevice *
+void            : CaptureSamples     : ALCdevice *     : ALCvoid *       : ALCsizei
