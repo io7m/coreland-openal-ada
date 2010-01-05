@@ -31,6 +31,12 @@ package OpenAL.Context is
   function Make_Context_Current
     (Context : in Context_t) return Boolean;
 
+  procedure Process_Context
+    (Context : in Context_t);
+
+  procedure Suspend_Context
+    (Context : in Context_t);
+
   procedure Destroy_Context
     (Context : in Context_t);
 

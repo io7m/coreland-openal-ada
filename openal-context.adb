@@ -38,6 +38,18 @@ package body OpenAL.Context is
     return Boolean (ALC_Thin.Make_Context_Current (ALC_Thin.Context_t (Context)));
   end Make_Context_Current;
 
+  procedure Process_Context
+    (Context : in Context_t) is
+  begin
+    ALC_Thin.Process_Context (ALC_Thin.Context_t (Context));
+  end Process_Context;
+
+  procedure Suspend_Context
+    (Context : in Context_t) is
+  begin
+    ALC_Thin.Suspend_Context (ALC_Thin.Context_t (Context));
+  end Suspend_Context;
+
   procedure Destroy_Context
     (Context : in Context_t) is
   begin
