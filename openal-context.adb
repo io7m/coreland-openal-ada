@@ -56,4 +56,14 @@ package body OpenAL.Context is
     ALC_Thin.Destroy_Context (ALC_Thin.Context_t (Context));
   end Destroy_Context;
 
+  function Get_Current_Context return Context_t is
+  begin
+    return Context_t (ALC_Thin.Get_Current_Context);
+  end Get_Current_Context;
+
+  function Get_Context_Device (Context : in Context_t) return Device_t is
+  begin
+    return Device_t (ALC_Thin.Get_Contexts_Device (ALC_Thin.Context_t (Context)));
+  end Get_Context_Device;
+
 end OpenAL.Context;

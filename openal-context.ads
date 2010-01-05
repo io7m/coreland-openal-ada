@@ -40,6 +40,10 @@ package OpenAL.Context is
   procedure Destroy_Context
     (Context : in Context_t);
 
+  function Get_Current_Context return Context_t;
+
+  function Get_Context_Device (Context : in Context_t) return Device_t;
+
 private
 
   type Device_t is new ALC_Thin.Device_t;
