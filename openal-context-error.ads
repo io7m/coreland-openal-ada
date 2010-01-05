@@ -8,6 +8,7 @@ package OpenAL.Context.Error is
      Invalid_Value,
      Out_Of_Memory);
 
+  -- proc_map : alcGetError
   function Get_Error (Device : in Device_t) return Error_t;
 
 end OpenAL.Context.Error;

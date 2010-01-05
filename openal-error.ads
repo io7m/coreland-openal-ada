@@ -8,6 +8,7 @@ package OpenAL.Error is
      Invalid_Operation,
      Out_Of_Memory);
 
+  -- proc_map : alGetError
   function Get_Error return Error_t;
 
 end OpenAL.Error;
