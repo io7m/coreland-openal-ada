@@ -1,0 +1,6 @@
+
+-- ./openal-thin.apk
+pragma source_file_name(OpenAL.Thin, spec_file_name => "openal-thin.ads");
+
+-- ./openal.apk
+pragma source_file_name(OpenAL, spec_file_name => "openal.ads");

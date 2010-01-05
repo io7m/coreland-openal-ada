@@ -1,15 +1,3 @@
-ALboolean      : GetBoolean            : ALenum
-ALboolean      : IsBuffer              : ALuint
-ALboolean      : IsEnabled             : ALenum 
-ALboolean      : IsExtensionPresent    : const ALchar *
-ALboolean      : IsSource              : ALuint 
-ALdouble       : GetDouble             : ALenum
-ALenum         : GetEnumValue          : const ALchar *
-ALenum         : GetError              : void
-ALfloat        : GetFloat              : ALenum
-ALint          : GetInteger            : ALenum
-const ALchar * : GetString             : ALenum
-void *         : GetProcAddress        : const ALchar *
 void           : Buffer3f              : ALuint        : ALenum          : ALfloat         : ALfloat   : ALfloat
 void           : Buffer3i              : ALuint        : ALenum          : ALint           : ALint     : ALint
 void           : BufferData            : ALuint        : ALenum          : const ALvoid *  : ALsizei   : ALsizei
@@ -26,6 +14,7 @@ void           : DopplerVelocity       : ALfloat
 void           : Enable                : ALenum
 void           : GenBuffers            : ALsizei       : ALuint *
 void           : GenSources            : ALsizei       : ALuint * 
+ALboolean      : GetBoolean            : ALenum
 void           : GetBooleanv           : ALenum        : ALboolean *
 void           : GetBuffer3f           : ALuint        : ALenum          : ALfloat *       : ALfloat * : ALfloat *
 void           : GetBuffer3i           : ALuint        : ALenum          : ALint *         : ALint *   : ALint *
@@ -33,8 +22,13 @@ void           : GetBufferf            : ALuint        : ALenum          : ALflo
 void           : GetBufferfv           : ALuint        : ALenum          : ALfloat *
 void           : GetBufferi            : ALuint        : ALenum          : ALint *
 void           : GetBufferiv           : ALuint        : ALenum          : ALint *
+ALdouble       : GetDouble             : ALenum
 void           : GetDoublev            : ALenum        : ALdouble *
+ALenum         : GetEnumValue          : const ALchar *
+ALenum         : GetError              : void
+ALfloat        : GetFloat              : ALenum
 void           : GetFloatv             : ALenum        : ALfloat *
+ALint          : GetInteger            : ALenum
 void           : GetIntegerv           : ALenum        : ALint *
 void           : GetListener3f         : ALenum        : ALfloat *       : ALfloat *       : ALfloat *
 void           : GetListener3i         : ALenum        : ALint *         : ALint *         : ALint *
@@ -42,17 +36,23 @@ void           : GetListenerf          : ALenum        : ALfloat *
 void           : GetListenerfv         : ALenum        : ALfloat *
 void           : GetListeneri          : ALenum        : ALint *
 void           : GetListeneriv         : ALenum        : ALint *
+ALvoid *       : GetProcAddress        : const ALchar *
 void           : GetSource3f           : ALuint        : ALenum          : ALfloat *       : ALfloat * : ALfloat *
 void           : GetSource3i           : ALuint        : ALenum          : ALint *         : ALint *   : ALint *
 void           : GetSourcef            : ALuint        : ALenum          : ALfloat *
 void           : GetSourcefv           : ALuint        : ALenum          : ALfloat *
 void           : GetSourcei            : ALuint        :  ALenum         : ALint *
 void           : GetSourceiv           : ALuint        :  ALenum         : ALint *
+const ALchar * : GetString             : ALenum
+ALboolean      : IsBuffer              : ALuint
+ALboolean      : IsEnabled             : ALenum 
+ALboolean      : IsExtensionPresent    : const ALchar *
+ALboolean      : IsSource              : ALuint 
 void           : Listener3f            : ALenum        : ALfloat         : ALfloat         : ALfloat
 void           : Listener3i            : ALenum        : ALint           : ALint           : ALint
-void           : Listenerf             : ALenum        : ALfloat value
+void           : Listenerf             : ALenum        : ALfloat
 void           : Listenerfv            : ALenum        : const ALfloat * 
-void           : Listeneri             : ALenum        : ALint value
+void           : Listeneri             : ALenum        : ALint
 void           : Listeneriv            : ALenum        : const ALint *
 void           : Source3f              : ALuint        : ALenum          : ALfloat         : ALfloat   : ALfloat
 void           : Source3i              : ALuint        : ALenum          : ALint           : ALint     : ALint
