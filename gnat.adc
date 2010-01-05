@@ -3,8 +3,15 @@
 pragma source_file_name(OpenAL.Buffer, spec_file_name => "openal-buffer.ads");
 pragma source_file_name(OpenAL.Buffer, body_file_name => "openal-buffer.adb");
 
+-- ./openal-error.apk
+pragma source_file_name(OpenAL.Error, spec_file_name => "openal-error.ads");
+pragma source_file_name(OpenAL.Error, body_file_name => "openal-error.adb");
+
 -- ./openal-thin.apk
 pragma source_file_name(OpenAL.Thin, spec_file_name => "openal-thin.ads");
+
+-- ./openal-types.apk
+pragma source_file_name(OpenAL.Types, spec_file_name => "openal-types.ads");
 
 -- ./openal.apk
 pragma source_file_name(OpenAL, spec_file_name => "openal.ads");
