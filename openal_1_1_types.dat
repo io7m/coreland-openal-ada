@@ -1,0 +1,73 @@
+ALboolean      : GetBoolean            : ALenum
+ALboolean      : IsBuffer              : ALuint
+ALboolean      : IsEnabled             : ALenum 
+ALboolean      : IsExtensionPresent    : const ALchar *
+ALboolean      : IsSource              : ALuint 
+ALdouble       : GetDouble             : ALenum
+ALenum         : GetEnumValue          : const ALchar *
+ALenum         : GetError              : void
+ALfloat        : GetFloat              : ALenum
+ALint          : GetInteger            : ALenum
+const ALchar * : GetString             : ALenum
+void *         : GetProcAddress        : const ALchar *
+void           : Buffer3f              : ALuint        : ALenum          : ALfloat         : ALfloat   : ALfloat
+void           : Buffer3i              : ALuint        : ALenum          : ALint           : ALint     : ALint
+void           : BufferData            : ALuint        : ALenum          : const ALvoid *  : ALsizei   : ALsizei
+void           : Bufferf               : ALuint        : ALenum          : ALfloat
+void           : Bufferfv              : ALuint        : ALenum          : const ALfloat *
+void           : Bufferi               : ALuint        : ALenum          : ALint
+void           : Bufferiv              : ALuint        : ALenum          : const ALint *
+void           : DeleteBuffers         : ALsizei       : const ALuint *
+void           : DeleteSources         : ALsizei       : const ALuint *
+void           : Disable               : ALenum 
+void           : DistanceModel         : ALenum
+void           : DopplerFactor         : ALfloat
+void           : DopplerVelocity       : ALfloat
+void           : Enable                : ALenum
+void           : GenBuffers            : ALsizei       : ALuint *
+void           : GenSources            : ALsizei       : ALuint * 
+void           : GetBooleanv           : ALenum        : ALboolean *
+void           : GetBuffer3f           : ALuint        : ALenum          : ALfloat *       : ALfloat * : ALfloat *
+void           : GetBuffer3i           : ALuint        : ALenum          : ALint *         : ALint *   : ALint *
+void           : GetBufferf            : ALuint        : ALenum          : ALfloat *
+void           : GetBufferfv           : ALuint        : ALenum          : ALfloat *
+void           : GetBufferi            : ALuint        : ALenum          : ALint *
+void           : GetBufferiv           : ALuint        : ALenum          : ALint *
+void           : GetDoublev            : ALenum        : ALdouble *
+void           : GetFloatv             : ALenum        : ALfloat *
+void           : GetIntegerv           : ALenum        : ALint *
+void           : GetListener3f         : ALenum        : ALfloat *       : ALfloat *       : ALfloat *
+void           : GetListener3i         : ALenum        : ALint *         : ALint *         : ALint *
+void           : GetListenerf          : ALenum        : ALfloat *
+void           : GetListenerfv         : ALenum        : ALfloat *
+void           : GetListeneri          : ALenum        : ALint *
+void           : GetListeneriv         : ALenum        : ALint *
+void           : GetSource3f           : ALuint        : ALenum          : ALfloat *       : ALfloat * : ALfloat *
+void           : GetSource3i           : ALuint        : ALenum          : ALint *         : ALint *   : ALint *
+void           : GetSourcef            : ALuint        : ALenum          : ALfloat *
+void           : GetSourcefv           : ALuint        : ALenum          : ALfloat *
+void           : GetSourcei            : ALuint        :  ALenum         : ALint *
+void           : GetSourceiv           : ALuint        :  ALenum         : ALint *
+void           : Listener3f            : ALenum        : ALfloat         : ALfloat         : ALfloat
+void           : Listener3i            : ALenum        : ALint           : ALint           : ALint
+void           : Listenerf             : ALenum        : ALfloat value
+void           : Listenerfv            : ALenum        : const ALfloat * 
+void           : Listeneri             : ALenum        : ALint value
+void           : Listeneriv            : ALenum        : const ALint *
+void           : Source3f              : ALuint        : ALenum          : ALfloat         : ALfloat   : ALfloat
+void           : Source3i              : ALuint        : ALenum          : ALint           : ALint     : ALint
+void           : SourcePause           : ALuint
+void           : SourcePausev          : ALsizei       : const ALuint *
+void           : SourcePlay            : ALuint
+void           : SourcePlayv           : ALsizei       : const ALuint *
+void           : SourceQueueBuffers    : ALuint        : ALsizei         : const ALuint *
+void           : SourceRewind          : ALuint
+void           : SourceRewindv         : ALsizei       : const ALuint *
+void           : SourceStop            : ALuint
+void           : SourceStopv           : ALsizei       : const ALuint *
+void           : SourceUnqueueBuffers  : ALuint        : ALsizei         : ALuint *
+void           : Sourcef               : ALuint        : ALenum          : ALfloat 
+void           : Sourcefv              : ALuint        : ALenum          : const ALfloat * 
+void           : Sourcei               : ALuint        : ALenum          : ALint 
+void           : Sourceiv              : ALuint        : ALenum          : const ALint *
+void           : SpeedOfSound          : ALfloat
