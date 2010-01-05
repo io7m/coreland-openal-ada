@@ -1,0 +1,7 @@
+<p>This package provides a set of Ada bindings to OpenAL.</p>
+<p>Bindings are generated from a set of machine-checked specifications.</p>
+<p>
+Lua is required to generate part of the code. It is not a run-time
+requirement - the resulting library/code does not depend on Lua in any
+way, shape or form.
+</p>
