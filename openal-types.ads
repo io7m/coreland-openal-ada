@@ -13,9 +13,11 @@ package OpenAL.Types is
   package Float_Arrays  is new Ada.Numerics.Generic_Real_Arrays (Types.Float_t);
   package Double_Arrays is new Ada.Numerics.Generic_Real_Arrays (Types.Double_t);
 
-  type Vector_2i_t is array (1 .. 2) of aliased Integer_t;
-  type Vector_3i_t is array (1 .. 3) of aliased Integer_t;
-  type Vector_4i_t is array (1 .. 4) of aliased Integer_t;
+  type Vector_i_t is array (Positive range <>) of aliased Integer_t;
+
+  type Vector_2i_t is new Vector_i_t (1 .. 2);
+  type Vector_3i_t is new Vector_i_t (1 .. 3);
+  type Vector_4i_t is new Vector_i_t (1 .. 4);
 
   type Vector_2f_t is new Float_Arrays.Real_Vector (1 .. 2);
   type Vector_3f_t is new Float_Arrays.Real_Vector (1 .. 3);
