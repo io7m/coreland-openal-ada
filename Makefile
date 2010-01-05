@@ -3,6 +3,7 @@
 default: all
 
 all:\
+UNIT_TESTS/buffers_001 UNIT_TESTS/buffers_001.ali UNIT_TESTS/buffers_001.o \
 UNIT_TESTS/init_001 UNIT_TESTS/init_001.ali UNIT_TESTS/init_001.o \
 UNIT_TESTS/init_002 UNIT_TESTS/init_002.ali UNIT_TESTS/init_002.o \
 UNIT_TESTS/init_003 UNIT_TESTS/init_003.ali UNIT_TESTS/init_003.o \
@@ -17,6 +18,17 @@ tests:
 	(cd UNIT_TESTS && make)
 tests_clean:
 	(cd UNIT_TESTS && make clean)
+
+UNIT_TESTS/buffers_001:\
+ada-bind ada-link UNIT_TESTS/buffers_001.ald UNIT_TESTS/buffers_001.ali \
+UNIT_TESTS/test.ali openal.a
+	./ada-bind UNIT_TESTS/buffers_001.ali
+	./ada-link UNIT_TESTS/buffers_001 UNIT_TESTS/buffers_001.ali openal.a
+
+UNIT_TESTS/buffers_001.o UNIT_TESTS/buffers_001.ali:\
+ada-compile UNIT_TESTS/buffers_001.adb openal-buffer.ali \
+openal-context-error.ali openal-context.ali UNIT_TESTS/test.ali
+	./ada-compile UNIT_TESTS/buffers_001.adb
 
 UNIT_TESTS/init_001:\
 ada-bind ada-link UNIT_TESTS/init_001.ald UNIT_TESTS/init_001.ali \
@@ -172,14 +184,15 @@ ada-compile openal.ads openal.ads
 clean-all: tests_clean obj_clean ext_clean
 clean: obj_clean
 obj_clean:
-	rm -f UNIT_TESTS/init_001 UNIT_TESTS/init_001.ali UNIT_TESTS/init_001.o \
-	UNIT_TESTS/init_002 UNIT_TESTS/init_002.ali UNIT_TESTS/init_002.o \
-	UNIT_TESTS/init_003 UNIT_TESTS/init_003.ali UNIT_TESTS/init_003.o \
-	UNIT_TESTS/test.a UNIT_TESTS/test.ali UNIT_TESTS/test.o openal-alc_thin.ali \
-	openal-alc_thin.o openal-buffer.ali openal-buffer.o openal-context-error.ali \
-	openal-context-error.o openal-context.ali openal-context.o openal-error.ali \
-	openal-error.o openal-thin.ali openal-thin.o openal-types.ali openal-types.o \
-	openal.a openal.ali openal.o
+	rm -f UNIT_TESTS/buffers_001 UNIT_TESTS/buffers_001.ali \
+	UNIT_TESTS/buffers_001.o UNIT_TESTS/init_001 UNIT_TESTS/init_001.ali \
+	UNIT_TESTS/init_001.o UNIT_TESTS/init_002 UNIT_TESTS/init_002.ali \
+	UNIT_TESTS/init_002.o UNIT_TESTS/init_003 UNIT_TESTS/init_003.ali \
+	UNIT_TESTS/init_003.o UNIT_TESTS/test.a UNIT_TESTS/test.ali UNIT_TESTS/test.o \
+	openal-alc_thin.ali openal-alc_thin.o openal-buffer.ali openal-buffer.o \
+	openal-context-error.ali openal-context-error.o openal-context.ali \
+	openal-context.o openal-error.ali openal-error.o openal-thin.ali openal-thin.o \
+	openal-types.ali openal-types.o openal.a openal.ali openal.o
 ext_clean:
 	rm -f conf-adatype conf-cctype conf-ldtype conf-systype mk-ctxt
 
