@@ -9,11 +9,12 @@ UNIT_TESTS/init_002 UNIT_TESTS/init_002.ali UNIT_TESTS/init_002.o \
 UNIT_TESTS/init_003 UNIT_TESTS/init_003.ali UNIT_TESTS/init_003.o \
 UNIT_TESTS/sources_001 UNIT_TESTS/sources_001.ali UNIT_TESTS/sources_001.o \
 UNIT_TESTS/test.a UNIT_TESTS/test.ali UNIT_TESTS/test.o openal-alc_thin.ali \
-openal-alc_thin.o openal-buffer.ali openal-buffer.o openal-context-error.ali \
-openal-context-error.o openal-context.ali openal-context.o openal-error.ali \
-openal-error.o openal-listener.ali openal-listener.o openal-source.ali \
-openal-source.o openal-thin.ali openal-thin.o openal-types.ali openal-types.o \
-openal.a openal.ali openal.o
+openal-alc_thin.o openal-buffer.ali openal-buffer.o openal-context-capture.ali \
+openal-context-capture.o openal-context-error.ali openal-context-error.o \
+openal-context.ali openal-context.o openal-error.ali openal-error.o \
+openal-listener.ali openal-listener.o openal-source.ali openal-source.o \
+openal-thin.ali openal-thin.o openal-types.ali openal-types.o openal.a \
+openal.ali openal.o
 
 # Mkf-test
 tests:
@@ -154,6 +155,14 @@ openal-buffer.o openal-buffer.ali:\
 ada-compile openal-buffer.adb openal.ali openal-buffer.ads
 	./ada-compile openal-buffer.adb
 
+openal-context-capture.ads:\
+openal-context.ali openal-alc_thin.ali
+
+openal-context-capture.o openal-context-capture.ali:\
+ada-compile openal-context-capture.adb openal-context.ali \
+openal-context-capture.ads openal-alc_thin.ali
+	./ada-compile openal-context-capture.adb
+
 openal-context-error.ads:\
 openal-context.ali
 
@@ -184,10 +193,10 @@ ada-compile openal-listener.adb openal.ali openal-listener.ads openal-thin.ali
 	./ada-compile openal-listener.adb
 
 openal-source.ads:\
-openal.ali openal-thin.ali
+openal.ali openal-buffer.ali openal-types.ali
 
 openal-source.o openal-source.ali:\
-ada-compile openal-source.adb openal.ali openal-source.ads
+ada-compile openal-source.adb openal.ali openal-source.ads openal-thin.ali
 	./ada-compile openal-source.adb
 
 openal-thin.o openal-thin.ali:\
@@ -220,11 +229,11 @@ obj_clean:
 	UNIT_TESTS/init_003.o UNIT_TESTS/sources_001 UNIT_TESTS/sources_001.ali \
 	UNIT_TESTS/sources_001.o UNIT_TESTS/test.a UNIT_TESTS/test.ali \
 	UNIT_TESTS/test.o openal-alc_thin.ali openal-alc_thin.o openal-buffer.ali \
-	openal-buffer.o openal-context-error.ali openal-context-error.o \
-	openal-context.ali openal-context.o openal-error.ali openal-error.o \
-	openal-listener.ali openal-listener.o openal-source.ali openal-source.o \
-	openal-thin.ali openal-thin.o openal-types.ali openal-types.o openal.a \
-	openal.ali openal.o
+	openal-buffer.o openal-context-capture.ali openal-context-capture.o \
+	openal-context-error.ali openal-context-error.o openal-context.ali \
+	openal-context.o openal-error.ali openal-error.o openal-listener.ali \
+	openal-listener.o openal-source.ali openal-source.o openal-thin.ali \
+	openal-thin.o openal-types.ali openal-types.o openal.a openal.ali openal.o
 ext_clean:
 	rm -f conf-adatype conf-cctype conf-ldtype conf-systype mk-ctxt
 
