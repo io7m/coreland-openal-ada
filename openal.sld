@@ -4,6 +4,7 @@ openal-context-error.o
 openal-context.o
 openal-error.o
 openal-listener.o
+openal-source.o
 openal-thin.o
 openal-types.o
 openal.o

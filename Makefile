@@ -10,8 +10,9 @@ UNIT_TESTS/init_003 UNIT_TESTS/init_003.ali UNIT_TESTS/init_003.o \
 UNIT_TESTS/test.a UNIT_TESTS/test.ali UNIT_TESTS/test.o openal-alc_thin.ali \
 openal-alc_thin.o openal-buffer.ali openal-buffer.o openal-context-error.ali \
 openal-context-error.o openal-context.ali openal-context.o openal-error.ali \
-openal-error.o openal-listener.ali openal-listener.o openal-thin.ali \
-openal-thin.o openal-types.ali openal-types.o openal.a openal.ali openal.o
+openal-error.o openal-listener.ali openal-listener.o openal-source.ali \
+openal-source.o openal-thin.ali openal-thin.o openal-types.ali openal-types.o \
+openal.a openal.ali openal.o
 
 # Mkf-test
 tests:
@@ -164,11 +165,18 @@ ada-compile openal-error.adb openal.ali openal-error.ads openal-thin.ali
 	./ada-compile openal-error.adb
 
 openal-listener.ads:\
-openal.ali openal-thin.ali openal-types.ali
+openal.ali openal-types.ali
 
 openal-listener.o openal-listener.ali:\
-ada-compile openal-listener.adb openal.ali openal-listener.ads
+ada-compile openal-listener.adb openal.ali openal-listener.ads openal-thin.ali
 	./ada-compile openal-listener.adb
+
+openal-source.ads:\
+openal.ali openal-thin.ali openal-types.ali
+
+openal-source.o openal-source.ali:\
+ada-compile openal-source.adb openal.ali openal-source.ads
+	./ada-compile openal-source.adb
 
 openal-thin.o openal-thin.ali:\
 ada-compile openal-thin.ads openal.ali openal-thin.ads
@@ -180,11 +188,11 @@ ada-compile openal-types.ads openal.ali openal-types.ads openal-thin.ali
 
 openal.a:\
 cc-slib openal.sld openal-alc_thin.o openal-buffer.o openal-context-error.o \
-openal-context.o openal-error.o openal-listener.o openal-thin.o openal-types.o \
-openal.o
+openal-context.o openal-error.o openal-listener.o openal-source.o openal-thin.o \
+openal-types.o openal.o
 	./cc-slib openal openal-alc_thin.o openal-buffer.o openal-context-error.o \
-	openal-context.o openal-error.o openal-listener.o openal-thin.o openal-types.o \
-	openal.o
+	openal-context.o openal-error.o openal-listener.o openal-source.o openal-thin.o \
+	openal-types.o openal.o
 
 openal.o openal.ali:\
 ada-compile openal.ads openal.ads
@@ -201,8 +209,8 @@ obj_clean:
 	openal-alc_thin.ali openal-alc_thin.o openal-buffer.ali openal-buffer.o \
 	openal-context-error.ali openal-context-error.o openal-context.ali \
 	openal-context.o openal-error.ali openal-error.o openal-listener.ali \
-	openal-listener.o openal-thin.ali openal-thin.o openal-types.ali openal-types.o \
-	openal.a openal.ali openal.o
+	openal-listener.o openal-source.ali openal-source.o openal-thin.ali \
+	openal-thin.o openal-types.ali openal-types.o openal.a openal.ali openal.o
 ext_clean:
 	rm -f conf-adatype conf-cctype conf-ldtype conf-systype mk-ctxt
 
