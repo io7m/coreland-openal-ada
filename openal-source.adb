@@ -215,7 +215,7 @@ package body OpenAL.Source is
   begin
     Thin.Get_Sourcefv
       (Source_ID => Thin.Unsigned_Integer_t (Source),
-       Parameter => Thin.AL_POSITION,
+       Parameter => Thin.AL_VELOCITY,
        Values    => Velocity (Velocity'First)'Address);
   end Get_Velocity_Float_List;
 
@@ -225,7 +225,7 @@ package body OpenAL.Source is
   begin
     Thin.Get_Sourceiv
       (Source_ID => Thin.Unsigned_Integer_t (Source),
-       Parameter => Thin.AL_POSITION,
+       Parameter => Thin.AL_VELOCITY,
        Values    => Velocity (Velocity'First)'Address);
   end Get_Velocity_Discrete_List;
 
@@ -390,7 +390,7 @@ package body OpenAL.Source is
   begin
     Thin.Get_Sourcei
       (Source_ID => Thin.Unsigned_Integer_t (Source),
-       Parameter => Thin.AL_BUFFERS_QUEUED,
+       Parameter => Thin.AL_BUFFERS_PROCESSED,
        Value     => Value'Address);
     Buffers := Natural (Value);
   end Get_Buffers_Processed;
@@ -428,7 +428,7 @@ package body OpenAL.Source is
   begin
     Thin.Sourcef
       (Source_ID => Thin.Unsigned_Integer_t (Source),
-       Parameter => Thin.AL_MIN_GAIN,
+       Parameter => Thin.AL_MAX_GAIN,
        Value     => Thin.Float_t (Gain));
   end Set_Maximum_Gain;
 
@@ -440,10 +440,160 @@ package body OpenAL.Source is
   begin
     Thin.Get_Sourcef
       (Source_ID => Thin.Unsigned_Integer_t (Source),
-       Parameter => Thin.AL_MIN_GAIN,
+       Parameter => Thin.AL_MAX_GAIN,
        Value     => Value'Address);
     Gain := Value;
   end Get_Maximum_Gain;
+
+  --
+  -- Reference_Distance
+  --
+
+  procedure Set_Reference_Distance_Float
+    (Source   : in Source_ID_t;
+     Distance : in Types.Float_t) is
+  begin
+    Thin.Sourcef
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_REFERENCE_DISTANCE,
+       Value     => Thin.Float_t (Distance));
+  end Set_Reference_Distance_Float;
+
+  procedure Set_Reference_Distance_Discrete
+    (Source   : in Source_ID_t;
+     Distance : in Types.Integer_t) is
+  begin
+    Thin.Sourcei
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_REFERENCE_DISTANCE,
+       Value     => Thin.Integer_t (Distance));
+  end Set_Reference_Distance_Discrete;
+
+  procedure Get_Reference_Distance_Float
+    (Source   : in     Source_ID_t;
+     Distance :    out Types.Float_t)
+  is
+    Value : Thin.Float_t;
+  begin
+    Thin.Get_Sourcef
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_REFERENCE_DISTANCE,
+       Value     => Value'Address);
+    Distance := Value;
+  end Get_Reference_Distance_Float;
+
+  procedure Get_Reference_Distance_Discrete
+    (Source   : in     Source_ID_t;
+     Distance :    out Types.Integer_t)
+  is
+    Value : Thin.Integer_t;
+  begin
+    Thin.Get_Sourcei
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_REFERENCE_DISTANCE,
+       Value     => Value'Address);
+    Distance := Value;
+  end Get_Reference_Distance_Discrete;
+
+  --
+  -- Rolloff_Factor
+  --
+
+  procedure Set_Rolloff_Factor_Float
+    (Source   : in Source_ID_t;
+     Distance : in Types.Float_t) is
+  begin
+    Thin.Sourcef
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_ROLLOFF_FACTOR,
+       Value     => Thin.Float_t (Distance));
+  end Set_Rolloff_Factor_Float;
+
+  procedure Set_Rolloff_Factor_Discrete
+    (Source   : in Source_ID_t;
+     Distance : in Types.Integer_t) is
+  begin
+    Thin.Sourcei
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_ROLLOFF_FACTOR,
+       Value     => Thin.Integer_t (Distance));
+  end Set_Rolloff_Factor_Discrete;
+
+  procedure Get_Rolloff_Factor_Float
+    (Source   : in     Source_ID_t;
+     Distance :    out Types.Float_t)
+  is
+    Value : Thin.Float_t;
+  begin
+    Thin.Get_Sourcef
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_ROLLOFF_FACTOR,
+       Value     => Value'Address);
+    Distance := Value;
+  end Get_Rolloff_Factor_Float;
+
+  procedure Get_Rolloff_Factor_Discrete
+    (Source   : in     Source_ID_t;
+     Distance :    out Types.Integer_t)
+  is
+    Value : Thin.Integer_t;
+  begin
+    Thin.Get_Sourcei
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_ROLLOFF_FACTOR,
+       Value     => Value'Address);
+    Distance := Value;
+  end Get_Rolloff_Factor_Discrete;
+
+  --
+  -- Maximum_Distance
+  --
+
+  procedure Set_Maximum_Distance_Float
+    (Source   : in Source_ID_t;
+     Distance : in Types.Float_t) is
+  begin
+    Thin.Sourcef
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_MAX_DISTANCE,
+       Value     => Thin.Float_t (Distance));
+  end Set_Maximum_Distance_Float;
+
+  procedure Set_Maximum_Distance_Discrete
+    (Source   : in Source_ID_t;
+     Distance : in Types.Integer_t) is
+  begin
+    Thin.Sourcei
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_MAX_DISTANCE,
+       Value     => Thin.Integer_t (Distance));
+  end Set_Maximum_Distance_Discrete;
+
+  procedure Get_Maximum_Distance_Float
+    (Source   : in     Source_ID_t;
+     Distance :    out Types.Float_t)
+  is
+    Value : Thin.Float_t;
+  begin
+    Thin.Get_Sourcef
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_MAX_DISTANCE,
+       Value     => Value'Address);
+    Distance := Value;
+  end Get_Maximum_Distance_Float;
+
+  procedure Get_Maximum_Distance_Discrete
+    (Source   : in     Source_ID_t;
+     Distance :    out Types.Integer_t)
+  is
+    Value : Thin.Integer_t;
+  begin
+    Thin.Get_Sourcei
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_MAX_DISTANCE,
+       Value     => Value'Address);
+    Distance := Value;
+  end Get_Maximum_Distance_Discrete;
 
   --
   -- Pitch
@@ -471,6 +621,385 @@ package body OpenAL.Source is
        Value     => Value'Address);
     Pitch := Value;
   end Get_Pitch;
+
+  --
+  -- Direction
+  --
+
+  procedure Set_Direction_Float
+    (Source : in Source_ID_t;
+     X      : in Types.Float_t;
+     Y      : in Types.Float_t;
+     Z      : in Types.Float_t) is
+  begin
+    Thin.Source_3f
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_DIRECTION,
+       Value_1   => Thin.Float_t (X),
+       Value_2   => Thin.Float_t (Y),
+       Value_3   => Thin.Float_t (Z));
+  end Set_Direction_Float;
+
+  procedure Set_Direction_Discrete
+    (Source : in Source_ID_t;
+     X      : in Types.Integer_t;
+     Y      : in Types.Integer_t;
+     Z      : in Types.Integer_t) is
+  begin
+    Thin.Source_3i
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_DIRECTION,
+       Value_1   => Thin.Integer_t (X),
+       Value_2   => Thin.Integer_t (Y),
+       Value_3   => Thin.Integer_t (Z));
+  end Set_Direction_Discrete;
+
+  procedure Set_Direction_Float_List
+    (Source    : in Source_ID_t;
+     Direction : in Types.Vector_3f_t) is
+  begin
+    Thin.Sourcefv
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_DIRECTION,
+       Values    => Direction (Direction'First)'Address);
+  end Set_Direction_Float_List;
+
+  procedure Set_Direction_Discrete_List
+    (Source    : in Source_ID_t;
+     Direction : in Types.Vector_3i_t) is
+  begin
+    Thin.Sourceiv
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_DIRECTION,
+       Values    => Direction (Direction'First)'Address);
+  end Set_Direction_Discrete_List;
+
+  procedure Get_Direction_Float
+    (Source : in     Source_ID_t;
+     X      :    out Types.Float_t;
+     Y      :    out Types.Float_t;
+     Z      :    out Types.Float_t)
+  is
+    V : aliased Types.Vector_3f_t;
+  begin
+    Get_Direction_Float_List (Source, V);
+
+    X := V (1);
+    Y := V (2);
+    Z := V (3);
+  end Get_Direction_Float;
+
+  procedure Get_Direction_Discrete
+    (Source : in     Source_ID_t;
+     X      :    out Types.Integer_t;
+     Y      :    out Types.Integer_t;
+     Z      :    out Types.Integer_t)
+  is
+    V : aliased Types.Vector_3i_t;
+  begin
+    Get_Direction_Discrete_List (Source, V);
+
+    X := V (1);
+    Y := V (2);
+    Z := V (3);
+  end Get_Direction_Discrete;
+
+  procedure Get_Direction_Float_List
+    (Source    : in     Source_ID_t;
+     Direction :    out Types.Vector_3f_t) is
+  begin
+    Thin.Get_Sourcefv
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_DIRECTION,
+       Values    => Direction (Direction'First)'Address);
+  end Get_Direction_Float_List;
+
+  procedure Get_Direction_Discrete_List
+    (Source    : in     Source_ID_t;
+     Direction :    out Types.Vector_3i_t) is
+  begin
+    Thin.Get_Sourceiv
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_DIRECTION,
+       Values    => Direction (Direction'First)'Address);
+  end Get_Direction_Discrete_List;
+
+  --
+  -- Cone_Inner_Angle
+  --
+
+  procedure Set_Cone_Inner_Angle_Float
+    (Source   : in Source_ID_t;
+     Distance : in Types.Float_t) is
+  begin
+    Thin.Sourcef
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_CONE_INNER_ANGLE,
+       Value     => Thin.Float_t (Distance));
+  end Set_Cone_Inner_Angle_Float;
+
+  procedure Set_Cone_Inner_Angle_Discrete
+    (Source   : in Source_ID_t;
+     Distance : in Types.Integer_t) is
+  begin
+    Thin.Sourcei
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_CONE_INNER_ANGLE,
+       Value     => Thin.Integer_t (Distance));
+  end Set_Cone_Inner_Angle_Discrete;
+
+  procedure Get_Cone_Inner_Angle_Float
+    (Source   : in     Source_ID_t;
+     Distance :    out Types.Float_t)
+  is
+    Value : Thin.Float_t;
+  begin
+    Thin.Get_Sourcef
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_CONE_INNER_ANGLE,
+       Value     => Value'Address);
+    Distance := Value;
+  end Get_Cone_Inner_Angle_Float;
+
+  procedure Get_Cone_Inner_Angle_Discrete
+    (Source   : in     Source_ID_t;
+     Distance :    out Types.Integer_t)
+  is
+    Value : Thin.Integer_t;
+  begin
+    Thin.Get_Sourcei
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_CONE_INNER_ANGLE,
+       Value     => Value'Address);
+    Distance := Value;
+  end Get_Cone_Inner_Angle_Discrete;
+
+  --
+  -- Cone_Outer_Angle
+  --
+
+  procedure Set_Cone_Outer_Angle_Float
+    (Source   : in Source_ID_t;
+     Distance : in Types.Float_t) is
+  begin
+    Thin.Sourcef
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_CONE_OUTER_ANGLE,
+       Value     => Thin.Float_t (Distance));
+  end Set_Cone_Outer_Angle_Float;
+
+  procedure Set_Cone_Outer_Angle_Discrete
+    (Source   : in Source_ID_t;
+     Distance : in Types.Integer_t) is
+  begin
+    Thin.Sourcei
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_CONE_OUTER_ANGLE,
+       Value     => Thin.Integer_t (Distance));
+  end Set_Cone_Outer_Angle_Discrete;
+
+  procedure Get_Cone_Outer_Angle_Float
+    (Source   : in     Source_ID_t;
+     Distance :    out Types.Float_t)
+  is
+    Value : Thin.Float_t;
+  begin
+    Thin.Get_Sourcef
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_CONE_OUTER_ANGLE,
+       Value     => Value'Address);
+    Distance := Value;
+  end Get_Cone_Outer_Angle_Float;
+
+  procedure Get_Cone_Outer_Angle_Discrete
+    (Source   : in     Source_ID_t;
+     Distance :    out Types.Integer_t)
+  is
+    Value : Thin.Integer_t;
+  begin
+    Thin.Get_Sourcei
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_CONE_OUTER_ANGLE,
+       Value     => Value'Address);
+    Distance := Value;
+  end Get_Cone_Outer_Angle_Discrete;
+
+  --
+  -- Cone_Outer_Gain
+  --
+
+  procedure Set_Cone_Outer_Gain
+    (Source : in Source_ID_t;
+     Gain   : in Types.Float_t) is
+  begin
+    Thin.Sourcef
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_CONE_OUTER_GAIN,
+       Value     => Thin.Float_t (Gain));
+  end Set_Cone_Outer_Gain;
+
+  procedure Get_Cone_Outer_Gain
+    (Source : in     Source_ID_t;
+     Gain   :    out Types.Float_t)
+  is
+    Value : aliased Types.Float_t;
+  begin
+    Thin.Get_Sourcef
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_CONE_OUTER_GAIN,
+       Value     => Value'Address);
+    Gain := Value;
+  end Get_Cone_Outer_Gain;
+
+  --
+  -- Seconds_Offset
+  --
+
+  procedure Set_Seconds_Offset_Float
+    (Source   : in Source_ID_t;
+     Distance : in Types.Float_t) is
+  begin
+    Thin.Sourcef
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_SEC_OFFSET,
+       Value     => Thin.Float_t (Distance));
+  end Set_Seconds_Offset_Float;
+
+  procedure Set_Seconds_Offset_Discrete
+    (Source   : in Source_ID_t;
+     Distance : in Types.Integer_t) is
+  begin
+    Thin.Sourcei
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_SEC_OFFSET,
+       Value     => Thin.Integer_t (Distance));
+  end Set_Seconds_Offset_Discrete;
+
+  procedure Get_Seconds_Offset_Float
+    (Source   : in     Source_ID_t;
+     Distance :    out Types.Float_t)
+  is
+    Value : Thin.Float_t;
+  begin
+    Thin.Get_Sourcef
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_SEC_OFFSET,
+       Value     => Value'Address);
+    Distance := Value;
+  end Get_Seconds_Offset_Float;
+
+  procedure Get_Seconds_Offset_Discrete
+    (Source   : in     Source_ID_t;
+     Distance :    out Types.Integer_t)
+  is
+    Value : Thin.Integer_t;
+  begin
+    Thin.Get_Sourcei
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_SEC_OFFSET,
+       Value     => Value'Address);
+    Distance := Value;
+  end Get_Seconds_Offset_Discrete;
+
+  --
+  -- Sample_Offset
+  --
+
+  procedure Set_Sample_Offset_Float
+    (Source   : in Source_ID_t;
+     Distance : in Types.Float_t) is
+  begin
+    Thin.Sourcef
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_SAMPLE_OFFSET,
+       Value     => Thin.Float_t (Distance));
+  end Set_Sample_Offset_Float;
+
+  procedure Set_Sample_Offset_Discrete
+    (Source   : in Source_ID_t;
+     Distance : in Types.Integer_t) is
+  begin
+    Thin.Sourcei
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_SAMPLE_OFFSET,
+       Value     => Thin.Integer_t (Distance));
+  end Set_Sample_Offset_Discrete;
+
+  procedure Get_Sample_Offset_Float
+    (Source   : in     Source_ID_t;
+     Distance :    out Types.Float_t)
+  is
+    Value : Thin.Float_t;
+  begin
+    Thin.Get_Sourcef
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_SAMPLE_OFFSET,
+       Value     => Value'Address);
+    Distance := Value;
+  end Get_Sample_Offset_Float;
+
+  procedure Get_Sample_Offset_Discrete
+    (Source   : in     Source_ID_t;
+     Distance :    out Types.Integer_t)
+  is
+    Value : Thin.Integer_t;
+  begin
+    Thin.Get_Sourcei
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_SAMPLE_OFFSET,
+       Value     => Value'Address);
+    Distance := Value;
+  end Get_Sample_Offset_Discrete;
+
+  --
+  -- Byte_Offset
+  --
+
+  procedure Set_Byte_Offset_Float
+    (Source   : in Source_ID_t;
+     Distance : in Types.Float_t) is
+  begin
+    Thin.Sourcef
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_BYTE_OFFSET,
+       Value     => Thin.Float_t (Distance));
+  end Set_Byte_Offset_Float;
+
+  procedure Set_Byte_Offset_Discrete
+    (Source   : in Source_ID_t;
+     Distance : in Types.Integer_t) is
+  begin
+    Thin.Sourcei
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_BYTE_OFFSET,
+       Value     => Thin.Integer_t (Distance));
+  end Set_Byte_Offset_Discrete;
+
+  procedure Get_Byte_Offset_Float
+    (Source   : in     Source_ID_t;
+     Distance :    out Types.Float_t)
+  is
+    Value : Thin.Float_t;
+  begin
+    Thin.Get_Sourcef
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_BYTE_OFFSET,
+       Value     => Value'Address);
+    Distance := Value;
+  end Get_Byte_Offset_Float;
+
+  procedure Get_Byte_Offset_Discrete
+    (Source   : in     Source_ID_t;
+     Distance :    out Types.Integer_t)
+  is
+    Value : Thin.Integer_t;
+  begin
+    Thin.Get_Sourcei
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_BYTE_OFFSET,
+       Value     => Value'Address);
+    Distance := Value;
+  end Get_Byte_Offset_Discrete;
 
   --
   -- Queue_Buffers

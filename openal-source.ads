@@ -243,6 +243,78 @@ package OpenAL.Source is
      Gain   :    out Gain_t);
 
   --
+  -- Reference_Distance
+  --
+
+  -- proc_map : alSource
+  procedure Set_Reference_Distance_Float
+    (Source   : in Source_ID_t;
+     Distance : in Types.Float_t);
+
+  -- proc_map : alSource
+  procedure Set_Reference_Distance_Discrete
+    (Source   : in Source_ID_t;
+     Distance : in Types.Integer_t);
+
+  -- proc_map : alGetSource
+  procedure Get_Reference_Distance_Float
+    (Source   : in     Source_ID_t;
+     Distance :    out Types.Float_t);
+
+  -- proc_map : alGetSource
+  procedure Get_Reference_Distance_Discrete
+    (Source   : in     Source_ID_t;
+     Distance :    out Types.Integer_t);
+
+  --
+  -- Rolloff_Factor
+  --
+
+  -- proc_map : alSource
+  procedure Set_Rolloff_Factor_Float
+    (Source   : in Source_ID_t;
+     Distance : in Types.Float_t);
+
+  -- proc_map : alSource
+  procedure Set_Rolloff_Factor_Discrete
+    (Source   : in Source_ID_t;
+     Distance : in Types.Integer_t);
+
+  -- proc_map : alGetSource
+  procedure Get_Rolloff_Factor_Float
+    (Source   : in     Source_ID_t;
+     Distance :    out Types.Float_t);
+
+  -- proc_map : alGetSource
+  procedure Get_Rolloff_Factor_Discrete
+    (Source   : in     Source_ID_t;
+     Distance :    out Types.Integer_t);
+
+  --
+  -- Maximum_Distance
+  --
+
+  -- proc_map : alSource
+  procedure Set_Maximum_Distance_Float
+    (Source   : in Source_ID_t;
+     Distance : in Types.Float_t);
+
+  -- proc_map : alSource
+  procedure Set_Maximum_Distance_Discrete
+    (Source   : in Source_ID_t;
+     Distance : in Types.Integer_t);
+
+  -- proc_map : alGetSource
+  procedure Get_Maximum_Distance_Float
+    (Source   : in     Source_ID_t;
+     Distance :    out Types.Float_t);
+
+  -- proc_map : alGetSource
+  procedure Get_Maximum_Distance_Discrete
+    (Source   : in     Source_ID_t;
+     Distance :    out Types.Integer_t);
+
+  --
   -- Pitch
   --
 
@@ -257,6 +329,192 @@ package OpenAL.Source is
   procedure Get_Pitch
     (Source : in     Source_ID_t;
      Pitch  :    out Pitch_t);
+
+  --
+  -- Direction
+  --
+
+  -- proc_map : alSource3f
+  procedure Set_Direction_Float
+    (Source : in Source_ID_t;
+     X      : in Types.Float_t;
+     Y      : in Types.Float_t;
+     Z      : in Types.Float_t);
+
+  -- proc_map : alSource3i
+  procedure Set_Direction_Discrete
+    (Source : in Source_ID_t;
+     X      : in Types.Integer_t;
+     Y      : in Types.Integer_t;
+     Z      : in Types.Integer_t);
+
+  -- proc_map : alSourcefv
+  procedure Set_Direction_Float_List
+    (Source    : in Source_ID_t;
+     Direction : in Types.Vector_3f_t);
+
+  -- proc_map : alSourceiv
+  procedure Set_Direction_Discrete_List
+    (Source    : in Source_ID_t;
+     Direction : in Types.Vector_3i_t);
+
+  -- proc_map : alGetSource3f
+  procedure Get_Direction_Float
+    (Source : in     Source_ID_t;
+     X      :    out Types.Float_t;
+     Y      :    out Types.Float_t;
+     Z      :    out Types.Float_t);
+
+  -- proc_map : alGetSource3i
+  procedure Get_Direction_Discrete
+    (Source : in     Source_ID_t;
+     X      :    out Types.Integer_t;
+     Y      :    out Types.Integer_t;
+     Z      :    out Types.Integer_t);
+
+  -- proc_map : alGetSourcefv
+  procedure Get_Direction_Float_List
+    (Source    : in     Source_ID_t;
+     Direction :    out Types.Vector_3f_t);
+
+  -- proc_map : alGetSourceiv
+  procedure Get_Direction_Discrete_List
+    (Source    : in     Source_ID_t;
+     Direction :    out Types.Vector_3i_t);
+
+  --
+  -- Cone_Inner_Angle
+  --
+
+  -- proc_map : alSource
+  procedure Set_Cone_Inner_Angle_Float
+    (Source   : in Source_ID_t;
+     Distance : in Types.Float_t);
+
+  -- proc_map : alSource
+  procedure Set_Cone_Inner_Angle_Discrete
+    (Source   : in Source_ID_t;
+     Distance : in Types.Integer_t);
+
+  -- proc_map : alGetSource
+  procedure Get_Cone_Inner_Angle_Float
+    (Source   : in     Source_ID_t;
+     Distance :    out Types.Float_t);
+
+  -- proc_map : alGetSource
+  procedure Get_Cone_Inner_Angle_Discrete
+    (Source   : in     Source_ID_t;
+     Distance :    out Types.Integer_t);
+
+  --
+  -- Cone_Outer_Angle
+  --
+
+  -- proc_map : alSource
+  procedure Set_Cone_Outer_Angle_Float
+    (Source   : in Source_ID_t;
+     Distance : in Types.Float_t);
+
+  -- proc_map : alSource
+  procedure Set_Cone_Outer_Angle_Discrete
+    (Source   : in Source_ID_t;
+     Distance : in Types.Integer_t);
+
+  -- proc_map : alGetSource
+  procedure Get_Cone_Outer_Angle_Float
+    (Source   : in     Source_ID_t;
+     Distance :    out Types.Float_t);
+
+  -- proc_map : alGetSource
+  procedure Get_Cone_Outer_Angle_Discrete
+    (Source   : in     Source_ID_t;
+     Distance :    out Types.Integer_t);
+
+  --
+  -- Cone_Outer_Gain
+  --
+
+  -- proc_map : alSource
+  procedure Set_Cone_Outer_Gain
+    (Source : in Source_ID_t;
+     Gain   : in Types.Float_t);
+
+  -- proc_map : alGetSource
+  procedure Get_Cone_Outer_Gain
+    (Source : in     Source_ID_t;
+     Gain   :    out Types.Float_t);
+
+  --
+  -- Seconds_Offset
+  --
+
+  -- proc_map : alSource
+  procedure Set_Seconds_Offset_Float
+    (Source   : in Source_ID_t;
+     Distance : in Types.Float_t);
+
+  -- proc_map : alSource
+  procedure Set_Seconds_Offset_Discrete
+    (Source   : in Source_ID_t;
+     Distance : in Types.Integer_t);
+
+  -- proc_map : alGetSource
+  procedure Get_Seconds_Offset_Float
+    (Source   : in     Source_ID_t;
+     Distance :    out Types.Float_t);
+
+  -- proc_map : alGetSource
+  procedure Get_Seconds_Offset_Discrete
+    (Source   : in     Source_ID_t;
+     Distance :    out Types.Integer_t);
+
+  --
+  -- Sample_Offset
+  --
+
+  -- proc_map : alSource
+  procedure Set_Sample_Offset_Float
+    (Source   : in Source_ID_t;
+     Distance : in Types.Float_t);
+
+  -- proc_map : alSource
+  procedure Set_Sample_Offset_Discrete
+    (Source   : in Source_ID_t;
+     Distance : in Types.Integer_t);
+
+  -- proc_map : alGetSource
+  procedure Get_Sample_Offset_Float
+    (Source   : in     Source_ID_t;
+     Distance :    out Types.Float_t);
+
+  -- proc_map : alGetSource
+  procedure Get_Sample_Offset_Discrete
+    (Source   : in     Source_ID_t;
+     Distance :    out Types.Integer_t);
+
+  --
+  -- Byte_Offset
+  --
+
+  -- proc_map : alSource
+  procedure Set_Byte_Offset_Float
+    (Source   : in Source_ID_t;
+     Distance : in Types.Float_t);
+
+  -- proc_map : alSource
+  procedure Set_Byte_Offset_Discrete
+    (Source   : in Source_ID_t;
+     Distance : in Types.Integer_t);
+
+  -- proc_map : alGetSource
+  procedure Get_Byte_Offset_Float
+    (Source   : in     Source_ID_t;
+     Distance :    out Types.Float_t);
+
+  -- proc_map : alGetSource
+  procedure Get_Byte_Offset_Discrete
+    (Source   : in     Source_ID_t;
+     Distance :    out Types.Integer_t);
 
   --
   -- Queue_Buffers
