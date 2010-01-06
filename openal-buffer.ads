@@ -12,19 +12,6 @@ package OpenAL.Buffer is
 
   No_Buffer : constant Buffer_ID_t;
 
-  type Buffer_Attribute_t is (Frequency, Size, Bits, Channels);
-
-  type Frequency_t is new Thin.Size_t range 1 .. Thin.Size_t'Last;
-
-  type Sample_16_t is range -32768 .. 32767;
-  for Sample_16_t'Size use 16;
-
-  type Sample_8_t is range 0 .. 255;
-  for Sample_8_t'Size use 8;
-
-  type Sample_Array_16_t is array (Natural range <>) of aliased Sample_16_t;
-  type Sample_Array_8_t is array (Natural range <>) of aliased Sample_8_t;
-
   --
   -- API
   --
@@ -40,45 +27,62 @@ package OpenAL.Buffer is
   -- proc_map : alIsBuffer
   function Is_Valid (Buffer : in Buffer_ID_t) return Boolean;
 
-  -- proc_map : alBuffer3f
-  procedure Set_Attribute_3f
-    (Buffer    : in Buffer_ID_t;
-     Attribute : in Buffer_Attribute_t;
-     Value_1   : in Types.Float_t;
-     Value_2   : in Types.Float_t;
-     Value_3   : in Types.Float_t);
+  --
+  -- Frequency
+  --
 
-  -- proc_map : alBuffer3i
-  procedure Set_Attribute_3i
-    (Buffer    : in Buffer_ID_t;
-     Attribute : in Buffer_Attribute_t;
-     Value_1   : in Types.Integer_t;
-     Value_2   : in Types.Integer_t;
-     Value_3   : in Types.Integer_t);
+  type Frequency_t is new Thin.Size_t range 1 .. Thin.Size_t'Last;
 
-  -- proc_map : alBufferf
-  procedure Set_Attribute_f
-    (Buffer    : in Buffer_ID_t;
-     Attribute : in Buffer_Attribute_t;
-     Value     : in Types.Float_t);
+  -- proc_map : alGetBuffer
+  procedure Get_Frequency
+    (Buffer    : in     Buffer_ID_t;
+     Frequency :    out Frequency_t);
 
-  -- proc_map : alBufferi
-  procedure Set_Attribute_i
-    (Buffer    : in Buffer_ID_t;
-     Attribute : in Buffer_Attribute_t;
-     Value     : in Types.Integer_t);
+  --
+  -- Size
+  --
 
-  -- proc_map : alBufferfv
-  procedure Set_Attribute_fv
-    (Buffer    : in Buffer_ID_t;
-     Attribute : in Buffer_Attribute_t;
-     Values    : in Types.Vector_3f_t);
+  type Sample_Size_t is range 1 .. Thin.Size_t'Last;
 
-  -- proc_map : alBufferiv
-  procedure Set_Attribute_iv
-    (Buffer    : in Buffer_ID_t;
-     Attribute : in Buffer_Attribute_t;
-     Values    : in Types.Vector_3i_t);
+  -- proc_map : alGetBuffer
+  procedure Get_Size
+    (Buffer : in     Buffer_ID_t;
+     Size   :    out Sample_Size_t);
+
+  --
+  -- Bits
+  --
+
+  type Sample_Bits_t is range 8 .. 16;
+
+  -- proc_map : alGetBuffer
+  procedure Get_Bits
+    (Buffer : in     Buffer_ID_t;
+     Bits   :    out Sample_Bits_t);
+
+  --
+  -- Channels
+  --
+
+  type Sample_Channels_t is range 1 .. 2;
+
+  -- proc_map : alGetBuffer
+  procedure Get_Channels
+    (Buffer : in     Buffer_ID_t;
+     Bits   :    out Sample_Channels_t);
+
+  --
+  -- Data
+  --
+
+  type Sample_16_t is range -32768 .. 32767;
+  for Sample_16_t'Size use 16;
+
+  type Sample_8_t is range 0 .. 255;
+  for Sample_8_t'Size use 8;
+
+  type Sample_Array_16_t is array (Sample_Size_t range <>) of aliased Sample_16_t;
+  type Sample_Array_8_t  is array (Sample_Size_t range <>) of aliased Sample_8_t;
 
   -- proc_map : alBufferData
   procedure Set_Data_Mono_8

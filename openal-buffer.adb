@@ -4,14 +4,6 @@ package body OpenAL.Buffer is
 
   use type Thin.Size_t;
 
-  type Attribute_Constant_Map_t is array (Buffer_Attribute_t) of Thin.Enumeration_t;
-
-  Attribute_Constant_Map : constant Attribute_Constant_Map_t :=
-    (Frequency => Thin.AL_FREQUENCY,
-     Size      => Thin.AL_SIZE,
-     Bits      => Thin.AL_BITS,
-     Channels  => Thin.AL_CHANNELS);
-
   procedure Generate_Buffers
     (Buffers : in out Buffer_Array_t) is
   begin
@@ -33,79 +25,77 @@ package body OpenAL.Buffer is
     return Boolean (Thin.Is_Buffer (Thin.Unsigned_Integer_t (Buffer)));
   end Is_Valid;
 
-  procedure Set_Attribute_3f
-    (Buffer    : in Buffer_ID_t;
-     Attribute : in Buffer_Attribute_t;
-     Value_1   : in Types.Float_t;
-     Value_2   : in Types.Float_t;
-     Value_3   : in Types.Float_t) is
-  begin
-    Thin.Buffer_3f
-      (Buffer_ID => Thin.Unsigned_Integer_t (Buffer),
-       Parameter => Attribute_Constant_Map (Attribute),
-       Value_1   => Thin.Float_t (Value_1),
-       Value_2   => Thin.Float_t (Value_2),
-       Value_3   => Thin.Float_t (Value_3));
-  end Set_Attribute_3f;
+  --
+  -- Frequency
+  --
 
-  procedure Set_Attribute_3i
-    (Buffer    : in Buffer_ID_t;
-     Attribute : in Buffer_Attribute_t;
-     Value_1   : in Types.Integer_t;
-     Value_2   : in Types.Integer_t;
-     Value_3   : in Types.Integer_t) is
+  procedure Get_Frequency
+    (Buffer    : in     Buffer_ID_t;
+     Frequency :    out Frequency_t)
+  is
+    Value : aliased Frequency_t;
   begin
-    Thin.Buffer_3i
+    Thin.Get_Bufferi
       (Buffer_ID => Thin.Unsigned_Integer_t (Buffer),
-       Parameter => Attribute_Constant_Map (Attribute),
-       Value_1   => Thin.Integer_t (Value_1),
-       Value_2   => Thin.Integer_t (Value_2),
-       Value_3   => Thin.Integer_t (Value_3));
-  end Set_Attribute_3i;
+       Parameter => Thin.AL_FREQUENCY,
+       Value     => Value'Address);
+    Frequency := Value;
+  end Get_Frequency;
 
-  procedure Set_Attribute_f
-    (Buffer    : in Buffer_ID_t;
-     Attribute : in Buffer_Attribute_t;
-     Value     : in Types.Float_t) is
-  begin
-    Thin.Bufferf
-      (Buffer_ID => Thin.Unsigned_Integer_t (Buffer),
-       Parameter => Attribute_Constant_Map (Attribute),
-       Value     => Thin.Float_t (Value));
-  end Set_Attribute_f;
+  --
+  -- Size
+  --
 
-  procedure Set_Attribute_i
-    (Buffer    : in Buffer_ID_t;
-     Attribute : in Buffer_Attribute_t;
-     Value     : in Types.Integer_t) is
+  procedure Get_Size
+    (Buffer : in     Buffer_ID_t;
+     Size   :    out Sample_Size_t)
+  is
+    Value : aliased Sample_Size_t;
   begin
-    Thin.Bufferi
+    Thin.Get_Bufferi
       (Buffer_ID => Thin.Unsigned_Integer_t (Buffer),
-       Parameter => Attribute_Constant_Map (Attribute),
-       Value     => Thin.Integer_t (Value));
-  end Set_Attribute_i;
+       Parameter => Thin.AL_SIZE,
+       Value     => Value'Address);
+    Size := Value;
+  end Get_Size;
 
-  procedure Set_Attribute_fv
-    (Buffer    : in Buffer_ID_t;
-     Attribute : in Buffer_Attribute_t;
-     Values    : in Types.Vector_3f_t) is
-  begin
-    Thin.Bufferfv
-      (Buffer_ID => Thin.Unsigned_Integer_t (Buffer),
-       Parameter => Attribute_Constant_Map (Attribute),
-       Values    => Values (Values'First)'Address);
-  end Set_Attribute_fv;
+  --
+  -- Bits
+  --
 
-  procedure Set_Attribute_iv
-    (Buffer    : in Buffer_ID_t;
-     Attribute : in Buffer_Attribute_t;
-     Values    : in Types.Vector_3i_t) is
+  procedure Get_Bits
+    (Buffer : in     Buffer_ID_t;
+     Bits   :    out Sample_Bits_t)
+  is
+    Value : aliased Sample_Bits_t;
   begin
-    Thin.Bufferiv
+    Thin.Get_Bufferi
       (Buffer_ID => Thin.Unsigned_Integer_t (Buffer),
-       Parameter => Attribute_Constant_Map (Attribute),
-       Values    => Values (Values'First)'Address);
-  end Set_Attribute_iv;
+       Parameter => Thin.AL_BITS,
+       Value     => Value'Address);
+    Bits := Value;
+  end Get_Bits;
+
+  --
+  -- Channels
+  --
+
+  procedure Get_Channels
+    (Buffer : in     Buffer_ID_t;
+     Bits   :    out Sample_Channels_t)
+  is
+    Value : aliased Sample_Channels_t;
+  begin
+    Thin.Get_Bufferi
+      (Buffer_ID => Thin.Unsigned_Integer_t (Buffer),
+       Parameter => Thin.AL_CHANNELS,
+       Value     => Value'Address);
+    Bits := Value;
+  end Get_Channels;
+
+  --
+  -- Data
+  --
 
   procedure Set_Data_Mono_8
     (Buffer    : in Buffer_ID_t;
