@@ -65,7 +65,7 @@ package body OpenAL.Context.Capture is
   procedure Invalid_Format
     (Device : in Device_t) is
   begin
-    raise Ada.IO_Exceptions.Device_Error with
+    raise Ada.IO_Exceptions.Data_Error with
       "requested format does not match device format (" &
         Format_t'Image (Device.Capture_Format) & ")";
   end Invalid_Format;
