@@ -159,4 +159,18 @@ package body OpenAL.Buffer is
        Frequency => Thin.Size_t (Frequency));
   end Set_Data_Stereo_16;
 
+  --
+  --
+  --
+
+  function To_Integer (Buffer : Buffer_ID_t) return Types.Unsigned_Integer_t is
+  begin
+    return Types.Unsigned_Integer_t (Buffer);
+  end To_Integer;
+
+  function From_Integer (Buffer : Types.Unsigned_Integer_t) return Buffer_ID_t is
+  begin
+    return Buffer_ID_t (Buffer);
+  end From_Integer;
+
 end OpenAL.Buffer;

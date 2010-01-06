@@ -10,6 +10,8 @@ package OpenAL.Buffer is
   type Buffer_ID_t    is private;
   type Buffer_Array_t is array (Positive range <>) of Buffer_ID_t;
 
+  No_Buffer : constant Buffer_ID_t;
+
   type Buffer_Attribute_t is (Frequency, Size, Bits, Channels);
 
   type Frequency_t is new Thin.Size_t range 1 .. Thin.Size_t'Last;
@@ -102,8 +104,17 @@ package OpenAL.Buffer is
      Data      : in Sample_Array_16_t;
      Frequency : in Frequency_t);
 
+  --
+  --
+  --
+
+  function To_Integer (Buffer : Buffer_ID_t) return Types.Unsigned_Integer_t;
+  function From_Integer (Buffer : Types.Unsigned_Integer_t) return Buffer_ID_t;
+
 private
 
   type Buffer_ID_t is new Thin.Unsigned_Integer_t;
+
+  No_Buffer : constant Buffer_ID_t := 0;
 
 end OpenAL.Buffer;
