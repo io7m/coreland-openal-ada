@@ -73,4 +73,15 @@ package body OpenAL.Context is
     return Device;
   end Get_Context_Device;
 
+  function Is_Extension_Present
+    (Device : in Device_t;
+     Name   : in String) return Boolean
+  is
+    C_Name : aliased C.char_array := C.To_C (Name);
+  begin
+    return Boolean (ALC_Thin.Is_Extension_Present
+      (Device         => Device.Device_Data,
+       Extension_Name => C_Name (C_Name'First)'Address));
+  end Is_Extension_Present;
+
 end OpenAL.Context;
