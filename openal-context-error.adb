@@ -21,8 +21,7 @@ package body OpenAL.Context.Error is
 
   function Get_Error (Device : in Device_t) return Error_t is
   begin
-    return Map_Constant_To_Error
-      (ALC_Thin.Get_Error (ALC_Thin.Device_t (Device)));
+    return Map_Constant_To_Error (ALC_Thin.Get_Error (Device.Device_Data));
   end Get_Error;
 
 end OpenAL.Context.Error;

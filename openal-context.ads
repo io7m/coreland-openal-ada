@@ -13,6 +13,8 @@ package OpenAL.Context is
   Invalid_Context : constant Context_t;
   Null_Context    : constant Context_t;
 
+  type Format_t is (Mono_8, Stereo_8, Mono_16, Stereo_16);
+
   --
   -- API
   --
@@ -56,11 +58,21 @@ package OpenAL.Context is
 
 private
 
-  type Device_t is new ALC_Thin.Device_t;
+  type Device_t is record
+    Device_Data      : ALC_Thin.Device_t;
+    Capture_Format : Format_t;
+    Capture        : Boolean := False;
+  end record;
+
   type Context_t is new ALC_Thin.Context_t;
 
-  Invalid_Device  : constant Device_t  := Device_t (ALC_Thin.Invalid_Device);
+  Invalid_Device  : constant Device_t  := Device_t'
+    (Device_Data      => ALC_Thin.Invalid_Device,
+     Capture_Format => Mono_8,
+     Capture        => False);
+
   Invalid_Context : constant Context_t := Context_t (ALC_Thin.Invalid_Context);
+
   Null_Context    : constant Context_t := Invalid_Context;
 
 end OpenAL.Context;

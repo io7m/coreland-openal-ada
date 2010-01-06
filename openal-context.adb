@@ -8,27 +8,32 @@ package body OpenAL.Context is
     (Specifier : in String) return Device_t
   is
     C_Spec : aliased C.char_array := C.To_C (Specifier);
+    Device : Device_t;
   begin
-    return Device_t
-      (ALC_Thin.Open_Device (Specifier => C_Spec (C_Spec'First)'Address));
+    Device.Device_Data := ALC_Thin.Open_Device
+      (Specifier => C_Spec (C_Spec'First)'Address);
+    return Device;
   end Open_Device;
 
   function Open_Default_Device return Device_t is
+    Device : Device_t;
   begin
-    return Device_t (ALC_Thin.Open_Device (Specifier => System.Null_Address));
+    Device.Device_Data := ALC_Thin.Open_Device
+      (Specifier => System.Null_Address);
+    return Device;
   end Open_Default_Device;
 
   function Close_Device
     (Device : in Device_t) return Boolean is
   begin
-    return Boolean (ALC_Thin.Close_Device (ALC_Thin.Device_t (Device)));
+    return Boolean (ALC_Thin.Close_Device (Device.Device_Data));
   end Close_Device;
 
   function Create_Context
     (Device : in Device_t) return Context_t is
   begin
     return Context_t (ALC_Thin.Create_Context
-      (Device         => ALC_Thin.Device_t (Device),
+      (Device         => Device.Device_Data,
        Attribute_List => System.Null_Address));
   end Create_Context;
 
@@ -62,8 +67,10 @@ package body OpenAL.Context is
   end Get_Current_Context;
 
   function Get_Context_Device (Context : in Context_t) return Device_t is
+    Device : Device_t;
   begin
-    return Device_t (ALC_Thin.Get_Contexts_Device (ALC_Thin.Context_t (Context)));
+    Device.Device_Data := ALC_Thin.Get_Contexts_Device (ALC_Thin.Context_t (Context));
+    return Device;
   end Get_Context_Device;
 
 end OpenAL.Context;
