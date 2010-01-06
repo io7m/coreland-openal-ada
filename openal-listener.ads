@@ -11,13 +11,13 @@ package OpenAL.Listener is
   --
 
   -- proc_map : alListener3f
-  procedure Set_Position_3f
+  procedure Set_Position_f
     (X : in Types.Float_t;
      Y : in Types.Float_t;
      Z : in Types.Float_t);
 
   -- proc_map : alListener3i
-  procedure Set_Position_3i
+  procedure Set_Position_i
     (X : in Types.Integer_t;
      Y : in Types.Integer_t;
      Z : in Types.Integer_t);
@@ -31,13 +31,13 @@ package OpenAL.Listener is
     (Position : in Types.Vector_3i_t);
 
   -- proc_map : alGetListener3f
-  procedure Get_Position_3f
+  procedure Get_Position_f
     (X : out Types.Float_t;
      Y : out Types.Float_t;
      Z : out Types.Float_t);
 
   -- proc_map : alGetListener3i
-  procedure Get_Position_3i
+  procedure Get_Position_i
     (X : out Types.Integer_t;
      Y : out Types.Integer_t;
      Z : out Types.Integer_t);
@@ -55,13 +55,13 @@ package OpenAL.Listener is
   --
 
   -- proc_map : alListener3f
-  procedure Set_Velocity_3f
+  procedure Set_Velocity_f
     (X : in Types.Float_t;
      Y : in Types.Float_t;
      Z : in Types.Float_t);
 
   -- proc_map : alListener3i
-  procedure Set_Velocity_3i
+  procedure Set_Velocity_i
     (X : in Types.Integer_t;
      Y : in Types.Integer_t;
      Z : in Types.Integer_t);
@@ -73,13 +73,13 @@ package OpenAL.Listener is
   procedure Set_Velocity_iv (Velocity : in Types.Vector_3i_t);
 
   -- proc_map : alGetListener3f
-  procedure Get_Velocity_3f
+  procedure Get_Velocity_f
     (X : out Types.Float_t;
      Y : out Types.Float_t;
      Z : out Types.Float_t);
 
   -- proc_map : alGetListener3i
-  procedure Get_Velocity_3i
+  procedure Get_Velocity_i
     (X : out Types.Integer_t;
      Y : out Types.Integer_t;
      Z : out Types.Integer_t);

@@ -6,21 +6,21 @@ package body OpenAL.Listener is
   -- Position
   --
 
-  procedure Set_Position_3f
+  procedure Set_Position_f
     (X : in Types.Float_t;
      Y : in Types.Float_t;
      Z : in Types.Float_t) is
   begin
     Set_Position_fv ((X, Y, Z));
-  end Set_Position_3f;
+  end Set_Position_f;
 
-  procedure Set_Position_3i
+  procedure Set_Position_i
     (X : in Types.Integer_t;
      Y : in Types.Integer_t;
      Z : in Types.Integer_t) is
   begin
     Set_Position_iv ((X, Y, Z));
-  end Set_Position_3i;
+  end Set_Position_i;
 
   procedure Set_Position_fv (Position : in Types.Vector_3f_t) is
   begin
@@ -36,7 +36,7 @@ package body OpenAL.Listener is
        Values    => Position (Position'First)'Address);
   end Set_Position_iv;
 
-  procedure Get_Position_3f
+  procedure Get_Position_f
     (X : out Types.Float_t;
      Y : out Types.Float_t;
      Z : out Types.Float_t)
@@ -48,9 +48,9 @@ package body OpenAL.Listener is
     X := V (1);
     Y := V (2);
     Z := V (3);
-  end Get_Position_3f;
+  end Get_Position_f;
 
-  procedure Get_Position_3i
+  procedure Get_Position_i
     (X : out Types.Integer_t;
      Y : out Types.Integer_t;
      Z : out Types.Integer_t)
@@ -62,7 +62,7 @@ package body OpenAL.Listener is
     X := V (1);
     Y := V (2);
     Z := V (3);
-  end Get_Position_3i;
+  end Get_Position_i;
 
   procedure Get_Position_fv (Position : out Types.Vector_3f_t) is
   begin
@@ -82,21 +82,21 @@ package body OpenAL.Listener is
   -- Velocity
   --
 
-  procedure Set_Velocity_3f
+  procedure Set_Velocity_f
     (X : in Types.Float_t;
      Y : in Types.Float_t;
      Z : in Types.Float_t) is
   begin
     Set_Velocity_fv ((X, Y, Z));
-  end Set_Velocity_3f;
+  end Set_Velocity_f;
 
-  procedure Set_Velocity_3i
+  procedure Set_Velocity_i
     (X : in Types.Integer_t;
      Y : in Types.Integer_t;
      Z : in Types.Integer_t) is
   begin
     Set_Velocity_iv ((X, Y, Z));
-  end Set_Velocity_3i;
+  end Set_Velocity_i;
 
   procedure Set_Velocity_fv (Velocity : in Types.Vector_3f_t) is
   begin
@@ -112,7 +112,7 @@ package body OpenAL.Listener is
        Values    => Velocity (Velocity'First)'Address);
   end Set_Velocity_iv;
 
-  procedure Get_Velocity_3f
+  procedure Get_Velocity_f
     (X : out Types.Float_t;
      Y : out Types.Float_t;
      Z : out Types.Float_t)
@@ -124,9 +124,9 @@ package body OpenAL.Listener is
     X := V (1);
     Y := V (2);
     Z := V (3);
-  end Get_Velocity_3f;
+  end Get_Velocity_f;
 
-  procedure Get_Velocity_3i
+  procedure Get_Velocity_i
     (X : out Types.Integer_t;
      Y : out Types.Integer_t;
      Z : out Types.Integer_t)
@@ -138,7 +138,7 @@ package body OpenAL.Listener is
     X := V (1);
     Y := V (2);
     Z := V (3);
-  end Get_Velocity_3i;
+  end Get_Velocity_i;
 
   procedure Get_Velocity_fv (Velocity : out Types.Vector_3f_t) is
   begin
