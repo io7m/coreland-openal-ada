@@ -1,3 +1,16 @@
+OpenAL.Context
+
+  Allow attribute list passing.
+
+  ALCboolean alcIsExtensionPresent(const ALCdevice *deviceHandle,
+    const ALCchar *extName);
+
+  ALCenum alcGetEnumValue(const ALCdevice *deviceHandle, const ALCchar *enumName);
+
+  const ALCchar * alcGetString(ALCdevice * deviceHandle, ALCenum token);
+
+  void alcGetIntegerv(ALCdevice * deviceHandle, ALCenum token, ALCsizei size, ALCint *dest);
+
 OpenAL.Source
 
   AL_REFERENCE_DISTANCE
