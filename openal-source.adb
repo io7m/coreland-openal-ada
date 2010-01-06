@@ -29,7 +29,7 @@ package body OpenAL.Source is
   -- Position
   --
 
-  procedure Set_Position_3f
+  procedure Set_Position_f
     (Source    : in Source_ID_t;
      X         : in Types.Float_t;
      Y         : in Types.Float_t;
@@ -41,9 +41,9 @@ package body OpenAL.Source is
        Value_1   => Thin.Float_t (X),
        Value_2   => Thin.Float_t (Y),
        Value_3   => Thin.Float_t (Z));
-  end Set_Position_3f;
+  end Set_Position_f;
 
-  procedure Set_Position_3i
+  procedure Set_Position_i
     (Source    : in Source_ID_t;
      X         : in Types.Integer_t;
      Y         : in Types.Integer_t;
@@ -55,7 +55,7 @@ package body OpenAL.Source is
        Value_1   => Thin.Integer_t (X),
        Value_2   => Thin.Integer_t (Y),
        Value_3   => Thin.Integer_t (Z));
-  end Set_Position_3i;
+  end Set_Position_i;
 
   procedure Set_Position_fv
     (Source    : in Source_ID_t;
@@ -81,7 +81,7 @@ package body OpenAL.Source is
   -- Velocity
   --
 
-  procedure Set_Velocity_3f
+  procedure Set_Velocity_f
     (Source    : in Source_ID_t;
      X         : in Types.Float_t;
      Y         : in Types.Float_t;
@@ -93,9 +93,9 @@ package body OpenAL.Source is
        Value_1   => Thin.Float_t (X),
        Value_2   => Thin.Float_t (Y),
        Value_3   => Thin.Float_t (Z));
-  end Set_Velocity_3f;
+  end Set_Velocity_f;
 
-  procedure Set_Velocity_3i
+  procedure Set_Velocity_i
     (Source    : in Source_ID_t;
      X         : in Types.Integer_t;
      Y         : in Types.Integer_t;
@@ -107,7 +107,7 @@ package body OpenAL.Source is
        Value_1   => Thin.Integer_t (X),
        Value_2   => Thin.Integer_t (Y),
        Value_3   => Thin.Integer_t (Z));
-  end Set_Velocity_3i;
+  end Set_Velocity_i;
 
   procedure Set_Velocity_fv
     (Source    : in Source_ID_t;

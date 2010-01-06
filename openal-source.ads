@@ -32,14 +32,14 @@ package OpenAL.Source is
   --
 
   -- proc_map : alSource3f
-  procedure Set_Position_3f
+  procedure Set_Position_f
     (Source    : in Source_ID_t;
      X         : in Types.Float_t;
      Y         : in Types.Float_t;
      Z         : in Types.Float_t);
 
   -- proc_map : alSource3i
-  procedure Set_Position_3i
+  procedure Set_Position_i
     (Source    : in Source_ID_t;
      X         : in Types.Integer_t;
      Y         : in Types.Integer_t;
@@ -60,14 +60,14 @@ package OpenAL.Source is
   --
 
   -- proc_map : alSource3f
-  procedure Set_Velocity_3f
+  procedure Set_Velocity_f
     (Source    : in Source_ID_t;
      X         : in Types.Float_t;
      Y         : in Types.Float_t;
      Z         : in Types.Float_t);
 
   -- proc_map : alSource3i
-  procedure Set_Velocity_3i
+  procedure Set_Velocity_i
     (Source    : in Source_ID_t;
      X         : in Types.Integer_t;
      Y         : in Types.Integer_t;
