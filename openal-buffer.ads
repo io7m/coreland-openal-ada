@@ -68,8 +68,8 @@ package OpenAL.Buffer is
 
   -- proc_map : alGetBuffer
   procedure Get_Channels
-    (Buffer : in     Buffer_ID_t;
-     Bits   :    out Sample_Channels_t);
+    (Buffer   : in     Buffer_ID_t;
+     Channels :    out Sample_Channels_t);
 
   --
   -- Data

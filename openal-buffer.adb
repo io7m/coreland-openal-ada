@@ -81,8 +81,8 @@ package body OpenAL.Buffer is
   --
 
   procedure Get_Channels
-    (Buffer : in     Buffer_ID_t;
-     Bits   :    out Sample_Channels_t)
+    (Buffer   : in     Buffer_ID_t;
+     Channels :    out Sample_Channels_t)
   is
     Value : aliased Sample_Channels_t;
   begin
@@ -90,7 +90,7 @@ package body OpenAL.Buffer is
       (Buffer_ID => Thin.Unsigned_Integer_t (Buffer),
        Parameter => Thin.AL_CHANNELS,
        Value     => Value'Address);
-    Bits := Value;
+    Channels := Value;
   end Get_Channels;
 
   --
