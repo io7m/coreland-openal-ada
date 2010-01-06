@@ -77,6 +77,56 @@ package body OpenAL.Source is
        Values    => Position (Position'First)'Address);
   end Set_Position_iv;
 
+  procedure Get_Position_f
+    (Source : in     Source_ID_t;
+     X      :    out Types.Float_t;
+     Y      :    out Types.Float_t;
+     Z      :    out Types.Float_t)
+  is
+    V : aliased Types.Vector_3f_t;
+  begin
+    Get_Position_fv (Source, V);
+
+    X := V (1);
+    Y := V (2);
+    Z := V (3);
+  end Get_Position_f;
+
+  procedure Get_Position_i
+    (Source : in     Source_ID_t;
+     X      :    out Types.Integer_t;
+     Y      :    out Types.Integer_t;
+     Z      :    out Types.Integer_t)
+  is
+    V : aliased Types.Vector_3i_t;
+  begin
+    Get_Position_iv (Source, V);
+
+    X := V (1);
+    Y := V (2);
+    Z := V (3);
+  end Get_Position_i;
+
+  procedure Get_Position_fv
+    (Source   : in     Source_ID_t;
+     Position :    out Types.Vector_3f_t) is
+  begin
+    Thin.Get_Sourcefv
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_POSITION,
+       Values    => Position (Position'First)'Address);
+  end Get_Position_fv;
+
+  procedure Get_Position_iv
+    (Source   : in     Source_ID_t;
+     Position :    out Types.Vector_3i_t) is
+  begin
+    Thin.Get_Sourceiv
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_POSITION,
+       Values    => Position (Position'First)'Address);
+  end Get_Position_iv;
+
   --
   -- Velocity
   --
@@ -129,6 +179,56 @@ package body OpenAL.Source is
        Values    => Velocity (Velocity'First)'Address);
   end Set_Velocity_iv;
 
+  procedure Get_Velocity_f
+    (Source : in     Source_ID_t;
+     X      :    out Types.Float_t;
+     Y      :    out Types.Float_t;
+     Z      :    out Types.Float_t)
+  is
+    V : aliased Types.Vector_3f_t;
+  begin
+    Get_Velocity_fv (Source, V);
+
+    X := V (1);
+    Y := V (2);
+    Z := V (3);
+  end Get_Velocity_f;
+
+  procedure Get_Velocity_i
+    (Source : in     Source_ID_t;
+     X      :    out Types.Integer_t;
+     Y      :    out Types.Integer_t;
+     Z      :    out Types.Integer_t)
+  is
+    V : aliased Types.Vector_3i_t;
+  begin
+    Get_Velocity_iv (Source, V);
+
+    X := V (1);
+    Y := V (2);
+    Z := V (3);
+  end Get_Velocity_i;
+
+  procedure Get_Velocity_fv
+    (Source   : in     Source_ID_t;
+     Velocity :    out Types.Vector_3f_t) is
+  begin
+    Thin.Get_Sourcefv
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_POSITION,
+       Values    => Velocity (Velocity'First)'Address);
+  end Get_Velocity_fv;
+
+  procedure Get_Velocity_iv
+    (Source   : in     Source_ID_t;
+     Velocity :    out Types.Vector_3i_t) is
+  begin
+    Thin.Get_Sourceiv
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_POSITION,
+       Values    => Velocity (Velocity'First)'Address);
+  end Get_Velocity_iv;
+
   --
   -- Gain
   --
@@ -142,6 +242,19 @@ package body OpenAL.Source is
        Parameter => Thin.AL_GAIN,
        Value     => Thin.Float_t (Gain));
   end Set_Gain;
+
+  procedure Get_Gain
+    (Source : in     Source_ID_t;
+     Gain   :    out Types.Float_t)
+  is
+    Value : aliased Types.Float_t;
+  begin
+    Thin.Get_Sourcef
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_GAIN,
+       Value     => Value'Address);
+    Gain := Value;
+  end Get_Gain;
 
   --
   -- Positioning

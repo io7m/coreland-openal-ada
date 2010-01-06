@@ -55,6 +55,30 @@ package OpenAL.Source is
     (Source    : in Source_ID_t;
      Position  : in Types.Vector_3i_t);
 
+  -- proc_map : alGetSource3f
+  procedure Get_Position_f
+    (Source : in     Source_ID_t;
+     X      :    out Types.Float_t;
+     Y      :    out Types.Float_t;
+     Z      :    out Types.Float_t);
+
+  -- proc_map : alGetSource3i
+  procedure Get_Position_i
+    (Source : in     Source_ID_t;
+     X      :    out Types.Integer_t;
+     Y      :    out Types.Integer_t;
+     Z      :    out Types.Integer_t);
+
+  -- proc_map : alGetSourcefv
+  procedure Get_Position_fv
+    (Source   : in     Source_ID_t;
+     Position :    out Types.Vector_3f_t);
+
+  -- proc_map : alGetSourceiv
+  procedure Get_Position_iv
+    (Source   : in     Source_ID_t;
+     Position :    out Types.Vector_3i_t);
+
   --
   -- Velocity
   --
@@ -83,6 +107,30 @@ package OpenAL.Source is
     (Source    : in Source_ID_t;
      Velocity  : in Types.Vector_3i_t);
 
+  -- proc_map : alGetSource3f
+  procedure Get_Velocity_f
+    (Source : in     Source_ID_t;
+     X      :    out Types.Float_t;
+     Y      :    out Types.Float_t;
+     Z      :    out Types.Float_t);
+
+  -- proc_map : alGetSource3i
+  procedure Get_Velocity_i
+    (Source : in     Source_ID_t;
+     X      :    out Types.Integer_t;
+     Y      :    out Types.Integer_t;
+     Z      :    out Types.Integer_t);
+
+  -- proc_map : alGetSourcefv
+  procedure Get_Velocity_fv
+    (Source   : in     Source_ID_t;
+     Velocity :    out Types.Vector_3f_t);
+
+  -- proc_map : alGetSourceiv
+  procedure Get_Velocity_iv
+    (Source   : in     Source_ID_t;
+     Velocity :    out Types.Vector_3i_t);
+
   --
   -- Gain
   --
@@ -91,6 +139,11 @@ package OpenAL.Source is
   procedure Set_Gain
     (Source : in Source_ID_t;
      Gain   : in Types.Float_t);
+
+  -- proc_map : alGetSource
+  procedure Get_Gain
+    (Source : in     Source_ID_t;
+     Gain   :    out Types.Float_t);
 
   --
   -- Positioning
