@@ -25,6 +25,128 @@ package body OpenAL.Source is
     return Boolean (Thin.Is_Source (Thin.Unsigned_Integer_t (Source)));
   end Is_Valid;
 
+  --
+  -- Position
+  --
+
+  procedure Set_Position_3f
+    (Source    : in Source_ID_t;
+     X         : in Types.Float_t;
+     Y         : in Types.Float_t;
+     Z         : in Types.Float_t) is
+  begin
+    Thin.Source_3f
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_POSITION,
+       Value_1   => Thin.Float_t (X),
+       Value_2   => Thin.Float_t (Y),
+       Value_3   => Thin.Float_t (Z));
+  end Set_Position_3f;
+
+  procedure Set_Position_3i
+    (Source    : in Source_ID_t;
+     X         : in Types.Integer_t;
+     Y         : in Types.Integer_t;
+     Z         : in Types.Integer_t) is
+  begin
+    Thin.Source_3i
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_POSITION,
+       Value_1   => Thin.Integer_t (X),
+       Value_2   => Thin.Integer_t (Y),
+       Value_3   => Thin.Integer_t (Z));
+  end Set_Position_3i;
+
+  procedure Set_Position_fv
+    (Source    : in Source_ID_t;
+     Position  : in Types.Vector_3f_t) is
+  begin
+    Thin.Sourcefv
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_POSITION,
+       Values    => Position (Position'First)'Address);
+  end Set_Position_fv;
+
+  procedure Set_Position_iv
+    (Source    : in Source_ID_t;
+     Position  : in Types.Vector_3i_t) is
+  begin
+    Thin.Sourceiv
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_POSITION,
+       Values    => Position (Position'First)'Address);
+  end Set_Position_iv;
+
+  --
+  -- Velocity
+  --
+
+  procedure Set_Velocity_3f
+    (Source    : in Source_ID_t;
+     X         : in Types.Float_t;
+     Y         : in Types.Float_t;
+     Z         : in Types.Float_t) is
+  begin
+    Thin.Source_3f
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_VELOCITY,
+       Value_1   => Thin.Float_t (X),
+       Value_2   => Thin.Float_t (Y),
+       Value_3   => Thin.Float_t (Z));
+  end Set_Velocity_3f;
+
+  procedure Set_Velocity_3i
+    (Source    : in Source_ID_t;
+     X         : in Types.Integer_t;
+     Y         : in Types.Integer_t;
+     Z         : in Types.Integer_t) is
+  begin
+    Thin.Source_3i
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_VELOCITY,
+       Value_1   => Thin.Integer_t (X),
+       Value_2   => Thin.Integer_t (Y),
+       Value_3   => Thin.Integer_t (Z));
+  end Set_Velocity_3i;
+
+  procedure Set_Velocity_fv
+    (Source    : in Source_ID_t;
+     Velocity  : in Types.Vector_3f_t) is
+  begin
+    Thin.Sourcefv
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_VELOCITY,
+       Values    => Velocity (Velocity'First)'Address);
+  end Set_Velocity_fv;
+
+  procedure Set_Velocity_iv
+    (Source    : in Source_ID_t;
+     Velocity  : in Types.Vector_3i_t) is
+  begin
+    Thin.Sourceiv
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_VELOCITY,
+       Values    => Velocity (Velocity'First)'Address);
+  end Set_Velocity_iv;
+
+  --
+  -- Gain
+  --
+
+  procedure Set_Gain
+    (Source : in Source_ID_t;
+     Gain   : in Types.Float_t) is
+  begin
+    Thin.Sourcef
+      (Source_ID => Thin.Unsigned_Integer_t (Source),
+       Parameter => Thin.AL_GAIN,
+       Value     => Thin.Float_t (Gain));
+  end Set_Gain;
+
+  --
+  -- Positioning
+  --
+
   procedure Set_Positioning
     (Source   : in Source_ID_t;
      Relative : in Boolean) is
@@ -48,6 +170,10 @@ package body OpenAL.Source is
     Relative := Boolean'Val (Value);
   end Get_Positioning;
 
+  --
+  -- Type
+  --
+
   procedure Get_Type
     (Source      : in     Source_ID_t;
      Source_Type :    out Source_Type_t)
@@ -67,6 +193,10 @@ package body OpenAL.Source is
         raise Constraint_Error with "invalid value returned from alGetSourcei";
     end case;
   end Get_Type;
+
+  --
+  -- Looping
+  --
 
   procedure Set_Looping
     (Source  : in Source_ID_t;
@@ -91,6 +221,10 @@ package body OpenAL.Source is
     Looping := Boolean'Val (Value);
   end Get_Looping;
 
+  --
+  -- Current_Buffer
+  --
+
   procedure Set_Current_Buffer
     (Source : in Source_ID_t;
      Buffer : in OpenAL.Buffer.Buffer_ID_t) is
@@ -114,6 +248,10 @@ package body OpenAL.Source is
     Buffer := OpenAL.Buffer.From_Integer (Value);
   end Get_Current_Buffer;
 
+  --
+  -- Buffers_Queued
+  --
+
   procedure Get_Buffers_Queued
     (Source  : in     Source_ID_t;
      Buffers :    out Natural)
@@ -127,6 +265,10 @@ package body OpenAL.Source is
     Buffers := Natural (Value);
   end Get_Buffers_Queued;
 
+  --
+  -- Buffers_Processed
+  --
+
   procedure Get_Buffers_Processed
     (Source  : in     Source_ID_t;
      Buffers :    out Natural)
@@ -139,6 +281,10 @@ package body OpenAL.Source is
        Value     => Value'Address);
     Buffers := Natural (Value);
   end Get_Buffers_Processed;
+
+  --
+  -- Gain
+  --
 
   procedure Set_Minimum_Gain
     (Source : in Source_ID_t;
@@ -185,6 +331,10 @@ package body OpenAL.Source is
        Value     => Value'Address);
     Gain := Value;
   end Get_Maximum_Gain;
+
+  --
+  -- Pitch
+  --
 
   procedure Set_Pitch
     (Source : in Source_ID_t;

@@ -10,6 +10,8 @@ package OpenAL.Source is
   type Source_ID_t    is private;
   type Source_Array_t is array (Positive range <>) of Source_ID_t;
 
+  No_Source : constant Source_ID_t;
+
   --
   -- API
   --
@@ -25,6 +27,75 @@ package OpenAL.Source is
   -- proc_map : alIsSource
   function Is_Valid (Source : in Source_ID_t) return Boolean;
 
+  --
+  -- Position
+  --
+
+  -- proc_map : alSource3f
+  procedure Set_Position_3f
+    (Source    : in Source_ID_t;
+     X         : in Types.Float_t;
+     Y         : in Types.Float_t;
+     Z         : in Types.Float_t);
+
+  -- proc_map : alSource3i
+  procedure Set_Position_3i
+    (Source    : in Source_ID_t;
+     X         : in Types.Integer_t;
+     Y         : in Types.Integer_t;
+     Z         : in Types.Integer_t);
+
+  -- proc_map : alSourcefv
+  procedure Set_Position_fv
+    (Source    : in Source_ID_t;
+     Position  : in Types.Vector_3f_t);
+
+  -- proc_map : alSourceiv
+  procedure Set_Position_iv
+    (Source    : in Source_ID_t;
+     Position  : in Types.Vector_3i_t);
+
+  --
+  -- Velocity
+  --
+
+  -- proc_map : alSource3f
+  procedure Set_Velocity_3f
+    (Source    : in Source_ID_t;
+     X         : in Types.Float_t;
+     Y         : in Types.Float_t;
+     Z         : in Types.Float_t);
+
+  -- proc_map : alSource3i
+  procedure Set_Velocity_3i
+    (Source    : in Source_ID_t;
+     X         : in Types.Integer_t;
+     Y         : in Types.Integer_t;
+     Z         : in Types.Integer_t);
+
+  -- proc_map : alSourcefv
+  procedure Set_Velocity_fv
+    (Source    : in Source_ID_t;
+     Velocity  : in Types.Vector_3f_t);
+
+  -- proc_map : alSourceiv
+  procedure Set_Velocity_iv
+    (Source    : in Source_ID_t;
+     Velocity  : in Types.Vector_3i_t);
+
+  --
+  -- Gain
+  --
+
+  -- proc_map : alSource
+  procedure Set_Gain
+    (Source : in Source_ID_t;
+     Gain   : in Types.Float_t);
+
+  --
+  -- Positioning
+  --
+
   -- proc_map : alSource
   procedure Set_Positioning
     (Source   : in Source_ID_t;
@@ -35,12 +106,20 @@ package OpenAL.Source is
     (Source   : in     Source_ID_t;
      Relative :    out Boolean);
 
+  --
+  -- Type
+  --
+
   type Source_Type_t is (Undetermined, Static, Streaming);
 
   -- proc_map : alSource
   procedure Get_Type
     (Source      : in     Source_ID_t;
      Source_Type :    out Source_Type_t);
+
+  --
+  -- Looping
+  --
 
   -- proc_map : alSource
   procedure Set_Looping
@@ -52,6 +131,10 @@ package OpenAL.Source is
     (Source   : in     Source_ID_t;
      Looping  :    out Boolean);
 
+  --
+  -- Current_Buffer
+  --
+
   -- proc_map : alSource
   procedure Set_Current_Buffer
     (Source : in Source_ID_t;
@@ -62,15 +145,27 @@ package OpenAL.Source is
     (Source : in     Source_ID_t;
      Buffer :    out OpenAL.Buffer.Buffer_ID_t);
 
+  --
+  -- Buffers_Queued
+  --
+
   -- proc_map : alGetSource
   procedure Get_Buffers_Queued
     (Source  : in     Source_ID_t;
      Buffers :    out Natural);
 
+  --
+  -- Buffers_Processed
+  --
+
   -- proc_map : alGetSource
   procedure Get_Buffers_Processed
     (Source  : in     Source_ID_t;
      Buffers :    out Natural);
+
+  --
+  -- Gain
+  --
 
   subtype Gain_t is Types.Float_t range 0.0 .. 1.0;
 
@@ -94,6 +189,10 @@ package OpenAL.Source is
     (Source : in     Source_ID_t;
      Gain   :    out Gain_t);
 
+  --
+  -- Pitch
+  --
+
   subtype Pitch_t is Types.Float_t range 0.00001 .. Types.Float_t'Last;
 
   -- proc_map : alSource
@@ -109,5 +208,7 @@ package OpenAL.Source is
 private
 
   type Source_ID_t is new Types.Unsigned_Integer_t;
+
+  No_Source : constant Source_ID_t := 0;
 
 end OpenAL.Source;
