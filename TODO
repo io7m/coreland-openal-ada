@@ -1,6 +1,6 @@
 OpenAL.Context
 
-  Allow attribute list passing.
+  Allow attribute list passing to Open_Device.
 
   ALCboolean alcIsExtensionPresent(const ALCdevice *deviceHandle,
     const ALCchar *extName);
