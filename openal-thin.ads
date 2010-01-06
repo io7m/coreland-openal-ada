@@ -475,7 +475,7 @@ package OpenAL.Thin is
 
   procedure Source_3f
     (Source_ID : Unsigned_Integer_t;
-     ALenum    : Enumeration_t;
+     Parameter : Enumeration_t;
      Value_1   : Float_t;
      Value_2   : Float_t;
      Value_3   : Float_t);
@@ -483,7 +483,7 @@ package OpenAL.Thin is
 
   procedure Source_3i
     (Source_ID : Unsigned_Integer_t;
-     ALenum    : Enumeration_t;
+     Parameter : Enumeration_t;
      Value_1   : Integer_t;
      Value_2   : Integer_t;
      Value_3   : Integer_t);

@@ -54,8 +54,8 @@ Listenerf             : Parameter     : Value
 Listenerfv            : Parameter     : Values
 Listeneri             : Parameter     : Value
 Listeneriv            : Parameter     : Values
-Source3f              : Source_ID     : ALenum          : Value_1         : Value_2   : Value_3
-Source3i              : Source_ID     : ALenum          : Value_1         : Value_2   : Value_3
+Source3f              : Source_ID     : Parameter       : Value_1         : Value_2   : Value_3
+Source3i              : Source_ID     : Parameter       : Value_1         : Value_2   : Value_3
 SourcePause           : Source_ID
 SourcePausev          : Size          : Source_IDs
 SourcePlay            : Source_ID
