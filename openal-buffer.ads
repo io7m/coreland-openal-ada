@@ -7,10 +7,10 @@ package OpenAL.Buffer is
   -- Types
   --
 
-  type Buffer_ID_t    is private;
-  type Buffer_Array_t is array (Positive range <>) of Buffer_ID_t;
+  type Buffer_t       is private;
+  type Buffer_Array_t is array (Positive range <>) of Buffer_t;
 
-  No_Buffer : constant Buffer_ID_t;
+  No_Buffer : constant Buffer_t;
 
   --
   -- API
@@ -25,7 +25,7 @@ package OpenAL.Buffer is
     (Buffers : in Buffer_Array_t);
 
   -- proc_map : alIsBuffer
-  function Is_Valid (Buffer : in Buffer_ID_t) return Boolean;
+  function Is_Valid (Buffer : in Buffer_t) return Boolean;
 
   --
   -- Frequency
@@ -35,7 +35,7 @@ package OpenAL.Buffer is
 
   -- proc_map : alGetBuffer
   procedure Get_Frequency
-    (Buffer    : in     Buffer_ID_t;
+    (Buffer    : in     Buffer_t;
      Frequency :    out Frequency_t);
 
   --
@@ -46,7 +46,7 @@ package OpenAL.Buffer is
 
   -- proc_map : alGetBuffer
   procedure Get_Size
-    (Buffer : in     Buffer_ID_t;
+    (Buffer : in     Buffer_t;
      Size   :    out Sample_Size_t);
 
   --
@@ -57,7 +57,7 @@ package OpenAL.Buffer is
 
   -- proc_map : alGetBuffer
   procedure Get_Bits
-    (Buffer : in     Buffer_ID_t;
+    (Buffer : in     Buffer_t;
      Bits   :    out Sample_Bits_t);
 
   --
@@ -68,7 +68,7 @@ package OpenAL.Buffer is
 
   -- proc_map : alGetBuffer
   procedure Get_Channels
-    (Buffer   : in     Buffer_ID_t;
+    (Buffer   : in     Buffer_t;
      Channels :    out Sample_Channels_t);
 
   --
@@ -86,25 +86,25 @@ package OpenAL.Buffer is
 
   -- proc_map : alBufferData
   procedure Set_Data_Mono_8
-    (Buffer    : in Buffer_ID_t;
+    (Buffer    : in Buffer_t;
      Data      : in Sample_Array_8_t;
      Frequency : in Frequency_t);
 
   -- proc_map : alBufferData
   procedure Set_Data_Stereo_8
-    (Buffer    : in Buffer_ID_t;
+    (Buffer    : in Buffer_t;
      Data      : in Sample_Array_8_t;
      Frequency : in Frequency_t);
 
   -- proc_map : alBufferData
   procedure Set_Data_Mono_16
-    (Buffer    : in Buffer_ID_t;
+    (Buffer    : in Buffer_t;
      Data      : in Sample_Array_16_t;
      Frequency : in Frequency_t);
 
   -- proc_map : alBufferData
   procedure Set_Data_Stereo_16
-    (Buffer    : in Buffer_ID_t;
+    (Buffer    : in Buffer_t;
      Data      : in Sample_Array_16_t;
      Frequency : in Frequency_t);
 
@@ -112,13 +112,13 @@ package OpenAL.Buffer is
   --
   --
 
-  function To_Integer (Buffer : Buffer_ID_t) return Types.Unsigned_Integer_t;
-  function From_Integer (Buffer : Types.Unsigned_Integer_t) return Buffer_ID_t;
+  function To_Integer (Buffer : Buffer_t) return Types.Unsigned_Integer_t;
+  function From_Integer (Buffer : Types.Unsigned_Integer_t) return Buffer_t;
 
 private
 
-  type Buffer_ID_t is new Thin.Unsigned_Integer_t;
+  type Buffer_t is new Thin.Unsigned_Integer_t;
 
-  No_Buffer : constant Buffer_ID_t := 0;
+  No_Buffer : constant Buffer_t := 0;
 
 end OpenAL.Buffer;

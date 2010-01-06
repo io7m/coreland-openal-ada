@@ -20,7 +20,7 @@ package body OpenAL.Buffer is
        Sources => Buffers (Buffers'First)'Address);
   end Delete_Buffers;
 
-  function Is_Valid (Buffer : in Buffer_ID_t) return Boolean is
+  function Is_Valid (Buffer : in Buffer_t) return Boolean is
   begin
     return Boolean (Thin.Is_Buffer (Thin.Unsigned_Integer_t (Buffer)));
   end Is_Valid;
@@ -30,7 +30,7 @@ package body OpenAL.Buffer is
   --
 
   procedure Get_Frequency
-    (Buffer    : in     Buffer_ID_t;
+    (Buffer    : in     Buffer_t;
      Frequency :    out Frequency_t)
   is
     Value : aliased Frequency_t;
@@ -47,7 +47,7 @@ package body OpenAL.Buffer is
   --
 
   procedure Get_Size
-    (Buffer : in     Buffer_ID_t;
+    (Buffer : in     Buffer_t;
      Size   :    out Sample_Size_t)
   is
     Value : aliased Sample_Size_t;
@@ -64,7 +64,7 @@ package body OpenAL.Buffer is
   --
 
   procedure Get_Bits
-    (Buffer : in     Buffer_ID_t;
+    (Buffer : in     Buffer_t;
      Bits   :    out Sample_Bits_t)
   is
     Value : aliased Sample_Bits_t;
@@ -81,7 +81,7 @@ package body OpenAL.Buffer is
   --
 
   procedure Get_Channels
-    (Buffer   : in     Buffer_ID_t;
+    (Buffer   : in     Buffer_t;
      Channels :    out Sample_Channels_t)
   is
     Value : aliased Sample_Channels_t;
@@ -98,7 +98,7 @@ package body OpenAL.Buffer is
   --
 
   procedure Set_Data_Mono_8
-    (Buffer    : in Buffer_ID_t;
+    (Buffer    : in Buffer_t;
      Data      : in Sample_Array_8_t;
      Frequency : in Frequency_t) is
   begin
@@ -111,7 +111,7 @@ package body OpenAL.Buffer is
   end Set_Data_Mono_8;
 
   procedure Set_Data_Stereo_8
-    (Buffer    : in Buffer_ID_t;
+    (Buffer    : in Buffer_t;
      Data      : in Sample_Array_8_t;
      Frequency : in Frequency_t) is
   begin
@@ -124,7 +124,7 @@ package body OpenAL.Buffer is
   end Set_Data_Stereo_8;
 
   procedure Set_Data_Mono_16
-    (Buffer    : in Buffer_ID_t;
+    (Buffer    : in Buffer_t;
      Data      : in Sample_Array_16_t;
      Frequency : in Frequency_t) is
   begin
@@ -137,7 +137,7 @@ package body OpenAL.Buffer is
   end Set_Data_Mono_16;
 
   procedure Set_Data_Stereo_16
-    (Buffer    : in Buffer_ID_t;
+    (Buffer    : in Buffer_t;
      Data      : in Sample_Array_16_t;
      Frequency : in Frequency_t) is
   begin
@@ -153,14 +153,14 @@ package body OpenAL.Buffer is
   --
   --
 
-  function To_Integer (Buffer : Buffer_ID_t) return Types.Unsigned_Integer_t is
+  function To_Integer (Buffer : Buffer_t) return Types.Unsigned_Integer_t is
   begin
     return Types.Unsigned_Integer_t (Buffer);
   end To_Integer;
 
-  function From_Integer (Buffer : Types.Unsigned_Integer_t) return Buffer_ID_t is
+  function From_Integer (Buffer : Types.Unsigned_Integer_t) return Buffer_t is
   begin
-    return Buffer_ID_t (Buffer);
+    return Buffer_t (Buffer);
   end From_Integer;
 
 end OpenAL.Buffer;
