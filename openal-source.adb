@@ -472,4 +472,96 @@ package body OpenAL.Source is
     Pitch := Value;
   end Get_Pitch;
 
+  --
+  -- Queue_Buffers
+  --
+
+  procedure Queue_Buffers
+    (Source  : in Source_ID_t;
+     Buffers : in OpenAL.Buffer.Buffer_Array_t) is
+  begin
+    Thin.Source_Queue_Buffers
+      (Source_ID  => Thin.Unsigned_Integer_t (Source),
+       Size       => Buffers'Length,
+       Buffer_IDs => Buffers (Buffers'First)'Address);
+  end Queue_Buffers;
+
+  --
+  -- Unqueue_Buffers
+  --
+
+  procedure Unqueue_Buffers
+    (Source  : in Source_ID_t;
+     Buffers : in OpenAL.Buffer.Buffer_Array_t) is
+  begin
+    Thin.Source_Unqueue_Buffers
+      (Source_ID  => Thin.Unsigned_Integer_t (Source),
+       Size       => Buffers'Length,
+       Buffer_IDs => Buffers (Buffers'First)'Address);
+  end Unqueue_Buffers;
+
+  --
+  -- Play
+  --
+
+  procedure Play (Source : in Source_ID_t) is
+  begin
+    Thin.Source_Play (Thin.Unsigned_Integer_t (Source));
+  end Play;
+
+  procedure Play_List (Sources : in Source_Array_t) is
+  begin
+    Thin.Source_Playv
+      (Size       => Sources'Length,
+       Source_IDs => Sources (Sources'First)'Address);
+  end Play_List;
+
+  --
+  -- Pause
+  --
+
+  procedure Pause (Source : in Source_ID_t) is
+  begin
+    Thin.Source_Pause (Thin.Unsigned_Integer_t (Source));
+  end Pause;
+
+  procedure Pause_List (Sources : in Source_Array_t) is
+  begin
+    Thin.Source_Pausev
+      (Size       => Sources'Length,
+       Source_IDs => Sources (Sources'First)'Address);
+  end Pause_List;
+
+  --
+  -- Stop
+  --
+
+  procedure Stop (Source : in Source_ID_t) is
+  begin
+    Thin.Source_Stop (Thin.Unsigned_Integer_t (Source));
+  end Stop;
+
+  procedure Stop_List (Sources : in Source_Array_t) is
+  begin
+    Thin.Source_Stopv
+      (Size       => Sources'Length,
+       Source_IDs => Sources (Sources'First)'Address);
+  end Stop_List;
+
+  --
+  -- Rewind
+  --
+
+  procedure Rewind (Source : in Source_ID_t) is
+  begin
+    Thin.Source_Rewind (Thin.Unsigned_Integer_t (Source));
+  end Rewind;
+
+  procedure Rewind_List (Sources : in Source_Array_t) is
+  begin
+    Thin.Source_Rewindv
+      (Size       => Sources'Length,
+       Source_IDs => Sources (Sources'First)'Address);
+  end Rewind_List;
+
 end OpenAL.Source;

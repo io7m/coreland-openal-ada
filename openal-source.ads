@@ -258,6 +258,64 @@ package OpenAL.Source is
     (Source : in     Source_ID_t;
      Pitch  :    out Pitch_t);
 
+  --
+  -- Queue_Buffers
+  --
+
+  -- proc_map : alSourceQueueBuffers
+  procedure Queue_Buffers
+    (Source  : in Source_ID_t;
+     Buffers : in OpenAL.Buffer.Buffer_Array_t);
+
+  --
+  -- Unqueue_Buffers
+  --
+
+  -- proc_map : alSourceUnqueueBuffers
+  procedure Unqueue_Buffers
+    (Source  : in Source_ID_t;
+     Buffers : in OpenAL.Buffer.Buffer_Array_t);
+
+  --
+  -- Play
+  --
+
+  -- proc_map : alSourcePlay
+  procedure Play (Source : in Source_ID_t);
+
+  -- proc_map : alSourcePlayv
+  procedure Play_List (Sources : in Source_Array_t);
+
+  --
+  -- Pause
+  --
+
+  -- proc_map : alSourcePause
+  procedure Pause (Source : in Source_ID_t);
+
+  -- proc_map : alSourcePausev
+  procedure Pause_List (Sources : in Source_Array_t);
+
+  --
+  -- Stop
+  --
+
+  -- proc_map : alSourceStop
+  procedure Stop (Source : in Source_ID_t);
+
+  -- proc_map : alSourceStopv
+  procedure Stop_List (Sources : in Source_Array_t);
+
+  --
+  -- Rewind
+  --
+
+  -- proc_map : alSourceRewind
+  procedure Rewind (Source : in Source_ID_t);
+
+  -- proc_map : alSourceRewindv
+  procedure Rewind_List (Sources : in Source_Array_t);
+
 private
 
   type Source_ID_t is new Types.Unsigned_Integer_t;
