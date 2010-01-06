@@ -10,3 +10,26 @@ OpenAL.Source
   AL_SEC_OFFSET
   AL_SAMPLE_OFFSET
   AL_BYTE_OFFSET
+
+OpenAL.Global
+
+  void alGetBooleanv(ALenum paramName, ALboolean *dest);
+  void alGetIntegerv(ALenum paramName, ALint *dest);
+  void alGetFloatv(ALenum paramName, ALfloat *dest);
+  void alGetDoublev(ALenum paramName, ALdouble *dest);
+  ALboolean alGetBoolean (ALenum paramName);
+  ALint alGetInteger(ALenum paramName);
+  ALfloat alGetFloat(ALenum paramName);
+  ALdouble alGetDouble(ALenum paramName);
+
+  AL_DOPPLER_FACTOR
+  AL_SPEED_OF_SOUND
+  AL_DISTANCE_MODEL
+
+  const ALchar * alGetString(ALenum paramName);
+
+  AL_VERSION
+  AL_RENDERER
+  AL_VENDOR
+  AL_EXTENSIONS
+
