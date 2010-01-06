@@ -42,11 +42,6 @@ package OpenAL.Source is
     (Source      : in Source_ID_t;
      Source_Type : in Source_Type_t);
 
-  -- proc_map : alGetSource
-  procedure Get_Type
-    (Source      : in     Source_ID_t;
-     Source_Type :    out Source_Type_t);
-
   -- proc_map : alSource
   procedure Set_Looping
     (Source   : in Source_ID_t;

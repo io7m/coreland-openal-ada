@@ -48,24 +48,6 @@ package body OpenAL.Source is
     Relative := Boolean'Val (Value);
   end Get_Positioning;
 
-  procedure Set_Type
-    (Source      : in Source_ID_t;
-     Source_Type : in Source_Type_t)
-  is
-    Value : Thin.Integer_t;
-  begin
-    case Source_Type is
-      when Undetermined => Value := Thin.AL_UNDETERMINED;
-      when Static       => Value := Thin.AL_STATIC;
-      when Streaming    => Value := Thin.AL_STREAMING;
-    end case;
-
-    Thin.Sourcei
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
-       Parameter => Thin.AL_SOURCE_TYPE,
-       Value     => Value);
-  end Set_Type;
-
   procedure Get_Type
     (Source      : in     Source_ID_t;
      Source_Type :    out Source_Type_t)
