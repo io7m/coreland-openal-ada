@@ -11,11 +11,7 @@ package body OpenAL.Listener is
      Y : in Types.Float_t;
      Z : in Types.Float_t) is
   begin
-    Thin.Listener_3f
-      (Parameter => Thin.AL_POSITION,
-       Value_1   => Thin.Float_t (X),
-       Value_2   => Thin.Float_t (Y),
-       Value_3   => Thin.Float_t (Z));
+    Set_Position_fv ((X, Y, Z));
   end Set_Position_3f;
 
   procedure Set_Position_3i
@@ -23,11 +19,7 @@ package body OpenAL.Listener is
      Y : in Types.Integer_t;
      Z : in Types.Integer_t) is
   begin
-    Thin.Listener_3i
-      (Parameter => Thin.AL_POSITION,
-       Value_1   => Thin.Integer_t (X),
-       Value_2   => Thin.Integer_t (Y),
-       Value_3   => Thin.Integer_t (Z));
+    Set_Position_iv ((X, Y, Z));
   end Set_Position_3i;
 
   procedure Set_Position_fv (Position : in Types.Vector_3f_t) is
@@ -44,6 +36,48 @@ package body OpenAL.Listener is
        Values    => Position (Position'First)'Address);
   end Set_Position_iv;
 
+  procedure Get_Position_3f
+    (X : out Types.Float_t;
+     Y : out Types.Float_t;
+     Z : out Types.Float_t)
+  is
+    V : aliased Types.Vector_3f_t;
+  begin
+    Get_Position_fv (V);
+
+    X := V (1);
+    Y := V (2);
+    Z := V (3);
+  end Get_Position_3f;
+
+  procedure Get_Position_3i
+    (X : out Types.Integer_t;
+     Y : out Types.Integer_t;
+     Z : out Types.Integer_t)
+  is
+    V : aliased Types.Vector_3i_t;
+  begin
+    Get_Position_iv (V);
+
+    X := V (1);
+    Y := V (2);
+    Z := V (3);
+  end Get_Position_3i;
+
+  procedure Get_Position_fv (Position : out Types.Vector_3f_t) is
+  begin
+    Thin.Get_Listenerfv
+      (Parameter => Thin.AL_POSITION,
+       Values    => Position (Position'First)'Address);
+  end Get_Position_fv;
+
+  procedure Get_Position_iv (Position : out Types.Vector_3i_t) is
+  begin
+    Thin.Get_Listeneriv
+      (Parameter => Thin.AL_POSITION,
+       Values    => Position (Position'First)'Address);
+  end Get_Position_iv;
+
   --
   -- Velocity
   --
@@ -53,11 +87,7 @@ package body OpenAL.Listener is
      Y : in Types.Float_t;
      Z : in Types.Float_t) is
   begin
-    Thin.Listener_3f
-      (Parameter => Thin.AL_VELOCITY,
-       Value_1   => Thin.Float_t (X),
-       Value_2   => Thin.Float_t (Y),
-       Value_3   => Thin.Float_t (Z));
+    Set_Velocity_fv ((X, Y, Z));
   end Set_Velocity_3f;
 
   procedure Set_Velocity_3i
@@ -65,26 +95,64 @@ package body OpenAL.Listener is
      Y : in Types.Integer_t;
      Z : in Types.Integer_t) is
   begin
-    Thin.Listener_3i
-      (Parameter => Thin.AL_VELOCITY,
-       Value_1   => Thin.Integer_t (X),
-       Value_2   => Thin.Integer_t (Y),
-       Value_3   => Thin.Integer_t (Z));
+    Set_Velocity_iv ((X, Y, Z));
   end Set_Velocity_3i;
 
   procedure Set_Velocity_fv (Velocity : in Types.Vector_3f_t) is
   begin
     Thin.Listenerfv
-      (Parameter => Thin.AL_VELOCITY,
+      (Parameter => Thin.AL_POSITION,
        Values    => Velocity (Velocity'First)'Address);
   end Set_Velocity_fv;
 
   procedure Set_Velocity_iv (Velocity : in Types.Vector_3i_t) is
   begin
     Thin.Listeneriv
-      (Parameter => Thin.AL_VELOCITY,
+      (Parameter => Thin.AL_POSITION,
        Values    => Velocity (Velocity'First)'Address);
   end Set_Velocity_iv;
+
+  procedure Get_Velocity_3f
+    (X : out Types.Float_t;
+     Y : out Types.Float_t;
+     Z : out Types.Float_t)
+  is
+    V : aliased Types.Vector_3f_t;
+  begin
+    Get_Velocity_fv (V);
+
+    X := V (1);
+    Y := V (2);
+    Z := V (3);
+  end Get_Velocity_3f;
+
+  procedure Get_Velocity_3i
+    (X : out Types.Integer_t;
+     Y : out Types.Integer_t;
+     Z : out Types.Integer_t)
+  is
+    V : aliased Types.Vector_3i_t;
+  begin
+    Get_Velocity_iv (V);
+
+    X := V (1);
+    Y := V (2);
+    Z := V (3);
+  end Get_Velocity_3i;
+
+  procedure Get_Velocity_fv (Velocity : out Types.Vector_3f_t) is
+  begin
+    Thin.Get_Listenerfv
+      (Parameter => Thin.AL_POSITION,
+       Values    => Velocity (Velocity'First)'Address);
+  end Get_Velocity_fv;
+
+  procedure Get_Velocity_iv (Velocity : out Types.Vector_3i_t) is
+  begin
+    Thin.Get_Listeneriv
+      (Parameter => Thin.AL_POSITION,
+       Values    => Velocity (Velocity'First)'Address);
+  end Get_Velocity_iv;
 
   --
   -- Gain
@@ -96,6 +164,15 @@ package body OpenAL.Listener is
       (Parameter => Thin.AL_GAIN,
        Value     => Thin.Float_t (Gain));
   end Set_Gain;
+
+  procedure Get_Gain (Gain : out Types.Float_t) is
+    Value : aliased Types.Float_t;
+  begin
+    Thin.Get_Listenerf
+      (Parameter => Thin.AL_GAIN,
+       Value     => Value'Address);
+    Gain := Value;
+  end Get_Gain;
 
   --
   -- Orientation
@@ -184,71 +261,5 @@ package body OpenAL.Listener is
        2 => Vectors (5),
        3 => Vectors (6));
   end Get_Orientation_i;
-
-  --
-  -- Get
-  --
-
---  procedure Get_Attribute_3f
---    (Attribute : in     Listener_Attribute_t;
---     Value_1   :    out Types.Float_t;
---     Value_2   :    out Types.Float_t;
---     Value_3   :    out Types.Float_t) is
---  begin
---    Thin.Get_Listener_3f
---      (Parameter => Attribute_Constant_Map (Attribute),
---       Value_1   => Value_1'Address,
---       Value_2   => Value_2'Address,
---       Value_3   => Value_3'Address);
---  end Get_Attribute_3f;
---
---  procedure Get_Attribute_3i
---    (Attribute : in     Listener_Attribute_t;
---     Value_1   :    out Types.Integer_t;
---     Value_2   :    out Types.Integer_t;
---     Value_3   :    out Types.Integer_t) is
---  begin
---    Thin.Get_Listener_3i
---      (Parameter => Attribute_Constant_Map (Attribute),
---       Value_1   => Value_1'Address,
---       Value_2   => Value_2'Address,
---       Value_3   => Value_3'Address);
---  end Get_Attribute_3i;
---
---  procedure Get_Attribute_f
---    (Attribute : in     Listener_Attribute_t;
---     Value     :    out Types.Float_t) is
---  begin
---    Thin.Get_Listenerf
---      (Parameter => Attribute_Constant_Map (Attribute),
---       Value     => Value'Address);
---  end Get_Attribute_f;
---
---  procedure Get_Attribute_i
---    (Attribute : in     Listener_Attribute_t;
---     Value     :    out Types.Integer_t) is
---  begin
---    Thin.Get_Listeneri
---      (Parameter => Attribute_Constant_Map (Attribute),
---       Value     => Value'Address);
---  end Get_Attribute_i;
---
---  procedure Get_Attribute_fv
---    (Attribute : in     Listener_Attribute_t;
---     Values    :    out Types.Vector_3f_t) is
---  begin
---    Thin.Get_Listenerfv
---      (Parameter => Attribute_Constant_Map (Attribute),
---       Values    => Values (Values'First)'Address);
---  end Get_Attribute_fv;
---
---  procedure Get_Attribute_iv
---    (Attribute : in     Listener_Attribute_t;
---     Values    :    out Types.Vector_3i_t) is
---  begin
---    Thin.Get_Listeneriv
---      (Parameter => Attribute_Constant_Map (Attribute),
---       Values    => Values (Values'First)'Address);
---  end Get_Attribute_iv;
 
 end OpenAL.Listener;

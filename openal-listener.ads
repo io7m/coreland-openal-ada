@@ -30,6 +30,26 @@ package OpenAL.Listener is
   procedure Set_Position_iv
     (Position : in Types.Vector_3i_t);
 
+  -- proc_map : alGetListener3f
+  procedure Get_Position_3f
+    (X : out Types.Float_t;
+     Y : out Types.Float_t;
+     Z : out Types.Float_t);
+
+  -- proc_map : alGetListener3i
+  procedure Get_Position_3i
+    (X : out Types.Integer_t;
+     Y : out Types.Integer_t;
+     Z : out Types.Integer_t);
+
+  -- proc_map : alGetListenerfv
+  procedure Get_Position_fv
+    (Position : out Types.Vector_3f_t);
+
+  -- proc_map : alGetListeneriv
+  procedure Get_Position_iv
+    (Position : out Types.Vector_3i_t);
+
   --
   -- Velocity
   --
@@ -52,12 +72,33 @@ package OpenAL.Listener is
   -- proc_map : alListeneriv
   procedure Set_Velocity_iv (Velocity : in Types.Vector_3i_t);
 
+  -- proc_map : alGetListener3f
+  procedure Get_Velocity_3f
+    (X : out Types.Float_t;
+     Y : out Types.Float_t;
+     Z : out Types.Float_t);
+
+  -- proc_map : alGetListener3i
+  procedure Get_Velocity_3i
+    (X : out Types.Integer_t;
+     Y : out Types.Integer_t;
+     Z : out Types.Integer_t);
+
+  -- proc_map : alGetListenerfv
+  procedure Get_Velocity_fv (Velocity : out Types.Vector_3f_t);
+
+  -- proc_map : alGetListeneriv
+  procedure Get_Velocity_iv (Velocity : out Types.Vector_3i_t);
+
   --
   -- Gain
   --
 
   -- proc_map : alListener
   procedure Set_Gain (Gain : in Types.Float_t);
+
+  -- proc_map : alGetListener
+  procedure Get_Gain (Gain : out Types.Float_t);
 
   --
   -- Orientation
@@ -82,39 +123,5 @@ package OpenAL.Listener is
   procedure Get_Orientation_i
     (Forward : out Types.Vector_3i_t;
      Up      : out Types.Vector_3i_t);
-
---  -- proc_map : alGetListener3f
---  procedure Get_Attribute_3f
---    (Attribute : in     Listener_Attribute_t;
---     Value_1   :    out Types.Float_t;
---     Value_2   :    out Types.Float_t;
---     Value_3   :    out Types.Float_t);
---
---  -- proc_map : alGetListener3i
---  procedure Get_Attribute_3i
---    (Attribute : in     Listener_Attribute_t;
---     Value_1   :    out Types.Integer_t;
---     Value_2   :    out Types.Integer_t;
---     Value_3   :    out Types.Integer_t);
---
---  -- proc_map : alGetListenerf
---  procedure Get_Attribute_f
---    (Attribute : in     Listener_Attribute_t;
---     Value     :    out Types.Float_t);
---
---  -- proc_map : alGetListeneri
---  procedure Get_Attribute_i
---    (Attribute : in     Listener_Attribute_t;
---     Value     :    out Types.Integer_t);
---
---  -- proc_map : alGetListenerfv
---  procedure Get_Attribute_fv
---    (Attribute : in     Listener_Attribute_t;
---     Values    :    out Types.Vector_3f_t);
---
---  -- proc_map : alGetListeneriv
---  procedure Get_Attribute_iv
---    (Attribute : in     Listener_Attribute_t;
---     Values    :    out Types.Vector_3i_t);
 
 end OpenAL.Listener;
