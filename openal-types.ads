@@ -3,9 +3,10 @@ with OpenAL.Thin;
 
 package OpenAL.Types is
 
-  subtype Integer_t        is Thin.Integer_t;
-  subtype Float_t          is Thin.Float_t;
-  subtype Double_t         is Thin.Double_t;
+  subtype Integer_t          is Thin.Integer_t;
+  subtype Unsigned_Integer_t is Thin.Unsigned_Integer_t;
+  subtype Float_t            is Thin.Float_t;
+  subtype Double_t           is Thin.Double_t;
 
   subtype Clamped_Double_t is Double_t range 0.0 .. 1.0;
   subtype Clamped_Float_t  is Float_t range 0.0 .. 1.0;
