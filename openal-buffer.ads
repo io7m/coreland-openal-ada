@@ -7,9 +7,8 @@ package OpenAL.Buffer is
   -- Types
   --
 
-  type Buffer_ID_t          is new Thin.Unsigned_Integer_t;
-  type Buffer_Array_Index_t is range 1 .. Buffer_ID_t'Last;
-  type Buffer_Array_t       is array (Buffer_Array_Index_t range <>) of Buffer_ID_t;
+  type Buffer_ID_t    is private;
+  type Buffer_Array_t is array (Positive range <>) of Buffer_ID_t;
 
   type Buffer_Attribute_t is (Frequency, Size, Bits, Channels);
 
@@ -102,5 +101,9 @@ package OpenAL.Buffer is
     (Buffer    : in Buffer_ID_t;
      Data      : in Sample_Array_16_t;
      Frequency : in Frequency_t);
+
+private
+
+  type Buffer_ID_t is new Thin.Unsigned_Integer_t;
 
 end OpenAL.Buffer;
