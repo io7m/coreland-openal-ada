@@ -32,50 +32,50 @@ package OpenAL.Source is
   --
 
   -- proc_map : alSource3f
-  procedure Set_Position_f
+  procedure Set_Position_Float
     (Source    : in Source_ID_t;
      X         : in Types.Float_t;
      Y         : in Types.Float_t;
      Z         : in Types.Float_t);
 
   -- proc_map : alSource3i
-  procedure Set_Position_i
+  procedure Set_Position_Discrete
     (Source    : in Source_ID_t;
      X         : in Types.Integer_t;
      Y         : in Types.Integer_t;
      Z         : in Types.Integer_t);
 
   -- proc_map : alSourcefv
-  procedure Set_Position_fv
+  procedure Set_Position_Float_List
     (Source    : in Source_ID_t;
      Position  : in Types.Vector_3f_t);
 
   -- proc_map : alSourceiv
-  procedure Set_Position_iv
+  procedure Set_Position_Discrete_List
     (Source    : in Source_ID_t;
      Position  : in Types.Vector_3i_t);
 
   -- proc_map : alGetSource3f
-  procedure Get_Position_f
+  procedure Get_Position_Float
     (Source : in     Source_ID_t;
      X      :    out Types.Float_t;
      Y      :    out Types.Float_t;
      Z      :    out Types.Float_t);
 
   -- proc_map : alGetSource3i
-  procedure Get_Position_i
+  procedure Get_Position_Discrete
     (Source : in     Source_ID_t;
      X      :    out Types.Integer_t;
      Y      :    out Types.Integer_t;
      Z      :    out Types.Integer_t);
 
   -- proc_map : alGetSourcefv
-  procedure Get_Position_fv
+  procedure Get_Position_Float_List
     (Source   : in     Source_ID_t;
      Position :    out Types.Vector_3f_t);
 
   -- proc_map : alGetSourceiv
-  procedure Get_Position_iv
+  procedure Get_Position_Discrete_List
     (Source   : in     Source_ID_t;
      Position :    out Types.Vector_3i_t);
 
@@ -84,50 +84,50 @@ package OpenAL.Source is
   --
 
   -- proc_map : alSource3f
-  procedure Set_Velocity_f
+  procedure Set_Velocity_Float
     (Source    : in Source_ID_t;
      X         : in Types.Float_t;
      Y         : in Types.Float_t;
      Z         : in Types.Float_t);
 
   -- proc_map : alSource3i
-  procedure Set_Velocity_i
+  procedure Set_Velocity_Discrete
     (Source    : in Source_ID_t;
      X         : in Types.Integer_t;
      Y         : in Types.Integer_t;
      Z         : in Types.Integer_t);
 
   -- proc_map : alSourcefv
-  procedure Set_Velocity_fv
+  procedure Set_Velocity_Float_List
     (Source    : in Source_ID_t;
      Velocity  : in Types.Vector_3f_t);
 
   -- proc_map : alSourceiv
-  procedure Set_Velocity_iv
+  procedure Set_Velocity_Discrete_List
     (Source    : in Source_ID_t;
      Velocity  : in Types.Vector_3i_t);
 
   -- proc_map : alGetSource3f
-  procedure Get_Velocity_f
+  procedure Get_Velocity_Float
     (Source : in     Source_ID_t;
      X      :    out Types.Float_t;
      Y      :    out Types.Float_t;
      Z      :    out Types.Float_t);
 
   -- proc_map : alGetSource3i
-  procedure Get_Velocity_i
+  procedure Get_Velocity_Discrete
     (Source : in     Source_ID_t;
      X      :    out Types.Integer_t;
      Y      :    out Types.Integer_t;
      Z      :    out Types.Integer_t);
 
   -- proc_map : alGetSourcefv
-  procedure Get_Velocity_fv
+  procedure Get_Velocity_Float_List
     (Source   : in     Source_ID_t;
      Velocity :    out Types.Vector_3f_t);
 
   -- proc_map : alGetSourceiv
-  procedure Get_Velocity_iv
+  procedure Get_Velocity_Discrete_List
     (Source   : in     Source_ID_t;
      Velocity :    out Types.Vector_3i_t);
 

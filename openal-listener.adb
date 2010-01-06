@@ -6,153 +6,153 @@ package body OpenAL.Listener is
   -- Position
   --
 
-  procedure Set_Position_f
+  procedure Set_Position_Float
     (X : in Types.Float_t;
      Y : in Types.Float_t;
      Z : in Types.Float_t) is
   begin
-    Set_Position_fv ((X, Y, Z));
-  end Set_Position_f;
+    Set_Position_Float_List ((X, Y, Z));
+  end Set_Position_Float;
 
-  procedure Set_Position_i
+  procedure Set_Position_Discrete
     (X : in Types.Integer_t;
      Y : in Types.Integer_t;
      Z : in Types.Integer_t) is
   begin
-    Set_Position_iv ((X, Y, Z));
-  end Set_Position_i;
+    Set_Position_Discrete_List ((X, Y, Z));
+  end Set_Position_Discrete;
 
-  procedure Set_Position_fv (Position : in Types.Vector_3f_t) is
+  procedure Set_Position_Float_List (Position : in Types.Vector_3f_t) is
   begin
     Thin.Listenerfv
       (Parameter => Thin.AL_POSITION,
        Values    => Position (Position'First)'Address);
-  end Set_Position_fv;
+  end Set_Position_Float_List;
 
-  procedure Set_Position_iv (Position : in Types.Vector_3i_t) is
+  procedure Set_Position_Discrete_List (Position : in Types.Vector_3i_t) is
   begin
     Thin.Listeneriv
       (Parameter => Thin.AL_POSITION,
        Values    => Position (Position'First)'Address);
-  end Set_Position_iv;
+  end Set_Position_Discrete_List;
 
-  procedure Get_Position_f
+  procedure Get_Position_Float
     (X : out Types.Float_t;
      Y : out Types.Float_t;
      Z : out Types.Float_t)
   is
     V : aliased Types.Vector_3f_t;
   begin
-    Get_Position_fv (V);
+    Get_Position_Float_List (V);
 
     X := V (1);
     Y := V (2);
     Z := V (3);
-  end Get_Position_f;
+  end Get_Position_Float;
 
-  procedure Get_Position_i
+  procedure Get_Position_Discrete
     (X : out Types.Integer_t;
      Y : out Types.Integer_t;
      Z : out Types.Integer_t)
   is
     V : aliased Types.Vector_3i_t;
   begin
-    Get_Position_iv (V);
+    Get_Position_Discrete_List (V);
 
     X := V (1);
     Y := V (2);
     Z := V (3);
-  end Get_Position_i;
+  end Get_Position_Discrete;
 
-  procedure Get_Position_fv (Position : out Types.Vector_3f_t) is
+  procedure Get_Position_Float_List (Position : out Types.Vector_3f_t) is
   begin
     Thin.Get_Listenerfv
       (Parameter => Thin.AL_POSITION,
        Values    => Position (Position'First)'Address);
-  end Get_Position_fv;
+  end Get_Position_Float_List;
 
-  procedure Get_Position_iv (Position : out Types.Vector_3i_t) is
+  procedure Get_Position_Discrete_List (Position : out Types.Vector_3i_t) is
   begin
     Thin.Get_Listeneriv
       (Parameter => Thin.AL_POSITION,
        Values    => Position (Position'First)'Address);
-  end Get_Position_iv;
+  end Get_Position_Discrete_List;
 
   --
   -- Velocity
   --
 
-  procedure Set_Velocity_f
+  procedure Set_Velocity_Float
     (X : in Types.Float_t;
      Y : in Types.Float_t;
      Z : in Types.Float_t) is
   begin
-    Set_Velocity_fv ((X, Y, Z));
-  end Set_Velocity_f;
+    Set_Velocity_Float_List ((X, Y, Z));
+  end Set_Velocity_Float;
 
-  procedure Set_Velocity_i
+  procedure Set_Velocity_Discrete
     (X : in Types.Integer_t;
      Y : in Types.Integer_t;
      Z : in Types.Integer_t) is
   begin
-    Set_Velocity_iv ((X, Y, Z));
-  end Set_Velocity_i;
+    Set_Velocity_Discrete_List ((X, Y, Z));
+  end Set_Velocity_Discrete;
 
-  procedure Set_Velocity_fv (Velocity : in Types.Vector_3f_t) is
+  procedure Set_Velocity_Float_List (Velocity : in Types.Vector_3f_t) is
   begin
     Thin.Listenerfv
       (Parameter => Thin.AL_POSITION,
        Values    => Velocity (Velocity'First)'Address);
-  end Set_Velocity_fv;
+  end Set_Velocity_Float_List;
 
-  procedure Set_Velocity_iv (Velocity : in Types.Vector_3i_t) is
+  procedure Set_Velocity_Discrete_List (Velocity : in Types.Vector_3i_t) is
   begin
     Thin.Listeneriv
       (Parameter => Thin.AL_POSITION,
        Values    => Velocity (Velocity'First)'Address);
-  end Set_Velocity_iv;
+  end Set_Velocity_Discrete_List;
 
-  procedure Get_Velocity_f
+  procedure Get_Velocity_Float
     (X : out Types.Float_t;
      Y : out Types.Float_t;
      Z : out Types.Float_t)
   is
     V : aliased Types.Vector_3f_t;
   begin
-    Get_Velocity_fv (V);
+    Get_Velocity_Float_List (V);
 
     X := V (1);
     Y := V (2);
     Z := V (3);
-  end Get_Velocity_f;
+  end Get_Velocity_Float;
 
-  procedure Get_Velocity_i
+  procedure Get_Velocity_Discrete
     (X : out Types.Integer_t;
      Y : out Types.Integer_t;
      Z : out Types.Integer_t)
   is
     V : aliased Types.Vector_3i_t;
   begin
-    Get_Velocity_iv (V);
+    Get_Velocity_Discrete_List (V);
 
     X := V (1);
     Y := V (2);
     Z := V (3);
-  end Get_Velocity_i;
+  end Get_Velocity_Discrete;
 
-  procedure Get_Velocity_fv (Velocity : out Types.Vector_3f_t) is
+  procedure Get_Velocity_Float_List (Velocity : out Types.Vector_3f_t) is
   begin
     Thin.Get_Listenerfv
       (Parameter => Thin.AL_POSITION,
        Values    => Velocity (Velocity'First)'Address);
-  end Get_Velocity_fv;
+  end Get_Velocity_Float_List;
 
-  procedure Get_Velocity_iv (Velocity : out Types.Vector_3i_t) is
+  procedure Get_Velocity_Discrete_List (Velocity : out Types.Vector_3i_t) is
   begin
     Thin.Get_Listeneriv
       (Parameter => Thin.AL_POSITION,
        Values    => Velocity (Velocity'First)'Address);
-  end Get_Velocity_iv;
+  end Get_Velocity_Discrete_List;
 
   --
   -- Gain
@@ -178,7 +178,7 @@ package body OpenAL.Listener is
   -- Orientation
   --
 
-  procedure Set_Orientation_f
+  procedure Set_Orientation_Float
     (Forward : in Types.Vector_3f_t;
      Up      : in Types.Vector_3f_t)
   is
@@ -195,9 +195,9 @@ package body OpenAL.Listener is
     Thin.Listenerfv
       (Parameter => Thin.AL_ORIENTATION,
        Values    => Vectors (Vectors'First)'Address);
-  end Set_Orientation_f;
+  end Set_Orientation_Float;
 
-  procedure Set_Orientation_i
+  procedure Set_Orientation_Discrete
     (Forward : in Types.Vector_3i_t;
      Up      : in Types.Vector_3i_t)
   is
@@ -214,9 +214,9 @@ package body OpenAL.Listener is
     Thin.Listeneriv
       (Parameter => Thin.AL_ORIENTATION,
        Values    => Vectors (Vectors'First)'Address);
-  end Set_Orientation_i;
+  end Set_Orientation_Discrete;
 
-  procedure Get_Orientation_f
+  procedure Get_Orientation_Float
     (Forward : out Types.Vector_3f_t;
      Up      : out Types.Vector_3f_t)
   is
@@ -237,9 +237,9 @@ package body OpenAL.Listener is
       (1 => Vectors (4),
        2 => Vectors (5),
        3 => Vectors (6));
-  end Get_Orientation_f;
+  end Get_Orientation_Float;
 
-  procedure Get_Orientation_i
+  procedure Get_Orientation_Discrete
     (Forward : out Types.Vector_3i_t;
      Up      : out Types.Vector_3i_t)
   is
@@ -260,6 +260,6 @@ package body OpenAL.Listener is
       (1 => Vectors (4),
        2 => Vectors (5),
        3 => Vectors (6));
-  end Get_Orientation_i;
+  end Get_Orientation_Discrete;
 
 end OpenAL.Listener;
