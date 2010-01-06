@@ -38,9 +38,9 @@ package OpenAL.Source is
   type Source_Type_t is (Undetermined, Static, Streaming);
 
   -- proc_map : alSource
-  procedure Set_Type
-    (Source      : in Source_ID_t;
-     Source_Type : in Source_Type_t);
+  procedure Get_Type
+    (Source      : in     Source_ID_t;
+     Source_Type :    out Source_Type_t);
 
   -- proc_map : alSource
   procedure Set_Looping
