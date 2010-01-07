@@ -33,8 +33,20 @@ package body OpenAL_Info is
   --
 
   procedure List_Playback_Devices is
+    Devices : AL_String_Vectors.Vector;
+
+    procedure Process_Element (Device : in String) is
+    begin
+      Text_IO.Put_Line ("  " & Device);
+    end Process_Element;
   begin
-    null;
+    Text_IO.Put_Line ("Playback devices :");
+
+    Devices := AL_Context.Get_Available_Playback_Devices;
+
+    for Index in AL_String_Vectors.First_Index (Devices) .. AL_String_Vectors.Last_Index (Devices) loop
+      AL_String_Vectors.Query_Element (Devices, Index, Process_Element'Access);
+    end loop;
   end List_Playback_Devices;
 
   --
