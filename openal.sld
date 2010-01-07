@@ -1,8 +1,10 @@
 openal-alc_thin.o
 openal-buffer.o
+openal-context-capture.o
 openal-context-error.o
 openal-context.o
 openal-error.o
+openal-global.o
 openal-listener.o
 openal-source.o
 openal-thin.o

@@ -22,6 +22,10 @@ pragma source_file_name(OpenAL.Context, body_file_name => "openal-context.adb");
 pragma source_file_name(OpenAL.Error, spec_file_name => "openal-error.ads");
 pragma source_file_name(OpenAL.Error, body_file_name => "openal-error.adb");
 
+-- ./openal-global.apk
+pragma source_file_name(OpenAL.Global, spec_file_name => "openal-global.ads");
+pragma source_file_name(OpenAL.Global, body_file_name => "openal-global.adb");
+
 -- ./openal-listener.apk
 pragma source_file_name(OpenAL.Listener, spec_file_name => "openal-listener.ads");
 pragma source_file_name(OpenAL.Listener, body_file_name => "openal-listener.adb");
