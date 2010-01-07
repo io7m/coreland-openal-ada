@@ -1,6 +1,7 @@
 with Ada.IO_Exceptions;
-with Interfaces.C;
 with Interfaces.C.Strings;
+with Interfaces.C;
+with OpenAL.Thin;
 with System;
 
 package body OpenAL.Context is
@@ -162,77 +163,77 @@ package body OpenAL.Context is
   function Get_Major_Version
     (Device : in Device_t) return Natural
   is
-    Value : aliased Natural := 0;
+    Value : aliased Thin.Integer_t := 0;
   begin
     ALC_Thin.Get_Integerv
       (Device => Device.Device_Data,
        Token  => ALC_Thin.ALC_MAJOR_VERSION,
-       Size   => ALC_Thin.Size_t (Natural'Size / System.Storage_Unit),
+       Size   => 1,
        Data   => Value'Address);
-    return Value;
+    return Natural (Value);
   end Get_Major_Version;
 
   function Get_Minor_Version
     (Device : in Device_t) return Natural
   is
-    Value : aliased Natural := 0;
+    Value : aliased Thin.Integer_t := 0;
   begin
     ALC_Thin.Get_Integerv
       (Device => Device.Device_Data,
        Token  => ALC_Thin.ALC_MINOR_VERSION,
-       Size   => ALC_Thin.Size_t (Natural'Size / System.Storage_Unit),
+       Size   => 1,
        Data   => Value'Address);
-    return Value;
+    return Natural (Value);
   end Get_Minor_Version;
 
   function Get_Capture_Samples
     (Device : in Device_t) return Natural
   is
-    Value : aliased Natural := 0;
+    Value : aliased Thin.Integer_t := 0;
   begin
     ALC_Thin.Get_Integerv
       (Device => Device.Device_Data,
        Token  => ALC_Thin.ALC_CAPTURE_SAMPLES,
-       Size   => ALC_Thin.Size_t (Natural'Size / System.Storage_Unit),
+       Size   => 1,
        Data   => Value'Address);
-    return Value;
+    return Natural (Value);
   end Get_Capture_Samples;
 
   function Get_Frequency
     (Device : in Device_t) return Types.Frequency_t
   is
-    Value : aliased Types.Frequency_t := Types.Frequency_t'First;
+    Value : aliased Thin.Integer_t := 0;
   begin
     ALC_Thin.Get_Integerv
       (Device => Device.Device_Data,
        Token  => ALC_Thin.ALC_FREQUENCY,
-       Size   => ALC_Thin.Size_t (Types.Frequency_t'Size / System.Storage_Unit),
+       Size   => 1,
        Data   => Value'Address);
-    return Value;
+    return Types.Frequency_t (Value);
   end Get_Frequency;
 
   function Get_Refresh
     (Device : in Device_t) return Natural
   is
-    Value : aliased Natural := 0;
+    Value : aliased Thin.Integer_t := 0;
   begin
     ALC_Thin.Get_Integerv
       (Device => Device.Device_Data,
        Token  => ALC_Thin.ALC_REFRESH,
-       Size   => ALC_Thin.Size_t (Natural'Size / System.Storage_Unit),
+       Size   => 1,
        Data   => Value'Address);
-    return Value;
+    return Natural (Value);
   end Get_Refresh;
 
   function Get_Synchronous
     (Device : in Device_t) return Boolean
   is
-    Value : aliased Natural := 0;
+    Value : aliased Thin.Integer_t := 0;
   begin
     ALC_Thin.Get_Integerv
       (Device => Device.Device_Data,
        Token  => ALC_Thin.ALC_SYNC,
-       Size   => ALC_Thin.Size_t (Natural'Size / System.Storage_Unit),
+       Size   => 1,
        Data   => Value'Address);
     return Boolean'Val (Value);
   end Get_Synchronous;
@@ -240,27 +241,27 @@ package body OpenAL.Context is
   function Get_Mono_Sources
     (Device : in Device_t) return Natural
   is
-    Value : aliased Natural := 0;
+    Value : aliased Thin.Integer_t := 0;
   begin
     ALC_Thin.Get_Integerv
       (Device => Device.Device_Data,
        Token  => ALC_Thin.ALC_MONO_SOURCES,
-       Size   => ALC_Thin.Size_t (Natural'Size / System.Storage_Unit),
+       Size   => 1,
        Data   => Value'Address);
-    return Value;
+    return Natural (Value);
   end Get_Mono_Sources;
 
   function Get_Stereo_Sources
     (Device : in Device_t) return Natural
   is
-    Value : aliased Natural := 0;
+    Value : aliased Thin.Integer_t := 0;
   begin
     ALC_Thin.Get_Integerv
       (Device => Device.Device_Data,
        Token  => ALC_Thin.ALC_STEREO_SOURCES,
-       Size   => ALC_Thin.Size_t (Natural'Size / System.Storage_Unit),
+       Size   => 1,
        Data   => Value'Address);
-    return Value;
+    return Natural (Value);
   end Get_Stereo_Sources;
 
 end OpenAL.Context;
