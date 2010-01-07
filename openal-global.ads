@@ -57,4 +57,11 @@ package OpenAL.Global is
   -- proc_map : alGetString
   function Extensions return String;
 
+  --
+  -- Is_Extension_Present
+  --
+
+  -- proc_map : alIsExtensionPresent
+  function Is_Extension_Present (Name : in String) return Boolean;
+
 end OpenAL.Global;

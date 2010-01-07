@@ -1,7 +1,9 @@
 with OpenAL.Thin;
+with Interfaces.C;
 with Interfaces.C.Strings;
 
 package body OpenAL.Global is
+  package C         renames Interfaces.C;
   package C_Strings renames Interfaces.C.Strings;
 
   --
@@ -99,5 +101,15 @@ package body OpenAL.Global is
   begin
     return C_Strings.Value (Get_String (Thin.AL_EXTENSIONS));
   end Extensions;
+
+  --
+  -- Is_Extension_Present
+  --
+
+  function Is_Extension_Present (Name : in String) return Boolean is
+    C_Name : aliased C.char_array := C.To_C (Name);
+  begin
+    return Boolean (Thin.Is_Extension_Present (C_Name (C_Name'First)'Address));
+  end Is_Extension_Present;
 
 end OpenAL.Global;
