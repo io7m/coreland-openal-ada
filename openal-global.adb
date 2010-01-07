@@ -1,6 +1,8 @@
 with OpenAL.Thin;
+with Interfaces.C.Strings;
 
 package body OpenAL.Global is
+  package C_Strings renames Interfaces.C.Strings;
 
   --
   -- Distance_Model
@@ -70,5 +72,32 @@ package body OpenAL.Global is
   begin
     return Thin.Get_Float (Thin.AL_SPEED_OF_SOUND);
   end Get_Speed_Of_Sound;
+
+  --
+  -- String queries
+  --
+
+  function Get_String (Parameter : Thin.Enumeration_t) return C_Strings.chars_ptr;
+  pragma Import (C, Get_String, "alGetString");
+
+  function Version return String is
+  begin
+    return C_Strings.Value (Get_String (Thin.AL_VERSION));
+  end Version;
+
+  function Renderer return String is
+  begin
+    return C_Strings.Value (Get_String (Thin.AL_RENDERER));
+  end Renderer;
+
+  function Vendor return String is
+  begin
+    return C_Strings.Value (Get_String (Thin.AL_VENDOR));
+  end Vendor;
+
+  function Extensions return String is
+  begin
+    return C_Strings.Value (Get_String (Thin.AL_EXTENSIONS));
+  end Extensions;
 
 end OpenAL.Global;

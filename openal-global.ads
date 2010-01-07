@@ -41,4 +41,20 @@ package OpenAL.Global is
   -- proc_map : alGetFloat
   function Get_Speed_Of_Sound return Types.Positive_Float_t;
 
+  --
+  -- String queries
+  --
+
+  -- proc_map : alGetString
+  function Version return String;
+
+  -- proc_map : alGetString
+  function Renderer return String;
+
+  -- proc_map : alGetString
+  function Vendor return String;
+
+  -- proc_map : alGetString
+  function Extensions return String;
+
 end OpenAL.Global;
