@@ -1,5 +1,6 @@
 with OpenAL.ALC_Thin;
 with OpenAL.List;
+with OpenAL.Types;
 
 package OpenAL.Context is
 

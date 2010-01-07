@@ -31,9 +31,9 @@ package body OpenAL.Buffer is
 
   procedure Get_Frequency
     (Buffer    : in     Buffer_t;
-     Frequency :    out Frequency_t)
+     Frequency :    out Types.Frequency_t)
   is
-    Value : aliased Frequency_t;
+    Value : aliased Types.Frequency_t;
   begin
     Thin.Get_Bufferi
       (Buffer_ID => Thin.Unsigned_Integer_t (Buffer),
@@ -100,7 +100,7 @@ package body OpenAL.Buffer is
   procedure Set_Data_Mono_8
     (Buffer    : in Buffer_t;
      Data      : in Sample_Array_8_t;
-     Frequency : in Frequency_t) is
+     Frequency : in Types.Frequency_t) is
   begin
     Thin.Buffer_Data
       (Buffer_ID => Thin.Unsigned_Integer_t (Buffer),
@@ -113,7 +113,7 @@ package body OpenAL.Buffer is
   procedure Set_Data_Stereo_8
     (Buffer    : in Buffer_t;
      Data      : in Sample_Array_8_t;
-     Frequency : in Frequency_t) is
+     Frequency : in Types.Frequency_t) is
   begin
     Thin.Buffer_Data
       (Buffer_ID => Thin.Unsigned_Integer_t (Buffer),
@@ -126,7 +126,7 @@ package body OpenAL.Buffer is
   procedure Set_Data_Mono_16
     (Buffer    : in Buffer_t;
      Data      : in Sample_Array_16_t;
-     Frequency : in Frequency_t) is
+     Frequency : in Types.Frequency_t) is
   begin
     Thin.Buffer_Data
       (Buffer_ID => Thin.Unsigned_Integer_t (Buffer),
@@ -139,7 +139,7 @@ package body OpenAL.Buffer is
   procedure Set_Data_Stereo_16
     (Buffer    : in Buffer_t;
      Data      : in Sample_Array_16_t;
-     Frequency : in Frequency_t) is
+     Frequency : in Types.Frequency_t) is
   begin
     Thin.Buffer_Data
       (Buffer_ID => Thin.Unsigned_Integer_t (Buffer),

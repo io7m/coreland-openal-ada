@@ -31,12 +31,10 @@ package OpenAL.Buffer is
   -- Frequency
   --
 
-  type Frequency_t is new Thin.Size_t range 1 .. Thin.Size_t'Last;
-
   -- proc_map : alGetBuffer
   procedure Get_Frequency
     (Buffer    : in     Buffer_t;
-     Frequency :    out Frequency_t);
+     Frequency :    out Types.Frequency_t);
 
   --
   -- Size
@@ -88,25 +86,25 @@ package OpenAL.Buffer is
   procedure Set_Data_Mono_8
     (Buffer    : in Buffer_t;
      Data      : in Sample_Array_8_t;
-     Frequency : in Frequency_t);
+     Frequency : in Types.Frequency_t);
 
   -- proc_map : alBufferData
   procedure Set_Data_Stereo_8
     (Buffer    : in Buffer_t;
      Data      : in Sample_Array_8_t;
-     Frequency : in Frequency_t);
+     Frequency : in Types.Frequency_t);
 
   -- proc_map : alBufferData
   procedure Set_Data_Mono_16
     (Buffer    : in Buffer_t;
      Data      : in Sample_Array_16_t;
-     Frequency : in Frequency_t);
+     Frequency : in Types.Frequency_t);
 
   -- proc_map : alBufferData
   procedure Set_Data_Stereo_16
     (Buffer    : in Buffer_t;
      Data      : in Sample_Array_16_t;
-     Frequency : in Frequency_t);
+     Frequency : in Types.Frequency_t);
 
   --
   --

@@ -17,7 +17,7 @@ package body OpenAL.Context.Capture is
 
   function Open_Device
     (Name        : in String;
-     Frequency   : in Frequency_t;
+     Frequency   : in Types.Frequency_t;
      Format      : in Format_t;
      Buffer_Size : in Buffer_Size_t) return Device_t
   is
@@ -33,7 +33,7 @@ package body OpenAL.Context.Capture is
   end Open_Device;
 
   function Open_Default_Device
-    (Frequency   : in Frequency_t;
+    (Frequency   : in Types.Frequency_t;
      Format      : in Format_t;
      Buffer_Size : in Buffer_Size_t) return Device_t
   is

@@ -26,4 +26,10 @@ package OpenAL.Types is
   type Vector_3f_t is new Float_Arrays.Real_Vector (1 .. 3);
   type Vector_4f_t is new Float_Arrays.Real_Vector (1 .. 4);
 
+  --
+  -- Frequency in hz.
+  --
+
+  type Frequency_t is new Thin.Size_t range 1 .. Thin.Size_t'Last;
+
 end OpenAL.Types;

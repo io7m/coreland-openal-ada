@@ -1,4 +1,5 @@
 with OpenAL.Buffer;
+with OpenAL.Types;
 
 package OpenAL.Context.Capture is
 
@@ -6,19 +7,18 @@ package OpenAL.Context.Capture is
   -- API
   --
 
-  type Frequency_t   is range 1 .. 1_944_810_000;
   type Buffer_Size_t is range 2 .. 65536;
 
   -- proc_map : alcCaptureOpenDevice
   function Open_Device
     (Name        : in String;
-     Frequency   : in Frequency_t;
+     Frequency   : in Types.Frequency_t;
      Format      : in OpenAL.Context.Format_t;
      Buffer_Size : in Buffer_Size_t) return Device_t;
 
   -- proc_map : alcCaptureOpenDevice
   function Open_Default_Device
-    (Frequency   : in Frequency_t;
+    (Frequency   : in Types.Frequency_t;
      Format      : in OpenAL.Context.Format_t;
      Buffer_Size : in Buffer_Size_t) return Device_t;
 
