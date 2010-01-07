@@ -1,3 +1,5 @@
+with OpenAL.Types;
+
 package OpenAL.Global is
 
   --
@@ -18,5 +20,15 @@ package OpenAL.Global is
 
   -- proc_map : alGetInteger
   function Get_Distance_Model return Distance_Model_t;
+
+  --
+  -- Doppler_Factor
+  --
+
+  -- proc_map : alDopplerFactor
+  procedure Set_Doppler_Factor (Factor : in Types.Natural_Float_t);
+
+  -- proc_map : alGetFloat
+  function Get_Doppler_Factor return Types.Natural_Float_t;
 
 end OpenAL.Global;

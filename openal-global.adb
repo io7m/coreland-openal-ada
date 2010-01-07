@@ -43,4 +43,18 @@ package body OpenAL.Global is
     return Return_Value;
   end Get_Distance_Model;
 
+  --
+  -- Doppler_Factor
+  --
+
+  procedure Set_Doppler_Factor (Factor : in Types.Natural_Float_t) is
+  begin
+    Thin.Doppler_Factor (Factor);
+  end Set_Doppler_Factor;
+
+  function Get_Doppler_Factor return Types.Natural_Float_t is
+  begin
+    return Thin.Get_Float (Thin.AL_DOPPLER_FACTOR);
+  end Get_Doppler_Factor;
+
 end OpenAL.Global;
