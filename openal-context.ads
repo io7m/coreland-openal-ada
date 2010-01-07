@@ -84,6 +84,42 @@ package OpenAL.Context is
   -- proc_map : alcGetString
   function Get_Available_Capture_Devices return OpenAL.List.String_Vector_t;
 
+  --
+  -- Integer queries
+  --
+
+  -- proc_map : alcGetIntegerv
+  function Get_Major_Version
+    (Device : in Device_t) return Natural;
+
+  -- proc_map : alcGetIntegerv
+  function Get_Minor_Version
+    (Device : in Device_t) return Natural;
+
+  -- proc_map : alcGetIntegerv
+  function Get_Capture_Samples
+    (Device : in Device_t) return Natural;
+
+  -- proc_map : alcGetIntegerv
+  function Get_Frequency
+    (Device : in Device_t) return Types.Frequency_t;
+
+  -- proc_map : alcGetIntegerv
+  function Get_Refresh
+    (Device : in Device_t) return Natural;
+
+  -- proc_map : alcGetIntegerv
+  function Get_Synchronous
+    (Device : in Device_t) return Boolean;
+
+  -- proc_map : alcGetIntegerv
+  function Get_Mono_Sources
+    (Device : in Device_t) return Natural;
+
+  -- proc_map : alcGetIntegerv
+  function Get_Stereo_Sources
+    (Device : in Device_t) return Natural;
+
 private
 
   type Device_t is record
