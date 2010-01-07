@@ -47,6 +47,10 @@ pragma source_file_name(OpenAL.Types, spec_file_name => "openal-types.ads");
 -- ./openal.apk
 pragma source_file_name(OpenAL, spec_file_name => "openal.ads");
 
+-- ./openal_info.apk
+pragma source_file_name(OpenAL_Info, spec_file_name => "openal_info.ads");
+pragma source_file_name(OpenAL_Info, body_file_name => "openal_info.adb");
+
 -- UNIT_TESTS/test.apk
 pragma source_file_name(Test, spec_file_name => "test.ads");
 pragma source_file_name(Test, body_file_name => "test.adb");
