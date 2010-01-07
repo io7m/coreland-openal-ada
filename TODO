@@ -9,9 +9,6 @@ OpenAL.Context
   ALCenum alcGetEnumValue(const ALCdevice *deviceHandle, const ALCchar *enumName);
 
     ALC_ATTRIBUTES_SIZE
-    ALC_MAJOR_VERSION
-    ALC_MINOR_VERSION
-    ALC_CAPTURE_SAMPLES
 
   void alcGetIntegerv(ALCdevice * deviceHandle, ALCenum token, ALCsizei size, ALCint *dest);
 
