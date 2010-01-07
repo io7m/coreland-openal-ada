@@ -1,4 +1,5 @@
 with OpenAL.ALC_Thin;
+with OpenAL.List;
 
 package OpenAL.Context is
 
@@ -61,23 +62,39 @@ package OpenAL.Context is
     (Device : in Device_t;
      Name   : in String) return Boolean;
 
+  --
+  -- String queries
+  --
+
+  -- proc_map : alcGetString
+  function Default_Device_Specifier return String;
+
+  -- proc_map : alcGetString
+  function Device_Specifier
+    (Device : in Device_t) return String;
+
+  -- proc_map : alcGetString
+  function Extensions
+    (Device : in Device_t) return String;
+
+  -- proc_map : alcGetString
+  function Default_Capture_Device_Specifier return String;
+
+  -- proc_map : alcGetString
+  function Available_Capture_Devices return OpenAL.List.String_Vector_t;
+
 private
 
   type Device_t is record
-    Device_Data      : ALC_Thin.Device_t;
-    Capture_Format : Format_t;
-    Capture        : Boolean := False;
+    Device_Data    : ALC_Thin.Device_t := ALC_Thin.Invalid_Device;
+    Capture_Format : Format_t          := Mono_8;
+    Capture        : Boolean           := False;
   end record;
 
   type Context_t is new ALC_Thin.Context_t;
 
-  Invalid_Device  : constant Device_t  := Device_t'
-    (Device_Data      => ALC_Thin.Invalid_Device,
-     Capture_Format => Mono_8,
-     Capture        => False);
-
+  Invalid_Device  : constant Device_t  := (others => <>);
   Invalid_Context : constant Context_t := Context_t (ALC_Thin.Invalid_Context);
-
   Null_Context    : constant Context_t := Invalid_Context;
 
 end OpenAL.Context;
