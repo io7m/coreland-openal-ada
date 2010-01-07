@@ -46,14 +46,14 @@ begin
 
   Ada.Text_IO.Put_Line
     (File => Test.Output_File,
-     Item => "DEFAULT_DEVICE_SPEC              : " & ALC.Default_Device_Specifier);
+     Item => "DEFAULT_DEVICE_SPEC              : " & ALC.Get_Default_Device_Specifier);
   Ada.Text_IO.Put_Line
     (File => Test.Output_File,
-     Item => "DEVICE_SPEC                      : " & ALC.Device_Specifier (Device));
+     Item => "DEVICE_SPEC                      : " & ALC.Get_Device_Specifier (Device));
 
   begin
     Caught := False;
-    Ada.Text_IO.Put_Line (Test.Output_File, ALC.Device_Specifier (No_Device));
+    Ada.Text_IO.Put_Line (Test.Output_File, ALC.Get_Device_Specifier (No_Device));
   exception
     when Ada.IO_Exceptions.Device_Error => Caught := True;
   end;
@@ -61,11 +61,11 @@ begin
 
   Ada.Text_IO.Put_Line
     (File => Test.Output_File,
-     Item => "EXTENSIONS                       : " & ALC.Extensions (Device));
+     Item => "EXTENSIONS                       : " & ALC.Get_Extensions (Device));
 
   begin
     Caught := False;
-    Ada.Text_IO.Put_Line (Test.Output_File, ALC.Extensions (No_Device));
+    Ada.Text_IO.Put_Line (Test.Output_File, ALC.Get_Extensions (No_Device));
   exception
     when Ada.IO_Exceptions.Device_Error => Caught := True;
   end;
@@ -73,9 +73,9 @@ begin
 
   Ada.Text_IO.Put_Line
     (File => Test.Output_File,
-     Item => "DEFAULT_CAPTURE_DEVICE_SPECIFIER : " & ALC.Default_Capture_Device_Specifier);
+     Item => "DEFAULT_CAPTURE_DEVICE_SPECIFIER : " & ALC.Get_Default_Capture_Device_Specifier);
 
-  Devices := ALC.Available_Capture_Devices;
+  Devices := ALC.Get_Available_Capture_Devices;
 
   if List.String_Vectors.Is_Empty (Devices) = False then
     Ada.Text_IO.Put_Line

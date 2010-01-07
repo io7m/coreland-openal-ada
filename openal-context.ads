@@ -67,21 +67,21 @@ package OpenAL.Context is
   --
 
   -- proc_map : alcGetString
-  function Default_Device_Specifier return String;
+  function Get_Default_Device_Specifier return String;
 
   -- proc_map : alcGetString
-  function Device_Specifier
+  function Get_Device_Specifier
     (Device : in Device_t) return String;
 
   -- proc_map : alcGetString
-  function Extensions
+  function Get_Extensions
     (Device : in Device_t) return String;
 
   -- proc_map : alcGetString
-  function Default_Capture_Device_Specifier return String;
+  function Get_Default_Capture_Device_Specifier return String;
 
   -- proc_map : alcGetString
-  function Available_Capture_Devices return OpenAL.List.String_Vector_t;
+  function Get_Available_Capture_Devices return OpenAL.List.String_Vector_t;
 
 private
 

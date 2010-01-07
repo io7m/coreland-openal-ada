@@ -100,15 +100,15 @@ package body OpenAL.Context is
 
   Null_Device : constant ALC_Thin.Device_t := ALC_Thin.Device_t (System.Null_Address);
 
-  function Default_Device_Specifier return String is
+  function Get_Default_Device_Specifier return String is
   begin
     return C_Strings.Value
       (Get_String
         (Device    => Null_Device,
          Parameter => ALC_Thin.ALC_DEFAULT_DEVICE_SPECIFIER));
-  end Default_Device_Specifier;
+  end Get_Default_Device_Specifier;
 
-  function Device_Specifier
+  function Get_Device_Specifier
     (Device : in Device_t) return String is
   begin
     if Device.Device_Data = Null_Device then
@@ -119,9 +119,9 @@ package body OpenAL.Context is
       (Get_String
         (Device    => Device.Device_Data,
          Parameter => ALC_Thin.ALC_DEVICE_SPECIFIER));
-  end Device_Specifier;
+  end Get_Device_Specifier;
 
-  function Extensions
+  function Get_Extensions
     (Device : in Device_t) return String is
   begin
     if Device.Device_Data = Null_Device then
@@ -132,17 +132,17 @@ package body OpenAL.Context is
       (Get_String
         (Device    => Device.Device_Data,
          Parameter => ALC_Thin.ALC_EXTENSIONS));
-  end Extensions;
+  end Get_Extensions;
 
-  function Default_Capture_Device_Specifier return String is
+  function Get_Default_Capture_Device_Specifier return String is
   begin
     return C_Strings.Value
       (Get_String
         (Device    => Null_Device,
          Parameter => ALC_Thin.ALC_CAPTURE_DEFAULT_DEVICE_SPECIFIER));
-  end Default_Capture_Device_Specifier;
+  end Get_Default_Capture_Device_Specifier;
 
-  function Available_Capture_Devices return OpenAL.List.String_Vector_t is
+  function Get_Available_Capture_Devices return OpenAL.List.String_Vector_t is
     Address : System.Address;
     List    : OpenAL.List.String_Vector_t;
   begin
@@ -153,6 +153,6 @@ package body OpenAL.Context is
       (Address => Address,
        List    => List);
     return List;
-  end Available_Capture_Devices;
+  end Get_Available_Capture_Devices;
 
 end OpenAL.Context;
