@@ -188,7 +188,8 @@ mk-systype:\
 conf-cc conf-ld
 
 openal-ada-info:\
-ada-bind ada-link openal-ada-info.ald openal_info_main.ali openal.a
+ada-bind ada-link openal-ada-info.ald openal_info_main.ali openal_info.ali \
+openal.a
 	./ada-bind openal_info_main.ali
 	./ada-link openal-ada-info openal_info_main.ali openal.a
 
@@ -223,7 +224,7 @@ openal-context.ads:\
 openal.ali openal-alc_thin.ali openal-list.ali openal-types.ali
 
 openal-context.o openal-context.ali:\
-ada-compile openal-context.adb openal.ali openal-context.ads
+ada-compile openal-context.adb openal.ali openal-context.ads openal-thin.ali
 	./ada-compile openal-context.adb
 
 openal-error.ads:\
@@ -284,7 +285,8 @@ ada-compile openal.ads openal.ads
 	./ada-compile openal.ads
 
 openal_info.o openal_info.ali:\
-ada-compile openal_info.adb openal_info.ads
+ada-compile openal_info.adb openal_info.ads openal-context.ali \
+openal-global.ali openal-list.ali
 	./ada-compile openal_info.adb
 
 openal_info_main.o openal_info_main.ali:\
