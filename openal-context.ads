@@ -56,7 +56,7 @@ package OpenAL.Context is
   -- proc_map : alcGetContextsDevice
   function Get_Context_Device (Context : in Context_t) return Device_t;
 
-  -- proc_map : alIsExtensionPresent
+  -- proc_map : alcIsExtensionPresent
   function Is_Extension_Present
     (Device : in Device_t;
      Name   : in String) return Boolean;
