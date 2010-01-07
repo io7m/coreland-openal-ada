@@ -4,19 +4,9 @@ Decide how to handle extensions (child packages likely).
 
 OpenAL.Context
 
-  'Null terminated list' parser.
-
   Allow attribute list passing to Open_Device.
 
   ALCenum alcGetEnumValue(const ALCdevice *deviceHandle, const ALCchar *enumName);
-
-  const ALCchar * alcGetString(ALCdevice * deviceHandle, ALCenum token);
-
-    ALC_DEFAULT_DEVICE_SPECIFIER
-    ALC_DEVICE_SPECIFIER
-    ALC_EXTENSIONS
-    ALC_CAPTURE_DEFAULT_DEVICE_SPECIFIER
-    ALC_CAPTURE_DEVICE_SPECIFIER
 
     ALC_ATTRIBUTES_SIZE
     ALC_MAJOR_VERSION
