@@ -4,36 +4,25 @@ Decide how to handle extensions (child packages likely).
 
 OpenAL.Context
 
-  Allow attribute list passing to Open_Device.
+  'Null terminated list' parser.
 
-  ALCboolean alcIsExtensionPresent(const ALCdevice *deviceHandle,
-    const ALCchar *extName);
+  Allow attribute list passing to Open_Device.
 
   ALCenum alcGetEnumValue(const ALCdevice *deviceHandle, const ALCchar *enumName);
 
   const ALCchar * alcGetString(ALCdevice * deviceHandle, ALCenum token);
 
+    ALC_DEFAULT_DEVICE_SPECIFIER
+    ALC_DEVICE_SPECIFIER
+    ALC_EXTENSIONS
+    ALC_CAPTURE_DEFAULT_DEVICE_SPECIFIER
+    ALC_CAPTURE_DEVICE_SPECIFIER
+
+    ALC_ATTRIBUTES_SIZE
+    ALC_MAJOR_VERSION
+    ALC_MINOR_VERSION
+    ALC_CAPTURE_SAMPLES
+
   void alcGetIntegerv(ALCdevice * deviceHandle, ALCenum token, ALCsizei size, ALCint *dest);
 
-OpenAL.Global
-
-  void alGetBooleanv(ALenum paramName, ALboolean *dest);
-  void alGetIntegerv(ALenum paramName, ALint *dest);
-  void alGetFloatv(ALenum paramName, ALfloat *dest);
-  void alGetDoublev(ALenum paramName, ALdouble *dest);
-  ALboolean alGetBoolean (ALenum paramName);
-  ALint alGetInteger(ALenum paramName);
-  ALfloat alGetFloat(ALenum paramName);
-  ALdouble alGetDouble(ALenum paramName);
-
-  AL_DOPPLER_FACTOR
-  AL_SPEED_OF_SOUND
-  AL_DISTANCE_MODEL
-
-  const ALchar * alGetString(ALenum paramName);
-
-  AL_VERSION
-  AL_RENDERER
-  AL_VENDOR
-  AL_EXTENSIONS
-
+    ALC_ALL_ATTRIBUTES
