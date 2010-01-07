@@ -156,6 +156,19 @@ package body OpenAL.Context is
     return List;
   end Get_Available_Capture_Devices;
 
+  function Get_Available_Playback_Devices return OpenAL.List.String_Vector_t is
+    Address : System.Address;
+    List    : OpenAL.List.String_Vector_t;
+  begin
+    Address := ALC_Thin.Get_String
+      (Device => ALC_Thin.Device_t (System.Null_Address),
+       Token  => ALC_Thin.ALC_DEVICE_SPECIFIER);
+    OpenAL.List.Address_To_Vector
+      (Address => Address,
+       List    => List);
+    return List;
+  end Get_Available_Playback_Devices;
+
   --
   -- Integer queries
   --

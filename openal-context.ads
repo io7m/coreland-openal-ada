@@ -84,6 +84,9 @@ package OpenAL.Context is
   -- proc_map : alcGetString
   function Get_Available_Capture_Devices return OpenAL.List.String_Vector_t;
 
+  -- proc_map : alcGetString
+  function Get_Available_Playback_Devices return OpenAL.List.String_Vector_t;
+
   --
   -- Integer queries
   --
