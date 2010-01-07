@@ -4,6 +4,7 @@ with Ada.Text_IO;
 with OpenAL.Context.Error;
 with OpenAL.Context;
 with OpenAL.List;
+with OpenAL.Types;
 with Test;
 
 procedure alc_001 is
@@ -100,6 +101,25 @@ begin
   end if;
 
   Test.Check_Test (63, "handled available capture devices", True);
+
+  Ada.Text_IO.Put_Line
+    (File => Test.Output_File,
+     Item => "MAJOR_VERSION                    : " & Natural'Image (ALC.Get_Major_Version (Device)));
+  Ada.Text_IO.Put_Line
+    (File => Test.Output_File,
+     Item => "MINOR_VERSION                    : " & Natural'Image (ALC.Get_Minor_Version (Device)));
+  Ada.Text_IO.Put_Line
+    (File => Test.Output_File,
+     Item => "FREQUENCY                        : " & OpenAL.Types.Frequency_t'Image (ALC.Get_Frequency (Device)));
+  Ada.Text_IO.Put_Line
+    (File => Test.Output_File,
+     Item => "REFRESH_RATE                     : " & Natural'Image (ALC.Get_Refresh (Device)));
+  Ada.Text_IO.Put_Line
+    (File => Test.Output_File,
+     Item => "MONO_SOURCES                     : " & Natural'Image (ALC.Get_Mono_Sources (Device)));
+  Ada.Text_IO.Put_Line
+    (File => Test.Output_File,
+     Item => "STEREO_SOURCES                   : " & Natural'Image (ALC.Get_Stereo_Sources (Device)));
 
   Finish;
 
