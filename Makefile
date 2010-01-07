@@ -4,6 +4,7 @@ default: all
 
 all:\
 UNIT_TESTS/buffers_001 UNIT_TESTS/buffers_001.ali UNIT_TESTS/buffers_001.o \
+UNIT_TESTS/global_001 UNIT_TESTS/global_001.ali UNIT_TESTS/global_001.o \
 UNIT_TESTS/init_001 UNIT_TESTS/init_001.ali UNIT_TESTS/init_001.o \
 UNIT_TESTS/init_002 UNIT_TESTS/init_002.ali UNIT_TESTS/init_002.o \
 UNIT_TESTS/init_003 UNIT_TESTS/init_003.ali UNIT_TESTS/init_003.o \
@@ -32,6 +33,17 @@ UNIT_TESTS/buffers_001.o UNIT_TESTS/buffers_001.ali:\
 ada-compile UNIT_TESTS/buffers_001.adb openal-buffer.ali \
 openal-context-error.ali openal-context.ali UNIT_TESTS/test.ali
 	./ada-compile UNIT_TESTS/buffers_001.adb
+
+UNIT_TESTS/global_001:\
+ada-bind ada-link UNIT_TESTS/global_001.ald UNIT_TESTS/global_001.ali \
+UNIT_TESTS/test.ali openal.a
+	./ada-bind UNIT_TESTS/global_001.ali
+	./ada-link UNIT_TESTS/global_001 UNIT_TESTS/global_001.ali openal.a
+
+UNIT_TESTS/global_001.o UNIT_TESTS/global_001.ali:\
+ada-compile UNIT_TESTS/global_001.adb openal-context-error.ali \
+openal-context.ali openal-global.ali UNIT_TESTS/test.ali
+	./ada-compile UNIT_TESTS/global_001.adb
 
 UNIT_TESTS/init_001:\
 ada-bind ada-link UNIT_TESTS/init_001.ald UNIT_TESTS/init_001.ali \
@@ -186,10 +198,10 @@ ada-compile openal-error.adb openal.ali openal-error.ads openal-thin.ali
 	./ada-compile openal-error.adb
 
 openal-global.ads:\
-openal.ali
+openal.ali openal-types.ali
 
 openal-global.o openal-global.ali:\
-ada-compile openal-global.adb openal.ali openal-global.ads
+ada-compile openal-global.adb openal.ali openal-global.ads openal-thin.ali
 	./ada-compile openal-global.adb
 
 openal-listener.ads:\
@@ -230,7 +242,8 @@ clean-all: tests_clean obj_clean ext_clean
 clean: obj_clean
 obj_clean:
 	rm -f UNIT_TESTS/buffers_001 UNIT_TESTS/buffers_001.ali \
-	UNIT_TESTS/buffers_001.o UNIT_TESTS/init_001 UNIT_TESTS/init_001.ali \
+	UNIT_TESTS/buffers_001.o UNIT_TESTS/global_001 UNIT_TESTS/global_001.ali \
+	UNIT_TESTS/global_001.o UNIT_TESTS/init_001 UNIT_TESTS/init_001.ali \
 	UNIT_TESTS/init_001.o UNIT_TESTS/init_002 UNIT_TESTS/init_002.ali \
 	UNIT_TESTS/init_002.o UNIT_TESTS/init_003 UNIT_TESTS/init_003.ali \
 	UNIT_TESTS/init_003.o UNIT_TESTS/sources_001 UNIT_TESTS/sources_001.ali \
