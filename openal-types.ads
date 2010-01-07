@@ -8,10 +8,10 @@ package OpenAL.Types is
   subtype Float_t            is Thin.Float_t;
   subtype Double_t           is Thin.Double_t;
 
-  subtype Clamped_Double_t is Double_t range 0.0 .. 1.0;
-  subtype Clamped_Float_t  is Float_t range 0.0 .. 1.0;
-
-  subtype Natural_Float_t is Thin.Float_t range 0.0 .. Thin.Float_t'Last;
+  subtype Clamped_Double_t is Double_t     range 0.0 .. 1.0;
+  subtype Clamped_Float_t  is Float_t      range 0.0 .. 1.0;
+  subtype Natural_Float_t  is Thin.Float_t range 0.0 .. Thin.Float_t'Last;
+  subtype Positive_Float_t is Thin.Float_t range 1.0 .. Thin.Float_t'Last;
 
   package Float_Arrays  is new Ada.Numerics.Generic_Real_Arrays (Types.Float_t);
   package Double_Arrays is new Ada.Numerics.Generic_Real_Arrays (Types.Double_t);

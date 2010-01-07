@@ -31,4 +31,14 @@ package OpenAL.Global is
   -- proc_map : alGetFloat
   function Get_Doppler_Factor return Types.Natural_Float_t;
 
+  --
+  -- Speed_Of_Sound
+  --
+
+  -- proc_map : alSpeedOfSound
+  procedure Set_Speed_Of_Sound (Factor : in Types.Positive_Float_t);
+
+  -- proc_map : alGetFloat
+  function Get_Speed_Of_Sound return Types.Positive_Float_t;
+
 end OpenAL.Global;

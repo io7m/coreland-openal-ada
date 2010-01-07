@@ -57,4 +57,18 @@ package body OpenAL.Global is
     return Thin.Get_Float (Thin.AL_DOPPLER_FACTOR);
   end Get_Doppler_Factor;
 
+  --
+  -- Speed_Of_Sound
+  --
+
+  procedure Set_Speed_Of_Sound (Factor : in Types.Positive_Float_t) is
+  begin
+    Thin.Speed_Of_Sound (Factor);
+  end Set_Speed_Of_Sound;
+
+  function Get_Speed_Of_Sound return Types.Positive_Float_t is
+  begin
+    return Thin.Get_Float (Thin.AL_SPEED_OF_SOUND);
+  end Get_Speed_Of_Sound;
+
 end OpenAL.Global;
