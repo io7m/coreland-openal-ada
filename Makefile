@@ -8,14 +8,16 @@ UNIT_TESTS/global_001 UNIT_TESTS/global_001.ali UNIT_TESTS/global_001.o \
 UNIT_TESTS/init_001 UNIT_TESTS/init_001.ali UNIT_TESTS/init_001.o \
 UNIT_TESTS/init_002 UNIT_TESTS/init_002.ali UNIT_TESTS/init_002.o \
 UNIT_TESTS/init_003 UNIT_TESTS/init_003.ali UNIT_TESTS/init_003.o \
-UNIT_TESTS/sources_001 UNIT_TESTS/sources_001.ali UNIT_TESTS/sources_001.o \
-UNIT_TESTS/test.a UNIT_TESTS/test.ali UNIT_TESTS/test.o openal-alc_thin.ali \
-openal-alc_thin.o openal-buffer.ali openal-buffer.o openal-context-capture.ali \
-openal-context-capture.o openal-context-error.ali openal-context-error.o \
-openal-context.ali openal-context.o openal-error.ali openal-error.o \
-openal-global.ali openal-global.o openal-listener.ali openal-listener.o \
-openal-source.ali openal-source.o openal-thin.ali openal-thin.o \
-openal-types.ali openal-types.o openal.a openal.ali openal.o
+UNIT_TESTS/list_001 UNIT_TESTS/list_001.ali UNIT_TESTS/list_001.o \
+UNIT_TESTS/list_001c.o UNIT_TESTS/sources_001 UNIT_TESTS/sources_001.ali \
+UNIT_TESTS/sources_001.o UNIT_TESTS/test.a UNIT_TESTS/test.ali \
+UNIT_TESTS/test.o openal-alc_thin.ali openal-alc_thin.o openal-buffer.ali \
+openal-buffer.o openal-context-capture.ali openal-context-capture.o \
+openal-context-error.ali openal-context-error.o openal-context.ali \
+openal-context.o openal-error.ali openal-error.o openal-global.ali \
+openal-global.o openal-list.ali openal-list.o openal-listener.ali \
+openal-listener.o openal-source.ali openal-source.o openal-thin.ali \
+openal-thin.o openal-types.ali openal-types.o openal.a openal.ali openal.o
 
 # Mkf-test
 tests:
@@ -77,6 +79,21 @@ UNIT_TESTS/init_003.o UNIT_TESTS/init_003.ali:\
 ada-compile UNIT_TESTS/init_003.adb UNIT_TESTS/test.ali openal-context.ali \
 openal-context-error.ali
 	./ada-compile UNIT_TESTS/init_003.adb
+
+UNIT_TESTS/list_001:\
+ada-bind ada-link UNIT_TESTS/list_001.ald UNIT_TESTS/list_001.ali \
+UNIT_TESTS/list_001c.o UNIT_TESTS/test.ali openal.a
+	./ada-bind UNIT_TESTS/list_001.ali
+	./ada-link UNIT_TESTS/list_001 UNIT_TESTS/list_001.ali UNIT_TESTS/list_001c.o \
+	openal.a
+
+UNIT_TESTS/list_001.o UNIT_TESTS/list_001.ali:\
+ada-compile UNIT_TESTS/list_001.adb openal-list.ali UNIT_TESTS/test.ali
+	./ada-compile UNIT_TESTS/list_001.adb
+
+UNIT_TESTS/list_001c.o:\
+cc-compile UNIT_TESTS/list_001c.c
+	./cc-compile UNIT_TESTS/list_001c.c
 
 UNIT_TESTS/sources_001:\
 ada-bind ada-link UNIT_TESTS/sources_001.ald UNIT_TESTS/sources_001.ali \
@@ -204,6 +221,13 @@ openal-global.o openal-global.ali:\
 ada-compile openal-global.adb openal.ali openal-global.ads openal-thin.ali
 	./ada-compile openal-global.adb
 
+openal-list.ads:\
+openal.ali
+
+openal-list.o openal-list.ali:\
+ada-compile openal-list.adb openal.ali openal-list.ads
+	./ada-compile openal-list.adb
+
 openal-listener.ads:\
 openal.ali openal-types.ali
 
@@ -246,15 +270,17 @@ obj_clean:
 	UNIT_TESTS/global_001.o UNIT_TESTS/init_001 UNIT_TESTS/init_001.ali \
 	UNIT_TESTS/init_001.o UNIT_TESTS/init_002 UNIT_TESTS/init_002.ali \
 	UNIT_TESTS/init_002.o UNIT_TESTS/init_003 UNIT_TESTS/init_003.ali \
-	UNIT_TESTS/init_003.o UNIT_TESTS/sources_001 UNIT_TESTS/sources_001.ali \
-	UNIT_TESTS/sources_001.o UNIT_TESTS/test.a UNIT_TESTS/test.ali \
-	UNIT_TESTS/test.o openal-alc_thin.ali openal-alc_thin.o openal-buffer.ali \
-	openal-buffer.o openal-context-capture.ali openal-context-capture.o \
-	openal-context-error.ali openal-context-error.o openal-context.ali \
-	openal-context.o openal-error.ali openal-error.o openal-global.ali \
-	openal-global.o openal-listener.ali openal-listener.o openal-source.ali \
-	openal-source.o openal-thin.ali openal-thin.o openal-types.ali openal-types.o \
-	openal.a openal.ali openal.o
+	UNIT_TESTS/init_003.o UNIT_TESTS/list_001 UNIT_TESTS/list_001.ali \
+	UNIT_TESTS/list_001.o UNIT_TESTS/list_001c.o UNIT_TESTS/sources_001 \
+	UNIT_TESTS/sources_001.ali UNIT_TESTS/sources_001.o UNIT_TESTS/test.a \
+	UNIT_TESTS/test.ali UNIT_TESTS/test.o openal-alc_thin.ali openal-alc_thin.o \
+	openal-buffer.ali openal-buffer.o openal-context-capture.ali \
+	openal-context-capture.o openal-context-error.ali openal-context-error.o \
+	openal-context.ali openal-context.o openal-error.ali openal-error.o \
+	openal-global.ali openal-global.o openal-list.ali openal-list.o \
+	openal-listener.ali openal-listener.o openal-source.ali openal-source.o \
+	openal-thin.ali openal-thin.o openal-types.ali openal-types.o openal.a \
+	openal.ali openal.o
 ext_clean:
 	rm -f conf-adatype conf-cctype conf-ldtype conf-systype mk-ctxt
 
