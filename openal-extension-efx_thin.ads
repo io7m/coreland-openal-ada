@@ -212,7 +212,7 @@ package OpenAL.Extension.EFX_Thin is
   procedure al_Auxiliary_Effect_Slotfv
     (Slot      : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
-     Values *  : System.Address);
+     Values    : System.Address);
   pragma Import (C, al_Auxiliary_Effect_Slotfv, "alalAuxiliaryEffectSlotfv");
 
   procedure al_Auxiliary_Effect_Sloti
@@ -222,9 +222,9 @@ package OpenAL.Extension.EFX_Thin is
   pragma Import (C, al_Auxiliary_Effect_Sloti, "alalAuxiliaryEffectSloti");
 
   procedure al_Auxiliary_Effect_Slotiv
-    (Slot       : Types.Unsigned_Integer_t;
-     Parameter  : Types.Enumeration_t;
-     Values   * : System.Address);
+    (Slot      : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
+     Values    : System.Address);
   pragma Import (C, al_Auxiliary_Effect_Slotiv, "alalAuxiliaryEffectSlotiv");
 
   procedure al_Delete_Auxiliary_Effect_Slots
@@ -251,7 +251,7 @@ package OpenAL.Extension.EFX_Thin is
   procedure al_Effectfv
     (Effect    : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
-     Values *  : System.Address);
+     Values    : System.Address);
   pragma Import (C, al_Effectfv, "alalEffectfv");
 
   procedure al_Effecti
@@ -263,7 +263,7 @@ package OpenAL.Extension.EFX_Thin is
   procedure al_Effectiv
     (Effect    : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
-     Values *  : System.Address);
+     Values    : System.Address);
   pragma Import (C, al_Effectiv, "alalEffectiv");
 
   procedure al_Filterf
@@ -275,7 +275,7 @@ package OpenAL.Extension.EFX_Thin is
   procedure al_Filterfv
     (Filter    : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
-     Values *  : System.Address);
+     Values    : System.Address);
   pragma Import (C, al_Filterfv, "alalFilterfv");
 
   procedure al_Filteri
@@ -287,7 +287,7 @@ package OpenAL.Extension.EFX_Thin is
   procedure al_Filteriv
     (Filter    : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
-     Values *  : System.Address);
+     Values    : System.Address);
   pragma Import (C, al_Filteriv, "alalFilteriv");
 
   procedure al_Gen_Auxiliary_Effect_Slots
@@ -308,73 +308,73 @@ package OpenAL.Extension.EFX_Thin is
   procedure al_Get_Auxiliary_Effect_Slotf
     (Slot      : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
-     Values *  : System.Address);
+     Values    : System.Address);
   pragma Import (C, al_Get_Auxiliary_Effect_Slotf, "alalGetAuxiliaryEffectSlotf");
 
   procedure al_Get_Auxiliary_Effect_Slotfv
     (Slot      : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
-     Values *  : System.Address);
+     Values    : System.Address);
   pragma Import (C, al_Get_Auxiliary_Effect_Slotfv, "alalGetAuxiliaryEffectSlotfv");
 
   procedure al_Get_Auxiliary_Effect_Sloti
     (Slot      : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
-     Values *  : System.Address);
+     Values    : System.Address);
   pragma Import (C, al_Get_Auxiliary_Effect_Sloti, "alalGetAuxiliaryEffectSloti");
 
   procedure al_Get_Auxiliary_Effect_Slotiv
     (Slot      : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
-     Values *  : System.Address);
+     Values    : System.Address);
   pragma Import (C, al_Get_Auxiliary_Effect_Slotiv, "alalGetAuxiliaryEffectSlotiv");
 
   procedure al_Get_Effectf
     (Effect    : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
-     Values *  : System.Address);
+     Values    : System.Address);
   pragma Import (C, al_Get_Effectf, "alalGetEffectf");
 
   procedure al_Get_Effectfv
     (Effect    : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
-     Values *  : System.Address);
+     Values    : System.Address);
   pragma Import (C, al_Get_Effectfv, "alalGetEffectfv");
 
   procedure al_Get_Effecti
     (Effect    : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
-     Values *  : System.Address);
+     Values    : System.Address);
   pragma Import (C, al_Get_Effecti, "alalGetEffecti");
 
   procedure al_Get_Effectiv
     (Effect    : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
-     Values *  : System.Address);
+     Values    : System.Address);
   pragma Import (C, al_Get_Effectiv, "alalGetEffectiv");
 
   procedure al_Get_Filterf
     (Filter    : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
-     Values *  : System.Address);
+     Values    : System.Address);
   pragma Import (C, al_Get_Filterf, "alalGetFilterf");
 
   procedure al_Get_Filterfv
     (Filter    : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
-     Values *  : System.Address);
+     Values    : System.Address);
   pragma Import (C, al_Get_Filterfv, "alalGetFilterfv");
 
   procedure al_Get_Filteri
     (Filter    : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
-     Values *  : System.Address);
+     Values    : System.Address);
   pragma Import (C, al_Get_Filteri, "alalGetFilteri");
 
   procedure al_Get_Filteriv
     (Filter    : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
-     Values *  : System.Address);
+     Values    : System.Address);
   pragma Import (C, al_Get_Filteriv, "alalGetFilteriv");
 
 end OpenAL.Extension.EFX_Thin;
