@@ -19,10 +19,10 @@ openal-context.ali openal-context.o openal-error.ali openal-error.o \
 openal-extension-efx.ali openal-extension-efx.o openal-extension-efx_thin.ali \
 openal-extension-efx_thin.o openal-extension.ali openal-extension.o \
 openal-global.ali openal-global.o openal-list.ali openal-list.o \
-openal-listener.ali openal-listener.o openal-source.ali openal-source.o \
-openal-thin.ali openal-thin.o openal-types.ali openal-types.o openal.a \
-openal.ali openal.o openal_info.ali openal_info.o openal_info_main.ali \
-openal_info_main.o
+openal-listener.ali openal-listener.o openal-load.ali openal-load.o \
+openal-source.ali openal-source.o openal-thin.ali openal-thin.o \
+openal-types.ali openal-types.o openal.a openal.ali openal.o openal_info.ali \
+openal_info.o openal_info_main.ali openal_info_main.o
 
 # Mkf-local
 local: libs-openal
@@ -307,6 +307,13 @@ openal-listener.o openal-listener.ali:\
 ada-compile openal-listener.adb openal.ali openal-listener.ads openal-thin.ali
 	./ada-compile openal-listener.adb
 
+openal-load.ads:\
+openal.ali
+
+openal-load.o openal-load.ali:\
+ada-compile openal-load.adb openal.ali openal-load.ads
+	./ada-compile openal-load.adb
+
 openal-source.ads:\
 openal.ali openal-buffer.ali openal-types.ali
 
@@ -326,11 +333,13 @@ openal.a:\
 cc-slib openal.sld openal-alc_thin.o openal-buffer.o openal-context-capture.o \
 openal-context-error.o openal-context.o openal-error.o openal-extension-efx.o \
 openal-extension-efx_thin.o openal-extension.o openal-global.o openal-list.o \
-openal-listener.o openal-source.o openal-thin.o openal-types.o openal.o
+openal-listener.o openal-load.o openal-source.o openal-thin.o openal-types.o \
+openal.o
 	./cc-slib openal openal-alc_thin.o openal-buffer.o openal-context-capture.o \
 	openal-context-error.o openal-context.o openal-error.o openal-extension-efx.o \
 	openal-extension-efx_thin.o openal-extension.o openal-global.o openal-list.o \
-	openal-listener.o openal-source.o openal-thin.o openal-types.o openal.o
+	openal-listener.o openal-load.o openal-source.o openal-thin.o openal-types.o \
+	openal.o
 
 openal.o openal.ali:\
 ada-compile openal.ads openal.ads
@@ -365,9 +374,9 @@ obj_clean:
 	openal-extension-efx_thin.o openal-extension.ali openal-extension.o \
 	openal-global.ali openal-global.o
 	rm -f openal-list.ali openal-list.o openal-listener.ali openal-listener.o \
-	openal-source.ali openal-source.o openal-thin.ali openal-thin.o \
-	openal-types.ali openal-types.o openal.a openal.ali openal.o openal_info.ali \
-	openal_info.o openal_info_main.ali openal_info_main.o
+	openal-load.ali openal-load.o openal-source.ali openal-source.o openal-thin.ali \
+	openal-thin.o openal-types.ali openal-types.o openal.a openal.ali openal.o \
+	openal_info.ali openal_info.o openal_info_main.ali openal_info_main.o
 ext_clean:
 	rm -f conf-adatype conf-cctype conf-ldtype conf-systype mk-ctxt
 

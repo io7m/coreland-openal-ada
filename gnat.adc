@@ -43,6 +43,10 @@ pragma source_file_name(OpenAL.List, body_file_name => "openal-list.adb");
 pragma source_file_name(OpenAL.Listener, spec_file_name => "openal-listener.ads");
 pragma source_file_name(OpenAL.Listener, body_file_name => "openal-listener.adb");
 
+-- ./openal-load.apk
+pragma source_file_name(OpenAL.Load, spec_file_name => "openal-load.ads");
+pragma source_file_name(OpenAL.Load, body_file_name => "openal-load.adb");
+
 -- ./openal-source.apk
 pragma source_file_name(OpenAL.Source, spec_file_name => "openal-source.ads");
 pragma source_file_name(OpenAL.Source, body_file_name => "openal-source.adb");

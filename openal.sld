@@ -10,6 +10,7 @@ openal-extension.o
 openal-global.o
 openal-list.o
 openal-listener.o
+openal-load.o
 openal-source.o
 openal-thin.o
 openal-types.o
