@@ -2,6 +2,7 @@
 
 with Interfaces.C;
 with System;
+with OpenAL.Types;
 
 package OpenAL.ALC_Thin is
   package C renames Interfaces.C;

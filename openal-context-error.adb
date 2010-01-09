@@ -1,8 +1,9 @@
 with OpenAL.ALC_Thin;
+with OpenAL.Types;
 
 package body OpenAL.Context.Error is
 
-  function Map_Constant_To_Error (Error : in ALC_Thin.Enumeration_t) return Error_t is
+  function Map_Constant_To_Error (Error : in Types.Enumeration_t) return Error_t is
     Value : Error_t;
   begin
     case Error is

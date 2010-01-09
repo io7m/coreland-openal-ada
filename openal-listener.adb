@@ -162,7 +162,7 @@ package body OpenAL.Listener is
   begin
     Thin.Listenerf
       (Parameter => Thin.AL_GAIN,
-       Value     => Thin.Float_t (Gain));
+       Value     => Gain);
   end Set_Gain;
 
   procedure Get_Gain (Gain : out Types.Float_t) is

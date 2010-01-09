@@ -10,7 +10,7 @@ package body OpenAL.Global is
   -- Distance_Model
   --
 
-  type Map_From_Distance_Model_t is array (Distance_Model_t) of Thin.Enumeration_t;
+  type Map_From_Distance_Model_t is array (Distance_Model_t) of Types.Enumeration_t;
 
   Map_From_Distance_Model : constant Map_From_Distance_Model_t :=
     (None                      => Thin.AL_NONE,
@@ -27,7 +27,7 @@ package body OpenAL.Global is
   end Set_Distance_Model;
 
   function Get_Distance_Model return Distance_Model_t is
-    Value        : Thin.Integer_t;
+    Value        : Types.Integer_t;
     Return_Value : Distance_Model_t;
   begin
     Value := Thin.Get_Integer (Thin.AL_DISTANCE_MODEL);
@@ -79,7 +79,7 @@ package body OpenAL.Global is
   -- String queries
   --
 
-  function Get_String (Parameter : Thin.Enumeration_t) return C_Strings.chars_ptr;
+  function Get_String (Parameter : Types.Enumeration_t) return C_Strings.chars_ptr;
   pragma Import (C, Get_String, "alGetString");
 
   function Version return String is

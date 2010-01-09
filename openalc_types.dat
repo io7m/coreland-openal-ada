@@ -1,46 +1,46 @@
-ALCfloat           : Float_t                 : float
-ALCdouble          : Double_t                : double
-ALCsizeiptr        : Size_Pointer_t          : modular
-ALCintptr          : Integer_Pointer_t       : modular
-ALCbitfield        : Bitfield_t              : modular
-ALCboolean         : Boolean_t               : boolean
-ALCboolean *       : System.Address          : access
-ALCbyte            : Byte_t                  : scalar
-ALCchar *          : System.Address          : access
-ALCclampd          : Clamped_Double_t        : double_sub
-ALCclampf          : Clamped_Float_t         : float_sub
-ALCdouble *        : System.Address          : access
-ALCenum            : Enumeration_t           : modular
-ALCenum *          : System.Address          : access
-ALCfloat *         : System.Address          : access
-ALCint             : Integer_t               : scalar
-ALCint *           : System.Address          : access
-ALCshort           : Short_t                 : scalar
-ALCshort *         : System.Address          : access
-ALCsizei           : Size_t                  : scalar
-ALCsizei *         : System.Address          : access
-ALCubyte           : Unsigned_Byte_t         : modular
-ALCubyte *         : System.Address          : access
-ALCuint            : Unsigned_Integer_t      : modular
-ALCuint *          : System.Address          : access
-ALCushort          : Unsigned_Short_t        : modular
-ALCushort *        : System.Address          : access
-ALCvoid *          : Void_Pointer_t          : address
-ALCvoid **         : System.Address          : access
-const ALCvoid **   : System.Address          : address_access_constant
-const ALCboolean * : System.Address          : access_constant
-const ALCbyte *    : System.Address          : access_constant
-const ALCclampf *  : System.Address          : access_constant
-const ALCenum *    : System.Address          : access_constant
-const ALCdouble *  : System.Address          : access_constant
-const ALCfloat *   : System.Address          : access_constant
-const ALCint *     : System.Address          : access_constant
-const ALCshort *   : System.Address          : access_constant
-const ALCushort *  : System.Address          : access_constant
-const ALCubyte *   : System.Address          : access_constant
-const ALCuint *    : System.Address          : access_constant
-const ALCvoid *    : System.Address          : address
-const ALCsizei *   : System.Address          : access_constant
-const ALCchar *    : System.Address          : access_constant
-ALCdevice *        : Device_t                : address
-ALCcontext *       : Context_t               : address
+ALCfloat           : Types.Float_t                 : float
+ALCdouble          : Types.Double_t                : double
+ALCsizeiptr        : Types.Size_Pointer_t          : modular
+ALCintptr          : Types.Integer_Pointer_t       : modular
+ALCbitfield        : Types.Bitfield_t              : modular
+ALCboolean         : Types.Boolean_t               : boolean
+ALCboolean *       : System.Address                : access
+ALCbyte            : Types.Byte_t                  : scalar
+ALCchar *          : System.Address                : access
+ALCclampd          : Types.Clamped_Double_t        : double_sub
+ALCclampf          : Types.Clamped_Float_t         : float_sub
+ALCdouble *        : System.Address                : access
+ALCenum            : Types.Enumeration_t           : modular
+ALCenum *          : System.Address                : access
+ALCfloat *         : System.Address                : access
+ALCint             : Types.Integer_t               : scalar
+ALCint *           : System.Address                : access
+ALCshort           : Types.Short_t                 : scalar
+ALCshort *         : System.Address                : access
+ALCsizei           : Types.Size_t                  : scalar
+ALCsizei *         : System.Address                : access
+ALCubyte           : Types.Unsigned_Byte_t         : modular
+ALCubyte *         : System.Address                : access
+ALCuint            : Types.Unsigned_Integer_t      : modular
+ALCuint *          : System.Address                : access
+ALCushort          : Types.Unsigned_Short_t        : modular
+ALCushort *        : System.Address                : access
+ALCvoid *          : Types.Void_Pointer_t          : address
+ALCvoid **         : System.Address                : access
+const ALCvoid **   : System.Address                : address_access_constant
+const ALCboolean * : System.Address                : access_constant
+const ALCbyte *    : System.Address                : access_constant
+const ALCclampf *  : System.Address                : access_constant
+const ALCenum *    : System.Address                : access_constant
+const ALCdouble *  : System.Address                : access_constant
+const ALCfloat *   : System.Address                : access_constant
+const ALCint *     : System.Address                : access_constant
+const ALCshort *   : System.Address                : access_constant
+const ALCushort *  : System.Address                : access_constant
+const ALCubyte *   : System.Address                : access_constant
+const ALCuint *    : System.Address                : access_constant
+const ALCvoid *    : System.Address                : address
+const ALCsizei *   : System.Address                : access_constant
+const ALCchar *    : System.Address                : access_constant
+ALCdevice *        : Device_t                      : address
+ALCcontext *       : Context_t                     : address

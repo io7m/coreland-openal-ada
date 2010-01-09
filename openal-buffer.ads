@@ -1,4 +1,3 @@
-with OpenAL.Thin;
 with OpenAL.Types;
 
 package OpenAL.Buffer is
@@ -40,7 +39,7 @@ package OpenAL.Buffer is
   -- Size
   --
 
-  type Sample_Size_t is range 1 .. Thin.Size_t'Last;
+  type Sample_Size_t is range 1 .. Types.Size_t'Last;
 
   -- proc_map : alGetBuffer
   procedure Get_Size
@@ -115,7 +114,7 @@ package OpenAL.Buffer is
 
 private
 
-  type Buffer_t is new Thin.Unsigned_Integer_t;
+  type Buffer_t is new Types.Unsigned_Integer_t;
 
   No_Buffer : constant Buffer_t := 0;
 

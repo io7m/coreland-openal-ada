@@ -2,7 +2,7 @@ with OpenAL.Thin;
 
 package body OpenAL.Source is
 
-  use type Thin.Size_t;
+  use type Types.Size_t;
 
   procedure Generate_Sources
     (Sources : in out Source_Array_t) is
@@ -22,7 +22,7 @@ package body OpenAL.Source is
 
   function Is_Valid (Source : in Source_t) return Boolean is
   begin
-    return Boolean (Thin.Is_Source (Thin.Unsigned_Integer_t (Source)));
+    return Boolean (Thin.Is_Source (Types.Unsigned_Integer_t (Source)));
   end Is_Valid;
 
   --
@@ -36,11 +36,11 @@ package body OpenAL.Source is
      Z         : in Types.Float_t) is
   begin
     Thin.Source_3f
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_POSITION,
-       Value_1   => Thin.Float_t (X),
-       Value_2   => Thin.Float_t (Y),
-       Value_3   => Thin.Float_t (Z));
+       Value_1   => X,
+       Value_2   => Y,
+       Value_3   => Z);
   end Set_Position_Float;
 
   procedure Set_Position_Discrete
@@ -50,11 +50,11 @@ package body OpenAL.Source is
      Z         : in Types.Integer_t) is
   begin
     Thin.Source_3i
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_POSITION,
-       Value_1   => Thin.Integer_t (X),
-       Value_2   => Thin.Integer_t (Y),
-       Value_3   => Thin.Integer_t (Z));
+       Value_1   => X,
+       Value_2   => Y,
+       Value_3   => Z);
   end Set_Position_Discrete;
 
   procedure Set_Position_Float_List
@@ -62,7 +62,7 @@ package body OpenAL.Source is
      Position  : in Types.Vector_3f_t) is
   begin
     Thin.Sourcefv
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_POSITION,
        Values    => Position (Position'First)'Address);
   end Set_Position_Float_List;
@@ -72,7 +72,7 @@ package body OpenAL.Source is
      Position  : in Types.Vector_3i_t) is
   begin
     Thin.Sourceiv
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_POSITION,
        Values    => Position (Position'First)'Address);
   end Set_Position_Discrete_List;
@@ -112,7 +112,7 @@ package body OpenAL.Source is
      Position :    out Types.Vector_3f_t) is
   begin
     Thin.Get_Sourcefv
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_POSITION,
        Values    => Position (Position'First)'Address);
   end Get_Position_Float_List;
@@ -122,7 +122,7 @@ package body OpenAL.Source is
      Position :    out Types.Vector_3i_t) is
   begin
     Thin.Get_Sourceiv
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_POSITION,
        Values    => Position (Position'First)'Address);
   end Get_Position_Discrete_List;
@@ -138,11 +138,11 @@ package body OpenAL.Source is
      Z         : in Types.Float_t) is
   begin
     Thin.Source_3f
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_VELOCITY,
-       Value_1   => Thin.Float_t (X),
-       Value_2   => Thin.Float_t (Y),
-       Value_3   => Thin.Float_t (Z));
+       Value_1   => X,
+       Value_2   => Y,
+       Value_3   => Z);
   end Set_Velocity_Float;
 
   procedure Set_Velocity_Discrete
@@ -152,11 +152,11 @@ package body OpenAL.Source is
      Z         : in Types.Integer_t) is
   begin
     Thin.Source_3i
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_VELOCITY,
-       Value_1   => Thin.Integer_t (X),
-       Value_2   => Thin.Integer_t (Y),
-       Value_3   => Thin.Integer_t (Z));
+       Value_1   => X,
+       Value_2   => Y,
+       Value_3   => Z);
   end Set_Velocity_Discrete;
 
   procedure Set_Velocity_Float_List
@@ -164,7 +164,7 @@ package body OpenAL.Source is
      Velocity  : in Types.Vector_3f_t) is
   begin
     Thin.Sourcefv
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_VELOCITY,
        Values    => Velocity (Velocity'First)'Address);
   end Set_Velocity_Float_List;
@@ -174,7 +174,7 @@ package body OpenAL.Source is
      Velocity  : in Types.Vector_3i_t) is
   begin
     Thin.Sourceiv
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_VELOCITY,
        Values    => Velocity (Velocity'First)'Address);
   end Set_Velocity_Discrete_List;
@@ -214,7 +214,7 @@ package body OpenAL.Source is
      Velocity :    out Types.Vector_3f_t) is
   begin
     Thin.Get_Sourcefv
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_VELOCITY,
        Values    => Velocity (Velocity'First)'Address);
   end Get_Velocity_Float_List;
@@ -224,7 +224,7 @@ package body OpenAL.Source is
      Velocity :    out Types.Vector_3i_t) is
   begin
     Thin.Get_Sourceiv
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_VELOCITY,
        Values    => Velocity (Velocity'First)'Address);
   end Get_Velocity_Discrete_List;
@@ -238,9 +238,9 @@ package body OpenAL.Source is
      Gain   : in Types.Float_t) is
   begin
     Thin.Sourcef
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_GAIN,
-       Value     => Thin.Float_t (Gain));
+       Value     => Gain);
   end Set_Gain;
 
   procedure Get_Gain
@@ -250,7 +250,7 @@ package body OpenAL.Source is
     Value : aliased Types.Float_t;
   begin
     Thin.Get_Sourcef
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_GAIN,
        Value     => Value'Address);
     Gain := Value;
@@ -265,19 +265,19 @@ package body OpenAL.Source is
      Relative : in Boolean) is
   begin
     Thin.Sourcei
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_SOURCE_RELATIVE,
-       Value     => Thin.Integer_t (Boolean'Pos (Relative)));
+       Value     => Boolean'Pos (Relative));
   end Set_Positioning;
 
   procedure Get_Positioning
     (Source   : in     Source_t;
      Relative :    out Boolean)
   is
-    Value : aliased Thin.Integer_t;
+    Value : aliased Types.Integer_t;
   begin
     Thin.Get_Sourcei
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_SOURCE_RELATIVE,
        Value     => Value'Address);
     Relative := Boolean'Val (Value);
@@ -291,10 +291,10 @@ package body OpenAL.Source is
     (Source      : in     Source_t;
      Source_Type :    out Source_Type_t)
   is
-    Value : aliased Thin.Integer_t;
+    Value : aliased Types.Integer_t;
   begin
     Thin.Get_Sourcei
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_SOURCE_TYPE,
        Value     => Value'Address);
 
@@ -316,19 +316,19 @@ package body OpenAL.Source is
      Looping : in Boolean) is
   begin
     Thin.Sourcei
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_LOOPING,
-       Value     => Thin.Integer_t (Boolean'Pos (Looping)));
+       Value     => Boolean'Pos (Looping));
   end Set_Looping;
 
   procedure Get_Looping
     (Source  : in     Source_t;
      Looping :    out Boolean)
   is
-    Value : aliased Thin.Integer_t;
+    Value : aliased Types.Integer_t;
   begin
     Thin.Get_Sourcei
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_LOOPING,
        Value     => Value'Address);
     Looping := Boolean'Val (Value);
@@ -343,19 +343,19 @@ package body OpenAL.Source is
      Buffer : in OpenAL.Buffer.Buffer_t) is
   begin
     Thin.Sourcei
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_BUFFER,
-       Value     => Thin.Integer_t (OpenAL.Buffer.To_Integer (Buffer)));
+       Value     => Types.Integer_t (OpenAL.Buffer.To_Integer (Buffer)));
   end Set_Current_Buffer;
 
   procedure Get_Current_Buffer
     (Source : in     Source_t;
      Buffer :    out OpenAL.Buffer.Buffer_t)
   is
-    Value : aliased Thin.Unsigned_Integer_t;
+    Value : aliased Types.Unsigned_Integer_t;
   begin
     Thin.Get_Sourcei
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_BUFFER,
        Value     => Value'Address);
     Buffer := OpenAL.Buffer.From_Integer (Value);
@@ -369,10 +369,10 @@ package body OpenAL.Source is
     (Source  : in     Source_t;
      Buffers :    out Natural)
   is
-    Value : aliased Thin.Unsigned_Integer_t;
+    Value : aliased Types.Unsigned_Integer_t;
   begin
     Thin.Get_Sourcei
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_BUFFERS_QUEUED,
        Value     => Value'Address);
     Buffers := Natural (Value);
@@ -386,10 +386,10 @@ package body OpenAL.Source is
     (Source  : in     Source_t;
      Buffers :    out Natural)
   is
-    Value : aliased Thin.Unsigned_Integer_t;
+    Value : aliased Types.Unsigned_Integer_t;
   begin
     Thin.Get_Sourcei
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_BUFFERS_PROCESSED,
        Value     => Value'Address);
     Buffers := Natural (Value);
@@ -404,9 +404,9 @@ package body OpenAL.Source is
      Gain   : in Gain_t) is
   begin
     Thin.Sourcef
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_MIN_GAIN,
-       Value     => Thin.Float_t (Gain));
+       Value     => Gain);
   end Set_Minimum_Gain;
 
   procedure Get_Minimum_Gain
@@ -416,7 +416,7 @@ package body OpenAL.Source is
     Value : aliased Gain_t;
   begin
     Thin.Get_Sourcef
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_MIN_GAIN,
        Value     => Value'Address);
     Gain := Value;
@@ -427,9 +427,9 @@ package body OpenAL.Source is
      Gain   : in Gain_t) is
   begin
     Thin.Sourcef
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_MAX_GAIN,
-       Value     => Thin.Float_t (Gain));
+       Value     => Gain);
   end Set_Maximum_Gain;
 
   procedure Get_Maximum_Gain
@@ -439,7 +439,7 @@ package body OpenAL.Source is
     Value : aliased Gain_t;
   begin
     Thin.Get_Sourcef
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_MAX_GAIN,
        Value     => Value'Address);
     Gain := Value;
@@ -454,9 +454,9 @@ package body OpenAL.Source is
      Distance : in Types.Float_t) is
   begin
     Thin.Sourcef
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_REFERENCE_DISTANCE,
-       Value     => Thin.Float_t (Distance));
+       Value     => Distance);
   end Set_Reference_Distance_Float;
 
   procedure Set_Reference_Distance_Discrete
@@ -464,19 +464,19 @@ package body OpenAL.Source is
      Distance : in Types.Integer_t) is
   begin
     Thin.Sourcei
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_REFERENCE_DISTANCE,
-       Value     => Thin.Integer_t (Distance));
+       Value     => Distance);
   end Set_Reference_Distance_Discrete;
 
   procedure Get_Reference_Distance_Float
     (Source   : in     Source_t;
      Distance :    out Types.Float_t)
   is
-    Value : Thin.Float_t;
+    Value : Types.Float_t;
   begin
     Thin.Get_Sourcef
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_REFERENCE_DISTANCE,
        Value     => Value'Address);
     Distance := Value;
@@ -486,10 +486,10 @@ package body OpenAL.Source is
     (Source   : in     Source_t;
      Distance :    out Types.Integer_t)
   is
-    Value : Thin.Integer_t;
+    Value : Types.Integer_t;
   begin
     Thin.Get_Sourcei
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_REFERENCE_DISTANCE,
        Value     => Value'Address);
     Distance := Value;
@@ -504,9 +504,9 @@ package body OpenAL.Source is
      Distance : in Types.Float_t) is
   begin
     Thin.Sourcef
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_ROLLOFF_FACTOR,
-       Value     => Thin.Float_t (Distance));
+       Value     => Distance);
   end Set_Rolloff_Factor_Float;
 
   procedure Set_Rolloff_Factor_Discrete
@@ -514,19 +514,19 @@ package body OpenAL.Source is
      Distance : in Types.Integer_t) is
   begin
     Thin.Sourcei
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_ROLLOFF_FACTOR,
-       Value     => Thin.Integer_t (Distance));
+       Value     => Distance);
   end Set_Rolloff_Factor_Discrete;
 
   procedure Get_Rolloff_Factor_Float
     (Source   : in     Source_t;
      Distance :    out Types.Float_t)
   is
-    Value : Thin.Float_t;
+    Value : Types.Float_t;
   begin
     Thin.Get_Sourcef
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_ROLLOFF_FACTOR,
        Value     => Value'Address);
     Distance := Value;
@@ -536,10 +536,10 @@ package body OpenAL.Source is
     (Source   : in     Source_t;
      Distance :    out Types.Integer_t)
   is
-    Value : Thin.Integer_t;
+    Value : Types.Integer_t;
   begin
     Thin.Get_Sourcei
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_ROLLOFF_FACTOR,
        Value     => Value'Address);
     Distance := Value;
@@ -554,9 +554,9 @@ package body OpenAL.Source is
      Distance : in Types.Float_t) is
   begin
     Thin.Sourcef
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_MAX_DISTANCE,
-       Value     => Thin.Float_t (Distance));
+       Value     => Distance);
   end Set_Maximum_Distance_Float;
 
   procedure Set_Maximum_Distance_Discrete
@@ -564,19 +564,19 @@ package body OpenAL.Source is
      Distance : in Types.Integer_t) is
   begin
     Thin.Sourcei
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_MAX_DISTANCE,
-       Value     => Thin.Integer_t (Distance));
+       Value     => Distance);
   end Set_Maximum_Distance_Discrete;
 
   procedure Get_Maximum_Distance_Float
     (Source   : in     Source_t;
      Distance :    out Types.Float_t)
   is
-    Value : Thin.Float_t;
+    Value : Types.Float_t;
   begin
     Thin.Get_Sourcef
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_MAX_DISTANCE,
        Value     => Value'Address);
     Distance := Value;
@@ -586,10 +586,10 @@ package body OpenAL.Source is
     (Source   : in     Source_t;
      Distance :    out Types.Integer_t)
   is
-    Value : Thin.Integer_t;
+    Value : Types.Integer_t;
   begin
     Thin.Get_Sourcei
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_MAX_DISTANCE,
        Value     => Value'Address);
     Distance := Value;
@@ -604,9 +604,9 @@ package body OpenAL.Source is
      Pitch  : in Pitch_t) is
   begin
     Thin.Sourcef
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_PITCH,
-       Value     => Thin.Float_t (Pitch));
+       Value     => Pitch);
   end Set_Pitch;
 
   procedure Get_Pitch
@@ -616,7 +616,7 @@ package body OpenAL.Source is
     Value : aliased Pitch_t;
   begin
     Thin.Get_Sourcef
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_PITCH,
        Value     => Value'Address);
     Pitch := Value;
@@ -633,11 +633,11 @@ package body OpenAL.Source is
      Z      : in Types.Float_t) is
   begin
     Thin.Source_3f
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_DIRECTION,
-       Value_1   => Thin.Float_t (X),
-       Value_2   => Thin.Float_t (Y),
-       Value_3   => Thin.Float_t (Z));
+       Value_1   => X,
+       Value_2   => Y,
+       Value_3   => Z);
   end Set_Direction_Float;
 
   procedure Set_Direction_Discrete
@@ -647,11 +647,11 @@ package body OpenAL.Source is
      Z      : in Types.Integer_t) is
   begin
     Thin.Source_3i
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_DIRECTION,
-       Value_1   => Thin.Integer_t (X),
-       Value_2   => Thin.Integer_t (Y),
-       Value_3   => Thin.Integer_t (Z));
+       Value_1   => X,
+       Value_2   => Y,
+       Value_3   => Z);
   end Set_Direction_Discrete;
 
   procedure Set_Direction_Float_List
@@ -659,7 +659,7 @@ package body OpenAL.Source is
      Direction : in Types.Vector_3f_t) is
   begin
     Thin.Sourcefv
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_DIRECTION,
        Values    => Direction (Direction'First)'Address);
   end Set_Direction_Float_List;
@@ -669,7 +669,7 @@ package body OpenAL.Source is
      Direction : in Types.Vector_3i_t) is
   begin
     Thin.Sourceiv
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_DIRECTION,
        Values    => Direction (Direction'First)'Address);
   end Set_Direction_Discrete_List;
@@ -709,7 +709,7 @@ package body OpenAL.Source is
      Direction :    out Types.Vector_3f_t) is
   begin
     Thin.Get_Sourcefv
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_DIRECTION,
        Values    => Direction (Direction'First)'Address);
   end Get_Direction_Float_List;
@@ -719,7 +719,7 @@ package body OpenAL.Source is
      Direction :    out Types.Vector_3i_t) is
   begin
     Thin.Get_Sourceiv
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_DIRECTION,
        Values    => Direction (Direction'First)'Address);
   end Get_Direction_Discrete_List;
@@ -733,9 +733,9 @@ package body OpenAL.Source is
      Distance : in Types.Float_t) is
   begin
     Thin.Sourcef
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_CONE_INNER_ANGLE,
-       Value     => Thin.Float_t (Distance));
+       Value     => Distance);
   end Set_Cone_Inner_Angle_Float;
 
   procedure Set_Cone_Inner_Angle_Discrete
@@ -743,19 +743,19 @@ package body OpenAL.Source is
      Distance : in Types.Integer_t) is
   begin
     Thin.Sourcei
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_CONE_INNER_ANGLE,
-       Value     => Thin.Integer_t (Distance));
+       Value     => Distance);
   end Set_Cone_Inner_Angle_Discrete;
 
   procedure Get_Cone_Inner_Angle_Float
     (Source   : in     Source_t;
      Distance :    out Types.Float_t)
   is
-    Value : Thin.Float_t;
+    Value : Types.Float_t;
   begin
     Thin.Get_Sourcef
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_CONE_INNER_ANGLE,
        Value     => Value'Address);
     Distance := Value;
@@ -765,10 +765,10 @@ package body OpenAL.Source is
     (Source   : in     Source_t;
      Distance :    out Types.Integer_t)
   is
-    Value : Thin.Integer_t;
+    Value : Types.Integer_t;
   begin
     Thin.Get_Sourcei
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_CONE_INNER_ANGLE,
        Value     => Value'Address);
     Distance := Value;
@@ -783,9 +783,9 @@ package body OpenAL.Source is
      Distance : in Types.Float_t) is
   begin
     Thin.Sourcef
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_CONE_OUTER_ANGLE,
-       Value     => Thin.Float_t (Distance));
+       Value     => Distance);
   end Set_Cone_Outer_Angle_Float;
 
   procedure Set_Cone_Outer_Angle_Discrete
@@ -793,19 +793,19 @@ package body OpenAL.Source is
      Distance : in Types.Integer_t) is
   begin
     Thin.Sourcei
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_CONE_OUTER_ANGLE,
-       Value     => Thin.Integer_t (Distance));
+       Value     => Distance);
   end Set_Cone_Outer_Angle_Discrete;
 
   procedure Get_Cone_Outer_Angle_Float
     (Source   : in     Source_t;
      Distance :    out Types.Float_t)
   is
-    Value : Thin.Float_t;
+    Value : Types.Float_t;
   begin
     Thin.Get_Sourcef
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_CONE_OUTER_ANGLE,
        Value     => Value'Address);
     Distance := Value;
@@ -815,10 +815,10 @@ package body OpenAL.Source is
     (Source   : in     Source_t;
      Distance :    out Types.Integer_t)
   is
-    Value : Thin.Integer_t;
+    Value : Types.Integer_t;
   begin
     Thin.Get_Sourcei
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_CONE_OUTER_ANGLE,
        Value     => Value'Address);
     Distance := Value;
@@ -833,9 +833,9 @@ package body OpenAL.Source is
      Gain   : in Types.Float_t) is
   begin
     Thin.Sourcef
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_CONE_OUTER_GAIN,
-       Value     => Thin.Float_t (Gain));
+       Value     => Gain);
   end Set_Cone_Outer_Gain;
 
   procedure Get_Cone_Outer_Gain
@@ -845,7 +845,7 @@ package body OpenAL.Source is
     Value : aliased Types.Float_t;
   begin
     Thin.Get_Sourcef
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_CONE_OUTER_GAIN,
        Value     => Value'Address);
     Gain := Value;
@@ -860,9 +860,9 @@ package body OpenAL.Source is
      Distance : in Types.Float_t) is
   begin
     Thin.Sourcef
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_SEC_OFFSET,
-       Value     => Thin.Float_t (Distance));
+       Value     => Distance);
   end Set_Seconds_Offset_Float;
 
   procedure Set_Seconds_Offset_Discrete
@@ -870,19 +870,19 @@ package body OpenAL.Source is
      Distance : in Types.Integer_t) is
   begin
     Thin.Sourcei
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_SEC_OFFSET,
-       Value     => Thin.Integer_t (Distance));
+       Value     => Distance);
   end Set_Seconds_Offset_Discrete;
 
   procedure Get_Seconds_Offset_Float
     (Source   : in     Source_t;
      Distance :    out Types.Float_t)
   is
-    Value : Thin.Float_t;
+    Value : Types.Float_t;
   begin
     Thin.Get_Sourcef
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_SEC_OFFSET,
        Value     => Value'Address);
     Distance := Value;
@@ -892,10 +892,10 @@ package body OpenAL.Source is
     (Source   : in     Source_t;
      Distance :    out Types.Integer_t)
   is
-    Value : Thin.Integer_t;
+    Value : Types.Integer_t;
   begin
     Thin.Get_Sourcei
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_SEC_OFFSET,
        Value     => Value'Address);
     Distance := Value;
@@ -910,9 +910,9 @@ package body OpenAL.Source is
      Distance : in Types.Float_t) is
   begin
     Thin.Sourcef
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_SAMPLE_OFFSET,
-       Value     => Thin.Float_t (Distance));
+       Value     => Distance);
   end Set_Sample_Offset_Float;
 
   procedure Set_Sample_Offset_Discrete
@@ -920,19 +920,19 @@ package body OpenAL.Source is
      Distance : in Types.Integer_t) is
   begin
     Thin.Sourcei
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_SAMPLE_OFFSET,
-       Value     => Thin.Integer_t (Distance));
+       Value     => Distance);
   end Set_Sample_Offset_Discrete;
 
   procedure Get_Sample_Offset_Float
     (Source   : in     Source_t;
      Distance :    out Types.Float_t)
   is
-    Value : Thin.Float_t;
+    Value : Types.Float_t;
   begin
     Thin.Get_Sourcef
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_SAMPLE_OFFSET,
        Value     => Value'Address);
     Distance := Value;
@@ -942,10 +942,10 @@ package body OpenAL.Source is
     (Source   : in     Source_t;
      Distance :    out Types.Integer_t)
   is
-    Value : Thin.Integer_t;
+    Value : Types.Integer_t;
   begin
     Thin.Get_Sourcei
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_SAMPLE_OFFSET,
        Value     => Value'Address);
     Distance := Value;
@@ -960,9 +960,9 @@ package body OpenAL.Source is
      Distance : in Types.Float_t) is
   begin
     Thin.Sourcef
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_BYTE_OFFSET,
-       Value     => Thin.Float_t (Distance));
+       Value     => Distance);
   end Set_Byte_Offset_Float;
 
   procedure Set_Byte_Offset_Discrete
@@ -970,19 +970,19 @@ package body OpenAL.Source is
      Distance : in Types.Integer_t) is
   begin
     Thin.Sourcei
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_BYTE_OFFSET,
-       Value     => Thin.Integer_t (Distance));
+       Value     => Distance);
   end Set_Byte_Offset_Discrete;
 
   procedure Get_Byte_Offset_Float
     (Source   : in     Source_t;
      Distance :    out Types.Float_t)
   is
-    Value : Thin.Float_t;
+    Value : Types.Float_t;
   begin
     Thin.Get_Sourcef
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_BYTE_OFFSET,
        Value     => Value'Address);
     Distance := Value;
@@ -992,10 +992,10 @@ package body OpenAL.Source is
     (Source   : in     Source_t;
      Distance :    out Types.Integer_t)
   is
-    Value : Thin.Integer_t;
+    Value : Types.Integer_t;
   begin
     Thin.Get_Sourcei
-      (Source_ID => Thin.Unsigned_Integer_t (Source),
+      (Source_ID => Types.Unsigned_Integer_t (Source),
        Parameter => Thin.AL_BYTE_OFFSET,
        Value     => Value'Address);
     Distance := Value;
@@ -1010,7 +1010,7 @@ package body OpenAL.Source is
      Buffers : in OpenAL.Buffer.Buffer_Array_t) is
   begin
     Thin.Source_Queue_Buffers
-      (Source_ID  => Thin.Unsigned_Integer_t (Source),
+      (Source_ID  => Types.Unsigned_Integer_t (Source),
        Size       => Buffers'Length,
        Buffer_IDs => Buffers (Buffers'First)'Address);
   end Queue_Buffers;
@@ -1024,7 +1024,7 @@ package body OpenAL.Source is
      Buffers : in OpenAL.Buffer.Buffer_Array_t) is
   begin
     Thin.Source_Unqueue_Buffers
-      (Source_ID  => Thin.Unsigned_Integer_t (Source),
+      (Source_ID  => Types.Unsigned_Integer_t (Source),
        Size       => Buffers'Length,
        Buffer_IDs => Buffers (Buffers'First)'Address);
   end Unqueue_Buffers;
@@ -1035,7 +1035,7 @@ package body OpenAL.Source is
 
   procedure Play (Source : in Source_t) is
   begin
-    Thin.Source_Play (Thin.Unsigned_Integer_t (Source));
+    Thin.Source_Play (Types.Unsigned_Integer_t (Source));
   end Play;
 
   procedure Play_List (Sources : in Source_Array_t) is
@@ -1051,7 +1051,7 @@ package body OpenAL.Source is
 
   procedure Pause (Source : in Source_t) is
   begin
-    Thin.Source_Pause (Thin.Unsigned_Integer_t (Source));
+    Thin.Source_Pause (Types.Unsigned_Integer_t (Source));
   end Pause;
 
   procedure Pause_List (Sources : in Source_Array_t) is
@@ -1067,7 +1067,7 @@ package body OpenAL.Source is
 
   procedure Stop (Source : in Source_t) is
   begin
-    Thin.Source_Stop (Thin.Unsigned_Integer_t (Source));
+    Thin.Source_Stop (Types.Unsigned_Integer_t (Source));
   end Stop;
 
   procedure Stop_List (Sources : in Source_Array_t) is
@@ -1083,7 +1083,7 @@ package body OpenAL.Source is
 
   procedure Rewind (Source : in Source_t) is
   begin
-    Thin.Source_Rewind (Thin.Unsigned_Integer_t (Source));
+    Thin.Source_Rewind (Types.Unsigned_Integer_t (Source));
   end Rewind;
 
   procedure Rewind_List (Sources : in Source_Array_t) is

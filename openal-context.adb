@@ -1,7 +1,6 @@
 with Ada.IO_Exceptions;
 with Interfaces.C.Strings;
 with Interfaces.C;
-with OpenAL.Thin;
 with System;
 
 package body OpenAL.Context is
@@ -94,7 +93,7 @@ package body OpenAL.Context is
 
   function Get_String
     (Device    : ALC_Thin.Device_t;
-     Parameter : ALC_Thin.Enumeration_t) return C_Strings.chars_ptr;
+     Parameter : Types.Enumeration_t) return C_Strings.chars_ptr;
   pragma Import (C, Get_String, "alcGetString");
 
   use type ALC_Thin.Device_t;
@@ -176,7 +175,7 @@ package body OpenAL.Context is
   function Get_Major_Version
     (Device : in Device_t) return Natural
   is
-    Value : aliased Thin.Integer_t := 0;
+    Value : aliased Types.Integer_t := 0;
   begin
     ALC_Thin.Get_Integerv
       (Device => Device.Device_Data,
@@ -189,7 +188,7 @@ package body OpenAL.Context is
   function Get_Minor_Version
     (Device : in Device_t) return Natural
   is
-    Value : aliased Thin.Integer_t := 0;
+    Value : aliased Types.Integer_t := 0;
   begin
     ALC_Thin.Get_Integerv
       (Device => Device.Device_Data,
@@ -202,7 +201,7 @@ package body OpenAL.Context is
   function Get_Capture_Samples
     (Device : in Device_t) return Natural
   is
-    Value : aliased Thin.Integer_t := 0;
+    Value : aliased Types.Integer_t := 0;
   begin
     ALC_Thin.Get_Integerv
       (Device => Device.Device_Data,
@@ -215,7 +214,7 @@ package body OpenAL.Context is
   function Get_Frequency
     (Device : in Device_t) return Types.Frequency_t
   is
-    Value : aliased Thin.Integer_t := 0;
+    Value : aliased Types.Integer_t := 0;
   begin
     ALC_Thin.Get_Integerv
       (Device => Device.Device_Data,
@@ -228,7 +227,7 @@ package body OpenAL.Context is
   function Get_Refresh
     (Device : in Device_t) return Natural
   is
-    Value : aliased Thin.Integer_t := 0;
+    Value : aliased Types.Integer_t := 0;
   begin
     ALC_Thin.Get_Integerv
       (Device => Device.Device_Data,
@@ -241,7 +240,7 @@ package body OpenAL.Context is
   function Get_Synchronous
     (Device : in Device_t) return Boolean
   is
-    Value : aliased Thin.Integer_t := 0;
+    Value : aliased Types.Integer_t := 0;
   begin
     ALC_Thin.Get_Integerv
       (Device => Device.Device_Data,
@@ -254,7 +253,7 @@ package body OpenAL.Context is
   function Get_Mono_Sources
     (Device : in Device_t) return Natural
   is
-    Value : aliased Thin.Integer_t := 0;
+    Value : aliased Types.Integer_t := 0;
   begin
     ALC_Thin.Get_Integerv
       (Device => Device.Device_Data,
@@ -267,7 +266,7 @@ package body OpenAL.Context is
   function Get_Stereo_Sources
     (Device : in Device_t) return Natural
   is
-    Value : aliased Thin.Integer_t := 0;
+    Value : aliased Types.Integer_t := 0;
   begin
     ALC_Thin.Get_Integerv
       (Device => Device.Device_Data,

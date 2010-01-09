@@ -7,7 +7,7 @@ with System;
 package body OpenAL.Context.Capture is
   package C renames Interfaces.C;
 
-  type Map_Format_t is array (Format_t) of ALC_Thin.Enumeration_t;
+  type Map_Format_t is array (Format_t) of Types.Enumeration_t;
 
   Map_Format : constant Map_Format_t :=
     (Mono_8    => Thin.AL_FORMAT_MONO8,
@@ -26,9 +26,9 @@ package body OpenAL.Context.Capture is
   begin
     Device.Device_Data := ALC_Thin.Capture_Open_Device
       (Name        => C_Name (C_Name'First)'Address,
-       Frequency   => ALC_Thin.Unsigned_Integer_t (Frequency),
+       Frequency   => Types.Unsigned_Integer_t (Frequency),
        Format      => Map_Format (Format),
-       Buffer_Size => ALC_Thin.Size_t (Buffer_Size));
+       Buffer_Size => Types.Size_t (Buffer_Size));
     return Device;
   end Open_Device;
 
@@ -41,9 +41,9 @@ package body OpenAL.Context.Capture is
   begin
     Device.Device_Data := ALC_Thin.Capture_Open_Device
       (Name        => System.Null_Address,
-       Frequency   => ALC_Thin.Unsigned_Integer_t (Frequency),
+       Frequency   => Types.Unsigned_Integer_t (Frequency),
        Format      => Map_Format (Format),
-       Buffer_Size => ALC_Thin.Size_t (Buffer_Size));
+       Buffer_Size => Types.Size_t (Buffer_Size));
     return Device;
   end Open_Default_Device;
 

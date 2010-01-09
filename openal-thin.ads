@@ -2,6 +2,7 @@
 
 with Interfaces.C;
 with System;
+with OpenAL.Types;
 
 package OpenAL.Thin is
   package C renames Interfaces.C;
@@ -78,491 +79,402 @@ package OpenAL.Thin is
   AL_VERSION                    : constant := 16#B002#;
 
   --
-  -- Types
-  --
-
-  type String_t is new System.Address;
-
-  -- ALfloat
-  type Float_t is new C.C_float;
-
-  -- ALdouble
-  type Double_t is new C.double;
-
-  -- ALsizeiptr
-  type Size_Pointer_t is mod 2 ** System.Word_Size;
-  for Size_Pointer_t'Size use System.Word_Size;
-  pragma Convention (C, Size_Pointer_t);
-
-  -- ALintptr
-  type Integer_Pointer_t is mod 2 ** System.Word_Size;
-  for Integer_Pointer_t'Size use System.Word_Size;
-  pragma Convention (C, Integer_Pointer_t);
-
-  -- ALbitfield
-  type Bitfield_t is mod 2 ** 32;
-  for Bitfield_t'Size use 32;
-  pragma Convention (C, Bitfield_t);
-
-  -- ALboolean
-  type Boolean_t is new Boolean;
-  for Boolean_t'Size use 8;
-  pragma Convention (C, Boolean_t);
-
-  -- ALbyte
-  type Byte_t is range -127 .. 127;
-  for Byte_t'Size use 8;
-  pragma Convention (C, Byte_t);
-
-  -- ALclampd
-  subtype Clamped_Double_t is Double_t range 0.0 .. 1.0;
-
-  -- ALclampf
-  subtype Clamped_Float_t is Float_t range 0.0 .. 1.0;
-
-  -- ALenum
-  type Enumeration_t is mod 2 ** 32;
-  for Enumeration_t'Size use 32;
-  pragma Convention (C, Enumeration_t);
-
-  -- ALint
-  type Integer_t is range -2147483647 .. 2147483647;
-  for Integer_t'Size use 32;
-  pragma Convention (C, Integer_t);
-
-  -- ALshort
-  type Short_t is range -32767 .. 32767;
-  for Short_t'Size use 16;
-  pragma Convention (C, Short_t);
-
-  -- ALsizei
-  type Size_t is range -2147483647 .. 2147483647;
-  for Size_t'Size use 32;
-  pragma Convention (C, Size_t);
-
-  -- ALubyte
-  type Unsigned_Byte_t is mod 2 ** 8;
-  for Unsigned_Byte_t'Size use 8;
-  pragma Convention (C, Unsigned_Byte_t);
-
-  -- ALuint
-  type Unsigned_Integer_t is mod 2 ** 32;
-  for Unsigned_Integer_t'Size use 32;
-  pragma Convention (C, Unsigned_Integer_t);
-
-  -- ALushort
-  type Unsigned_Short_t is mod 2 ** 16;
-  for Unsigned_Short_t'Size use 16;
-  pragma Convention (C, Unsigned_Short_t);
-
-  -- ALvoid *
-  subtype Void_Pointer_t is System.Address;
-
-  -- ALvoid **
-  type Void_Pointer_Access_t is access all Void_Pointer_t;
-  pragma Convention (C, Void_Pointer_Access_t);
-
-  -- const ALvoid **
-  type Void_Pointer_Access_Constant_t is access constant System.Address;
-  pragma Convention (C, Void_Pointer_Access_Constant_t);
-
-  --
   -- OpenAL 1.1
   --
 
   procedure Buffer_3f
-    (Buffer_ID : Unsigned_Integer_t;
-     Parameter : Enumeration_t;
-     Value_1   : Float_t;
-     Value_2   : Float_t;
-     Value_3   : Float_t);
+    (Buffer_ID : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
+     Value_1   : Types.Float_t;
+     Value_2   : Types.Float_t;
+     Value_3   : Types.Float_t);
   pragma Import (C, Buffer_3f, "alBuffer3f");
 
   procedure Buffer_3i
-    (Buffer_ID : Unsigned_Integer_t;
-     Parameter : Enumeration_t;
-     Value_1   : Integer_t;
-     Value_2   : Integer_t;
-     Value_3   : Integer_t);
+    (Buffer_ID : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
+     Value_1   : Types.Integer_t;
+     Value_2   : Types.Integer_t;
+     Value_3   : Types.Integer_t);
   pragma Import (C, Buffer_3i, "alBuffer3i");
 
   procedure Buffer_Data
-    (Buffer_ID : Unsigned_Integer_t;
-     Format    : Enumeration_t;
+    (Buffer_ID : Types.Unsigned_Integer_t;
+     Format    : Types.Enumeration_t;
      Data      : System.Address;
-     Size      : Size_t;
-     Frequency : Size_t);
+     Size      : Types.Size_t;
+     Frequency : Types.Size_t);
   pragma Import (C, Buffer_Data, "alBufferData");
 
   procedure Bufferf
-    (Buffer_ID : Unsigned_Integer_t;
-     Parameter : Enumeration_t;
-     Value     : Float_t);
+    (Buffer_ID : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
+     Value     : Types.Float_t);
   pragma Import (C, Bufferf, "alBufferf");
 
   procedure Bufferfv
-    (Buffer_ID : Unsigned_Integer_t;
-     Parameter : Enumeration_t;
+    (Buffer_ID : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
      Values    : System.Address);
   pragma Import (C, Bufferfv, "alBufferfv");
 
   procedure Bufferi
-    (Buffer_ID : Unsigned_Integer_t;
-     Parameter : Enumeration_t;
-     Value     : Integer_t);
+    (Buffer_ID : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
+     Value     : Types.Integer_t);
   pragma Import (C, Bufferi, "alBufferi");
 
   procedure Bufferiv
-    (Buffer_ID : Unsigned_Integer_t;
-     Parameter : Enumeration_t;
+    (Buffer_ID : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
      Values    : System.Address);
   pragma Import (C, Bufferiv, "alBufferiv");
 
   procedure Delete_Buffers
-    (Size    : Size_t;
+    (Size    : Types.Size_t;
      Sources : System.Address);
   pragma Import (C, Delete_Buffers, "alDeleteBuffers");
 
   procedure Delete_Sources
-    (Size    : Size_t;
+    (Size    : Types.Size_t;
      Sources : System.Address);
   pragma Import (C, Delete_Sources, "alDeleteSources");
 
   procedure Disable
-    (Capability : Enumeration_t);
+    (Capability : Types.Enumeration_t);
   pragma Import (C, Disable, "alDisable");
 
   procedure Distance_Model
-    (Distance_Model : Enumeration_t);
+    (Distance_Model : Types.Enumeration_t);
   pragma Import (C, Distance_Model, "alDistanceModel");
 
   procedure Doppler_Factor
-    (Value : Float_t);
+    (Value : Types.Float_t);
   pragma Import (C, Doppler_Factor, "alDopplerFactor");
 
   procedure Doppler_Velocity
-    (Value : Float_t);
+    (Value : Types.Float_t);
   pragma Import (C, Doppler_Velocity, "alDopplerVelocity");
 
   procedure Enable
-    (Capability : Enumeration_t);
+    (Capability : Types.Enumeration_t);
   pragma Import (C, Enable, "alEnable");
 
   procedure Gen_Buffers
-    (Size    : Size_t;
+    (Size    : Types.Size_t;
      Buffers : System.Address);
   pragma Import (C, Gen_Buffers, "alGenBuffers");
 
   procedure Gen_Sources
-    (Size    : Size_t;
+    (Size    : Types.Size_t;
      Sources : System.Address);
   pragma Import (C, Gen_Sources, "alGenSources");
 
   function Get_Boolean
-    (Parameter : Enumeration_t) return Boolean_t;
+    (Parameter : Types.Enumeration_t) return Types.Boolean_t;
   pragma Import (C, Get_Boolean, "alGetBoolean");
 
   procedure Get_Booleanv
-    (Parameter : Enumeration_t;
+    (Parameter : Types.Enumeration_t;
      Data      : System.Address);
   pragma Import (C, Get_Booleanv, "alGetBooleanv");
 
   procedure Get_Buffer_3f
-    (Buffer_ID : Unsigned_Integer_t;
-     Parameter : Enumeration_t;
+    (Buffer_ID : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
      Value_1   : System.Address;
      Value_2   : System.Address;
      Value_3   : System.Address);
   pragma Import (C, Get_Buffer_3f, "alGetBuffer3f");
 
   procedure Get_Buffer_3i
-    (Buffer_ID : Unsigned_Integer_t;
-     Parameter : Enumeration_t;
+    (Buffer_ID : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
      Value_1   : System.Address;
      Value_2   : System.Address;
      Value_3   : System.Address);
   pragma Import (C, Get_Buffer_3i, "alGetBuffer3i");
 
   procedure Get_Bufferf
-    (Buffer_ID : Unsigned_Integer_t;
-     Parameter : Enumeration_t;
+    (Buffer_ID : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
      Value     : System.Address);
   pragma Import (C, Get_Bufferf, "alGetBufferf");
 
   procedure Get_Bufferfv
-    (Buffer_ID : Unsigned_Integer_t;
-     Parameter : Enumeration_t;
+    (Buffer_ID : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
      Values    : System.Address);
   pragma Import (C, Get_Bufferfv, "alGetBufferfv");
 
   procedure Get_Bufferi
-    (Buffer_ID : Unsigned_Integer_t;
-     Parameter : Enumeration_t;
+    (Buffer_ID : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
      Value     : System.Address);
   pragma Import (C, Get_Bufferi, "alGetBufferi");
 
   procedure Get_Bufferiv
-    (Buffer_ID : Unsigned_Integer_t;
-     Parameter : Enumeration_t;
+    (Buffer_ID : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
      Values    : System.Address);
   pragma Import (C, Get_Bufferiv, "alGetBufferiv");
 
   function Get_Double
-    (Parameter : Enumeration_t) return Double_t;
+    (Parameter : Types.Enumeration_t) return Types.Double_t;
   pragma Import (C, Get_Double, "alGetDouble");
 
   procedure Get_Doublev
-    (Parameter : Enumeration_t;
+    (Parameter : Types.Enumeration_t;
      Values    : System.Address);
   pragma Import (C, Get_Doublev, "alGetDoublev");
 
   function Get_Enum_Value
-    (Name : System.Address) return Enumeration_t;
+    (Name : System.Address) return Types.Enumeration_t;
   pragma Import (C, Get_Enum_Value, "alGetEnumValue");
 
-  function Get_Error return Enumeration_t;
+  function Get_Error return Types.Enumeration_t;
   pragma Import (C, Get_Error, "alGetError");
 
   function Get_Float
-    (Parameter : Enumeration_t) return Float_t;
+    (Parameter : Types.Enumeration_t) return Types.Float_t;
   pragma Import (C, Get_Float, "alGetFloat");
 
   procedure Get_Floatv
-    (Parameter : Enumeration_t;
+    (Parameter : Types.Enumeration_t;
      Values    : System.Address);
   pragma Import (C, Get_Floatv, "alGetFloatv");
 
   function Get_Integer
-    (Parameter : Enumeration_t) return Integer_t;
+    (Parameter : Types.Enumeration_t) return Types.Integer_t;
   pragma Import (C, Get_Integer, "alGetInteger");
 
   procedure Get_Integerv
-    (Paremeter : Enumeration_t;
+    (Paremeter : Types.Enumeration_t;
      Values    : System.Address);
   pragma Import (C, Get_Integerv, "alGetIntegerv");
 
   procedure Get_Listener_3f
-    (Parameter : Enumeration_t;
+    (Parameter : Types.Enumeration_t;
      Value_1   : System.Address;
      Value_2   : System.Address;
      Value_3   : System.Address);
   pragma Import (C, Get_Listener_3f, "alGetListener3f");
 
   procedure Get_Listener_3i
-    (Parameter : Enumeration_t;
+    (Parameter : Types.Enumeration_t;
      Value_1   : System.Address;
      Value_2   : System.Address;
      Value_3   : System.Address);
   pragma Import (C, Get_Listener_3i, "alGetListener3i");
 
   procedure Get_Listenerf
-    (Parameter : Enumeration_t;
+    (Parameter : Types.Enumeration_t;
      Value     : System.Address);
   pragma Import (C, Get_Listenerf, "alGetListenerf");
 
   procedure Get_Listenerfv
-    (Parameter : Enumeration_t;
+    (Parameter : Types.Enumeration_t;
      Values    : System.Address);
   pragma Import (C, Get_Listenerfv, "alGetListenerfv");
 
   procedure Get_Listeneri
-    (Parameter : Enumeration_t;
+    (Parameter : Types.Enumeration_t;
      Value     : System.Address);
   pragma Import (C, Get_Listeneri, "alGetListeneri");
 
   procedure Get_Listeneriv
-    (Parameter : Enumeration_t;
+    (Parameter : Types.Enumeration_t;
      Values    : System.Address);
   pragma Import (C, Get_Listeneriv, "alGetListeneriv");
 
   function Get_Proc_Address
-    (Name : System.Address) return Void_Pointer_t;
+    (Name : System.Address) return Types.Void_Pointer_t;
   pragma Import (C, Get_Proc_Address, "alGetProcAddress");
 
   procedure Get_Source_3f
-    (Source_ID : Unsigned_Integer_t;
-     Parameter : Enumeration_t;
+    (Source_ID : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
      Value_1   : System.Address;
      Value_2   : System.Address;
      Value_3   : System.Address);
   pragma Import (C, Get_Source_3f, "alGetSource3f");
 
   procedure Get_Source_3i
-    (Source_ID : Unsigned_Integer_t;
-     Parameter : Enumeration_t;
+    (Source_ID : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
      Value_1   : System.Address;
      Value_2   : System.Address;
      Value_3   : System.Address);
   pragma Import (C, Get_Source_3i, "alGetSource3i");
 
   procedure Get_Sourcef
-    (Source_ID : Unsigned_Integer_t;
-     Parameter : Enumeration_t;
+    (Source_ID : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
      Value     : System.Address);
   pragma Import (C, Get_Sourcef, "alGetSourcef");
 
   procedure Get_Sourcefv
-    (Source_ID : Unsigned_Integer_t;
-     Parameter : Enumeration_t;
+    (Source_ID : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
      Values    : System.Address);
   pragma Import (C, Get_Sourcefv, "alGetSourcefv");
 
   procedure Get_Sourcei
-    (Source_ID : Unsigned_Integer_t;
-     Parameter : Enumeration_t;
+    (Source_ID : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
      Value     : System.Address);
   pragma Import (C, Get_Sourcei, "alGetSourcei");
 
   procedure Get_Sourceiv
-    (Source_ID : Unsigned_Integer_t;
-     Parameter : Enumeration_t;
+    (Source_ID : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
      Values    : System.Address);
   pragma Import (C, Get_Sourceiv, "alGetSourceiv");
 
   function Get_String
-    (Parameter : Enumeration_t) return System.Address;
+    (Parameter : Types.Enumeration_t) return System.Address;
   pragma Import (C, Get_String, "alGetString");
 
   function Is_Buffer
-    (Buffer_ID : Unsigned_Integer_t) return Boolean_t;
+    (Buffer_ID : Types.Unsigned_Integer_t) return Types.Boolean_t;
   pragma Import (C, Is_Buffer, "alIsBuffer");
 
   function Is_Enabled
-    (Parameter : Enumeration_t) return Boolean_t;
+    (Parameter : Types.Enumeration_t) return Types.Boolean_t;
   pragma Import (C, Is_Enabled, "alIsEnabled");
 
   function Is_Extension_Present
-    (Name : System.Address) return Boolean_t;
+    (Name : System.Address) return Types.Boolean_t;
   pragma Import (C, Is_Extension_Present, "alIsExtensionPresent");
 
   function Is_Source
-    (Source_ID : Unsigned_Integer_t) return Boolean_t;
+    (Source_ID : Types.Unsigned_Integer_t) return Types.Boolean_t;
   pragma Import (C, Is_Source, "alIsSource");
 
   procedure Listener_3f
-    (Parameter : Enumeration_t;
-     Value_1   : Float_t;
-     Value_2   : Float_t;
-     Value_3   : Float_t);
+    (Parameter : Types.Enumeration_t;
+     Value_1   : Types.Float_t;
+     Value_2   : Types.Float_t;
+     Value_3   : Types.Float_t);
   pragma Import (C, Listener_3f, "alListener3f");
 
   procedure Listener_3i
-    (Parameter : Enumeration_t;
-     Value_1   : Integer_t;
-     Value_2   : Integer_t;
-     Value_3   : Integer_t);
+    (Parameter : Types.Enumeration_t;
+     Value_1   : Types.Integer_t;
+     Value_2   : Types.Integer_t;
+     Value_3   : Types.Integer_t);
   pragma Import (C, Listener_3i, "alListener3i");
 
   procedure Listenerf
-    (Parameter : Enumeration_t;
-     Value     : Float_t);
+    (Parameter : Types.Enumeration_t;
+     Value     : Types.Float_t);
   pragma Import (C, Listenerf, "alListenerf");
 
   procedure Listenerfv
-    (Parameter : Enumeration_t;
+    (Parameter : Types.Enumeration_t;
      Values    : System.Address);
   pragma Import (C, Listenerfv, "alListenerfv");
 
   procedure Listeneri
-    (Parameter : Enumeration_t;
-     Value     : Integer_t);
+    (Parameter : Types.Enumeration_t;
+     Value     : Types.Integer_t);
   pragma Import (C, Listeneri, "alListeneri");
 
   procedure Listeneriv
-    (Parameter : Enumeration_t;
+    (Parameter : Types.Enumeration_t;
      Values    : System.Address);
   pragma Import (C, Listeneriv, "alListeneriv");
 
   procedure Source_3f
-    (Source_ID : Unsigned_Integer_t;
-     Parameter : Enumeration_t;
-     Value_1   : Float_t;
-     Value_2   : Float_t;
-     Value_3   : Float_t);
+    (Source_ID : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
+     Value_1   : Types.Float_t;
+     Value_2   : Types.Float_t;
+     Value_3   : Types.Float_t);
   pragma Import (C, Source_3f, "alSource3f");
 
   procedure Source_3i
-    (Source_ID : Unsigned_Integer_t;
-     Parameter : Enumeration_t;
-     Value_1   : Integer_t;
-     Value_2   : Integer_t;
-     Value_3   : Integer_t);
+    (Source_ID : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
+     Value_1   : Types.Integer_t;
+     Value_2   : Types.Integer_t;
+     Value_3   : Types.Integer_t);
   pragma Import (C, Source_3i, "alSource3i");
 
   procedure Source_Pause
-    (Source_ID : Unsigned_Integer_t);
+    (Source_ID : Types.Unsigned_Integer_t);
   pragma Import (C, Source_Pause, "alSourcePause");
 
   procedure Source_Pausev
-    (Size       : Size_t;
+    (Size       : Types.Size_t;
      Source_IDs : System.Address);
   pragma Import (C, Source_Pausev, "alSourcePausev");
 
   procedure Source_Play
-    (Source_ID : Unsigned_Integer_t);
+    (Source_ID : Types.Unsigned_Integer_t);
   pragma Import (C, Source_Play, "alSourcePlay");
 
   procedure Source_Playv
-    (Size       : Size_t;
+    (Size       : Types.Size_t;
      Source_IDs : System.Address);
   pragma Import (C, Source_Playv, "alSourcePlayv");
 
   procedure Source_Queue_Buffers
-    (Source_ID  : Unsigned_Integer_t;
-     Size       : Size_t;
+    (Source_ID  : Types.Unsigned_Integer_t;
+     Size       : Types.Size_t;
      Buffer_IDs : System.Address);
   pragma Import (C, Source_Queue_Buffers, "alSourceQueueBuffers");
 
   procedure Source_Rewind
-    (Source_ID : Unsigned_Integer_t);
+    (Source_ID : Types.Unsigned_Integer_t);
   pragma Import (C, Source_Rewind, "alSourceRewind");
 
   procedure Source_Rewindv
-    (Size       : Size_t;
+    (Size       : Types.Size_t;
      Source_IDs : System.Address);
   pragma Import (C, Source_Rewindv, "alSourceRewindv");
 
   procedure Source_Stop
-    (Source_ID : Unsigned_Integer_t);
+    (Source_ID : Types.Unsigned_Integer_t);
   pragma Import (C, Source_Stop, "alSourceStop");
 
   procedure Source_Stopv
-    (Size       : Size_t;
+    (Size       : Types.Size_t;
      Source_IDs : System.Address);
   pragma Import (C, Source_Stopv, "alSourceStopv");
 
   procedure Source_Unqueue_Buffers
-    (Source_ID  : Unsigned_Integer_t;
-     Size       : Size_t;
+    (Source_ID  : Types.Unsigned_Integer_t;
+     Size       : Types.Size_t;
      Buffer_IDs : System.Address);
   pragma Import (C, Source_Unqueue_Buffers, "alSourceUnqueueBuffers");
 
   procedure Sourcef
-    (Source_ID : Unsigned_Integer_t;
-     Parameter : Enumeration_t;
-     Value     : Float_t);
+    (Source_ID : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
+     Value     : Types.Float_t);
   pragma Import (C, Sourcef, "alSourcef");
 
   procedure Sourcefv
-    (Source_ID : Unsigned_Integer_t;
-     Parameter : Enumeration_t;
+    (Source_ID : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
      Values    : System.Address);
   pragma Import (C, Sourcefv, "alSourcefv");
 
   procedure Sourcei
-    (Source_ID : Unsigned_Integer_t;
-     Parameter : Enumeration_t;
-     Value     : Integer_t);
+    (Source_ID : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
+     Value     : Types.Integer_t);
   pragma Import (C, Sourcei, "alSourcei");
 
   procedure Sourceiv
-    (Source_ID : Unsigned_Integer_t;
-     Parameter : Enumeration_t;
+    (Source_ID : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
      Values    : System.Address);
   pragma Import (C, Sourceiv, "alSourceiv");
 
   procedure Speed_Of_Sound
-    (Value : Float_t);
+    (Value : Types.Float_t);
   pragma Import (C, Speed_Of_Sound, "alSpeedOfSound");
 
 end OpenAL.Thin;

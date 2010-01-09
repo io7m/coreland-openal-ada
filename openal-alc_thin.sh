@@ -7,7 +7,6 @@ cat openal-alc_thin.ads.0 >> openal-alc_thin.ads.tmp || exit 1
 ./openal-mkconst.lua openalc_const.dat >> openal-alc_thin.ads.tmp || exit 1
 
 cat openal-alc_thin.ads.1 >> openal-alc_thin.ads.tmp || exit 1
-
 ./block-comment 'OpenALC 1.1' >> openal-alc_thin.ads.tmp || exit 1
 ./openal-mkapi.lua "alc" openalc_1_1_types.dat openalc_1_1_names.dat openalc_types.dat >> openal-alc_thin.ads.tmp || exit 1
 
