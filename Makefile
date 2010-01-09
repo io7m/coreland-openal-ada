@@ -16,11 +16,12 @@ UNIT_TESTS/test.o openal-ada-info openal-alc_thin.ali openal-alc_thin.o \
 openal-buffer.ali openal-buffer.o openal-context-capture.ali \
 openal-context-capture.o openal-context-error.ali openal-context-error.o \
 openal-context.ali openal-context.o openal-error.ali openal-error.o \
-openal-extension-efx_thin.ali openal-extension-efx_thin.o openal-extension.ali \
-openal-extension.o openal-global.ali openal-global.o openal-list.ali \
-openal-list.o openal-listener.ali openal-listener.o openal-source.ali \
-openal-source.o openal-thin.ali openal-thin.o openal-types.ali openal-types.o \
-openal.a openal.ali openal.o openal_info.ali openal_info.o openal_info_main.ali \
+openal-extension-efx.ali openal-extension-efx.o openal-extension-efx_thin.ali \
+openal-extension-efx_thin.o openal-extension.ali openal-extension.o \
+openal-global.ali openal-global.o openal-list.ali openal-list.o \
+openal-listener.ali openal-listener.o openal-source.ali openal-source.o \
+openal-thin.ali openal-thin.o openal-types.ali openal-types.o openal.a \
+openal.ali openal.o openal_info.ali openal_info.o openal_info_main.ali \
 openal_info_main.o
 
 # Mkf-local
@@ -271,6 +272,11 @@ ada-compile openal-error.adb openal.ali openal-error.ads openal-thin.ali \
 openal-types.ali
 	./ada-compile openal-error.adb
 
+openal-extension-efx.o openal-extension-efx.ali:\
+ada-compile openal-extension-efx.ads openal-extension.ali \
+openal-extension-efx.ads
+	./ada-compile openal-extension-efx.ads
+
 openal-extension-efx_thin.o openal-extension-efx_thin.ali:\
 ada-compile openal-extension-efx_thin.ads openal-extension-efx_thin.ads \
 openal-types.ali
@@ -318,11 +324,11 @@ ada-compile openal-types.ads openal.ali openal-types.ads
 
 openal.a:\
 cc-slib openal.sld openal-alc_thin.o openal-buffer.o openal-context-capture.o \
-openal-context-error.o openal-context.o openal-error.o \
+openal-context-error.o openal-context.o openal-error.o openal-extension-efx.o \
 openal-extension-efx_thin.o openal-extension.o openal-global.o openal-list.o \
 openal-listener.o openal-source.o openal-thin.o openal-types.o openal.o
 	./cc-slib openal openal-alc_thin.o openal-buffer.o openal-context-capture.o \
-	openal-context-error.o openal-context.o openal-error.o \
+	openal-context-error.o openal-context.o openal-error.o openal-extension-efx.o \
 	openal-extension-efx_thin.o openal-extension.o openal-global.o openal-list.o \
 	openal-listener.o openal-source.o openal-thin.o openal-types.o openal.o
 
@@ -355,12 +361,13 @@ obj_clean:
 	openal-buffer.ali openal-buffer.o openal-context-capture.ali \
 	openal-context-capture.o openal-context-error.ali openal-context-error.o \
 	openal-context.ali openal-context.o openal-error.ali openal-error.o \
-	openal-extension-efx_thin.ali openal-extension-efx_thin.o openal-extension.ali \
-	openal-extension.o openal-global.ali openal-global.o openal-list.ali \
-	openal-list.o openal-listener.ali
-	rm -f openal-listener.o openal-source.ali openal-source.o openal-thin.ali \
-	openal-thin.o openal-types.ali openal-types.o openal.a openal.ali openal.o \
-	openal_info.ali openal_info.o openal_info_main.ali openal_info_main.o
+	openal-extension-efx.ali openal-extension-efx.o openal-extension-efx_thin.ali \
+	openal-extension-efx_thin.o openal-extension.ali openal-extension.o \
+	openal-global.ali openal-global.o
+	rm -f openal-list.ali openal-list.o openal-listener.ali openal-listener.o \
+	openal-source.ali openal-source.o openal-thin.ali openal-thin.o \
+	openal-types.ali openal-types.o openal.a openal.ali openal.o openal_info.ali \
+	openal_info.o openal_info_main.ali openal_info_main.o
 ext_clean:
 	rm -f conf-adatype conf-cctype conf-ldtype conf-systype mk-ctxt
 
