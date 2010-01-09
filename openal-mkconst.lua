@@ -40,10 +40,15 @@ for index, constant in pairs (constants) do
     io.write (" ")
   end
 
-  if constant.value:sub (1, 1) == "-" then
-    local positive = constant.value:sub (2, #constant.value)
-    io.write (" : constant := -16#"..positive.."#;\n")
+  -- Floating point?
+  if constant.value:match ("[%d]+%.[%d]+[f]*") then
+    io.write (" : constant := "..constant.value:gsub ("f", "")..";\n")
   else
-    io.write (" : constant := 16#"..constant.value.."#;\n")
+    if constant.value:sub (1, 1) == "-" then
+      local positive = constant.value:sub (2, #constant.value)
+      io.write (" : constant := -16#"..positive.."#;\n")
+    else
+      io.write (" : constant := 16#"..constant.value.."#;\n")
+    end
   end
 end
