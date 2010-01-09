@@ -4,35 +4,47 @@
 
 exec 1> "$1"
 
+pkg="openal"
+args="-l${pkg}"
 args="-lopenal"
-path="${SYSDEP_STDLIB} /usr/X11R6/lib"
-lib="libopenal.so"
+path="${SYSDEP_STDLIB}"
+lib="lib${pkg}.${SYSDEP_LIBSUFFIX}"
 
 case ${SYSDEP_OS} in
   SD_SYSINFO_OS_DARWIN)
     lib="libopenal.dylib"
     args="-framework OpenAL"
     path="/System/Library/Frameworks/OpenAL.framework ${path}"
+    ${SYSDEP_UTIL_EXIT} 0
     ;;
   *)
     ;;
 esac
 
+FLAGS=`${SYSDEP_TRY_CONFIG_BIN} "openal-config" "--libs"`
+if [ $? -eq 0 ]
+then
+  ${SYSDEP_UTIL_ECHO} ${FLAGS}
+  ${SYSDEP_UTIL_EXIT} 0
+fi
+SYSDEP_ERROR "custom configuration binary failed"
+
+FLAGS=`${SYSDEP_TRY_PKG_CONFIG} "${pkg}" "--libs"`
+if [ $? -eq 0 ]
+then
+  ${SYSDEP_UTIL_ECHO} ${FLAGS}
+  ${SYSDEP_UTIL_EXIT} 0
+else
+  SYSDEP_ERROR "custom pkg-config failed"
+fi
+
 FLAGS=`${SYSDEP_TRY_MANUAL} "${lib}" "${path}" "-L" 2>&-`
 if [ "x${FLAGS}" != "x" ]
 then
-  case ${SYSDEP_OS} in
-    SD_SYSINFO_OS_DARWIN)
-      ${SYSDEP_UTIL_ECHO} ${args}
-      ${SYSDEP_UTIL_EXIT} 0
-      ;;
-    *)
-      ${SYSDEP_UTIL_ECHO} ${FLAGS} ${args}
-      ${SYSDEP_UTIL_EXIT} 0
-      ;;
-    esac
+  ${SYSDEP_UTIL_ECHO} ${FLAGS} ${args}
+  ${SYSDEP_UTIL_EXIT} 0
 else
   SYSDEP_ERROR "manual search failed"
 fi
 
-${SYSDEP_UTIL_EXIT} 0
+${SYSDEP_UTIL_EXIT} 1
