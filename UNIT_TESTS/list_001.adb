@@ -22,22 +22,22 @@ begin
   V := List.String_Vectors.Empty_Vector;
   A := list_001c_element (0);
   List.Address_To_Vector (A, V);
-  Test.Check_Test (61, "element count correct", List.String_Vectors.Length (V) = 0);
+  Test.Check_Test (64, "element count correct", List.String_Vectors.Length (V) = 0);
 
   V := List.String_Vectors.Empty_Vector;
   A := list_001c_element (1);
   List.Address_To_Vector (A, V);
-  Test.Check_Test (62, "element count correct", List.String_Vectors.Length (V) = 1);
+  Test.Check_Test (65, "element count correct", List.String_Vectors.Length (V) = 1);
 
   V := List.String_Vectors.Empty_Vector;
   A := list_001c_element (2);
   List.Address_To_Vector (A, V);
-  Test.Check_Test (63, "element count correct", List.String_Vectors.Length (V) = 2);
+  Test.Check_Test (66, "element count correct", List.String_Vectors.Length (V) = 2);
 
   V := List.String_Vectors.Empty_Vector;
   A := list_001c_element (3);
   List.Address_To_Vector (A, V);
-  Test.Check_Test (64, "element count correct", List.String_Vectors.Length (V) = 3);
+  Test.Check_Test (67, "element count correct", List.String_Vectors.Length (V) = 3);
 
   Test.Finish;
 end list_001;
