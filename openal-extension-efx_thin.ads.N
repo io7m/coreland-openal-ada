@@ -1,2 +1,4 @@
 
+  function Load_API return API_t;
+
 end OpenAL.Extension.EFX_Thin;

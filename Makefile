@@ -277,10 +277,13 @@ ada-compile openal-extension-efx.ads openal-extension.ali \
 openal-extension-efx.ads
 	./ada-compile openal-extension-efx.ads
 
-openal-extension-efx_thin.o openal-extension-efx_thin.ali:\
-ada-compile openal-extension-efx_thin.ads openal-extension-efx_thin.ads \
+openal-extension-efx_thin.ads:\
 openal-types.ali
-	./ada-compile openal-extension-efx_thin.ads
+
+openal-extension-efx_thin.o openal-extension-efx_thin.ali:\
+ada-compile openal-extension-efx_thin.adb openal-extension-efx_thin.ads \
+openal-load.ali
+	./ada-compile openal-extension-efx_thin.adb
 
 openal-extension.o openal-extension.ali:\
 ada-compile openal-extension.ads openal.ali openal-extension.ads

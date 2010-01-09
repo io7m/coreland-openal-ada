@@ -1,0 +1,6 @@
+-- Automatically generated, do not edit.
+
+with OpenAL.Load;
+
+package body OpenAL.Extension.EFX_Thin is
+

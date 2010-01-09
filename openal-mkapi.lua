@@ -18,9 +18,10 @@ assert (api_types_map)
 assert (api_names_map)
 assert (al_types_map)
 assert (generate)
-assert ((generate == "imports") or
-        (generate == "dynamic") or
-        (generate == "api_record"), "unknown value for generate parameter")
+assert ((generate == "imports")    or
+        (generate == "dynamic")    or
+        (generate == "api_record") or
+        (generate == "api_load"), "unknown value for generate parameter")
 
 local types_ada_kind = {}
 local types_c_to_ada = {}
@@ -295,7 +296,7 @@ local function write_access_type (sub_name, subprogram)
 end
 
 --
--- Generate API record type and procedure for loading
+-- Generate API record type
 --
 
 local function write_api_record ()
@@ -337,6 +338,120 @@ local function write_api_record ()
 end
 
 --
+-- Generate procedure to load API record type
+--
+
+local function write_api_load ()
+  local longest_name = 0
+
+  --
+  -- Write a statement that calls Load_Function for
+  -- the current member of the API record.
+  --
+
+  local function write_api_load_field (sub_name, subprogram, first, last)
+    assert (type (sub_name)   == "string")
+    assert (type (subprogram) == "table")
+    assert (type (first)      == "boolean")
+    assert (type (last)       == "boolean")
+
+    if not first then
+      io.write ("       ")
+    end
+
+    io.write (sub_name)
+
+    -- Align arrows
+    for index = #sub_name, longest_name do
+      io.write (" ")
+    end
+
+    io.write ([[ => Load_Function ("]]..prefix..subprogram.name..[[")]])
+
+    if last then
+      io.write (");\n")
+    else
+      io.write (",\n")
+    end
+  end
+
+  --
+  -- Instantiate the Load.Load_Subprogram generic for the current
+  -- API record field.
+  --
+
+  local function write_api_load_instantiate (sub_name, subprogram)
+    assert (type (sub_name)   == "string")
+    assert (type (subprogram) == "table")
+
+    io.write ([[
+    function Load_Function is new Load.Load_Subprogram
+      (Subprogram_Access_Type => ]]..sub_name..[[_t);
+]])
+  end
+
+  --
+  -- Get longest subprogram name for alignment.
+  --
+
+  for index, subprogram in pairs (subprograms) do
+    local sub_name = subprogram_name (subprogram)
+    if #sub_name > longest_name then
+      longest_name = #sub_name
+    end
+  end
+
+  --
+  -- Open Load_API function.
+  --
+
+  io.write ([[
+  function Load_API return API_t is
+
+]])
+
+  --
+  -- Instantiate Load.Load_Subprogram for each member of the
+  -- API record.
+  --
+
+  for index, subprogram in pairs (subprograms) do
+    local sub_name = subprogram_name (subprogram)
+    write_api_load_instantiate (sub_name, subprogram)
+  end
+
+  --
+  -- Open begin block.
+  --
+
+  io.write ([[
+
+  begin
+    return API_t'
+      (]])
+
+  --
+  -- Initialize each field of the API record as one
+  -- initialization statement. Any initialize operation that
+  -- fails will raise Load_Error with the name of the missing
+  -- subprogram.
+  --
+
+  local first = true
+  for index, subprogram in pairs (subprograms) do
+    local sub_name = subprogram_name (subprogram)
+    local last = (next (subprograms, index) == nil)
+    write_api_load_field (sub_name, subprogram, first, last)
+    first = false
+  end
+
+  io.write ([[
+  end Load_API;
+]])
+end
+
+
+--
 -- Generate API
 --
 -- imports    - Generate standard package containing subprogram definitions
@@ -348,6 +463,8 @@ end
 
 if generate == "api_record" then
   write_api_record ()
+elseif generate == "api_load" then
+  write_api_load ()
 else
   for index, subprogram in pairs (subprograms) do
     local sub_name = subprogram_name (subprogram)

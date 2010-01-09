@@ -455,4 +455,6 @@ package OpenAL.Extension.EFX_Thin is
     Is_Filter                      : Is_Filter_t;
   end record;
 
+  function Load_API return API_t;
+
 end OpenAL.Extension.EFX_Thin;

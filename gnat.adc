@@ -27,6 +27,7 @@ pragma source_file_name(OpenAL.Extension.EFX, spec_file_name => "openal-extensio
 
 -- ./openal-extension-efx_thin.apk
 pragma source_file_name(OpenAL.Extension.EFX_Thin, spec_file_name => "openal-extension-efx_thin.ads");
+pragma source_file_name(OpenAL.Extension.EFX_Thin, body_file_name => "openal-extension-efx_thin.adb");
 
 -- ./openal-extension.apk
 pragma source_file_name(OpenAL.Extension, spec_file_name => "openal-extension.ads");
