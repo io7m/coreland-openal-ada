@@ -186,6 +186,7 @@ package OpenAL.Extension.EFX_Thin is
   AL_FILTER_BANDPASS                          : constant := 16#0003#;
   AL_LOWPASS_GAIN                             : constant := 16#0001#;
   AL_LOWPASS_GAINHF                           : constant := 16#0002#;
+
   --
   -- OpenAL EFX
   --
