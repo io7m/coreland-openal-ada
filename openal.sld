@@ -4,6 +4,7 @@ openal-context-capture.o
 openal-context-error.o
 openal-context.o
 openal-error.o
+openal-extension.o
 openal-global.o
 openal-list.o
 openal-listener.o
