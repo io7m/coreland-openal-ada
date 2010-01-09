@@ -454,4 +454,5 @@ package OpenAL.Extension.EFX_Thin is
     Is_Effect                      : Is_Effect_t;
     Is_Filter                      : Is_Filter_t;
   end record;
+
 end OpenAL.Extension.EFX_Thin;
