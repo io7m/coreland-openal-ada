@@ -28,6 +28,34 @@ tests:
 tests_clean:
 	(cd UNIT_TESTS && make clean)
 
+#----------------------------------------------------------------------
+# SYSDEPS start
+
+libs-openal:
+	@echo SYSDEPS openal-libs run create libs-openal 
+	@(cd SYSDEPS && ./sd-run modules/openal-libs)
+_sd_sysinfo.h:
+	@echo SYSDEPS sd-sysinfo run create _sd_sysinfo.h 
+	@(cd SYSDEPS && ./sd-run modules/sd-sysinfo)
+
+
+openal-libs_clean:
+	@echo SYSDEPS openal-libs clean libs-openal 
+	@(cd SYSDEPS && ./sd-clean modules/openal-libs)
+sd-sysinfo_clean:
+	@echo SYSDEPS sd-sysinfo clean _sd_sysinfo.h 
+	@(cd SYSDEPS && ./sd-clean modules/sd-sysinfo)
+
+
+sysdeps_clean:\
+openal-libs_clean \
+sd-sysinfo_clean \
+
+
+
+# SYSDEPS end
+#----------------------------------------------------------------------
+
 UNIT_TESTS/alc_001:\
 ada-bind ada-link UNIT_TESTS/alc_001.ald UNIT_TESTS/alc_001.ali \
 UNIT_TESTS/test.ali openal.a
@@ -297,7 +325,7 @@ openal_info_main.o openal_info_main.ali:\
 ada-compile openal_info_main.adb openal_info.ali
 	./ada-compile openal_info_main.adb
 
-clean-all: tests_clean obj_clean ext_clean
+clean-all: sysdeps_clean tests_clean obj_clean ext_clean
 clean: obj_clean
 obj_clean:
 	rm -f UNIT_TESTS/alc_001 UNIT_TESTS/alc_001.ali UNIT_TESTS/alc_001.o \
