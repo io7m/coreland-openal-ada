@@ -1,3 +1,5 @@
+-- Automatically generated, do not edit.
+
 with System;
 with OpenAL.Types;
 
@@ -194,190 +196,262 @@ package OpenAL.Extension.EFX_Thin is
   -- OpenAL EFX
   --
 
-  procedure Auxiliary_Effect_Slotf
+  -- alAuxiliaryEffectSlotf
+  type Auxiliary_Effect_Slotf_t is access procedure
     (Slot      : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
      Value     : Types.Float_t);
-  pragma Import (C, Auxiliary_Effect_Slotf, "alAuxiliaryEffectSlotf");
+  pragma Convention (C, Auxiliary_Effect_Slotf_t);
 
-  procedure Auxiliary_Effect_Slotfv
+  -- alAuxiliaryEffectSlotfv
+  type Auxiliary_Effect_Slotfv_t is access procedure
     (Slot      : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
      Values    : System.Address);
-  pragma Import (C, Auxiliary_Effect_Slotfv, "alAuxiliaryEffectSlotfv");
+  pragma Convention (C, Auxiliary_Effect_Slotfv_t);
 
-  procedure Auxiliary_Effect_Sloti
+  -- alAuxiliaryEffectSloti
+  type Auxiliary_Effect_Sloti_t is access procedure
     (Slot      : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
      Value     : Types.Integer_t);
-  pragma Import (C, Auxiliary_Effect_Sloti, "alAuxiliaryEffectSloti");
+  pragma Convention (C, Auxiliary_Effect_Sloti_t);
 
-  procedure Auxiliary_Effect_Slotiv
+  -- alAuxiliaryEffectSlotiv
+  type Auxiliary_Effect_Slotiv_t is access procedure
     (Slot      : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
      Values    : System.Address);
-  pragma Import (C, Auxiliary_Effect_Slotiv, "alAuxiliaryEffectSlotiv");
+  pragma Convention (C, Auxiliary_Effect_Slotiv_t);
 
-  procedure Delete_Auxiliary_Effect_Slots
+  -- alDeleteAuxiliaryEffectSlots
+  type Delete_Auxiliary_Effect_Slots_t is access procedure
     (Size  : Types.Size_t;
      Slots : System.Address);
-  pragma Import (C, Delete_Auxiliary_Effect_Slots, "alDeleteAuxiliaryEffectSlots");
+  pragma Convention (C, Delete_Auxiliary_Effect_Slots_t);
 
-  procedure Delete_Effects
+  -- alDeleteEffects
+  type Delete_Effects_t is access procedure
     (Size    : Types.Size_t;
      Effects : System.Address);
-  pragma Import (C, Delete_Effects, "alDeleteEffects");
+  pragma Convention (C, Delete_Effects_t);
 
-  procedure Delete_Filters
+  -- alDeleteFilters
+  type Delete_Filters_t is access procedure
     (Size    : Types.Size_t;
      Filters : System.Address);
-  pragma Import (C, Delete_Filters, "alDeleteFilters");
+  pragma Convention (C, Delete_Filters_t);
 
-  procedure Effectf
+  -- alEffectf
+  type Effectf_t is access procedure
     (Effect    : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
      Value     : Types.Float_t);
-  pragma Import (C, Effectf, "alEffectf");
+  pragma Convention (C, Effectf_t);
 
-  procedure Effectfv
+  -- alEffectfv
+  type Effectfv_t is access procedure
     (Effect    : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
      Values    : System.Address);
-  pragma Import (C, Effectfv, "alEffectfv");
+  pragma Convention (C, Effectfv_t);
 
-  procedure Effecti
+  -- alEffecti
+  type Effecti_t is access procedure
     (Effect    : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
      Value     : Types.Integer_t);
-  pragma Import (C, Effecti, "alEffecti");
+  pragma Convention (C, Effecti_t);
 
-  procedure Effectiv
+  -- alEffectiv
+  type Effectiv_t is access procedure
     (Effect    : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
      Values    : System.Address);
-  pragma Import (C, Effectiv, "alEffectiv");
+  pragma Convention (C, Effectiv_t);
 
-  procedure Filterf
+  -- alFilterf
+  type Filterf_t is access procedure
     (Filter    : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
      Value     : Types.Float_t);
-  pragma Import (C, Filterf, "alFilterf");
+  pragma Convention (C, Filterf_t);
 
-  procedure Filterfv
+  -- alFilterfv
+  type Filterfv_t is access procedure
     (Filter    : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
      Values    : System.Address);
-  pragma Import (C, Filterfv, "alFilterfv");
+  pragma Convention (C, Filterfv_t);
 
-  procedure Filteri
+  -- alFilteri
+  type Filteri_t is access procedure
     (Filter    : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
      Value     : Types.Integer_t);
-  pragma Import (C, Filteri, "alFilteri");
+  pragma Convention (C, Filteri_t);
 
-  procedure Filteriv
+  -- alFilteriv
+  type Filteriv_t is access procedure
     (Filter    : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
      Values    : System.Address);
-  pragma Import (C, Filteriv, "alFilteriv");
+  pragma Convention (C, Filteriv_t);
 
-  procedure Gen_Auxiliary_Effect_Slots
+  -- alGenAuxiliaryEffectSlots
+  type Gen_Auxiliary_Effect_Slots_t is access procedure
     (Size  : Types.Size_t;
      Slots : System.Address);
-  pragma Import (C, Gen_Auxiliary_Effect_Slots, "alGenAuxiliaryEffectSlots");
+  pragma Convention (C, Gen_Auxiliary_Effect_Slots_t);
 
-  procedure Gen_Effects
+  -- alGenEffects
+  type Gen_Effects_t is access procedure
     (Size    : Types.Size_t;
      Effects : System.Address);
-  pragma Import (C, Gen_Effects, "alGenEffects");
+  pragma Convention (C, Gen_Effects_t);
 
-  procedure Gen_Filters
+  -- alGenFilters
+  type Gen_Filters_t is access procedure
     (Size    : Types.Size_t;
      Filters : System.Address);
-  pragma Import (C, Gen_Filters, "alGenFilters");
+  pragma Convention (C, Gen_Filters_t);
 
-  procedure Get_Auxiliary_Effect_Slotf
+  -- alGetAuxiliaryEffectSlotf
+  type Get_Auxiliary_Effect_Slotf_t is access procedure
     (Slot      : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
      Values    : System.Address);
-  pragma Import (C, Get_Auxiliary_Effect_Slotf, "alGetAuxiliaryEffectSlotf");
+  pragma Convention (C, Get_Auxiliary_Effect_Slotf_t);
 
-  procedure Get_Auxiliary_Effect_Slotfv
+  -- alGetAuxiliaryEffectSlotfv
+  type Get_Auxiliary_Effect_Slotfv_t is access procedure
     (Slot      : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
      Values    : System.Address);
-  pragma Import (C, Get_Auxiliary_Effect_Slotfv, "alGetAuxiliaryEffectSlotfv");
+  pragma Convention (C, Get_Auxiliary_Effect_Slotfv_t);
 
-  procedure Get_Auxiliary_Effect_Sloti
+  -- alGetAuxiliaryEffectSloti
+  type Get_Auxiliary_Effect_Sloti_t is access procedure
     (Slot      : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
      Values    : System.Address);
-  pragma Import (C, Get_Auxiliary_Effect_Sloti, "alGetAuxiliaryEffectSloti");
+  pragma Convention (C, Get_Auxiliary_Effect_Sloti_t);
 
-  procedure Get_Auxiliary_Effect_Slotiv
+  -- alGetAuxiliaryEffectSlotiv
+  type Get_Auxiliary_Effect_Slotiv_t is access procedure
     (Slot      : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
      Values    : System.Address);
-  pragma Import (C, Get_Auxiliary_Effect_Slotiv, "alGetAuxiliaryEffectSlotiv");
+  pragma Convention (C, Get_Auxiliary_Effect_Slotiv_t);
 
-  procedure Get_Effectf
+  -- alGetEffectf
+  type Get_Effectf_t is access procedure
     (Effect    : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
      Values    : System.Address);
-  pragma Import (C, Get_Effectf, "alGetEffectf");
+  pragma Convention (C, Get_Effectf_t);
 
-  procedure Get_Effectfv
+  -- alGetEffectfv
+  type Get_Effectfv_t is access procedure
     (Effect    : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
      Values    : System.Address);
-  pragma Import (C, Get_Effectfv, "alGetEffectfv");
+  pragma Convention (C, Get_Effectfv_t);
 
-  procedure Get_Effecti
+  -- alGetEffecti
+  type Get_Effecti_t is access procedure
     (Effect    : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
      Values    : System.Address);
-  pragma Import (C, Get_Effecti, "alGetEffecti");
+  pragma Convention (C, Get_Effecti_t);
 
-  procedure Get_Effectiv
+  -- alGetEffectiv
+  type Get_Effectiv_t is access procedure
     (Effect    : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
      Values    : System.Address);
-  pragma Import (C, Get_Effectiv, "alGetEffectiv");
+  pragma Convention (C, Get_Effectiv_t);
 
-  procedure Get_Filterf
+  -- alGetFilterf
+  type Get_Filterf_t is access procedure
     (Filter    : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
      Values    : System.Address);
-  pragma Import (C, Get_Filterf, "alGetFilterf");
+  pragma Convention (C, Get_Filterf_t);
 
-  procedure Get_Filterfv
+  -- alGetFilterfv
+  type Get_Filterfv_t is access procedure
     (Filter    : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
      Values    : System.Address);
-  pragma Import (C, Get_Filterfv, "alGetFilterfv");
+  pragma Convention (C, Get_Filterfv_t);
 
-  procedure Get_Filteri
+  -- alGetFilteri
+  type Get_Filteri_t is access procedure
     (Filter    : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
      Values    : System.Address);
-  pragma Import (C, Get_Filteri, "alGetFilteri");
+  pragma Convention (C, Get_Filteri_t);
 
-  procedure Get_Filteriv
+  -- alGetFilteriv
+  type Get_Filteriv_t is access procedure
     (Filter    : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
      Values    : System.Address);
-  pragma Import (C, Get_Filteriv, "alGetFilteriv");
+  pragma Convention (C, Get_Filteriv_t);
 
-  function Is_Auxiliary_Effect_Slot
+  -- alIsAuxiliaryEffectSlot
+  type Is_Auxiliary_Effect_Slot_t is access function
     (Slot : Types.Unsigned_Integer_t) return Types.Boolean_t;
-  pragma Import (C, Is_Auxiliary_Effect_Slot, "alIsAuxiliaryEffectSlot");
+  pragma Convention (C, Is_Auxiliary_Effect_Slot_t);
 
-  function Is_Effect
+  -- alIsEffect
+  type Is_Effect_t is access function
     (Effect : Types.Unsigned_Integer_t) return Types.Boolean_t;
-  pragma Import (C, Is_Effect, "alIsEffect");
+  pragma Convention (C, Is_Effect_t);
 
-  function Is_Filter
+  -- alIsFilter
+  type Is_Filter_t is access function
     (Filter : Types.Unsigned_Integer_t) return Types.Boolean_t;
-  pragma Import (C, Is_Filter, "alIsFilter");
+  pragma Convention (C, Is_Filter_t);
 
+  --
+  -- Record type for API pointers
+  --
+
+  type API_t is record
+    Auxiliary_Effect_Slotf         : Auxiliary_Effect_Slotf_t;
+    Auxiliary_Effect_Slotfv        : Auxiliary_Effect_Slotfv_t;
+    Auxiliary_Effect_Sloti         : Auxiliary_Effect_Sloti_t;
+    Auxiliary_Effect_Slotiv        : Auxiliary_Effect_Slotiv_t;
+    Delete_Auxiliary_Effect_Slots  : Delete_Auxiliary_Effect_Slots_t;
+    Delete_Effects                 : Delete_Effects_t;
+    Delete_Filters                 : Delete_Filters_t;
+    Effectf                        : Effectf_t;
+    Effectfv                       : Effectfv_t;
+    Effecti                        : Effecti_t;
+    Effectiv                       : Effectiv_t;
+    Filterf                        : Filterf_t;
+    Filterfv                       : Filterfv_t;
+    Filteri                        : Filteri_t;
+    Filteriv                       : Filteriv_t;
+    Gen_Auxiliary_Effect_Slots     : Gen_Auxiliary_Effect_Slots_t;
+    Gen_Effects                    : Gen_Effects_t;
+    Gen_Filters                    : Gen_Filters_t;
+    Get_Auxiliary_Effect_Slotf     : Get_Auxiliary_Effect_Slotf_t;
+    Get_Auxiliary_Effect_Slotfv    : Get_Auxiliary_Effect_Slotfv_t;
+    Get_Auxiliary_Effect_Sloti     : Get_Auxiliary_Effect_Sloti_t;
+    Get_Auxiliary_Effect_Slotiv    : Get_Auxiliary_Effect_Slotiv_t;
+    Get_Effectf                    : Get_Effectf_t;
+    Get_Effectfv                   : Get_Effectfv_t;
+    Get_Effecti                    : Get_Effecti_t;
+    Get_Effectiv                   : Get_Effectiv_t;
+    Get_Filterf                    : Get_Filterf_t;
+    Get_Filterfv                   : Get_Filterfv_t;
+    Get_Filteri                    : Get_Filteri_t;
+    Get_Filteriv                   : Get_Filteriv_t;
+    Is_Auxiliary_Effect_Slot       : Is_Auxiliary_Effect_Slot_t;
+    Is_Effect                      : Is_Effect_t;
+    Is_Filter                      : Is_Filter_t;
+  end record;
 end OpenAL.Extension.EFX_Thin;
