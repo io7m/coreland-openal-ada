@@ -272,7 +272,8 @@ openal-types.ali
 	./ada-compile openal-error.adb
 
 openal-extension-efx_thin.o openal-extension-efx_thin.ali:\
-ada-compile openal-extension-efx_thin.ads openal-extension-efx_thin.ads
+ada-compile openal-extension-efx_thin.ads openal-extension-efx_thin.ads \
+openal-types.ali
 	./ada-compile openal-extension-efx_thin.ads
 
 openal-extension.o openal-extension.ali:\
