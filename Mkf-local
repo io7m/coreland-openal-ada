@@ -1,0 +1,5 @@
+local: libs-openal
+	./check-deps
+
+local_pre:
+local_clean:

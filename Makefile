@@ -3,7 +3,7 @@
 default: all
 
 all:\
-UNIT_TESTS/alc_001 UNIT_TESTS/alc_001.ali UNIT_TESTS/alc_001.o \
+local UNIT_TESTS/alc_001 UNIT_TESTS/alc_001.ali UNIT_TESTS/alc_001.o \
 UNIT_TESTS/buffers_001 UNIT_TESTS/buffers_001.ali UNIT_TESTS/buffers_001.o \
 UNIT_TESTS/global_001 UNIT_TESTS/global_001.ali UNIT_TESTS/global_001.o \
 UNIT_TESTS/init_001 UNIT_TESTS/init_001.ali UNIT_TESTS/init_001.o \
@@ -21,6 +21,13 @@ openal-list.ali openal-list.o openal-listener.ali openal-listener.o \
 openal-source.ali openal-source.o openal-thin.ali openal-thin.o \
 openal-types.ali openal-types.o openal.a openal.ali openal.o openal_info.ali \
 openal_info.o openal_info_main.ali openal_info_main.o
+
+# Mkf-local
+local: libs-openal
+	./check-deps
+
+local_pre:
+local_clean:
 
 # Mkf-test
 tests:
@@ -325,7 +332,7 @@ openal_info_main.o openal_info_main.ali:\
 ada-compile openal_info_main.adb openal_info.ali
 	./ada-compile openal_info_main.adb
 
-clean-all: sysdeps_clean tests_clean obj_clean ext_clean
+clean-all: sysdeps_clean tests_clean local_clean obj_clean ext_clean
 clean: obj_clean
 obj_clean:
 	rm -f UNIT_TESTS/alc_001 UNIT_TESTS/alc_001.ali UNIT_TESTS/alc_001.o \
