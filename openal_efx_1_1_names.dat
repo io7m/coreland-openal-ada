@@ -1,33 +1,33 @@
-alIsAuxiliaryEffectSlot       : Slot
-alIsEffect                    : Effect
-alIsFilter                    : Filter 
-alAuxiliaryEffectSlotf        : Slot    : Parameter : Value
-alAuxiliaryEffectSlotfv       : Slot    : Parameter : Values
-alAuxiliaryEffectSloti        : Slot    : Parameter : Value
-alAuxiliaryEffectSlotiv       : Slot    : Parameter : Values
-alDeleteAuxiliaryEffectSlots  : Size    : Slots
-alDeleteEffects               : Size    : Effects
-alDeleteFilters               : Size    : Filters
-alEffectf                     : Effect  : Parameter : Value
-alEffectfv                    : Effect  : Parameter : Values
-alEffecti                     : Effect  : Parameter : Value
-alEffectiv                    : Effect  : Parameter : Values
-alFilterf                     : Filter  : Parameter : Value
-alFilterfv                    : Filter  : Parameter : Values
-alFilteri                     : Filter  : Parameter : Value
-alFilteriv                    : Filter  : Parameter : Values
-alGenAuxiliaryEffectSlots     : Size    : Slots
-alGenEffects                  : Size    : Effects
-alGenFilters                  : Size    : Filters
-alGetAuxiliaryEffectSlotf     : Slot    : Parameter : Values
-alGetAuxiliaryEffectSlotfv    : Slot    : Parameter : Values
-alGetAuxiliaryEffectSloti     : Slot    : Parameter : Values
-alGetAuxiliaryEffectSlotiv    : Slot    : Parameter : Values
-alGetEffectf                  : Effect  : Parameter : Values
-alGetEffectfv                 : Effect  : Parameter : Values
-alGetEffecti                  : Effect  : Parameter : Values
-alGetEffectiv                 : Effect  : Parameter : Values
-alGetFilterf                  : Filter  : Parameter : Values
-alGetFilterfv                 : Filter  : Parameter : Values
-alGetFilteri                  : Filter  : Parameter : Values
-alGetFilteriv                 : Filter  : Parameter : Values
+AuxiliaryEffectSlotf        : Slot    : Parameter : Value
+AuxiliaryEffectSlotfv       : Slot    : Parameter : Values
+AuxiliaryEffectSloti        : Slot    : Parameter : Value
+AuxiliaryEffectSlotiv       : Slot    : Parameter : Values
+DeleteAuxiliaryEffectSlots  : Size    : Slots
+DeleteEffects               : Size    : Effects
+DeleteFilters               : Size    : Filters
+Effectf                     : Effect  : Parameter : Value
+Effectfv                    : Effect  : Parameter : Values
+Effecti                     : Effect  : Parameter : Value
+Effectiv                    : Effect  : Parameter : Values
+Filterf                     : Filter  : Parameter : Value
+Filterfv                    : Filter  : Parameter : Values
+Filteri                     : Filter  : Parameter : Value
+Filteriv                    : Filter  : Parameter : Values
+GenAuxiliaryEffectSlots     : Size    : Slots
+GenEffects                  : Size    : Effects
+GenFilters                  : Size    : Filters
+GetAuxiliaryEffectSlotf     : Slot    : Parameter : Values
+GetAuxiliaryEffectSlotfv    : Slot    : Parameter : Values
+GetAuxiliaryEffectSloti     : Slot    : Parameter : Values
+GetAuxiliaryEffectSlotiv    : Slot    : Parameter : Values
+GetEffectf                  : Effect  : Parameter : Values
+GetEffectfv                 : Effect  : Parameter : Values
+GetEffecti                  : Effect  : Parameter : Values
+GetEffectiv                 : Effect  : Parameter : Values
+GetFilterf                  : Filter  : Parameter : Values
+GetFilterfv                 : Filter  : Parameter : Values
+GetFilteri                  : Filter  : Parameter : Values
+GetFilteriv                 : Filter  : Parameter : Values
+IsAuxiliaryEffectSlot       : Slot
+IsEffect                    : Effect
+IsFilter                    : Filter 

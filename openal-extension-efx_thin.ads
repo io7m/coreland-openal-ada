@@ -191,190 +191,190 @@ package OpenAL.Extension.EFX_Thin is
   -- OpenAL EFX
   --
 
-  function al_Is_Auxiliary_Effect_Slot
+  procedure Auxiliary_Effect_Slotf
+    (Slot      : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
+     Value     : Types.Float_t);
+  pragma Import (C, Auxiliary_Effect_Slotf, "alAuxiliaryEffectSlotf");
+
+  procedure Auxiliary_Effect_Slotfv
+    (Slot      : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
+     Values    : System.Address);
+  pragma Import (C, Auxiliary_Effect_Slotfv, "alAuxiliaryEffectSlotfv");
+
+  procedure Auxiliary_Effect_Sloti
+    (Slot      : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
+     Value     : Types.Integer_t);
+  pragma Import (C, Auxiliary_Effect_Sloti, "alAuxiliaryEffectSloti");
+
+  procedure Auxiliary_Effect_Slotiv
+    (Slot      : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
+     Values    : System.Address);
+  pragma Import (C, Auxiliary_Effect_Slotiv, "alAuxiliaryEffectSlotiv");
+
+  procedure Delete_Auxiliary_Effect_Slots
+    (Size  : Types.Size_t;
+     Slots : System.Address);
+  pragma Import (C, Delete_Auxiliary_Effect_Slots, "alDeleteAuxiliaryEffectSlots");
+
+  procedure Delete_Effects
+    (Size    : Types.Size_t;
+     Effects : System.Address);
+  pragma Import (C, Delete_Effects, "alDeleteEffects");
+
+  procedure Delete_Filters
+    (Size    : Types.Size_t;
+     Filters : System.Address);
+  pragma Import (C, Delete_Filters, "alDeleteFilters");
+
+  procedure Effectf
+    (Effect    : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
+     Value     : Types.Float_t);
+  pragma Import (C, Effectf, "alEffectf");
+
+  procedure Effectfv
+    (Effect    : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
+     Values    : System.Address);
+  pragma Import (C, Effectfv, "alEffectfv");
+
+  procedure Effecti
+    (Effect    : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
+     Value     : Types.Integer_t);
+  pragma Import (C, Effecti, "alEffecti");
+
+  procedure Effectiv
+    (Effect    : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
+     Values    : System.Address);
+  pragma Import (C, Effectiv, "alEffectiv");
+
+  procedure Filterf
+    (Filter    : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
+     Value     : Types.Float_t);
+  pragma Import (C, Filterf, "alFilterf");
+
+  procedure Filterfv
+    (Filter    : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
+     Values    : System.Address);
+  pragma Import (C, Filterfv, "alFilterfv");
+
+  procedure Filteri
+    (Filter    : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
+     Value     : Types.Integer_t);
+  pragma Import (C, Filteri, "alFilteri");
+
+  procedure Filteriv
+    (Filter    : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
+     Values    : System.Address);
+  pragma Import (C, Filteriv, "alFilteriv");
+
+  procedure Gen_Auxiliary_Effect_Slots
+    (Size  : Types.Size_t;
+     Slots : System.Address);
+  pragma Import (C, Gen_Auxiliary_Effect_Slots, "alGenAuxiliaryEffectSlots");
+
+  procedure Gen_Effects
+    (Size    : Types.Size_t;
+     Effects : System.Address);
+  pragma Import (C, Gen_Effects, "alGenEffects");
+
+  procedure Gen_Filters
+    (Size    : Types.Size_t;
+     Filters : System.Address);
+  pragma Import (C, Gen_Filters, "alGenFilters");
+
+  procedure Get_Auxiliary_Effect_Slotf
+    (Slot      : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
+     Values    : System.Address);
+  pragma Import (C, Get_Auxiliary_Effect_Slotf, "alGetAuxiliaryEffectSlotf");
+
+  procedure Get_Auxiliary_Effect_Slotfv
+    (Slot      : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
+     Values    : System.Address);
+  pragma Import (C, Get_Auxiliary_Effect_Slotfv, "alGetAuxiliaryEffectSlotfv");
+
+  procedure Get_Auxiliary_Effect_Sloti
+    (Slot      : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
+     Values    : System.Address);
+  pragma Import (C, Get_Auxiliary_Effect_Sloti, "alGetAuxiliaryEffectSloti");
+
+  procedure Get_Auxiliary_Effect_Slotiv
+    (Slot      : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
+     Values    : System.Address);
+  pragma Import (C, Get_Auxiliary_Effect_Slotiv, "alGetAuxiliaryEffectSlotiv");
+
+  procedure Get_Effectf
+    (Effect    : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
+     Values    : System.Address);
+  pragma Import (C, Get_Effectf, "alGetEffectf");
+
+  procedure Get_Effectfv
+    (Effect    : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
+     Values    : System.Address);
+  pragma Import (C, Get_Effectfv, "alGetEffectfv");
+
+  procedure Get_Effecti
+    (Effect    : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
+     Values    : System.Address);
+  pragma Import (C, Get_Effecti, "alGetEffecti");
+
+  procedure Get_Effectiv
+    (Effect    : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
+     Values    : System.Address);
+  pragma Import (C, Get_Effectiv, "alGetEffectiv");
+
+  procedure Get_Filterf
+    (Filter    : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
+     Values    : System.Address);
+  pragma Import (C, Get_Filterf, "alGetFilterf");
+
+  procedure Get_Filterfv
+    (Filter    : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
+     Values    : System.Address);
+  pragma Import (C, Get_Filterfv, "alGetFilterfv");
+
+  procedure Get_Filteri
+    (Filter    : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
+     Values    : System.Address);
+  pragma Import (C, Get_Filteri, "alGetFilteri");
+
+  procedure Get_Filteriv
+    (Filter    : Types.Unsigned_Integer_t;
+     Parameter : Types.Enumeration_t;
+     Values    : System.Address);
+  pragma Import (C, Get_Filteriv, "alGetFilteriv");
+
+  function Is_Auxiliary_Effect_Slot
     (Slot : Types.Unsigned_Integer_t) return Types.Boolean_t;
-  pragma Import (C, al_Is_Auxiliary_Effect_Slot, "alalIsAuxiliaryEffectSlot");
+  pragma Import (C, Is_Auxiliary_Effect_Slot, "alIsAuxiliaryEffectSlot");
 
-  function al_Is_Effect
+  function Is_Effect
     (Effect : Types.Unsigned_Integer_t) return Types.Boolean_t;
-  pragma Import (C, al_Is_Effect, "alalIsEffect");
+  pragma Import (C, Is_Effect, "alIsEffect");
 
-  function al_Is_Filter
+  function Is_Filter
     (Filter : Types.Unsigned_Integer_t) return Types.Boolean_t;
-  pragma Import (C, al_Is_Filter, "alalIsFilter");
-
-  procedure al_Auxiliary_Effect_Slotf
-    (Slot      : Types.Unsigned_Integer_t;
-     Parameter : Types.Enumeration_t;
-     Value     : Types.Float_t);
-  pragma Import (C, al_Auxiliary_Effect_Slotf, "alalAuxiliaryEffectSlotf");
-
-  procedure al_Auxiliary_Effect_Slotfv
-    (Slot      : Types.Unsigned_Integer_t;
-     Parameter : Types.Enumeration_t;
-     Values    : System.Address);
-  pragma Import (C, al_Auxiliary_Effect_Slotfv, "alalAuxiliaryEffectSlotfv");
-
-  procedure al_Auxiliary_Effect_Sloti
-    (Slot      : Types.Unsigned_Integer_t;
-     Parameter : Types.Enumeration_t;
-     Value     : Types.Integer_t);
-  pragma Import (C, al_Auxiliary_Effect_Sloti, "alalAuxiliaryEffectSloti");
-
-  procedure al_Auxiliary_Effect_Slotiv
-    (Slot      : Types.Unsigned_Integer_t;
-     Parameter : Types.Enumeration_t;
-     Values    : System.Address);
-  pragma Import (C, al_Auxiliary_Effect_Slotiv, "alalAuxiliaryEffectSlotiv");
-
-  procedure al_Delete_Auxiliary_Effect_Slots
-    (Size  : Types.Size_t;
-     Slots : System.Address);
-  pragma Import (C, al_Delete_Auxiliary_Effect_Slots, "alalDeleteAuxiliaryEffectSlots");
-
-  procedure al_Delete_Effects
-    (Size    : Types.Size_t;
-     Effects : System.Address);
-  pragma Import (C, al_Delete_Effects, "alalDeleteEffects");
-
-  procedure al_Delete_Filters
-    (Size    : Types.Size_t;
-     Filters : System.Address);
-  pragma Import (C, al_Delete_Filters, "alalDeleteFilters");
-
-  procedure al_Effectf
-    (Effect    : Types.Unsigned_Integer_t;
-     Parameter : Types.Enumeration_t;
-     Value     : Types.Float_t);
-  pragma Import (C, al_Effectf, "alalEffectf");
-
-  procedure al_Effectfv
-    (Effect    : Types.Unsigned_Integer_t;
-     Parameter : Types.Enumeration_t;
-     Values    : System.Address);
-  pragma Import (C, al_Effectfv, "alalEffectfv");
-
-  procedure al_Effecti
-    (Effect    : Types.Unsigned_Integer_t;
-     Parameter : Types.Enumeration_t;
-     Value     : Types.Integer_t);
-  pragma Import (C, al_Effecti, "alalEffecti");
-
-  procedure al_Effectiv
-    (Effect    : Types.Unsigned_Integer_t;
-     Parameter : Types.Enumeration_t;
-     Values    : System.Address);
-  pragma Import (C, al_Effectiv, "alalEffectiv");
-
-  procedure al_Filterf
-    (Filter    : Types.Unsigned_Integer_t;
-     Parameter : Types.Enumeration_t;
-     Value     : Types.Float_t);
-  pragma Import (C, al_Filterf, "alalFilterf");
-
-  procedure al_Filterfv
-    (Filter    : Types.Unsigned_Integer_t;
-     Parameter : Types.Enumeration_t;
-     Values    : System.Address);
-  pragma Import (C, al_Filterfv, "alalFilterfv");
-
-  procedure al_Filteri
-    (Filter    : Types.Unsigned_Integer_t;
-     Parameter : Types.Enumeration_t;
-     Value     : Types.Integer_t);
-  pragma Import (C, al_Filteri, "alalFilteri");
-
-  procedure al_Filteriv
-    (Filter    : Types.Unsigned_Integer_t;
-     Parameter : Types.Enumeration_t;
-     Values    : System.Address);
-  pragma Import (C, al_Filteriv, "alalFilteriv");
-
-  procedure al_Gen_Auxiliary_Effect_Slots
-    (Size  : Types.Size_t;
-     Slots : System.Address);
-  pragma Import (C, al_Gen_Auxiliary_Effect_Slots, "alalGenAuxiliaryEffectSlots");
-
-  procedure al_Gen_Effects
-    (Size    : Types.Size_t;
-     Effects : System.Address);
-  pragma Import (C, al_Gen_Effects, "alalGenEffects");
-
-  procedure al_Gen_Filters
-    (Size    : Types.Size_t;
-     Filters : System.Address);
-  pragma Import (C, al_Gen_Filters, "alalGenFilters");
-
-  procedure al_Get_Auxiliary_Effect_Slotf
-    (Slot      : Types.Unsigned_Integer_t;
-     Parameter : Types.Enumeration_t;
-     Values    : System.Address);
-  pragma Import (C, al_Get_Auxiliary_Effect_Slotf, "alalGetAuxiliaryEffectSlotf");
-
-  procedure al_Get_Auxiliary_Effect_Slotfv
-    (Slot      : Types.Unsigned_Integer_t;
-     Parameter : Types.Enumeration_t;
-     Values    : System.Address);
-  pragma Import (C, al_Get_Auxiliary_Effect_Slotfv, "alalGetAuxiliaryEffectSlotfv");
-
-  procedure al_Get_Auxiliary_Effect_Sloti
-    (Slot      : Types.Unsigned_Integer_t;
-     Parameter : Types.Enumeration_t;
-     Values    : System.Address);
-  pragma Import (C, al_Get_Auxiliary_Effect_Sloti, "alalGetAuxiliaryEffectSloti");
-
-  procedure al_Get_Auxiliary_Effect_Slotiv
-    (Slot      : Types.Unsigned_Integer_t;
-     Parameter : Types.Enumeration_t;
-     Values    : System.Address);
-  pragma Import (C, al_Get_Auxiliary_Effect_Slotiv, "alalGetAuxiliaryEffectSlotiv");
-
-  procedure al_Get_Effectf
-    (Effect    : Types.Unsigned_Integer_t;
-     Parameter : Types.Enumeration_t;
-     Values    : System.Address);
-  pragma Import (C, al_Get_Effectf, "alalGetEffectf");
-
-  procedure al_Get_Effectfv
-    (Effect    : Types.Unsigned_Integer_t;
-     Parameter : Types.Enumeration_t;
-     Values    : System.Address);
-  pragma Import (C, al_Get_Effectfv, "alalGetEffectfv");
-
-  procedure al_Get_Effecti
-    (Effect    : Types.Unsigned_Integer_t;
-     Parameter : Types.Enumeration_t;
-     Values    : System.Address);
-  pragma Import (C, al_Get_Effecti, "alalGetEffecti");
-
-  procedure al_Get_Effectiv
-    (Effect    : Types.Unsigned_Integer_t;
-     Parameter : Types.Enumeration_t;
-     Values    : System.Address);
-  pragma Import (C, al_Get_Effectiv, "alalGetEffectiv");
-
-  procedure al_Get_Filterf
-    (Filter    : Types.Unsigned_Integer_t;
-     Parameter : Types.Enumeration_t;
-     Values    : System.Address);
-  pragma Import (C, al_Get_Filterf, "alalGetFilterf");
-
-  procedure al_Get_Filterfv
-    (Filter    : Types.Unsigned_Integer_t;
-     Parameter : Types.Enumeration_t;
-     Values    : System.Address);
-  pragma Import (C, al_Get_Filterfv, "alalGetFilterfv");
-
-  procedure al_Get_Filteri
-    (Filter    : Types.Unsigned_Integer_t;
-     Parameter : Types.Enumeration_t;
-     Values    : System.Address);
-  pragma Import (C, al_Get_Filteri, "alalGetFilteri");
-
-  procedure al_Get_Filteriv
-    (Filter    : Types.Unsigned_Integer_t;
-     Parameter : Types.Enumeration_t;
-     Values    : System.Address);
-  pragma Import (C, al_Get_Filteriv, "alalGetFilteriv");
+  pragma Import (C, Is_Filter, "alIsFilter");
 
 end OpenAL.Extension.EFX_Thin;

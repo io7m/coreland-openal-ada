@@ -1,33 +1,33 @@
-ALboolean : alIsAuxiliaryEffectSlot       : ALuint
-ALboolean : alIsEffect                    : ALuint
-ALboolean : alIsFilter                    : ALuint
-void      : alAuxiliaryEffectSlotf        : ALuint  : ALenum : ALfloat
-void      : alAuxiliaryEffectSlotfv       : ALuint  : ALenum : ALfloat *
-void      : alAuxiliaryEffectSloti        : ALuint  : ALenum : ALint
-void      : alAuxiliaryEffectSlotiv       : ALuint  : ALenum : ALint *
-void      : alDeleteAuxiliaryEffectSlots  : ALsizei : ALuint *
-void      : alDeleteEffects               : ALsizei : ALuint *
-void      : alDeleteFilters               : ALsizei : ALuint *
-void      : alEffectf                     : ALuint  : ALenum : ALfloat
-void      : alEffectfv                    : ALuint  : ALenum : ALfloat *
-void      : alEffecti                     : ALuint  : ALenum : ALint
-void      : alEffectiv                    : ALuint  : ALenum : ALint *
-void      : alFilterf                     : ALuint  : ALenum : ALfloat
-void      : alFilterfv                    : ALuint  : ALenum : ALfloat *
-void      : alFilteri                     : ALuint  : ALenum : ALint
-void      : alFilteriv                    : ALuint  : ALenum : ALint *
-void      : alGenAuxiliaryEffectSlots     : ALsizei : ALuint *
-void      : alGenEffects                  : ALsizei : ALuint *
-void      : alGenFilters                  : ALsizei : ALuint *
-void      : alGetAuxiliaryEffectSlotf     : ALuint  : ALenum : ALfloat *
-void      : alGetAuxiliaryEffectSlotfv    : ALuint  : ALenum : ALfloat *
-void      : alGetAuxiliaryEffectSloti     : ALuint  : ALenum : ALint *
-void      : alGetAuxiliaryEffectSlotiv    : ALuint  : ALenum : ALint *
-void      : alGetEffectf                  : ALuint  : ALenum : ALfloat *
-void      : alGetEffectfv                 : ALuint  : ALenum : ALfloat *
-void      : alGetEffecti                  : ALuint  : ALenum : ALint *
-void      : alGetEffectiv                 : ALuint  : ALenum : ALint *
-void      : alGetFilterf                  : ALuint  : ALenum : ALfloat *
-void      : alGetFilterfv                 : ALuint  : ALenum : ALfloat *
-void      : alGetFilteri                  : ALuint  : ALenum : ALint *
-void      : alGetFilteriv                 : ALuint  : ALenum : ALint *
+void      : AuxiliaryEffectSlotf        : ALuint  : ALenum : ALfloat
+void      : AuxiliaryEffectSlotfv       : ALuint  : ALenum : ALfloat *
+void      : AuxiliaryEffectSloti        : ALuint  : ALenum : ALint
+void      : AuxiliaryEffectSlotiv       : ALuint  : ALenum : ALint *
+void      : DeleteAuxiliaryEffectSlots  : ALsizei : ALuint *
+void      : DeleteEffects               : ALsizei : ALuint *
+void      : DeleteFilters               : ALsizei : ALuint *
+void      : Effectf                     : ALuint  : ALenum : ALfloat
+void      : Effectfv                    : ALuint  : ALenum : ALfloat *
+void      : Effecti                     : ALuint  : ALenum : ALint
+void      : Effectiv                    : ALuint  : ALenum : ALint *
+void      : Filterf                     : ALuint  : ALenum : ALfloat
+void      : Filterfv                    : ALuint  : ALenum : ALfloat *
+void      : Filteri                     : ALuint  : ALenum : ALint
+void      : Filteriv                    : ALuint  : ALenum : ALint *
+void      : GenAuxiliaryEffectSlots     : ALsizei : ALuint *
+void      : GenEffects                  : ALsizei : ALuint *
+void      : GenFilters                  : ALsizei : ALuint *
+void      : GetAuxiliaryEffectSlotf     : ALuint  : ALenum : ALfloat *
+void      : GetAuxiliaryEffectSlotfv    : ALuint  : ALenum : ALfloat *
+void      : GetAuxiliaryEffectSloti     : ALuint  : ALenum : ALint *
+void      : GetAuxiliaryEffectSlotiv    : ALuint  : ALenum : ALint *
+void      : GetEffectf                  : ALuint  : ALenum : ALfloat *
+void      : GetEffectfv                 : ALuint  : ALenum : ALfloat *
+void      : GetEffecti                  : ALuint  : ALenum : ALint *
+void      : GetEffectiv                 : ALuint  : ALenum : ALint *
+void      : GetFilterf                  : ALuint  : ALenum : ALfloat *
+void      : GetFilterfv                 : ALuint  : ALenum : ALfloat *
+void      : GetFilteri                  : ALuint  : ALenum : ALint *
+void      : GetFilteriv                 : ALuint  : ALenum : ALint *
+ALboolean : IsAuxiliaryEffectSlot       : ALuint
+ALboolean : IsEffect                    : ALuint
+ALboolean : IsFilter                    : ALuint
