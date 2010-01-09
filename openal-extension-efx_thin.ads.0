@@ -1,2 +1,5 @@
+with System;
+with OpenAL.Types;
+
 package OpenAL.Extension.EFX_Thin is
 

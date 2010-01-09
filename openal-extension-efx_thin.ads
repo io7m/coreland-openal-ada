@@ -1,3 +1,6 @@
+with System;
+with OpenAL.Types;
+
 package OpenAL.Extension.EFX_Thin is
 
   AL_EFFECTSLOT_EFFECT                        : constant := 16#0001#;
