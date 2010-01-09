@@ -24,6 +24,7 @@ pragma source_file_name(OpenAL.Error, body_file_name => "openal-error.adb");
 
 -- ./openal-extension-efx.apk
 pragma source_file_name(OpenAL.Extension.EFX, spec_file_name => "openal-extension-efx.ads");
+pragma source_file_name(OpenAL.Extension.EFX, body_file_name => "openal-extension-efx.adb");
 
 -- ./openal-extension-efx_thin.apk
 pragma source_file_name(OpenAL.Extension.EFX_Thin, spec_file_name => "openal-extension-efx_thin.ads");
