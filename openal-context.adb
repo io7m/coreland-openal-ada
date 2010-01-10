@@ -96,16 +96,18 @@ package body OpenAL.Context is
      Parameter : Types.Enumeration_t) return C_Strings.chars_ptr;
   pragma Import (C, Get_String, "alcGetString");
 
+  use type C_Strings.chars_ptr;
   use type ALC_Thin.Device_t;
+  use type System.Address;
 
   Null_Device : constant ALC_Thin.Device_t := ALC_Thin.Device_t (System.Null_Address);
 
   function Get_Default_Device_Specifier return String is
     CS : constant C_Strings.chars_ptr := Get_String
       (Device    => Null_Device,
-       Parameter => ALC_Thin.ALC_DEFAULT_DEVICE_SPECIFIER));
+       Parameter => ALC_Thin.ALC_DEFAULT_DEVICE_SPECIFIER);
   begin
-    if CS /= C_Strings.null_ptr then
+    if CS /= C_Strings.Null_Ptr then
       return C_Strings.Value (CS);
     else
       raise Ada.IO_Exceptions.Device_Error with "no device available";
@@ -228,7 +230,7 @@ package body OpenAL.Context is
   function Get_Frequency
     (Device : in Device_t) return Types.Frequency_t
   is
-    Value : aliased Types.Integer_t := Types.Frequency_t'First;
+    Value : aliased Types.Integer_t := Types.Integer_t (Types.Frequency_t'First);
   begin
     ALC_Thin.Get_Integerv
       (Device => Device.Device_Data,
