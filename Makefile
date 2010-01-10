@@ -19,7 +19,9 @@ openal-buffer.ali openal-buffer.o openal-context-capture.ali \
 openal-context-capture.o openal-context-error.ali openal-context-error.o \
 openal-context.ali openal-context.o openal-error.ali openal-error.o \
 openal-extension-efx.ali openal-extension-efx.o openal-extension-efx_thin.ali \
-openal-extension-efx_thin.o openal-extension.ali openal-extension.o \
+openal-extension-efx_thin.o openal-extension-float32.ali \
+openal-extension-float32.o openal-extension-float32_thin.ali \
+openal-extension-float32_thin.o openal-extension.ali openal-extension.o \
 openal-global.ali openal-global.o openal-list.ali openal-list.o \
 openal-listener.ali openal-listener.o openal-load.ali openal-load.o \
 openal-source.ali openal-source.o openal-thin.ali openal-thin.o \
@@ -313,6 +315,18 @@ ada-compile openal-extension-efx_thin.adb openal-extension-efx_thin.ads \
 openal-load.ali
 	./ada-compile openal-extension-efx_thin.adb
 
+openal-extension-float32.ads:\
+openal-extension.ali openal-buffer.ali openal-context.ali
+
+openal-extension-float32.o openal-extension-float32.ali:\
+ada-compile openal-extension-float32.adb openal-extension.ali \
+openal-extension-float32.ads openal-extension-float32_thin.ali
+	./ada-compile openal-extension-float32.adb
+
+openal-extension-float32_thin.o openal-extension-float32_thin.ali:\
+ada-compile openal-extension-float32_thin.ads openal-extension-float32_thin.ads
+	./ada-compile openal-extension-float32_thin.ads
+
 openal-extension.o openal-extension.ali:\
 ada-compile openal-extension.ads openal.ali openal-extension.ads
 	./ada-compile openal-extension.ads
@@ -363,14 +377,16 @@ ada-compile openal-types.ads openal.ali openal-types.ads
 openal.a:\
 cc-slib openal.sld openal-alc_thin.o openal-buffer.o openal-context-capture.o \
 openal-context-error.o openal-context.o openal-error.o openal-extension-efx.o \
-openal-extension-efx_thin.o openal-extension.o openal-global.o openal-list.o \
-openal-listener.o openal-load.o openal-source.o openal-thin.o openal-types.o \
-openal.o
+openal-extension-efx_thin.o openal-extension-float32.o \
+openal-extension-float32_thin.o openal-extension.o openal-global.o \
+openal-list.o openal-listener.o openal-load.o openal-source.o openal-thin.o \
+openal-types.o openal.o
 	./cc-slib openal openal-alc_thin.o openal-buffer.o openal-context-capture.o \
 	openal-context-error.o openal-context.o openal-error.o openal-extension-efx.o \
-	openal-extension-efx_thin.o openal-extension.o openal-global.o openal-list.o \
-	openal-listener.o openal-load.o openal-source.o openal-thin.o openal-types.o \
-	openal.o
+	openal-extension-efx_thin.o openal-extension-float32.o \
+	openal-extension-float32_thin.o openal-extension.o openal-global.o \
+	openal-list.o openal-listener.o openal-load.o openal-source.o openal-thin.o \
+	openal-types.o openal.o
 
 openal.o openal.ali:\
 ada-compile openal.ads openal.ads
@@ -405,6 +421,8 @@ obj_clean:
 	openal-context.ali openal-context.o openal-error.ali openal-error.o \
 	openal-extension-efx.ali openal-extension-efx.o
 	rm -f openal-extension-efx_thin.ali openal-extension-efx_thin.o \
+	openal-extension-float32.ali openal-extension-float32.o \
+	openal-extension-float32_thin.ali openal-extension-float32_thin.o \
 	openal-extension.ali openal-extension.o openal-global.ali openal-global.o \
 	openal-list.ali openal-list.o openal-listener.ali openal-listener.o \
 	openal-load.ali openal-load.o openal-source.ali openal-source.o openal-thin.ali \

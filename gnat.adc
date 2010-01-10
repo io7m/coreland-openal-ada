@@ -30,6 +30,13 @@ pragma source_file_name(OpenAL.Extension.EFX, body_file_name => "openal-extensio
 pragma source_file_name(OpenAL.Extension.EFX_Thin, spec_file_name => "openal-extension-efx_thin.ads");
 pragma source_file_name(OpenAL.Extension.EFX_Thin, body_file_name => "openal-extension-efx_thin.adb");
 
+-- ./openal-extension-float32.apk
+pragma source_file_name(OpenAL.Extension.Float32, spec_file_name => "openal-extension-float32.ads");
+pragma source_file_name(OpenAL.Extension.Float32, body_file_name => "openal-extension-float32.adb");
+
+-- ./openal-extension-float32_thin.apk
+pragma source_file_name(OpenAL.Extension.Float32_Thin, spec_file_name => "openal-extension-float32_thin.ads");
+
 -- ./openal-extension.apk
 pragma source_file_name(OpenAL.Extension, spec_file_name => "openal-extension.ads");
 
