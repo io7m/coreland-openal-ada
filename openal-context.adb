@@ -101,11 +101,15 @@ package body OpenAL.Context is
   Null_Device : constant ALC_Thin.Device_t := ALC_Thin.Device_t (System.Null_Address);
 
   function Get_Default_Device_Specifier return String is
+    CS : constant C_Strings.chars_ptr := Get_String
+      (Device    => Null_Device,
+       Parameter => ALC_Thin.ALC_DEFAULT_DEVICE_SPECIFIER));
   begin
-    return C_Strings.Value
-      (Get_String
-        (Device    => Null_Device,
-         Parameter => ALC_Thin.ALC_DEFAULT_DEVICE_SPECIFIER));
+    if CS /= C_Strings.null_ptr then
+      return C_Strings.Value (CS);
+    else
+      raise Ada.IO_Exceptions.Device_Error with "no device available";
+    end if;
   end Get_Default_Device_Specifier;
 
   function Get_Device_Specifier
@@ -135,11 +139,15 @@ package body OpenAL.Context is
   end Get_Extensions;
 
   function Get_Default_Capture_Device_Specifier return String is
+    CS : constant C_Strings.chars_ptr := Get_String
+      (Device    => Null_Device,
+       Parameter => ALC_Thin.ALC_CAPTURE_DEFAULT_DEVICE_SPECIFIER);
   begin
-    return C_Strings.Value
-      (Get_String
-        (Device    => Null_Device,
-         Parameter => ALC_Thin.ALC_CAPTURE_DEFAULT_DEVICE_SPECIFIER));
+    if CS /= C_Strings.Null_Ptr then
+      return C_Strings.Value (CS);
+    else
+      raise Ada.IO_Exceptions.Device_Error with "no capture device available";
+    end if;
   end Get_Default_Capture_Device_Specifier;
 
   function Get_Available_Capture_Devices return OpenAL.List.String_Vector_t is
@@ -149,9 +157,12 @@ package body OpenAL.Context is
     Address := ALC_Thin.Get_String
       (Device => ALC_Thin.Device_t (System.Null_Address),
        Token  => ALC_Thin.ALC_CAPTURE_DEVICE_SPECIFIER);
-    OpenAL.List.Address_To_Vector
-      (Address => Address,
-       List    => List);
+    if Address /= System.Null_Address then
+      OpenAL.List.Address_To_Vector
+        (Address => Address,
+         List    => List);
+    end if;
+
     return List;
   end Get_Available_Capture_Devices;
 
@@ -162,9 +173,12 @@ package body OpenAL.Context is
     Address := ALC_Thin.Get_String
       (Device => ALC_Thin.Device_t (System.Null_Address),
        Token  => ALC_Thin.ALC_DEVICE_SPECIFIER);
-    OpenAL.List.Address_To_Vector
-      (Address => Address,
-       List    => List);
+    if Address /= System.Null_Address then
+      OpenAL.List.Address_To_Vector
+        (Address => Address,
+         List    => List);
+    end if;
+
     return List;
   end Get_Available_Playback_Devices;
 
