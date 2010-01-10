@@ -11,6 +11,8 @@ package OpenAL.Context is
   type Device_t  is private;
   type Context_t is private;
 
+  type Context_Attributes_t is private;
+
   Invalid_Device  : constant Device_t;
   Invalid_Context : constant Context_t;
   Null_Context    : constant Context_t;
@@ -28,6 +30,26 @@ package OpenAL.Context is
   -- proc_map : alcOpenDevice
   function Open_Default_Device return Device_t;
 
+  procedure Set_Frequency
+    (Attributes : in out Context_Attributes_t;
+     Frequency  : in     Types.Frequency_t);
+
+  procedure Set_Refresh
+    (Attributes : in out Context_Attributes_t;
+     Refresh    : in     Positive);
+
+  procedure Set_Synchronous
+    (Attributes  : in out Context_Attributes_t;
+     Synchronous : in     Boolean);
+
+  procedure Set_Mono_Sources
+    (Attributes : in out Context_Attributes_t;
+     Sources    : in     Natural);
+
+  procedure Set_Stereo_Sources
+    (Attributes : in out Context_Attributes_t;
+     Sources    : in     Natural);
+
   -- proc_map : alcCloseDevice
   function Close_Device
     (Device : in Device_t) return Boolean;
@@ -35,6 +57,11 @@ package OpenAL.Context is
   -- proc_map : alcCreateContext
   function Create_Context
     (Device : in Device_t) return Context_t;
+
+  -- proc_map : alcCreateContext
+  function Create_Context_With_Attributes
+    (Device     : in Device_t;
+     Attributes : in Context_Attributes_t) return Context_t;
 
   -- proc_map : alcMakeContextCurrent
   function Make_Context_Current
@@ -136,5 +163,20 @@ private
   Invalid_Device  : constant Device_t  := (others => <>);
   Invalid_Context : constant Context_t := Context_t (ALC_Thin.Invalid_Context);
   Null_Context    : constant Context_t := Invalid_Context;
+
+  type Attribute_t is
+    (Attribute_Frequency,
+     Attribute_Refresh,
+     Attribute_Synchronous,
+     Attribute_Mono_Sources,
+     Attribute_Stereo_Sources);
+
+  type Attribute_Array_t     is array (Attribute_t) of Types.Integer_t;
+  type Attribute_Specified_t is array (Attribute_t) of Boolean;
+
+  type Context_Attributes_t is record
+    Values    : Attribute_Array_t     := (others => 0);
+    Specified : Attribute_Specified_t := (others => False);
+  end record;
 
 end OpenAL.Context;

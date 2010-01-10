@@ -26,11 +26,75 @@ package body OpenAL.Context is
     return Device;
   end Open_Default_Device;
 
+  procedure Set_Frequency
+    (Attributes : in out Context_Attributes_t;
+     Frequency  : in     Types.Frequency_t) is
+  begin
+    Attributes.Values    (Attribute_Frequency) := Types.Integer_t (Frequency);
+    Attributes.Specified (Attribute_Frequency) := True;
+  end Set_Frequency;
+
+  procedure Set_Refresh
+    (Attributes : in out Context_Attributes_t;
+     Refresh    : in     Positive) is
+  begin
+    Attributes.Values    (Attribute_Refresh) := Types.Integer_t (Refresh);
+    Attributes.Specified (Attribute_Refresh) := True;
+  end Set_Refresh;
+
+  procedure Set_Synchronous
+    (Attributes  : in out Context_Attributes_t;
+     Synchronous : in     Boolean) is
+  begin
+    Attributes.Values    (Attribute_Synchronous) := Types.Integer_t (Boolean'Pos (Synchronous));
+    Attributes.Specified (Attribute_Synchronous) := True;
+  end Set_Synchronous;
+
+  procedure Set_Mono_Sources
+    (Attributes : in out Context_Attributes_t;
+     Sources    : in     Natural) is
+  begin
+    Attributes.Values    (Attribute_Mono_Sources) := Types.Integer_t (Sources);
+    Attributes.Specified (Attribute_Mono_Sources) := True;
+  end Set_Mono_Sources;
+
+  procedure Set_Stereo_Sources
+    (Attributes : in out Context_Attributes_t;
+     Sources    : in     Natural) is
+  begin
+    Attributes.Values    (Attribute_Stereo_Sources) := Types.Integer_t (Sources);
+    Attributes.Specified (Attribute_Stereo_Sources) := True;
+  end Set_Stereo_Sources;
+
   function Close_Device
     (Device : in Device_t) return Boolean is
   begin
     return Boolean (ALC_Thin.Close_Device (Device.Device_Data));
   end Close_Device;
+
+  --
+  -- Mapping between attribute selection and constants.
+  --
+
+  type Attribute_Map_t is array (Attribute_t) of Types.Integer_t;
+
+  Attribute_Map : constant Attribute_Map_t :=
+    (Attribute_Frequency      => ALC_Thin.ALC_FREQUENCY,
+     Attribute_Refresh        => ALC_Thin.ALC_REFRESH,
+     Attribute_Synchronous    => ALC_Thin.ALC_SYNC,
+     Attribute_Mono_Sources   => ALC_Thin.ALC_MONO_SOURCES,
+     Attribute_Stereo_Sources => ALC_Thin.ALC_STEREO_SOURCES);
+
+  --
+  -- The input to alcCreateContext is a list of 'integer pairs' terminated
+  -- with zeroes:
+  --
+  -- [ALC_FREQUENCY][44100][AL_SYNC][1][0][0]
+  --
+
+  Input_Size : constant Natural := (Attribute_Array_t'Length + 1) * 2;
+
+  type Input_Array_t is array (1 .. Input_Size) of aliased Types.Integer_t;
 
   function Create_Context
     (Device : in Device_t) return Context_t is
@@ -39,6 +103,26 @@ package body OpenAL.Context is
       (Device         => Device.Device_Data,
        Attribute_List => System.Null_Address));
   end Create_Context;
+
+  function Create_Context_With_Attributes
+    (Device     : in Device_t;
+     Attributes : in Context_Attributes_t) return Context_t
+  is
+    Input    : Input_Array_t := (others => 0);
+    Position : Positive      := Input_Array_t'First;
+  begin
+    for Attribute in Attribute_t'Range loop
+      if Attributes.Specified (Attribute) then
+        Input (Position)     := Attribute_Map (Attribute);
+        Input (Position + 1) := Attributes.Values (Attribute);
+        Position             := Position + 2;
+      end if;
+    end loop;
+
+    return Context_t (ALC_Thin.Create_Context
+      (Device         => Device.Device_Data,
+       Attribute_List => Input (Input'First)'Address));
+  end Create_Context_With_Attributes;
 
   function Make_Context_Current
     (Context : in Context_t) return Boolean is
