@@ -1,9 +1,5 @@
 Complete unit tests.
 
-Decide how to handle extensions (child packages likely).
-
-  OpenAL.Extensions.*
-
 OpenAL.Context
 
   Allow attribute list passing to Open_Device.
