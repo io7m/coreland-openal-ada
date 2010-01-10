@@ -1,5 +1,11 @@
 Complete unit tests.
 
+OpenAL.Extension.Float32
+
+  FLOAT32 valid for captured audio? Add subprogram if so.
+
+  OpenAL.Context.Format_t 'Float_32'?
+
 OpenAL.Context
 
   ALCenum alcGetEnumValue(const ALCdevice *deviceHandle, const ALCchar *enumName);
