@@ -12,9 +12,7 @@ lib="lib${pkg}.${SYSDEP_LIBSUFFIX}"
 
 case ${SYSDEP_OS} in
   SD_SYSINFO_OS_DARWIN)
-    lib="libopenal.dylib"
-    args="-framework OpenAL"
-    path="/System/Library/Frameworks/OpenAL.framework ${path}"
+    ${SYSDEP_UTIL_ECHO} "-framework OpenAL"
     ${SYSDEP_UTIL_EXIT} 0
     ;;
   *)
