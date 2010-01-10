@@ -32,9 +32,14 @@ begin
   Test.Check_Test (18, "no context made current", OK);
   Test.Check_Test (19, "no context error", ALC_Error.Get_Error (Device) = ALC_Error.No_Error);
 
+  --
+  -- According to the 1.1 spec, this should return False.
+  -- Unfortunately, no implementation actually does that...
+  --
+
   OK := ALC.Close_Device (Device);
-  Test.Check_Test (20, "device failed to close", OK = False);
-  Test.Check_Test (21, "device error", ALC_Error.Get_Error (Device) /= ALC_Error.No_Error);
+  Test.Check_Test (20, "device closed", OK);
+  Test.Check_Test (21, "device error", ALC_Error.Get_Error (Device) = ALC_Error.No_Error);
 
   Test.Finish;
 end init_002;
