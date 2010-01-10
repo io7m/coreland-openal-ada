@@ -17,6 +17,13 @@ procedure efx_002 is
   use type ALC.Context_t;
   use type ALC_Error.Error_t;
 
+  procedure Finish is
+  begin
+    ALC.Destroy_Context (Context);
+    OK := ALC.Close_Device (Device);
+    pragma Assert (OK);
+  end Finish;
+
   procedure Init is
   begin
     Device := ALC.Open_Default_Device;
@@ -26,13 +33,6 @@ procedure efx_002 is
     OK := ALC.Make_Context_Current (Context);
     pragma Assert (OK);
   end Init;
-
-  procedure Finish is
-  begin
-    ALC.Destroy_Context (Context);
-    OK := ALC.Close_Device (Device);
-    pragma Assert (OK);
-  end Finish;
 
   Effects : AL_EFX.Effect_Array_t (1 .. 2);
   Filters : AL_EFX.Filter_Array_t (1 .. 2);

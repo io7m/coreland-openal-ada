@@ -1,7 +1,11 @@
 with OpenAL.Thin;
-with OpenAL.Types;
 
 package body OpenAL.Error is
+
+  function Get_Error return Error_t is
+  begin
+    return Map_Constant_To_Error (Thin.Get_Error);
+  end Get_Error;
 
   function Map_Constant_To_Error (Error : in Types.Enumeration_t) return Error_t is
     Value : Error_t;
@@ -19,10 +23,5 @@ package body OpenAL.Error is
 
     return Value;
   end Map_Constant_To_Error;
-
-  function Get_Error return Error_t is
-  begin
-    return Map_Constant_To_Error (Thin.Get_Error);
-  end Get_Error;
 
 end OpenAL.Error;

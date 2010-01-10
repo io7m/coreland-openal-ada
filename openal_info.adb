@@ -19,6 +19,35 @@ package body OpenAL_Info is
   use type AL_Context.Device_t;
   use type AL_Context.Context_t;
 
+  procedure Versions;
+
+  --
+  -- Defaults.
+  --
+
+  procedure Defaults is
+  begin
+    Text_IO.Put ("Default playback  : ");
+    Text_IO.Put (AL_Context.Get_Default_Device_Specifier);
+    Text_IO.New_Line;
+
+    Text_IO.Put ("Default capture   : ");
+    Text_IO.Put (AL_Context.Get_Default_Capture_Device_Specifier);
+    Text_IO.New_Line;
+  end Defaults;
+
+  --
+  -- Finish.
+  --
+
+  procedure Finish is
+  begin
+    AL_Context.Destroy_Context (Context);
+    if AL_Context.Close_Device (Device) = False then
+      raise Error with "error closing device";
+    end if;
+  end Finish;
+
   --
   -- Init.
   --
@@ -27,27 +56,6 @@ package body OpenAL_Info is
   begin
     Natural_IO.Default_Width := 0;
   end Init;
-
-  --
-  -- Playback devices.
-  --
-
-  procedure List_Playback_Devices is
-    Devices : AL_String_Vectors.Vector;
-
-    procedure Process_Element (Device : in String) is
-    begin
-      Text_IO.Put_Line ("  " & Device);
-    end Process_Element;
-  begin
-    Text_IO.Put_Line ("Playback devices :");
-
-    Devices := AL_Context.Get_Available_Playback_Devices;
-
-    for Index in AL_String_Vectors.First_Index (Devices) .. AL_String_Vectors.Last_Index (Devices) loop
-      AL_String_Vectors.Query_Element (Devices, Index, Process_Element'Access);
-    end loop;
-  end List_Playback_Devices;
 
   --
   -- Capture devices.
@@ -71,19 +79,25 @@ package body OpenAL_Info is
   end List_Capture_Devices;
 
   --
-  -- Defaults.
+  -- Playback devices.
   --
 
-  procedure Defaults is
-  begin
-    Text_IO.Put ("Default playback  : ");
-    Text_IO.Put (AL_Context.Get_Default_Device_Specifier);
-    Text_IO.New_Line;
+  procedure List_Playback_Devices is
+    Devices : AL_String_Vectors.Vector;
 
-    Text_IO.Put ("Default capture   : ");
-    Text_IO.Put (AL_Context.Get_Default_Capture_Device_Specifier);
-    Text_IO.New_Line;
-  end Defaults;
+    procedure Process_Element (Device : in String) is
+    begin
+      Text_IO.Put_Line ("  " & Device);
+    end Process_Element;
+  begin
+    Text_IO.Put_Line ("Playback devices :");
+
+    Devices := AL_Context.Get_Available_Playback_Devices;
+
+    for Index in AL_String_Vectors.First_Index (Devices) .. AL_String_Vectors.Last_Index (Devices) loop
+      AL_String_Vectors.Query_Element (Devices, Index, Process_Element'Access);
+    end loop;
+  end List_Playback_Devices;
 
   --
   -- Open_Device.
@@ -109,6 +123,23 @@ package body OpenAL_Info is
       raise Error with "error opening device";
     end if;
   end Open_Device;
+
+  --
+  -- Entry point.
+  --
+
+  procedure Run is
+  begin
+    Init;
+    List_Playback_Devices;
+    List_Capture_Devices;
+    Defaults;
+    Open_Device;
+    Versions;
+    Finish;
+  exception
+    when Error => null;
+  end Run;
 
   --
   -- Versions.
@@ -144,34 +175,5 @@ package body OpenAL_Info is
     Text_IO.Put (AL_Global.Extensions);
     Text_IO.New_Line;
   end Versions;
-
-  --
-  -- Finish.
-  --
-
-  procedure Finish is
-  begin
-    AL_Context.Destroy_Context (Context);
-    if AL_Context.Close_Device (Device) = False then
-      raise Error with "error closing device";
-    end if;
-  end Finish;
-
-  --
-  -- Entry point.
-  --
-
-  procedure Run is
-  begin
-    Init;
-    List_Playback_Devices;
-    List_Capture_Devices;
-    Defaults;
-    Open_Device;
-    Versions;
-    Finish;
-  exception
-    when Error => null;
-  end Run;
 
 end OpenAL_Info;

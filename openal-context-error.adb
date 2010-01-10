@@ -3,6 +3,11 @@ with OpenAL.Types;
 
 package body OpenAL.Context.Error is
 
+  function Get_Error (Device : in Device_t) return Error_t is
+  begin
+    return Map_Constant_To_Error (ALC_Thin.Get_Error (Device.Device_Data));
+  end Get_Error;
+
   function Map_Constant_To_Error (Error : in Types.Enumeration_t) return Error_t is
     Value : Error_t;
   begin
@@ -19,10 +24,5 @@ package body OpenAL.Context.Error is
 
     return Value;
   end Map_Constant_To_Error;
-
-  function Get_Error (Device : in Device_t) return Error_t is
-  begin
-    return Map_Constant_To_Error (ALC_Thin.Get_Error (Device.Device_Data));
-  end Get_Error;
 
 end OpenAL.Context.Error;

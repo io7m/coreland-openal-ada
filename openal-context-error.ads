@@ -11,4 +11,8 @@ package OpenAL.Context.Error is
   -- proc_map : alcGetError
   function Get_Error (Device : in Device_t) return Error_t;
 
+private
+
+  function Map_Constant_To_Error (Error : in Types.Enumeration_t) return Error_t;
+
 end OpenAL.Context.Error;

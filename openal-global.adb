@@ -6,9 +6,8 @@ package body OpenAL.Global is
   package C         renames Interfaces.C;
   package C_Strings renames Interfaces.C.Strings;
 
-  --
-  -- Distance_Model
-  --
+  function Get_String (Parameter : Types.Enumeration_t) return C_Strings.chars_ptr;
+  pragma Import (C, Get_String, "alGetString");
 
   type Map_From_Distance_Model_t is array (Distance_Model_t) of Types.Enumeration_t;
 
@@ -21,10 +20,14 @@ package body OpenAL.Global is
      Exponent_Distance         => Thin.AL_EXPONENT_DISTANCE,
      Exponent_Distance_Clamped => Thin.AL_EXPONENT_DISTANCE_CLAMPED);
 
-  procedure Set_Distance_Model (Model : in Distance_Model_t) is
+  function Extensions return String is
   begin
-    Thin.Distance_Model (Map_From_Distance_Model (Model));
-  end Set_Distance_Model;
+    return C_Strings.Value (Get_String (Thin.AL_EXTENSIONS));
+  end Extensions;
+
+  --
+  -- Get_*
+  --
 
   function Get_Distance_Model return Distance_Model_t is
     Value        : Types.Integer_t;
@@ -47,60 +50,15 @@ package body OpenAL.Global is
     return Return_Value;
   end Get_Distance_Model;
 
-  --
-  -- Doppler_Factor
-  --
-
-  procedure Set_Doppler_Factor (Factor : in Types.Natural_Float_t) is
-  begin
-    Thin.Doppler_Factor (Factor);
-  end Set_Doppler_Factor;
-
   function Get_Doppler_Factor return Types.Natural_Float_t is
   begin
     return Thin.Get_Float (Thin.AL_DOPPLER_FACTOR);
   end Get_Doppler_Factor;
 
-  --
-  -- Speed_Of_Sound
-  --
-
-  procedure Set_Speed_Of_Sound (Factor : in Types.Positive_Float_t) is
-  begin
-    Thin.Speed_Of_Sound (Factor);
-  end Set_Speed_Of_Sound;
-
   function Get_Speed_Of_Sound return Types.Positive_Float_t is
   begin
     return Thin.Get_Float (Thin.AL_SPEED_OF_SOUND);
   end Get_Speed_Of_Sound;
-
-  --
-  -- String queries
-  --
-
-  function Get_String (Parameter : Types.Enumeration_t) return C_Strings.chars_ptr;
-  pragma Import (C, Get_String, "alGetString");
-
-  function Version return String is
-  begin
-    return C_Strings.Value (Get_String (Thin.AL_VERSION));
-  end Version;
-
-  function Renderer return String is
-  begin
-    return C_Strings.Value (Get_String (Thin.AL_RENDERER));
-  end Renderer;
-
-  function Vendor return String is
-  begin
-    return C_Strings.Value (Get_String (Thin.AL_VENDOR));
-  end Vendor;
-
-  function Extensions return String is
-  begin
-    return C_Strings.Value (Get_String (Thin.AL_EXTENSIONS));
-  end Extensions;
 
   --
   -- Is_Extension_Present
@@ -111,5 +69,39 @@ package body OpenAL.Global is
   begin
     return Boolean (Thin.Is_Extension_Present (C_Name (C_Name'First)'Address));
   end Is_Extension_Present;
+
+  function Renderer return String is
+  begin
+    return C_Strings.Value (Get_String (Thin.AL_RENDERER));
+  end Renderer;
+
+  --
+  -- Set_*
+  --
+
+  procedure Set_Distance_Model (Model : in Distance_Model_t) is
+  begin
+    Thin.Distance_Model (Map_From_Distance_Model (Model));
+  end Set_Distance_Model;
+
+  procedure Set_Doppler_Factor (Factor : in Types.Natural_Float_t) is
+  begin
+    Thin.Doppler_Factor (Factor);
+  end Set_Doppler_Factor;
+
+  procedure Set_Speed_Of_Sound (Factor : in Types.Positive_Float_t) is
+  begin
+    Thin.Speed_Of_Sound (Factor);
+  end Set_Speed_Of_Sound;
+
+  function Vendor return String is
+  begin
+    return C_Strings.Value (Get_String (Thin.AL_VENDOR));
+  end Vendor;
+
+  function Version return String is
+  begin
+    return C_Strings.Value (Get_String (Thin.AL_VERSION));
+  end Version;
 
 end OpenAL.Global;

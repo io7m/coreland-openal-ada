@@ -7,70 +7,19 @@ package body OpenAL.Context is
   package C         renames Interfaces.C;
   package C_Strings renames Interfaces.C.Strings;
 
-  function Open_Device
-    (Specifier : in String) return Device_t
-  is
-    C_Spec : aliased C.char_array := C.To_C (Specifier);
-    Device : Device_t;
-  begin
-    Device.Device_Data := ALC_Thin.Open_Device
-      (Specifier => C_Spec (C_Spec'First)'Address);
-    return Device;
-  end Open_Device;
-
-  function Open_Default_Device return Device_t is
-    Device : Device_t;
-  begin
-    Device.Device_Data := ALC_Thin.Open_Device
-      (Specifier => System.Null_Address);
-    return Device;
-  end Open_Default_Device;
-
-  procedure Set_Frequency
-    (Attributes : in out Context_Attributes_t;
-     Frequency  : in     Types.Frequency_t) is
-  begin
-    Attributes.Values    (Attribute_Frequency) := Types.Integer_t (Frequency);
-    Attributes.Specified (Attribute_Frequency) := True;
-  end Set_Frequency;
-
-  procedure Set_Refresh
-    (Attributes : in out Context_Attributes_t;
-     Refresh    : in     Positive) is
-  begin
-    Attributes.Values    (Attribute_Refresh) := Types.Integer_t (Refresh);
-    Attributes.Specified (Attribute_Refresh) := True;
-  end Set_Refresh;
-
-  procedure Set_Synchronous
-    (Attributes  : in out Context_Attributes_t;
-     Synchronous : in     Boolean) is
-  begin
-    Attributes.Values    (Attribute_Synchronous) := Types.Integer_t (Boolean'Pos (Synchronous));
-    Attributes.Specified (Attribute_Synchronous) := True;
-  end Set_Synchronous;
-
-  procedure Set_Mono_Sources
-    (Attributes : in out Context_Attributes_t;
-     Sources    : in     Natural) is
-  begin
-    Attributes.Values    (Attribute_Mono_Sources) := Types.Integer_t (Sources);
-    Attributes.Specified (Attribute_Mono_Sources) := True;
-  end Set_Mono_Sources;
-
-  procedure Set_Stereo_Sources
-    (Attributes : in out Context_Attributes_t;
-     Sources    : in     Natural) is
-  begin
-    Attributes.Values    (Attribute_Stereo_Sources) := Types.Integer_t (Sources);
-    Attributes.Specified (Attribute_Stereo_Sources) := True;
-  end Set_Stereo_Sources;
+  --
+  -- Close_Device
+  --
 
   function Close_Device
     (Device : in Device_t) return Boolean is
   begin
     return Boolean (ALC_Thin.Close_Device (Device.Device_Data));
   end Close_Device;
+
+  --
+  -- Create_Context
+  --
 
   --
   -- Mapping between attribute selection and constants.
@@ -124,23 +73,9 @@ package body OpenAL.Context is
        Attribute_List => Input (Input'First)'Address));
   end Create_Context_With_Attributes;
 
-  function Make_Context_Current
-    (Context : in Context_t) return Boolean is
-  begin
-    return Boolean (ALC_Thin.Make_Context_Current (ALC_Thin.Context_t (Context)));
-  end Make_Context_Current;
-
-  procedure Process_Context
-    (Context : in Context_t) is
-  begin
-    ALC_Thin.Process_Context (ALC_Thin.Context_t (Context));
-  end Process_Context;
-
-  procedure Suspend_Context
-    (Context : in Context_t) is
-  begin
-    ALC_Thin.Suspend_Context (ALC_Thin.Context_t (Context));
-  end Suspend_Context;
+  --
+  -- Destroy_Context
+  --
 
   procedure Destroy_Context
     (Context : in Context_t) is
@@ -148,31 +83,8 @@ package body OpenAL.Context is
     ALC_Thin.Destroy_Context (ALC_Thin.Context_t (Context));
   end Destroy_Context;
 
-  function Get_Current_Context return Context_t is
-  begin
-    return Context_t (ALC_Thin.Get_Current_Context);
-  end Get_Current_Context;
-
-  function Get_Context_Device (Context : in Context_t) return Device_t is
-    Device : Device_t;
-  begin
-    Device.Device_Data := ALC_Thin.Get_Contexts_Device (ALC_Thin.Context_t (Context));
-    return Device;
-  end Get_Context_Device;
-
-  function Is_Extension_Present
-    (Device : in Device_t;
-     Name   : in String) return Boolean
-  is
-    C_Name : aliased C.char_array := C.To_C (Name);
-  begin
-    return Boolean (ALC_Thin.Is_Extension_Present
-      (Device         => Device.Device_Data,
-       Extension_Name => C_Name (C_Name'First)'Address));
-  end Is_Extension_Present;
-
   --
-  -- String queries
+  -- Get_*
   --
 
   function Get_String
@@ -185,6 +97,75 @@ package body OpenAL.Context is
   use type System.Address;
 
   Null_Device : constant ALC_Thin.Device_t := ALC_Thin.Device_t (System.Null_Address);
+
+  function Get_Available_Capture_Devices return OpenAL.List.String_Vector_t is
+    Address : System.Address;
+    List    : OpenAL.List.String_Vector_t;
+  begin
+    Address := ALC_Thin.Get_String
+      (Device => ALC_Thin.Device_t (System.Null_Address),
+       Token  => ALC_Thin.ALC_CAPTURE_DEVICE_SPECIFIER);
+    if Address /= System.Null_Address then
+      OpenAL.List.Address_To_Vector
+        (Address => Address,
+         List    => List);
+    end if;
+
+    return List;
+  end Get_Available_Capture_Devices;
+
+  function Get_Available_Playback_Devices return OpenAL.List.String_Vector_t is
+    Address : System.Address;
+    List    : OpenAL.List.String_Vector_t;
+  begin
+    Address := ALC_Thin.Get_String
+      (Device => ALC_Thin.Device_t (System.Null_Address),
+       Token  => ALC_Thin.ALC_DEVICE_SPECIFIER);
+    if Address /= System.Null_Address then
+      OpenAL.List.Address_To_Vector
+        (Address => Address,
+         List    => List);
+    end if;
+
+    return List;
+  end Get_Available_Playback_Devices;
+
+  function Get_Capture_Samples
+    (Device : in Device_t) return Natural
+  is
+    Value : aliased Types.Integer_t := 0;
+  begin
+    ALC_Thin.Get_Integerv
+      (Device => Device.Device_Data,
+       Token  => ALC_Thin.ALC_CAPTURE_SAMPLES,
+       Size   => 1,
+       Data   => Value'Address);
+    return Natural (Value);
+  end Get_Capture_Samples;
+
+  function Get_Context_Device (Context : in Context_t) return Device_t is
+    Device : Device_t;
+  begin
+    Device.Device_Data := ALC_Thin.Get_Contexts_Device (ALC_Thin.Context_t (Context));
+    return Device;
+  end Get_Context_Device;
+
+  function Get_Current_Context return Context_t is
+  begin
+    return Context_t (ALC_Thin.Get_Current_Context);
+  end Get_Current_Context;
+
+  function Get_Default_Capture_Device_Specifier return String is
+    CS : constant C_Strings.chars_ptr := Get_String
+      (Device    => Null_Device,
+       Parameter => ALC_Thin.ALC_CAPTURE_DEFAULT_DEVICE_SPECIFIER);
+  begin
+    if CS /= C_Strings.Null_Ptr then
+      return C_Strings.Value (CS);
+    else
+      raise Ada.IO_Exceptions.Device_Error with "no capture device available";
+    end if;
+  end Get_Default_Capture_Device_Specifier;
 
   function Get_Default_Device_Specifier return String is
     CS : constant C_Strings.chars_ptr := Get_String
@@ -224,53 +205,18 @@ package body OpenAL.Context is
          Parameter => ALC_Thin.ALC_EXTENSIONS));
   end Get_Extensions;
 
-  function Get_Default_Capture_Device_Specifier return String is
-    CS : constant C_Strings.chars_ptr := Get_String
-      (Device    => Null_Device,
-       Parameter => ALC_Thin.ALC_CAPTURE_DEFAULT_DEVICE_SPECIFIER);
+  function Get_Frequency
+    (Device : in Device_t) return Types.Frequency_t
+  is
+    Value : aliased Types.Integer_t := Types.Integer_t (Types.Frequency_t'First);
   begin
-    if CS /= C_Strings.Null_Ptr then
-      return C_Strings.Value (CS);
-    else
-      raise Ada.IO_Exceptions.Device_Error with "no capture device available";
-    end if;
-  end Get_Default_Capture_Device_Specifier;
-
-  function Get_Available_Capture_Devices return OpenAL.List.String_Vector_t is
-    Address : System.Address;
-    List    : OpenAL.List.String_Vector_t;
-  begin
-    Address := ALC_Thin.Get_String
-      (Device => ALC_Thin.Device_t (System.Null_Address),
-       Token  => ALC_Thin.ALC_CAPTURE_DEVICE_SPECIFIER);
-    if Address /= System.Null_Address then
-      OpenAL.List.Address_To_Vector
-        (Address => Address,
-         List    => List);
-    end if;
-
-    return List;
-  end Get_Available_Capture_Devices;
-
-  function Get_Available_Playback_Devices return OpenAL.List.String_Vector_t is
-    Address : System.Address;
-    List    : OpenAL.List.String_Vector_t;
-  begin
-    Address := ALC_Thin.Get_String
-      (Device => ALC_Thin.Device_t (System.Null_Address),
-       Token  => ALC_Thin.ALC_DEVICE_SPECIFIER);
-    if Address /= System.Null_Address then
-      OpenAL.List.Address_To_Vector
-        (Address => Address,
-         List    => List);
-    end if;
-
-    return List;
-  end Get_Available_Playback_Devices;
-
-  --
-  -- Integer queries
-  --
+    ALC_Thin.Get_Integerv
+      (Device => Device.Device_Data,
+       Token  => ALC_Thin.ALC_FREQUENCY,
+       Size   => 1,
+       Data   => Value'Address);
+    return Types.Frequency_t (Value);
+  end Get_Frequency;
 
   function Get_Major_Version
     (Device : in Device_t) return Natural
@@ -298,31 +244,18 @@ package body OpenAL.Context is
     return Natural (Value);
   end Get_Minor_Version;
 
-  function Get_Capture_Samples
+  function Get_Mono_Sources
     (Device : in Device_t) return Natural
   is
     Value : aliased Types.Integer_t := 0;
   begin
     ALC_Thin.Get_Integerv
       (Device => Device.Device_Data,
-       Token  => ALC_Thin.ALC_CAPTURE_SAMPLES,
+       Token  => ALC_Thin.ALC_MONO_SOURCES,
        Size   => 1,
        Data   => Value'Address);
     return Natural (Value);
-  end Get_Capture_Samples;
-
-  function Get_Frequency
-    (Device : in Device_t) return Types.Frequency_t
-  is
-    Value : aliased Types.Integer_t := Types.Integer_t (Types.Frequency_t'First);
-  begin
-    ALC_Thin.Get_Integerv
-      (Device => Device.Device_Data,
-       Token  => ALC_Thin.ALC_FREQUENCY,
-       Size   => 1,
-       Data   => Value'Address);
-    return Types.Frequency_t (Value);
-  end Get_Frequency;
+  end Get_Mono_Sources;
 
   function Get_Refresh
     (Device : in Device_t) return Natural
@@ -337,6 +270,19 @@ package body OpenAL.Context is
     return Natural (Value);
   end Get_Refresh;
 
+  function Get_Stereo_Sources
+    (Device : in Device_t) return Natural
+  is
+    Value : aliased Types.Integer_t := 0;
+  begin
+    ALC_Thin.Get_Integerv
+      (Device => Device.Device_Data,
+       Token  => ALC_Thin.ALC_STEREO_SOURCES,
+       Size   => 1,
+       Data   => Value'Address);
+    return Natural (Value);
+  end Get_Stereo_Sources;
+
   function Get_Synchronous
     (Device : in Device_t) return Boolean
   is
@@ -350,30 +296,116 @@ package body OpenAL.Context is
     return Boolean'Val (Value);
   end Get_Synchronous;
 
-  function Get_Mono_Sources
-    (Device : in Device_t) return Natural
-  is
-    Value : aliased Types.Integer_t := 0;
-  begin
-    ALC_Thin.Get_Integerv
-      (Device => Device.Device_Data,
-       Token  => ALC_Thin.ALC_MONO_SOURCES,
-       Size   => 1,
-       Data   => Value'Address);
-    return Natural (Value);
-  end Get_Mono_Sources;
+  --
+  -- Is_Extension_Present
+  --
 
-  function Get_Stereo_Sources
-    (Device : in Device_t) return Natural
+  function Is_Extension_Present
+    (Device : in Device_t;
+     Name   : in String) return Boolean
   is
-    Value : aliased Types.Integer_t := 0;
+    C_Name : aliased C.char_array := C.To_C (Name);
   begin
-    ALC_Thin.Get_Integerv
-      (Device => Device.Device_Data,
-       Token  => ALC_Thin.ALC_STEREO_SOURCES,
-       Size   => 1,
-       Data   => Value'Address);
-    return Natural (Value);
-  end Get_Stereo_Sources;
+    return Boolean (ALC_Thin.Is_Extension_Present
+      (Device         => Device.Device_Data,
+       Extension_Name => C_Name (C_Name'First)'Address));
+  end Is_Extension_Present;
+
+  --
+  -- Make_Context_Current
+  --
+
+  function Make_Context_Current
+    (Context : in Context_t) return Boolean is
+  begin
+    return Boolean (ALC_Thin.Make_Context_Current (ALC_Thin.Context_t (Context)));
+  end Make_Context_Current;
+
+  --
+  -- Open_Device
+  --
+
+  function Open_Default_Device return Device_t is
+    Device : Device_t;
+  begin
+    Device.Device_Data := ALC_Thin.Open_Device
+      (Specifier => System.Null_Address);
+    return Device;
+  end Open_Default_Device;
+
+  function Open_Device
+    (Specifier : in String) return Device_t
+  is
+    C_Spec : aliased C.char_array := C.To_C (Specifier);
+    Device : Device_t;
+  begin
+    Device.Device_Data := ALC_Thin.Open_Device
+      (Specifier => C_Spec (C_Spec'First)'Address);
+    return Device;
+  end Open_Device;
+
+  --
+  -- Process_Context
+  --
+
+  procedure Process_Context
+    (Context : in Context_t) is
+  begin
+    ALC_Thin.Process_Context (ALC_Thin.Context_t (Context));
+  end Process_Context;
+
+  --
+  -- Set_*
+  --
+
+  procedure Set_Frequency
+    (Attributes : in out Context_Attributes_t;
+     Frequency  : in     Types.Frequency_t) is
+  begin
+    Attributes.Values    (Attribute_Frequency) := Types.Integer_t (Frequency);
+    Attributes.Specified (Attribute_Frequency) := True;
+  end Set_Frequency;
+
+  procedure Set_Mono_Sources
+    (Attributes : in out Context_Attributes_t;
+     Sources    : in     Natural) is
+  begin
+    Attributes.Values    (Attribute_Mono_Sources) := Types.Integer_t (Sources);
+    Attributes.Specified (Attribute_Mono_Sources) := True;
+  end Set_Mono_Sources;
+
+  procedure Set_Refresh
+    (Attributes : in out Context_Attributes_t;
+     Refresh    : in     Positive) is
+  begin
+    Attributes.Values    (Attribute_Refresh) := Types.Integer_t (Refresh);
+    Attributes.Specified (Attribute_Refresh) := True;
+  end Set_Refresh;
+
+  procedure Set_Stereo_Sources
+    (Attributes : in out Context_Attributes_t;
+     Sources    : in     Natural) is
+  begin
+    Attributes.Values    (Attribute_Stereo_Sources) := Types.Integer_t (Sources);
+    Attributes.Specified (Attribute_Stereo_Sources) := True;
+  end Set_Stereo_Sources;
+
+  procedure Set_Synchronous
+    (Attributes  : in out Context_Attributes_t;
+     Synchronous : in     Boolean) is
+  begin
+    Attributes.Values    (Attribute_Synchronous) := Types.Integer_t (Boolean'Pos (Synchronous));
+    Attributes.Specified (Attribute_Synchronous) := True;
+  end Set_Synchronous;
+
+  --
+  -- Suspend_Context
+  --
+
+  procedure Suspend_Context
+    (Context : in Context_t) is
+  begin
+    ALC_Thin.Suspend_Context (ALC_Thin.Context_t (Context));
+  end Suspend_Context;
 
 end OpenAL.Context;

@@ -102,4 +102,6 @@ private
     API    : EFX_Thin.API_t;
   end record;
 
+  procedure Check_Loaded (Extension : in Extension_t);
+
 end OpenAL.Extension.EFX;

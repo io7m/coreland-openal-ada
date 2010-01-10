@@ -1,3 +1,5 @@
+with OpenAL.Types;
+
 package OpenAL.Error is
 
   type Error_t is
@@ -10,5 +12,9 @@ package OpenAL.Error is
 
   -- proc_map : alGetError
   function Get_Error return Error_t;
+
+private
+
+  function Map_Constant_To_Error (Error : in Types.Enumeration_t) return Error_t;
 
 end OpenAL.Error;
