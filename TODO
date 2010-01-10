@@ -2,8 +2,6 @@ Complete unit tests.
 
 OpenAL.Context
 
-  Allow attribute list passing to Open_Device.
-
   ALCenum alcGetEnumValue(const ALCdevice *deviceHandle, const ALCchar *enumName);
 
     ALC_ATTRIBUTES_SIZE
