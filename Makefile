@@ -6,6 +6,7 @@ all:\
 local UNIT_TESTS/alc_001 UNIT_TESTS/alc_001.ali UNIT_TESTS/alc_001.o \
 UNIT_TESTS/buffers_001 UNIT_TESTS/buffers_001.ali UNIT_TESTS/buffers_001.o \
 UNIT_TESTS/efx_001 UNIT_TESTS/efx_001.ali UNIT_TESTS/efx_001.o \
+UNIT_TESTS/efx_002 UNIT_TESTS/efx_002.ali UNIT_TESTS/efx_002.o \
 UNIT_TESTS/global_001 UNIT_TESTS/global_001.ali UNIT_TESTS/global_001.o \
 UNIT_TESTS/init_001 UNIT_TESTS/init_001.ali UNIT_TESTS/init_001.o \
 UNIT_TESTS/init_002 UNIT_TESTS/init_002.ali UNIT_TESTS/init_002.o \
@@ -98,6 +99,17 @@ UNIT_TESTS/efx_001.o UNIT_TESTS/efx_001.ali:\
 ada-compile UNIT_TESTS/efx_001.adb openal-context-error.ali openal-context.ali \
 openal-extension-efx.ali UNIT_TESTS/test.ali
 	./ada-compile UNIT_TESTS/efx_001.adb
+
+UNIT_TESTS/efx_002:\
+ada-bind ada-link UNIT_TESTS/efx_002.ald UNIT_TESTS/efx_002.ali \
+UNIT_TESTS/test.ali openal.a
+	./ada-bind UNIT_TESTS/efx_002.ali
+	./ada-link UNIT_TESTS/efx_002 UNIT_TESTS/efx_002.ali openal.a
+
+UNIT_TESTS/efx_002.o UNIT_TESTS/efx_002.ali:\
+ada-compile UNIT_TESTS/efx_002.adb openal-context-error.ali openal-context.ali \
+openal-extension-efx.ali UNIT_TESTS/test.ali
+	./ada-compile UNIT_TESTS/efx_002.adb
 
 UNIT_TESTS/global_001:\
 ada-bind ada-link UNIT_TESTS/global_001.ald UNIT_TESTS/global_001.ali \
@@ -285,7 +297,8 @@ openal-types.ali
 	./ada-compile openal-error.adb
 
 openal-extension-efx.ads:\
-openal-extension.ali openal-context.ali openal-extension-efx_thin.ali
+openal-extension.ali openal-context.ali openal-types.ali \
+	openal-extension-efx_thin.ali
 
 openal-extension-efx.o openal-extension-efx.ali:\
 ada-compile openal-extension-efx.adb openal-extension.ali \
@@ -378,6 +391,7 @@ obj_clean:
 	rm -f UNIT_TESTS/alc_001 UNIT_TESTS/alc_001.ali UNIT_TESTS/alc_001.o \
 	UNIT_TESTS/buffers_001 UNIT_TESTS/buffers_001.ali UNIT_TESTS/buffers_001.o \
 	UNIT_TESTS/efx_001 UNIT_TESTS/efx_001.ali UNIT_TESTS/efx_001.o \
+	UNIT_TESTS/efx_002 UNIT_TESTS/efx_002.ali UNIT_TESTS/efx_002.o \
 	UNIT_TESTS/global_001 UNIT_TESTS/global_001.ali UNIT_TESTS/global_001.o \
 	UNIT_TESTS/init_001 UNIT_TESTS/init_001.ali UNIT_TESTS/init_001.o \
 	UNIT_TESTS/init_002 UNIT_TESTS/init_002.ali UNIT_TESTS/init_002.o \
@@ -389,9 +403,9 @@ obj_clean:
 	openal-buffer.ali openal-buffer.o openal-context-capture.ali \
 	openal-context-capture.o openal-context-error.ali openal-context-error.o \
 	openal-context.ali openal-context.o openal-error.ali openal-error.o \
-	openal-extension-efx.ali openal-extension-efx.o openal-extension-efx_thin.ali \
-	openal-extension-efx_thin.o
-	rm -f openal-extension.ali openal-extension.o openal-global.ali openal-global.o \
+	openal-extension-efx.ali openal-extension-efx.o
+	rm -f openal-extension-efx_thin.ali openal-extension-efx_thin.o \
+	openal-extension.ali openal-extension.o openal-global.ali openal-global.o \
 	openal-list.ali openal-list.o openal-listener.ali openal-listener.o \
 	openal-load.ali openal-load.o openal-source.ali openal-source.o openal-thin.ali \
 	openal-thin.o openal-types.ali openal-types.o openal.a openal.ali openal.o \
