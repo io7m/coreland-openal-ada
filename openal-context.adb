@@ -228,7 +228,7 @@ package body OpenAL.Context is
   function Get_Frequency
     (Device : in Device_t) return Types.Frequency_t
   is
-    Value : aliased Types.Integer_t := 0;
+    Value : aliased Types.Integer_t := Types.Frequency_t'First;
   begin
     ALC_Thin.Get_Integerv
       (Device => Device.Device_Data,
