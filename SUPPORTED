@@ -4,3 +4,4 @@ freebsd 7.2-release-p2 gcc 4.4.0 x86_64 gnat_fsf 4.4.0
 freebsd 7.2-release-p4 gcc 4.4.0 x86_64 gnat_fsf 4.4.0
 freebsd 8.0-release    gcc 4.4.3 x86_64 gnat_fsf 4.4.0
 linux   2.6.30-2-686   gcc 4.3.4 x86    gnat_fsf 4.3.4
+darwin  8.11.0         gcc 4.0.1 ppc    gnat_fsf 4.3.0
