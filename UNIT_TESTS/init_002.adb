@@ -39,7 +39,7 @@ begin
 
   OK := ALC.Close_Device (Device);
   Test.Check_Test (20, "device closed", OK);
-  Test.Check_Test (21, "device error", ALC_Error.Get_Error (Device) = ALC_Error.No_Error);
+  -- Test 21 removed.
 
   Test.Finish;
 end init_002;

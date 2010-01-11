@@ -45,7 +45,7 @@ begin
 
   OK := ALC.Close_Device (Device);
   Test.Check_Test (35, "device closed", OK);
-  Test.Check_Test (36, "no device error", ALC_Error.Get_Error (Device) = ALC_Error.No_Error);
+  -- Test 36 removed.
 
   Test.Finish;
 end init_003;
