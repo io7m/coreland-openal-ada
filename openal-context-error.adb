@@ -18,8 +18,7 @@ package body OpenAL.Context.Error is
       when ALC_Thin.ALC_INVALID_ENUM    => Value := Invalid_Enumeration;
       when ALC_Thin.ALC_INVALID_VALUE   => Value := Invalid_Value;
       when ALC_Thin.ALC_OUT_OF_MEMORY   => Value := Out_Of_Memory;
-      when others =>
-        raise Constraint_Error with "invalid enumeration value";
+      when others                       => Value := Unknown_Error;
     end case;
 
     return Value;

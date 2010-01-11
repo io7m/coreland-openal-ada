@@ -6,7 +6,8 @@ package OpenAL.Context.Error is
      Invalid_Context,
      Invalid_Enumeration,
      Invalid_Value,
-     Out_Of_Memory);
+     Out_Of_Memory,
+     Unknown_Error);
 
   -- proc_map : alcGetError
   function Get_Error (Device : in Device_t) return Error_t;
