@@ -166,7 +166,7 @@ UNIT_TESTS/test.ali openal.a
 
 UNIT_TESTS/init_004.o UNIT_TESTS/init_004.ali:\
 ada-compile UNIT_TESTS/init_004.adb UNIT_TESTS/test.ali openal-context.ali \
-openal-context-error.ali
+openal-context-error.ali openal-types.ali
 	./ada-compile UNIT_TESTS/init_004.adb
 
 UNIT_TESTS/list_001:\
@@ -232,7 +232,7 @@ mk-adatype
 	./mk-adatype > conf-adatype.tmp && mv conf-adatype.tmp conf-adatype
 
 conf-cctype:\
-conf-cc conf-cc mk-cctype
+conf-cc mk-cctype
 	./mk-cctype > conf-cctype.tmp && mv conf-cctype.tmp conf-cctype
 
 conf-ldtype:\
@@ -303,11 +303,10 @@ ada-compile openal-context.adb openal.ali openal-context.ads
 	./ada-compile openal-context.adb
 
 openal-error.ads:\
-openal.ali
+openal.ali openal-types.ali
 
 openal-error.o openal-error.ali:\
-ada-compile openal-error.adb openal.ali openal-error.ads openal-thin.ali \
-openal-types.ali
+ada-compile openal-error.adb openal.ali openal-error.ads openal-thin.ali
 	./ada-compile openal-error.adb
 
 openal-extension-efx.ads:\

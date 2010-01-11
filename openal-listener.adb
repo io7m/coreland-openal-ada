@@ -42,7 +42,7 @@ package body OpenAL.Listener is
     (Forward : out Types.Vector_3f_t;
      Up      : out Types.Vector_3f_t)
   is
-    type Orient_Vectors_t is new Types.Float_Arrays.Real_Vector (1 .. 6);
+    type Orient_Vectors_t is new Types.Vector_f_t (1 .. 6);
 
     Vectors : Orient_Vectors_t;
   begin
@@ -179,7 +179,7 @@ package body OpenAL.Listener is
     (Forward : in Types.Vector_3f_t;
      Up      : in Types.Vector_3f_t)
   is
-    type Orient_Vectors_t is new Types.Float_Arrays.Real_Vector (1 .. 6);
+    type Orient_Vectors_t is new Types.Vector_f_t (1 .. 6);
 
     Vectors : constant Orient_Vectors_t :=
       (1 => Forward (1),
