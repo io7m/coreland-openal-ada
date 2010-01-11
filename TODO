@@ -11,6 +11,9 @@ OpenAL.Extension.EFX
 
   How can this be made impossible to use incorrectly?
 
+    Check that the current context is the one that was active
+    when the API extension was "loaded"?
+
 OpenAL.Extension.Float32
 
   FLOAT32 valid for captured audio? Add subprogram if so.
