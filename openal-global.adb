@@ -18,7 +18,8 @@ package body OpenAL.Global is
      Linear_Distance           => Thin.AL_LINEAR_DISTANCE,
      Linear_Distance_Clamped   => Thin.AL_LINEAR_DISTANCE_CLAMPED,
      Exponent_Distance         => Thin.AL_EXPONENT_DISTANCE,
-     Exponent_Distance_Clamped => Thin.AL_EXPONENT_DISTANCE_CLAMPED);
+     Exponent_Distance_Clamped => Thin.AL_EXPONENT_DISTANCE_CLAMPED,
+     Unknown_Distance_Model    => 0);
 
   function Extensions return String is
   begin
@@ -43,8 +44,7 @@ package body OpenAL.Global is
       when Thin.AL_LINEAR_DISTANCE_CLAMPED   => Return_Value := Linear_Distance_Clamped;
       when Thin.AL_EXPONENT_DISTANCE         => Return_Value := Exponent_Distance;
       when Thin.AL_EXPONENT_DISTANCE_CLAMPED => Return_Value := Exponent_Distance_Clamped;
-      when others =>
-        raise Constraint_Error with "invalid value returned for distance model";
+      when others                            => Return_Value := Unknown_Distance_Model;
     end case;
 
     return Return_Value;
@@ -79,7 +79,7 @@ package body OpenAL.Global is
   -- Set_*
   --
 
-  procedure Set_Distance_Model (Model : in Distance_Model_t) is
+  procedure Set_Distance_Model (Model : in Valid_Distance_Model_t) is
   begin
     Thin.Distance_Model (Map_From_Distance_Model (Model));
   end Set_Distance_Model;

@@ -13,10 +13,13 @@ package OpenAL.Global is
      Linear_Distance,
      Linear_Distance_Clamped,
      Exponent_Distance,
-     Exponent_Distance_Clamped);
+     Exponent_Distance_Clamped,
+     Unknown_Distance_Model);
+
+  subtype Valid_Distance_Model_t is Distance_Model_t range None .. Exponent_Distance_Clamped;
 
   -- proc_map : alDistanceModel
-  procedure Set_Distance_Model (Model : in Distance_Model_t);
+  procedure Set_Distance_Model (Model : in Valid_Distance_Model_t);
 
   -- proc_map : alGetInteger
   function Get_Distance_Model return Distance_Model_t;
