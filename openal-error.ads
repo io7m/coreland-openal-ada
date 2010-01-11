@@ -8,7 +8,8 @@ package OpenAL.Error is
      Invalid_Enumeration,
      Invalid_Value,
      Invalid_Operation,
-     Out_Of_Memory);
+     Out_Of_Memory,
+     Unknown_Error);
 
   -- proc_map : alGetError
   function Get_Error return Error_t;

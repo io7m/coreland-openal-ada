@@ -17,8 +17,7 @@ package body OpenAL.Error is
       when Thin.AL_INVALID_VALUE     => Value := Invalid_Value;
       when Thin.AL_INVALID_OPERATION => Value := Invalid_Operation;
       when Thin.AL_OUT_OF_MEMORY     => Value := Out_Of_Memory;
-      when others =>
-        raise Constraint_Error with "invalid enumeration value";
+      when others                    => Value := Unknown_Error;
     end case;
 
     return Value;
