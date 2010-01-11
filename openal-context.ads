@@ -17,7 +17,8 @@ package OpenAL.Context is
   Invalid_Context : constant Context_t;
   Null_Context    : constant Context_t;
 
-  type Format_t is (Mono_8, Stereo_8, Mono_16, Stereo_16);
+  type    Format_t         is (Mono_8, Stereo_8, Mono_16, Stereo_16, Unknown);
+  subtype Request_Format_t is Format_t range Mono_8 .. Stereo_16;
 
   --
   -- API
@@ -154,7 +155,7 @@ private
 
   type Device_t is record
     Device_Data    : ALC_Thin.Device_t := ALC_Thin.Invalid_Device;
-    Capture_Format : Format_t          := Mono_8;
+    Capture_Format : Format_t          := Unknown;
     Capture        : Boolean           := False;
   end record;
 

@@ -38,11 +38,12 @@ package body OpenAL.Context.Capture is
     (Mono_8    => Thin.AL_FORMAT_MONO8,
      Stereo_8  => Thin.AL_FORMAT_STEREO8,
      Mono_16   => Thin.AL_FORMAT_MONO16,
-     Stereo_16 => Thin.AL_FORMAT_STEREO16);
+     Stereo_16 => Thin.AL_FORMAT_STEREO16,
+     Unknown   => 0);
 
   function Open_Default_Device
     (Frequency   : in Types.Frequency_t;
-     Format      : in Format_t;
+     Format      : in Request_Format_t;
      Buffer_Size : in Buffer_Size_t) return Device_t
   is
     Device : Device_t;
@@ -58,7 +59,7 @@ package body OpenAL.Context.Capture is
   function Open_Device
     (Name        : in String;
      Frequency   : in Types.Frequency_t;
-     Format      : in Format_t;
+     Format      : in Request_Format_t;
      Buffer_Size : in Buffer_Size_t) return Device_t
   is
     C_Name : aliased C.char_array := C.To_C (Name);

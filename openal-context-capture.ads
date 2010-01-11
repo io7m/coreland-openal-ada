@@ -13,13 +13,13 @@ package OpenAL.Context.Capture is
   function Open_Device
     (Name        : in String;
      Frequency   : in Types.Frequency_t;
-     Format      : in OpenAL.Context.Format_t;
+     Format      : in OpenAL.Context.Request_Format_t;
      Buffer_Size : in Buffer_Size_t) return Device_t;
 
   -- proc_map : alcCaptureOpenDevice
   function Open_Default_Device
     (Frequency   : in Types.Frequency_t;
-     Format      : in OpenAL.Context.Format_t;
+     Format      : in OpenAL.Context.Request_Format_t;
      Buffer_Size : in Buffer_Size_t) return Device_t;
 
   -- proc_map : alcCaptureCloseDevice
