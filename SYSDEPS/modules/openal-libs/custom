@@ -10,7 +10,23 @@ case ${SYSDEP_OS} in
     ${SYSDEP_UTIL_EXIT} 0
     ;;
   SD_SYSINFO_OS_MS_WINDOWS)
-    pkg="OpenAL32"
+    #
+    # OpenAL32.dll is most likely in C:/WINDOWS/system32 as that's where
+    # the SDK 'redist' installer puts it (oalinst.exe). However, using
+    # -LC:/WINDOWS/system32 -lOpenAL32 causes massive problems with most
+    # linkers. Instead, just print the path to the DLL file and hope for
+    # the best.
+    #
+    DIRECTORY=`${SYSDEP_TRY_MANUAL} "OpenAL32.dll" "${SYSDEP_STDLIB}" "" 2>&-`
+    if [ ! -z "${DIRECTORY}" ]
+    then
+      ${SYSDEP_UTIL_ECHO} "${DIRECTORY}" | ${SYSDEP_UTIL_SED} 's/ *$/\/OpenAL32.dll/g'
+      ${SYSDEP_UTIL_EXIT} 0
+    else
+      SYSDEP_ERROR "non-standard manual search failed"
+    fi
+
+    pkg="openal"
     args="-l${pkg}"
     lib="${pkg}.${SYSDEP_LIBSUFFIX}"
     ;;
@@ -39,7 +55,7 @@ else
 fi
 
 FLAGS=`${SYSDEP_TRY_MANUAL} "${lib}" "${SYSDEP_STDLIB}" "-L" 2>&-`
-if [ "x${FLAGS}" != "x" ]
+if [ ! -z "${FLAGS}" ]
 then
   ${SYSDEP_UTIL_ECHO} ${FLAGS} ${args}
   ${SYSDEP_UTIL_EXIT} 0
