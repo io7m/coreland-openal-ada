@@ -4,18 +4,19 @@
 
 exec 1> "$1"
 
-pkg="openal"
-args="-l${pkg}"
-args="-lopenal"
-path="${SYSDEP_STDLIB}"
-lib="lib${pkg}.${SYSDEP_LIBSUFFIX}"
-
 case ${SYSDEP_OS} in
   SD_SYSINFO_OS_DARWIN)
     ${SYSDEP_UTIL_ECHO} "-framework OpenAL"
     ${SYSDEP_UTIL_EXIT} 0
     ;;
+  SD_SYSINFO_OS_MS_WINDOWS)
+    pkg="OpenAL32"
+    args="-l${pkg}"
+    lib="${pkg}.${SYSDEP_LIBSUFFIX}"
   *)
+    pkg="openal"
+    args="-l${pkg}"
+    lib="lib${pkg}.${SYSDEP_LIBSUFFIX}"
     ;;
 esac
 
@@ -36,7 +37,7 @@ else
   SYSDEP_ERROR "custom pkg-config failed"
 fi
 
-FLAGS=`${SYSDEP_TRY_MANUAL} "${lib}" "${path}" "-L" 2>&-`
+FLAGS=`${SYSDEP_TRY_MANUAL} "${lib}" "${SYSDEP_STDLIB}" "-L" 2>&-`
 if [ "x${FLAGS}" != "x" ]
 then
   ${SYSDEP_UTIL_ECHO} ${FLAGS} ${args}
