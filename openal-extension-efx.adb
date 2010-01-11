@@ -18,10 +18,16 @@ package body OpenAL.Extension.EFX is
   -- Check_Loaded
   --
 
+  use type Context.Context_t;
+
   procedure Check_Loaded (Extension : in Extension_t) is
   begin
     if Extension.Loaded = False then
       raise Program_Error with "extension not loaded";
+    end if;
+
+    if Extension.Owner_Context /= Context.Get_Current_Context then
+      raise Program_Error with "extension was not loaded in the current context";
     end if;
   end Check_Loaded;
 
@@ -141,10 +147,17 @@ package body OpenAL.Extension.EFX is
   --
 
   function Load_Extension return Extension_t is
+    Current_Context : Context.Context_t;
   begin
+    Current_Context := Context.Get_Current_Context;
+    if Current_Context = Context.Invalid_Context then
+      raise Program_Error with "no current context";
+    end if;
+
     return Extension_t'
-      (API    => EFX_Thin.Load_API,
-       Loaded => True);
+      (Owner_Context => Current_Context,
+       API           => EFX_Thin.Load_API,
+       Loaded        => True);
   end Load_Extension;
 
 end OpenAL.Extension.EFX;

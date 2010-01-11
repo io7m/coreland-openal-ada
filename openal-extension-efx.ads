@@ -98,8 +98,9 @@ private
   No_Auxiliary_Effect_Slot : constant Auxiliary_Effect_Slot_t := 0;
 
   type Extension_t is record
-    Loaded : Boolean := False;
-    API    : EFX_Thin.API_t;
+    Owner_Context : Context.Context_t := Context.Invalid_Context;
+    Loaded        : Boolean           := False;
+    API           : EFX_Thin.API_t;
   end record;
 
   procedure Check_Loaded (Extension : in Extension_t);
