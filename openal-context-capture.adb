@@ -11,9 +11,13 @@ package body OpenAL.Context.Capture is
   -- Close_Device
   --
 
-  function Close_Device (Device : in Device_t) return Boolean is
+  procedure Close_Device (Device : in out Device_t) is
+    Return_Code : constant Boolean := Boolean
+      (ALC_Thin.Capture_Close_Device (Device.Device_Data));
   begin
-    return Boolean (ALC_Thin.Capture_Close_Device (Device.Device_Data));
+    Device := Invalid_Device;
+
+    pragma Assert (Return_Code'Size > 0);
   end Close_Device;
 
   --

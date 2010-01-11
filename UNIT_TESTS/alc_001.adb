@@ -26,8 +26,7 @@ procedure alc_001 is
   procedure Finish is
   begin
     ALC.Destroy_Context (Context);
-    OK := ALC.Close_Device (Device);
-    pragma Assert (OK);
+    ALC.Close_Device (Device);
   end Finish;
 
   procedure Init is

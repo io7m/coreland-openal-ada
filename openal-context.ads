@@ -52,8 +52,8 @@ package OpenAL.Context is
      Sources    : in     Natural);
 
   -- proc_map : alcCloseDevice
-  function Close_Device
-    (Device : in Device_t) return Boolean;
+  procedure Close_Device
+    (Device : in out Device_t);
 
   -- proc_map : alcCreateContext
   function Create_Context

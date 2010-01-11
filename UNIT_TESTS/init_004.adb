@@ -36,9 +36,9 @@ begin
   pragma Assert (OK);
 
   ALC.Destroy_Context (Context);
-  OK := ALC.Close_Device (Device);
+  ALC.Close_Device (Device);
 
-  pragma Assert (OK);
+  pragma Assert (Device = ALC.Invalid_Device);
 
   Test.Finish;
 end init_004;

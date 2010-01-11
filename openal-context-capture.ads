@@ -23,7 +23,7 @@ package OpenAL.Context.Capture is
      Buffer_Size : in Buffer_Size_t) return Device_t;
 
   -- proc_map : alcCaptureCloseDevice
-  function Close_Device (Device : in Device_t) return Boolean;
+  procedure Close_Device (Device : in out Device_t);
 
   -- proc_map : alcCaptureStart
   procedure Start (Device : in Device_t);

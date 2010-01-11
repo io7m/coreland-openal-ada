@@ -37,8 +37,8 @@ begin
   -- Unfortunately, no implementation actually does that...
   --
 
-  OK := ALC.Close_Device (Device);
-  Test.Check_Test (20, "device closed", OK);
+  ALC.Close_Device (Device);
+  Test.Check_Test (20, "device closed", Device = ALC.Invalid_Device);
   -- Test 21 removed.
 
   Test.Finish;

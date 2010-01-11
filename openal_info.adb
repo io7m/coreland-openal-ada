@@ -43,9 +43,7 @@ package body OpenAL_Info is
   procedure Finish is
   begin
     AL_Context.Destroy_Context (Context);
-    if AL_Context.Close_Device (Device) = False then
-      raise Error with "error closing device";
-    end if;
+    AL_Context.Close_Device (Device);
   end Finish;
 
   --

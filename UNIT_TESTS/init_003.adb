@@ -43,8 +43,8 @@ begin
   ALC.Destroy_Context (Context);
   Test.Check_Test (34, "no context error", ALC_Error.Get_Error (Device) = ALC_Error.No_Error);
 
-  OK := ALC.Close_Device (Device);
-  Test.Check_Test (35, "device closed", OK);
+  ALC.Close_Device (Device);
+  Test.Check_Test (35, "device closed", Device = ALC.Invalid_Device);
   -- Test 36 removed.
 
   Test.Finish;
