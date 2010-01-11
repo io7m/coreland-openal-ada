@@ -1,5 +1,16 @@
 Complete unit tests.
 
+OpenAL.Extension.EFX
+
+  "The application can then retrieve the address (function pointer) of
+  an extension entry point using alGetProcAddress. Extensions and entry
+  points can be Context-specific, and the application can not count on
+  an extension being available unless alIsExtensionPresent returns
+  AL_TRUE. The application also has to maintain pointers on a
+  per-context basis."
+
+  How can this be made impossible to use incorrectly?
+
 OpenAL.Extension.Float32
 
   FLOAT32 valid for captured audio? Add subprogram if so.
