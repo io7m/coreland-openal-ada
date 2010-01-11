@@ -1,0 +1,33 @@
+
+#!/bin/sh
+
+PROGRAM_NAME="tests-init-db"
+
+info()
+{
+  echo "${PROGRAM_NAME}: info: $1" 1>&2
+}
+
+fatal()
+{
+  echo "${PROGRAM_NAME}: fatal: $1" 1>&2
+  exit 1
+}
+
+if [ $# -ne 1 ]
+then
+  echo "${PROGRAM_NAME}: usage: test-db" 1>&2
+  exit 1
+fi
+
+TEST_DB="$1"
+
+if [ -d "${TEST_DB}" ]
+then
+  fatal "test database \"${TEST_DB}\" already exists"
+fi
+
+mkdir "${TEST_DB}" ||
+  fatal "could not create ${TEST_DB}"
+mkdir "${TEST_DB}/tests" ||
+  fatal "could not create ${TEST_DB}/tests"

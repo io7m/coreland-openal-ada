@@ -1,0 +1,42 @@
+#!/bin/sh
+
+PROGRAM_NAME="tests-run"
+
+info()
+{
+  echo "${PROGRAM_NAME}: info: $1" 1>&2
+}
+
+fatal()
+{
+  echo "${PROGRAM_NAME}: fatal: $1" 1>&2
+  exit 1
+}
+
+if [ $# -ne 2 ]
+then
+  echo "${PROGRAM_NAME}: usage: test-db test-results" 1>&2
+  exit 1
+fi
+
+TEST_DB="$1"
+TEST_RESULTS="$2"
+
+if [ ! -d "${TEST_DB}" ]
+then
+  fatal "test database \"${TEST_DB}\" does not exist"
+fi
+
+TEST_PROGRAMS=`cat ${TEST_DB}/tests/*/program | sort | uniq` ||
+  fatal "could not list test programs"
+
+for TEST_PROGRAM in ${TEST_PROGRAMS}
+do
+  ./${TEST_PROGRAM}
+  if [ $? -ne 0 ]
+  then
+    info "${TEST_PROGRAM} returned failure code"
+    echo "${TEST_PROGRAM}" >> "${TEST_RESULTS}/crashed" ||
+      fatal "could not write ${TEST_PROGRAM} to ${TEST_RESULTS}/crashed"
+  fi
+done

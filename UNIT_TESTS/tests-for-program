@@ -1,0 +1,44 @@
+#!/bin/sh
+
+PROGRAM_NAME="tests-for-program"
+
+info()
+{
+  echo "${PROGRAM_NAME}: info: $1" 1>&2
+}
+
+fatal()
+{
+  echo "${PROGRAM_NAME}: fatal: $1" 1>&2
+  exit 1
+}
+
+if [ $# -ne 2 ]
+then
+  echo "${PROGRAM_NAME}: usage: test-db program" 1>&2
+  exit 1
+fi
+
+TEST_DB="$1"
+TEST_PROGRAM="$2"
+
+if [ ! -d "${TEST_DB}" ]
+then
+  fatal "test database \"${TEST_DB}\" does not exist"
+fi
+
+TESTS=`./tests-list "${TEST_DB}"` ||
+  fatal "could not list tests"
+
+for TEST_ID in ${TESTS}
+do
+  TEST_DB_ENTRY="${TEST_DB}/tests/${TEST_ID}"
+  CURRENT_PROGRAM=`cat ${TEST_DB_ENTRY}/program` ||
+    fatal "could not read ${TEST_DB_ENTRY}/program" 
+
+  if [ "${TEST_PROGRAM}" = "${CURRENT_PROGRAM}" ]
+  then
+    TEST_DESC=`cat ${TEST_DB_ENTRY}/description`
+    printf "%-12d : %s\n" ${TEST_ID} "${TEST_DESC}"
+  fi
+done

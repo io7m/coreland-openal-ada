@@ -1,0 +1,40 @@
+#!/bin/sh
+
+PROGRAM_NAME="test-pass"
+
+info()
+{
+  echo "${PROGRAM_NAME}: info: $1" 1>&2
+}
+
+fatal()
+{
+  echo "${PROGRAM_NAME}: fatal: $1" 1>&2
+  exit 1
+}
+
+if [ $# -ne 4 ]
+then
+  echo "${PROGRAM_NAME}: usage: test-db test-results ID program" 1>&2
+  exit 1
+fi
+
+TEST_DB="$1"
+TEST_RESULTS="$2"
+TEST_ID="$3"
+TEST_PROGRAM="$4"
+
+TEST_DB_ENTRY="${TEST_DB}/tests/${TEST_ID}/"
+TEST_RESULT_ENTRY="${TEST_RESULTS}/tests/${TEST_ID}/"
+
+TEST_WANT_PROGRAM=`cat ${TEST_DB_ENTRY}/program` ||
+  fatal "could not read ${TEST_DB_ENTRY}/program"
+
+if [ "${TEST_WANT_PROGRAM}" != "${TEST_PROGRAM}" ]
+then
+  fatal "invalid program for test"
+fi
+
+echo "PASS" > "${TEST_RESULT_ENTRY}/state.tmp" &&
+  mv "${TEST_RESULT_ENTRY}/state.tmp" "${TEST_RESULT_ENTRY}/state" ||
+    fatal "could not write ${TEST_RESULT_ENTRY}/state"

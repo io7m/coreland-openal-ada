@@ -1,0 +1,37 @@
+#!/bin/sh
+
+PROGRAM_NAME="test-unsupported"
+
+info()
+{
+  echo "${PROGRAM_NAME}: info: $1" 1>&2
+}
+
+fatal()
+{
+  echo "${PROGRAM_NAME}: fatal: $1" 1>&2
+  exit 1
+}
+
+if [ $# -ne 4 ]
+then
+  echo "${PROGRAM_NAME}: usage: test-db test-results ID program" 1>&2
+  exit 1
+fi
+
+TEST_DB="$1"
+TEST_RESULTS="$2"
+TEST_ID="$3"
+TEST_PROGRAM="$4"
+
+TEST_WANT_PROGRAM=`cat ${TEST_DB}/tests/${TEST_ID}/program` ||
+  fatal "could not read ${TEST_DB}/tests/${TEST_ID}/program"
+
+if [ "${TEST_WANT_PROGRAM}" != "${TEST_PROGRAM}" ]
+then
+  fatal "invalid program for test"
+fi
+
+echo "UNSUPPORTED" > "${TEST_RESULTS}/tests/${TEST_ID}/state.tmp" &&
+  mv "${TEST_RESULTS}/tests/${TEST_ID}/state.tmp" "${TEST_RESULTS}/tests/${TEST_ID}/state" ||
+    fatal "could not write ${TEST_RESULTS}/tests/${TEST_ID}/state"

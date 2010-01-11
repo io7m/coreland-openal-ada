@@ -1,0 +1,94 @@
+#!/bin/sh
+
+PROGRAM_NAME="tests-summary"
+
+info()
+{
+  echo "${PROGRAM_NAME}: info: $1" 1>&2
+}
+
+fatal()
+{
+  echo "${PROGRAM_NAME}: fatal: $1" 1>&2
+  exit 1
+}
+
+if [ $# -ne 2 ]
+then
+  echo "${PROGRAM_NAME}: usage: test-db test-results" 1>&2
+  exit 1
+fi
+
+TEST_DB="$1"
+TEST_RESULTS="$2"
+
+if [ ! -d "${TEST_DB}" ]
+then
+  fatal "test database \"${TEST_DB}\" does not exist"
+fi
+
+if [ ! -d "${TEST_RESULTS}" ]
+then
+  fatal "test results \"${TEST_RESULTS}\" does not exist"
+fi
+
+TEST_COUNT=`./tests-list "${TEST_DB}" | wc -l | tr -d -c '[0-9]'` ||
+  fatal "could not count tests"
+
+TEST_PASSED=0
+TEST_FAILED=0
+TEST_UNSUPPORTED=0
+TEST_UNEXECUTED=0
+
+cat <<EOF
+------------------------------------------------------------------------
+TEST SUMMARY
+------------------------------------------------------------------------
+EOF
+
+for TEST_ID in `./tests-list "${TEST_DB}"`
+do
+  TEST_PROGRAM="`cat ${TEST_DB}/tests/${TEST_ID}/program`" ||
+    fatal "no program defined for ${TEST_ID}"
+  TEST_DESCRIPTION="`cat ${TEST_DB}/tests/${TEST_ID}/description`" ||
+    fatal "no description defined for ${TEST_ID}"
+  TEST_STATE="`cat ${TEST_RESULTS}/tests/${TEST_ID}/state`" ||
+    fatal "no state defined for ${TEST_ID}"
+
+  printf "%-12d : %-12s : %-12s : %s\n" \
+    "${TEST_ID}" "${TEST_STATE}" "${TEST_PROGRAM}" "${TEST_DESCRIPTION}"
+
+  case ${TEST_STATE} in
+    NOT_SUPPORTED) TEST_UNSUPPORTED=`expr ${TEST_UNSUPPORTED} + 1` ;;
+    NOT_EXECUTED)  TEST_UNEXECUTED=`expr ${TEST_UNEXECUTED} + 1` ;;
+    PASS)          TEST_PASSED=`expr ${TEST_PASSED} + 1` ;;
+    FAIL)          TEST_FAILED=`expr ${TEST_FAILED} + 1` ;;
+    *) fatal "invalid state for ${TEST_ID}" ;;
+  esac
+done
+
+TEST_GRADE=`echo "${TEST_PASSED} / ${TEST_COUNT} * 100.0" | bc -l` ||
+  fatal "could not calculate grade"
+
+if [ -f "${TEST_RESULTS}/crashed" ]
+then
+  cat <<EOF
+------------------------------------------------------------------------
+CRASHED:
+EOF
+  cat "${TEST_RESULTS}/crashed" ||
+    fatal "could not read ${TEST_RESULTS}/crashed"
+fi
+
+cat <<EOF
+------------------------------------------------------------------------
+TESTS       : ${TEST_COUNT}
+PASS        : ${TEST_PASSED}
+FAIL        : ${TEST_FAILED}
+UNSUPPORTED : ${TEST_UNSUPPORTED}
+UNEXECUTED  : ${TEST_UNEXECUTED}
+------------------------------------------------------------------------
+EOF
+
+printf \
+"GRADE       : %.2f\n" ${TEST_GRADE}

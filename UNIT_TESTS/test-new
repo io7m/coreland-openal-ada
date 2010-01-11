@@ -1,0 +1,43 @@
+#!/bin/sh
+
+PROGRAM_NAME="test-new"
+
+info()
+{
+  echo "${PROGRAM_NAME}: info: $1" 1>&2
+}
+
+fatal()
+{
+  echo "${PROGRAM_NAME}: fatal: $1" 1>&2
+  exit 1
+}
+
+if [ $# -ne 4 ]
+then
+  echo "${PROGRAM_NAME}: usage: test-db ID program description" 1>&2
+  exit 1
+fi
+
+TEST_DB="$1"
+TEST_ID="$2"
+TEST_PROGRAM="$3"
+TEST_DESCRIPTION="$4"
+
+if [ ! -d "${TEST_DB}" ]
+then
+  fatal "test database \"${TEST_DB}\" does not exist"
+fi
+
+if [ -d "${TEST_DB}/tests/${TEST_ID}" ]
+then
+  fatal "test ${TEST_ID} already exists in \"${TEST_DB}\""
+fi
+
+mkdir "${TEST_DB}/tests/${TEST_ID}" ||
+  fatal "could not create ${TEST_ID} in \"${TEST_DB}\""
+
+echo "${TEST_PROGRAM}" > "${TEST_DB}/tests/${TEST_ID}/program" ||
+  fatal "could not create ${TEST_DB}/tests/${TEST_ID}/program"
+echo "${TEST_DESCRIPTION}" > "${TEST_DB}/tests/${TEST_ID}/description" ||
+  fatal "could not create ${TEST_DB}/tests/${TEST_ID}/description"

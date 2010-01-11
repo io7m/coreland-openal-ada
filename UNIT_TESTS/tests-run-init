@@ -1,0 +1,57 @@
+#!/bin/sh
+
+PROGRAM_NAME="tests-run-init"
+
+info()
+{
+  echo "${PROGRAM_NAME}: info: $1" 1>&2
+}
+
+fatal()
+{
+  echo "${PROGRAM_NAME}: fatal: $1" 1>&2
+  exit 1
+}
+
+if [ $# -ne 2 ]
+then
+  echo "${PROGRAM_NAME}: usage: test-db test-results" 1>&2
+  exit 1
+fi
+
+TEST_DB="$1"
+TEST_RESULTS="$2"
+
+if [ ! -d "${TEST_DB}" ]
+then
+  fatal "test database \"${TEST_DB}\" does not exist"
+fi
+
+if [ -d "${TEST_RESULTS}" ]
+then
+  fatal "test results \"${TEST_RESULTS}\" already exists"
+else
+  mkdir "${TEST_RESULTS}" ||
+    fatal "could not create test results \"${TEST_RESULTS}\""
+  mkdir "${TEST_RESULTS}/tests" ||
+    fatal "could not create test results \"${TEST_RESULTS}/tests\""
+fi
+
+for TEST_ID in `./tests-list ${TEST_DB}`
+do
+  TEST_DB_ENTRY="${TEST_DB}/tests/${TEST_ID}/"
+  TEST_RESULT_ENTRY="${TEST_RESULTS}/tests/${TEST_ID}"
+
+  TEST_PROGRAM="`cat ${TEST_DB_ENTRY}/program`" ||
+    fatal "no program defined for ${TEST_ID}"
+  TEST_DESCRIPTION="`cat ${TEST_DB_ENTRY}/description`" ||
+    fatal "no description defined for ${TEST_ID}"
+
+  printf "%-12d : %-12s : %s\n" \
+    "${TEST_ID}" "${TEST_PROGRAM}" "${TEST_DESCRIPTION}"
+
+  mkdir "${TEST_RESULT_ENTRY}" ||
+    fatal "could not create ${TEST_RESULT_ENTRY}"
+  echo "NOT_EXECUTED" > "${TEST_RESULT_ENTRY}/state" ||
+    fatal "could not create ${TEST_RESULT_ENTRY}/state"
+done
