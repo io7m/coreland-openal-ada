@@ -13,6 +13,7 @@ case ${SYSDEP_OS} in
     pkg="OpenAL32"
     args="-l${pkg}"
     lib="${pkg}.${SYSDEP_LIBSUFFIX}"
+    ;;
   *)
     pkg="openal"
     args="-l${pkg}"
