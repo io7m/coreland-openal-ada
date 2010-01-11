@@ -163,7 +163,7 @@ package OpenAL.Source is
   -- Type
   --
 
-  type Source_Type_t is (Undetermined, Static, Streaming);
+  type Source_Type_t is (Undetermined, Static, Streaming, Unknown);
 
   -- proc_map : alSource
   procedure Get_Type

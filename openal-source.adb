@@ -557,8 +557,7 @@ package body OpenAL.Source is
       when Thin.AL_UNDETERMINED => Source_Type := Undetermined;
       when Thin.AL_STATIC       => Source_Type := Static;
       when Thin.AL_STREAMING    => Source_Type := Streaming;
-      when others =>
-        raise Constraint_Error with "invalid value returned from alGetSourcei";
+      when others               => Source_Type := Unknown;
     end case;
   end Get_Type;
 
