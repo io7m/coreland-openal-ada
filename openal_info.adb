@@ -1,5 +1,6 @@
-with Ada.Text_IO;
 with Ada.Command_Line;
+with Ada.Exceptions;
+with Ada.Text_IO;
 with OpenAL.Context;
 with OpenAL.Global;
 with OpenAL.List;
@@ -9,6 +10,7 @@ package body OpenAL_Info is
   package AL_Global         renames OpenAL.Global;
   package AL_String_Vectors renames OpenAL.List.String_Vectors;
   package Command_Line      renames Ada.Command_Line;
+  package Exceptions        renames Ada.Exceptions;
   package Natural_IO        is new  Ada.Text_IO.Integer_IO (Natural);
   package Text_IO           renames Ada.Text_IO;
 
