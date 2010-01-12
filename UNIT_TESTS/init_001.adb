@@ -26,10 +26,14 @@ begin
   Test.Check (TC, 2, ALC_Error.Get_Error (Device) = ALC_Error.No_Error,
     "ALC_Error.Get_Error (Device) = ALC_Error.No_Error");
 
+  pragma Assert (Device /= ALC.Invalid_Device);
+
   Context := ALC.Create_Context (Device);
   Test.Check (TC, 3, Context /= ALC.Invalid_Context, "Context /= ALC.Invalid_Context");
   Test.Check (TC, 4, ALC_Error.Get_Error (Device) = ALC_Error.No_Error,
     "ALC_Error.Get_Error (Device) = ALC_Error.No_Error");
+
+  pragma Assert (Context /= ALC.Invalid_Context);
 
   Current_OK := ALC.Make_Context_Current (Context);
   Test.Check (TC, 5, Current_OK, "Current_OK");
