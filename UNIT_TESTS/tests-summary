@@ -66,10 +66,10 @@ do
     "${TEST_ID}" "${TEST_STATE}" "${TEST_PROGRAM}" "${TEST_DESCRIPTION}" "${TEST_STATEMENT}"
 
   case ${TEST_STATE} in
-    NOT_SUPPORTED) TEST_UNSUPPORTED=`expr ${TEST_UNSUPPORTED} + 1` ;;
-    NOT_EXECUTED)  TEST_UNEXECUTED=`expr ${TEST_UNEXECUTED} + 1` ;;
-    PASS)          TEST_PASSED=`expr ${TEST_PASSED} + 1` ;;
-    FAIL)          TEST_FAILED=`expr ${TEST_FAILED} + 1` ;;
+    UNSUPPORTED)  TEST_UNSUPPORTED=`expr ${TEST_UNSUPPORTED} + 1` ;;
+    NOT_EXECUTED) TEST_UNEXECUTED=`expr ${TEST_UNEXECUTED} + 1` ;;
+    PASS)         TEST_PASSED=`expr ${TEST_PASSED} + 1` ;;
+    FAIL)         TEST_FAILED=`expr ${TEST_FAILED} + 1` ;;
     *) fatal "invalid state for ${TEST_ID}" ;;
   esac
 done
