@@ -13,9 +13,9 @@ fatal()
   exit 1
 }
 
-if [ $# -ne 4 ]
+if [ $# -lt 5 ]
 then
-  echo "${PROGRAM_NAME}: usage: test-db test-results ID program" 1>&2
+  echo "${PROGRAM_NAME}: usage: test-db test-results ID program [statement]" 1>&2
   exit 1
 fi
 
@@ -23,6 +23,7 @@ TEST_DB="$1"
 TEST_RESULTS="$2"
 TEST_ID="$3"
 TEST_PROGRAM="$4"
+TEST_STATEMENT="$5"
 
 TEST_WANT_PROGRAM=`cat ${TEST_DB}/tests/${TEST_ID}/program` ||
   fatal "could not read ${TEST_DB}/tests/${TEST_ID}/program"
@@ -35,3 +36,7 @@ fi
 echo "FAIL" > "${TEST_RESULTS}/tests/${TEST_ID}/state.tmp" &&
   mv "${TEST_RESULTS}/tests/${TEST_ID}/state.tmp" "${TEST_RESULTS}/tests/${TEST_ID}/state" ||
     fatal "could not write ${TEST_RESULTS}/tests/${TEST_ID}/state"
+
+echo "${TEST_STATEMENT}" > "${TEST_RESULT_ENTRY}/statement.tmp" &&
+  mv "${TEST_RESULT_ENTRY}/state.tmp" "${TEST_RESULT_ENTRY}/statement" ||
+    fatal "could not write ${TEST_RESULT_ENTRY}/statement"

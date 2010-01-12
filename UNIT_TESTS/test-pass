@@ -13,9 +13,9 @@ fatal()
   exit 1
 }
 
-if [ $# -ne 4 ]
+if [ $# -lt 4 ]
 then
-  echo "${PROGRAM_NAME}: usage: test-db test-results ID program" 1>&2
+  echo "${PROGRAM_NAME}: usage: test-db test-results ID program [statement]" 1>&2
   exit 1
 fi
 
@@ -23,6 +23,7 @@ TEST_DB="$1"
 TEST_RESULTS="$2"
 TEST_ID="$3"
 TEST_PROGRAM="$4"
+TEST_STATEMENT="$5"
 
 TEST_DB_ENTRY="${TEST_DB}/tests/${TEST_ID}/"
 TEST_RESULT_ENTRY="${TEST_RESULTS}/tests/${TEST_ID}/"
@@ -38,3 +39,7 @@ fi
 echo "PASS" > "${TEST_RESULT_ENTRY}/state.tmp" &&
   mv "${TEST_RESULT_ENTRY}/state.tmp" "${TEST_RESULT_ENTRY}/state" ||
     fatal "could not write ${TEST_RESULT_ENTRY}/state"
+
+echo "${TEST_STATEMENT}" > "${TEST_RESULT_ENTRY}/statement.tmp" &&
+  mv "${TEST_RESULT_ENTRY}/state.tmp" "${TEST_RESULT_ENTRY}/statement" ||
+    fatal "could not write ${TEST_RESULT_ENTRY}/statement"
