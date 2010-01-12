@@ -1,10 +1,12 @@
 with Ada.Strings.Fixed;
+with Ada.Directories;
 
 package body Test is
   package Text_IO       renames Ada.Text_IO;
   package Result_IO     is new  Ada.Text_IO.Enumeration_IO (Result_t);
   package Fixed_Strings renames Ada.Strings.Fixed;
   package Strings       renames Ada.Strings;
+  package Directories   renames Ada.Directories;
 
   use type UB_Strings.Unbounded_String;
 
@@ -106,6 +108,16 @@ package body Test is
     UB_Strings.Set_Unbounded_String (Base, "");
     UB_Strings.Append (Base, "/tests/");
     UB_Strings.Append (Base, Fixed_Strings.Trim (Test_t'Image (Test), Strings.Left));
+
+    -- Check database entry exists.
+    UB_Strings.Set_Unbounded_String (Path, "");
+    UB_Strings.Append (Path, Test_Context.Test_DB);
+    UB_Strings.Append (Path, Base);
+
+    if Directories.Exists (UB_Strings.To_String (Path)) = False then
+      raise Program_Error with
+        "test " & Fixed_Strings.Trim (Test_t'Image (Test), Strings.Left) & " not defined";
+    end if;
 
     -- Check the current program is the one that should be satisfying the test.
     Check_Program (Test_Context, Base);
