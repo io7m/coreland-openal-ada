@@ -15,7 +15,8 @@ package body Test is
   procedure Check
     (Test_Context : in Context_t;
      Test         : in Test_t;
-     Condition    : in Boolean)
+     Condition    : in Boolean;
+     Statement    : in String := "")
   is
     Result : Valid_Result_t;
   begin
@@ -28,7 +29,8 @@ package body Test is
     Satisfy
       (Test_Context => Test_Context,
        Test         => Test,
-       Result       => Result);
+       Result       => Result,
+       Statement    => Statement);
   end Check;
 
   --
@@ -93,7 +95,8 @@ package body Test is
   procedure Satisfy
     (Test_Context : in Context_t;
      Test         : in Test_t;
-     Result       : in Valid_Result_t)
+     Result       : in Valid_Result_t;
+     Statement    : in String := "")
   is
     File : Text_IO.File_Type;
     Base : UB_Strings.Unbounded_String;
@@ -108,6 +111,19 @@ package body Test is
     Check_Program (Test_Context, Base);
 
     -- Build path to state file.
+    UB_Strings.Set_Unbounded_String (Path, "");
+    UB_Strings.Append (Path, Test_Context.Test_Results);
+    UB_Strings.Append (Path, Base);
+    UB_Strings.Append (Path, "/statement");
+
+    -- Yes, Ada has race conditions built in!
+    Text_IO.Create   (File, Name => UB_Strings.To_String (Path));
+    Text_IO.Put      (File, Statement);
+    Text_IO.New_Line (File);
+    Text_IO.Close    (File);
+
+    -- Build path to state file.
+    UB_Strings.Set_Unbounded_String (Path, "");
     UB_Strings.Append (Path, Test_Context.Test_Results);
     UB_Strings.Append (Path, Base);
     UB_Strings.Append (Path, "/state");

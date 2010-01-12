@@ -54,9 +54,16 @@ do
     fatal "no description defined for ${TEST_ID}"
   TEST_STATE="`cat ${TEST_RESULTS}/tests/${TEST_ID}/state`" ||
     fatal "no state defined for ${TEST_ID}"
+  TEST_STATEMENT="`cat ${TEST_RESULTS}/tests/${TEST_ID}/statement`" ||
+    fatal "no statement defined for ${TEST_ID}"
 
-  printf "%-12d : %-12s : %-12s : %s\n" \
-    "${TEST_ID}" "${TEST_STATE}" "${TEST_PROGRAM}" "${TEST_DESCRIPTION}"
+  if [ ! -z "${TEST_STATEMENT}" ]
+  then
+    TEST_STATEMENT=" (${TEST_STATEMENT})"
+  fi
+
+  printf "%-12d : %-12s : %-12s : %s%s\n" \
+    "${TEST_ID}" "${TEST_STATE}" "${TEST_PROGRAM}" "${TEST_DESCRIPTION}" "${TEST_STATEMENT}"
 
   case ${TEST_STATE} in
     NOT_SUPPORTED) TEST_UNSUPPORTED=`expr ${TEST_UNSUPPORTED} + 1` ;;

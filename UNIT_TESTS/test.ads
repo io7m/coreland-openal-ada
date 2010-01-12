@@ -19,12 +19,14 @@ package Test is
   procedure Satisfy
     (Test_Context : in Context_t;
      Test         : in Test_t;
-     Result       : in Valid_Result_t);
+     Result       : in Valid_Result_t;
+     Statement    : in String := "");
 
   procedure Check
     (Test_Context : in Context_t;
      Test         : in Test_t;
-     Condition    : in Boolean);
+     Condition    : in Boolean;
+     Statement    : in String := "");
 
 private
   package UB_Strings renames Ada.Strings.Unbounded;
