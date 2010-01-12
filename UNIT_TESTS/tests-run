@@ -32,6 +32,7 @@ TEST_PROGRAMS=`cat ${TEST_DB}/tests/*/program | sort | uniq` ||
 
 for TEST_PROGRAM in ${TEST_PROGRAMS}
 do
+  info "${TEST_PROGRAM}"
   ./${TEST_PROGRAM}
   if [ $? -ne 0 ]
   then
