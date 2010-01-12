@@ -54,4 +54,6 @@ do
     fatal "could not create ${TEST_RESULT_ENTRY}"
   echo "NOT_EXECUTED" > "${TEST_RESULT_ENTRY}/state" ||
     fatal "could not create ${TEST_RESULT_ENTRY}/state"
+  echo "" > "${TEST_RESULT_ENTRY}/statement" ||
+    fatal "could not create ${TEST_RESULT_ENTRY}/statement"
 done
