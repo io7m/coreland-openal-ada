@@ -136,7 +136,10 @@ package body OpenAL_Info is
     Versions;
     Finish;
   exception
-    when Error => null;
+    when E : Error =>
+      Text_IO.Put_Line
+        (File => Text_IO.Current_Error,
+         Item => "fatal: " & Exceptions.Exception_Message (E));
   end Run;
 
   --
