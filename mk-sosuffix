@@ -1,0 +1,58 @@
+#!/bin/sh
+
+PROGRAM_NAME="mk-sosuffix"
+
+warning()
+{
+  echo "${PROGRAM_NAME}: warn: $1" 1>&2
+}
+
+error()
+{
+  echo "${PROGRAM_NAME}: error: $1" 1>&2
+}
+
+fatal()
+{
+  echo "${PROGRAM_NAME}: fatal: $1" 1>&2
+  exit 1
+}
+
+#
+# check if base directory was specified
+#
+
+BASE_DIR="."
+echo "$1" | grep '^@' 2>&1 >/dev/null
+if [ $? -eq 0 ]
+then
+  BASE_DIR=`echo $1 | sed 's/^@//g'`
+  shift
+fi
+
+#
+# Assume cross-compilation if cross compilation tools are
+# defined.
+#
+
+if [ -f "${BASE_DIR}/conf-x-cc" ]
+then
+  SYS_TYPE=`head -n 1 "${BASE_DIR}/conf-x-systype"`
+  if [ $? -ne 0 ]
+  then
+    fatal "could not read ${BASE_DIR}/conf-x-systype"
+  fi
+else
+  SYS_TYPE=`head -n 1 "${BASE_DIR}/conf-systype"`
+  if [ $? -ne 0 ]
+  then
+    fatal "could not read ${BASE_DIR}/conf-systype"
+  fi
+fi
+
+case "${SYS_TYPE}" in
+  DARWIN)     exec echo 'dylib';;
+  HPUX)       exec echo 'sl';;
+  MS_WINDOWS) exec echo 'dll';;
+  *)          exec echo 'so';;
+esac
