@@ -486,17 +486,16 @@ else
   case ${SYSDEP_OS} in
     SD_SYSINFO_OS_DARWIN) SYSDEP_STDINC="/opt/local/include /opt/include /sw/include ${SYSDEP_STDINC}";;
     SD_SYSINFO_OS_SUNOS)  SYSDEP_STDINC="/opt/csw/include /usr/sfw/include ${SYSDEP_STDINC}";;
-    *)
+    *) ;;
   esac
   SYSDEP_STDINC="${STDINC_ADD} ${SYSDEP_STDINC}"
 
   # Standard library path.
   SYSDEP_STDLIB="/usr/lib /usr/local/lib"
   case ${SYSDEP_OS} in
-    SD_SYSINFO_OS_DARWIN)     SYSDEP_STDLIB="/opt/local/lib /opt/lib /sw/lib ${SYSDEP_STDLIB}";;
-    SD_SYSINFO_OS_SUNOS)      SYSDEP_STDLIB="/opt/csw/lib /usr/sfw/lib ${SYSDEP_STDLIB}";;
-    SD_SYSINFO_OS_MS_WINDOWS) SYSDEP_STDLIB="H:/WINDOWS/system32 ${SYSDEP_STDLIB}";;
-    *)
+    SD_SYSINFO_OS_DARWIN) SYSDEP_STDLIB="/opt/local/lib /opt/lib /sw/lib ${SYSDEP_STDLIB}";;
+    SD_SYSINFO_OS_SUNOS)  SYSDEP_STDLIB="/opt/csw/lib /usr/sfw/lib ${SYSDEP_STDLIB}";;
+    *) ;;
   esac
   SYSDEP_STDLIB="${STDLIB_ADD} ${SYSDEP_STDLIB}"
 fi
