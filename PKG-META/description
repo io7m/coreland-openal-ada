@@ -1,5 +1,10 @@
 <p>This package provides a set of Ada bindings to OpenAL.</p>
+
 <p>The package consists of a set of "thin" bindings that are generated from
 a set of machine-checked specifications and a set of "thick" bindings that
 are hand-written and provide a layer of safety (making it impossible to
 misuse the API and preventing many bugs at compile-time).</p>
+
+<p>The package also contains the trivially-parseable specification files used to
+generate a large portion of the code. These files are of particular interest to
+others writing language bindings (for any language).</p>
