@@ -1,5 +1,9 @@
 Complete unit tests.
 
+OpenAL.Extension.EFX
+
+  Complete API.
+
 OpenAL.Extension.Float32
 
   FLOAT32 valid for captured audio? Add subprogram if so.
