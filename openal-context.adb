@@ -87,6 +87,15 @@ package body OpenAL.Context is
   end Destroy_Context;
 
   --
+  -- Device_Data
+  --
+
+  function Device_Data (Device : in Device_t) return ALC_Thin.Device_t is
+  begin
+    return Device.Device_Data;
+  end Device_Data;
+
+  --
   -- Get_*
   --
 

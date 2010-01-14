@@ -151,6 +151,12 @@ package OpenAL.Context is
   function Get_Stereo_Sources
     (Device : in Device_t) return Natural;
 
+  --
+  -- Private conveniences.
+  --
+
+  function Device_Data (Device : in Device_t) return ALC_Thin.Device_t;
+
 private
 
   type Device_t is record
