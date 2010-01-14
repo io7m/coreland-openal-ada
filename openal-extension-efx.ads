@@ -246,6 +246,26 @@ package OpenAL.Extension.EFX is
     (Extension : in Extension_t;
      Slot      : in Auxiliary_Effect_Slot_t) return Boolean;
 
+  -- proc_map : alAuxiliaryEffectSloti
+  procedure Set_Auxiliary_Effect_Slot_Effect
+    (Extension : in Extension_t;
+     Slot      : in Auxiliary_Effect_Slot_t;
+     Effect    : in Effect_t);
+
+  subtype Gain_t is Types.Float_t range 0.0 .. 1.0;
+
+  -- proc_map : alAuxiliaryEffectSlotf
+  procedure Set_Auxiliary_Effect_Slot_Gain
+    (Extension : in Extension_t;
+     Slot      : in Auxiliary_Effect_Slot_t;
+     Gain      : in Gain_t);
+
+  -- proc_map : alAuxiliaryEffectSloti
+  procedure Set_Auxiliary_Effect_Slot_Auto_Send
+    (Extension : in Extension_t;
+     Slot      : in Auxiliary_Effect_Slot_t;
+     Enable    : in Boolean);
+
   --
   -- Source filtering and properties.
   --

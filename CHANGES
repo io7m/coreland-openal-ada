@@ -8,3 +8,4 @@
 20100114 code: OpenAL.Extension.EFX filter type/parameter setting implemented.
 20100114 code: OpenAL.Extension.EFX source, listener and context extensions
                implemented.
+20100114 code: OpenAL.Extension.EFX auxiliary effect slots implemented.

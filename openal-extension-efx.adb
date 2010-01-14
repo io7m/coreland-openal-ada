@@ -457,6 +457,57 @@ package body OpenAL.Extension.EFX is
   end Room_Rolloff_Factor;
 
   --
+  -- Set_Auxiliary_Effect_Slot_Auto_Send
+  --
+
+  procedure Set_Auxiliary_Effect_Slot_Auto_Send
+    (Extension : in Extension_t;
+     Slot      : in Auxiliary_Effect_Slot_t;
+     Enable    : in Boolean) is
+  begin
+    Check_Loaded (Extension);
+
+    Extension.API.Auxiliary_Effect_Sloti
+      (Slot      => Types.Unsigned_Integer_t (Slot),
+       Parameter => EFX_Thin.AL_EFFECTSLOT_AUXILIARY_SEND_AUTO,
+       Value     => Types.Integer_t (Boolean'Pos (Enable)));
+  end Set_Auxiliary_Effect_Slot_Auto_Send;
+
+  --
+  -- Set_Auxiliary_Effect_Slot_Effect
+  --
+
+  procedure Set_Auxiliary_Effect_Slot_Effect
+    (Extension : in Extension_t;
+     Slot      : in Auxiliary_Effect_Slot_t;
+     Effect    : in Effect_t) is
+  begin
+    Check_Loaded (Extension);
+
+    Extension.API.Auxiliary_Effect_Sloti
+      (Slot      => Types.Unsigned_Integer_t (Slot),
+       Parameter => EFX_Thin.AL_EFFECTSLOT_EFFECT,
+       Value     => Types.Integer_t (Effect));
+  end Set_Auxiliary_Effect_Slot_Effect;
+
+  --
+  -- Set_Auxiliary_Effect_Slot_Gain
+  --
+
+  procedure Set_Auxiliary_Effect_Slot_Gain
+    (Extension : in Extension_t;
+     Slot      : in Auxiliary_Effect_Slot_t;
+     Gain      : in Gain_t) is
+  begin
+    Check_Loaded (Extension);
+
+    Extension.API.Auxiliary_Effect_Slotf
+      (Slot      => Types.Unsigned_Integer_t (Slot),
+       Parameter => EFX_Thin.AL_EFFECTSLOT_GAIN,
+       Value     => Gain);
+  end Set_Auxiliary_Effect_Slot_Gain;
+
+  --
   -- Set_Effect_Parameter
   --
 
