@@ -37,7 +37,7 @@ package OpenAL.Extension.EFX is
      Equalizer,
      EAX_Reverb);
 
-  subtype Valid_Effect_Type_t is Effect_Type_t range Null_Effect .. Effect_Type_t'Last;
+  subtype Valid_Effect_Type_t is Effect_Type_t range Reverb .. Effect_Type_t'Last;
 
   -- proc_map : alGenEffects
   procedure Generate_Effects
@@ -184,6 +184,42 @@ package OpenAL.Extension.EFX is
   function Filter_Is_Valid
     (Extension : in Extension_t;
      Filter    : in Filter_t) return Boolean;
+
+  type Filter_Type_t is
+    (Unknown_Filter,
+     Null_Filter,
+     Low_Pass_Filter,
+     Band_Pass_Filter,
+     High_Pass_Filter);
+
+  subtype Valid_Filter_Type_t is Filter_Type_t range Low_Pass_Filter .. Filter_Type_t'Last;
+
+  -- proc_map : alFilteri
+  procedure Set_Filter_Type
+    (Extension   : in Extension_t;
+     Filter      : in Filter_t;
+     Filter_Type : in Valid_Filter_Type_t);
+
+  -- proc_map : alFilteri
+  function Get_Filter_Type
+    (Extension   : in Extension_t;
+     Filter      : in Filter_t) return Filter_Type_t;
+
+  type Filter_Parameter_t is
+    (Low_Pass_Gain,
+     Low_Pass_Gain_HF,
+     High_Pass_Gain,
+     High_Pass_Gain_LF,
+     Band_Pass_Gain,
+     Band_Pass_Gain_LF,
+     Band_Pass_Gain_HF);
+
+  -- proc_map : alFilterf
+  procedure Set_Filter_Parameter
+    (Extension   : in Extension_t;
+     Filter      : in Filter_t;
+     Parameter   : in Filter_Parameter_t;
+     Value       : in Types.Float_t);
 
   --
   -- Auxiliary_Effect_Slots.

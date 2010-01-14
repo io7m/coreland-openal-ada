@@ -21,6 +21,9 @@ package OpenAL.Extension.EFX_Thin is
   AL_AUTOWAH_PEAK_GAIN                             : constant := 16#0004#;
   AL_AUTOWAH_RELEASE_TIME                          : constant := 16#0002#;
   AL_AUTOWAH_RESONANCE                             : constant := 16#0003#;
+  AL_BANDPASS_GAIN                                 : constant := 16#0001#;
+  AL_BANDPASS_GAINHF                               : constant := 16#0003#;
+  AL_BANDPASS_GAINLF                               : constant := 16#0002#;
   AL_CHORUS_DEFAULT_DELAY                          : constant := 0.016;
   AL_CHORUS_DEFAULT_DEPTH                          : constant := 0.1;
   AL_CHORUS_DEFAULT_FEEDBACK                       : constant := 0.25;
@@ -284,6 +287,8 @@ package OpenAL.Extension.EFX_Thin is
   AL_FREQUENCY_SHIFTER_MIN_LEFT_DIRECTION          : constant := 16#0#;
   AL_FREQUENCY_SHIFTER_MIN_RIGHT_DIRECTION         : constant := 16#0#;
   AL_FREQUENCY_SHIFTER_RIGHT_DIRECTION             : constant := 16#0003#;
+  AL_HIGHPASS_GAIN                                 : constant := 16#0001#;
+  AL_HIGHPASS_GAINLF                               : constant := 16#0002#;
   AL_LOWPASS_GAIN                                  : constant := 16#0001#;
   AL_LOWPASS_GAINHF                                : constant := 16#0002#;
   AL_PITCH_SHIFTER_COARSE_TUNE                     : constant := 16#0001#;
