@@ -271,7 +271,7 @@ package OpenAL.Extension.EFX is
   --
 
   -- proc_map : alSourcei
-  procedure Direct_Filter
+  procedure Set_Direct_Filter
     (Extension : in Extension_t;
      Source    : in OpenAL.Source.Source_t;
      Filter    : in Filter_t);
@@ -279,7 +279,7 @@ package OpenAL.Extension.EFX is
   type Source_Auxiliary_Send_t is new Types.Unsigned_Integer_t;
 
   -- proc_map : alSource3i
-  procedure Auxiliary_Send_Filter
+  procedure Set_Auxiliary_Send_Filter
     (Extension   : in Extension_t;
      Source      : in OpenAL.Source.Source_t;
      Slot        : in Auxiliary_Effect_Slot_t;
@@ -289,7 +289,7 @@ package OpenAL.Extension.EFX is
   type Air_Absorption_Factor_t is new Types.Float_t range 0.0 .. 10.0;
 
   -- proc_map : alSourcef
-  procedure Air_Absorption_Factor
+  procedure Set_Air_Absorption_Factor
     (Extension : in Extension_t;
      Source    : in OpenAL.Source.Source_t;
      Factor    : in Air_Absorption_Factor_t);
@@ -297,7 +297,7 @@ package OpenAL.Extension.EFX is
   type Room_Rolloff_Factor_t is new Types.Float_t range 0.0 .. 10.0;
 
   -- proc_map : alSourcef
-  procedure Room_Rolloff_Factor
+  procedure Set_Room_Rolloff_Factor
     (Extension : in Extension_t;
      Source    : in OpenAL.Source.Source_t;
      Factor    : in Room_Rolloff_Factor_t);
@@ -305,25 +305,25 @@ package OpenAL.Extension.EFX is
   type Cone_Outer_Gain_HF_t is new Types.Float_t range 0.0 .. 10.0;
 
   -- proc_map : alSourcef
-  procedure Cone_Outer_Gain_HF
+  procedure Set_Cone_Outer_Gain_HF
     (Extension : in Extension_t;
      Source    : in OpenAL.Source.Source_t;
      Factor    : in Cone_Outer_Gain_HF_t);
 
   -- proc_map : alSourcei
-  procedure Direct_Filter_Gain_HF_Auto
+  procedure Set_Direct_Filter_Gain_HF_Auto
     (Extension : in Extension_t;
      Source    : in OpenAL.Source.Source_t;
      Enable    : in Boolean);
 
   -- proc_map : alSourcei
-  procedure Auxiliary_Send_Filter_Gain_Auto
+  procedure Set_Auxiliary_Send_Filter_Gain_Auto
     (Extension : in Extension_t;
      Source    : in OpenAL.Source.Source_t;
      Enable    : in Boolean);
 
   -- proc_map : alSourcei
-  procedure Auxiliary_Send_Filter_Gain_HF_Auto
+  procedure Set_Auxiliary_Send_Filter_Gain_HF_Auto
     (Extension : in Extension_t;
      Source    : in OpenAL.Source.Source_t;
      Enable    : in Boolean);
@@ -335,7 +335,7 @@ package OpenAL.Extension.EFX is
   type Meters_t is new Types.Float_t range 0.000001 .. Types.Float_t'Last;
 
   -- proc_map : alListenerf
-  procedure Meters_Per_Unit
+  procedure Set_Meters_Per_Unit
     (Extension : in Extension_t;
      Meters    : in Meters_t);
 
@@ -344,15 +344,15 @@ package OpenAL.Extension.EFX is
   --
 
   -- proc_map : alcGetIntegerv
-  function Major_Version
+  function Get_Major_Version
     (Extension : in Extension_t) return Natural;
 
   -- proc_map : alcGetIntegerv
-  function Minor_Version
+  function Get_Minor_Version
     (Extension : in Extension_t) return Natural;
 
   -- proc_map : alcGetIntegerv
-  function Maximum_Auxiliary_Sends
+  function Get_Maximum_Auxiliary_Sends
     (Extension : in Extension_t) return Source_Auxiliary_Send_t;
 
 private
@@ -376,5 +376,9 @@ private
   end record;
 
   procedure Check_Loaded (Extension : in Extension_t);
+
+  function Map_To_Effect_Type (Effect_Type : in Types.Integer_t) return Effect_Type_t;
+
+  function Map_To_Filter_Type (Filter_Type : in Types.Integer_t) return Filter_Type_t;
 
 end OpenAL.Extension.EFX;

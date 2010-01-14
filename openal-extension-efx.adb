@@ -4,23 +4,6 @@ with OpenAL.ALC_Thin;
 package body OpenAL.Extension.EFX is
 
   --
-  -- Air_Absorption_Factor
-  --
-
-  procedure Air_Absorption_Factor
-    (Extension : in Extension_t;
-     Source    : in OpenAL.Source.Source_t;
-     Factor    : in Air_Absorption_Factor_t) is
-  begin
-    Check_Loaded (Extension);
-
-    Thin.Sourcef
-      (Source_ID => OpenAL.Source.To_Integer (Source),
-       Parameter => EFX_Thin.AL_AIR_ABSORPTION_FACTOR,
-       Value     => Types.Float_t (Factor));
-  end Air_Absorption_Factor;
-
-  --
   -- Auxiliary_Effect_Slot_Is_Valid
   --
 
@@ -33,61 +16,6 @@ package body OpenAL.Extension.EFX is
     return Boolean
       (Extension.API.Is_Auxiliary_Effect_Slot (Types.Unsigned_Integer_t (Slot)));
   end Auxiliary_Effect_Slot_Is_Valid;
-
-  --
-  -- Auxiliary_Send_Filter
-  --
-
-  procedure Auxiliary_Send_Filter
-    (Extension   : in Extension_t;
-     Source      : in OpenAL.Source.Source_t;
-     Slot        : in Auxiliary_Effect_Slot_t;
-     Source_Send : in Source_Auxiliary_Send_t := 0;
-     Filter      : in Filter_t                := No_Filter) is
-  begin
-    Check_Loaded (Extension);
-
-    Thin.Source_3i
-      (Source_ID => OpenAL.Source.To_Integer (Source),
-       Parameter => EFX_Thin.AL_AUXILIARY_SEND_FILTER,
-       Value_1   => Types.Integer_t (Slot),
-       Value_2   => Types.Integer_t (Source_Send),
-       Value_3   => Types.Integer_t (Filter));
-  end Auxiliary_Send_Filter;
-
-  --
-  -- Auxiliary_Send_Filter_Gain_Auto
-  --
-
-  procedure Auxiliary_Send_Filter_Gain_Auto
-    (Extension : in Extension_t;
-     Source    : in OpenAL.Source.Source_t;
-     Enable    : in Boolean) is
-  begin
-    Check_Loaded (Extension);
-
-    Thin.Sourcei
-      (Source_ID => OpenAL.Source.To_Integer (Source),
-       Parameter => EFX_Thin.AL_AUXILIARY_SEND_FILTER_GAIN_AUTO,
-       Value     => Types.Integer_t (Boolean'Pos (Enable)));
-  end Auxiliary_Send_Filter_Gain_Auto;
-
-  --
-  -- Auxiliary_Send_Filter_Gain_HF_Auto
-  --
-
-  procedure Auxiliary_Send_Filter_Gain_HF_Auto
-    (Extension : in Extension_t;
-     Source    : in OpenAL.Source.Source_t;
-     Enable    : in Boolean) is
-  begin
-    Check_Loaded (Extension);
-
-    Thin.Sourcei
-      (Source_ID => OpenAL.Source.To_Integer (Source),
-       Parameter => EFX_Thin.AL_AUXILIARY_SEND_FILTER_GAINHF_AUTO,
-       Value     => Types.Integer_t (Boolean'Pos (Enable)));
-  end Auxiliary_Send_Filter_Gain_HF_Auto;
 
   --
   -- Check_Loaded
@@ -105,23 +33,6 @@ package body OpenAL.Extension.EFX is
       raise Program_Error with "extension was not loaded in the current context";
     end if;
   end Check_Loaded;
-
-  --
-  -- Cone_Outer_Gain_HF
-  --
-
-  procedure Cone_Outer_Gain_HF
-    (Extension : in Extension_t;
-     Source    : in OpenAL.Source.Source_t;
-     Factor    : in Cone_Outer_Gain_HF_t) is
-  begin
-    Check_Loaded (Extension);
-
-    Thin.Sourcef
-      (Source_ID => OpenAL.Source.To_Integer (Source),
-       Parameter => EFX_Thin.AL_CONE_OUTER_GAINHF,
-       Value     => Types.Float_t (Factor));
-  end Cone_Outer_Gain_HF;
 
   --
   -- Delete_*
@@ -159,40 +70,6 @@ package body OpenAL.Extension.EFX is
       (Size    => Filters'Length,
        Filters => Filters (Filters'First)'Address);
   end Delete_Filters;
-
-  --
-  -- Direct_Filter
-  --
-
-  procedure Direct_Filter
-    (Extension : in Extension_t;
-     Source    : in OpenAL.Source.Source_t;
-     Filter    : in Filter_t) is
-  begin
-    Check_Loaded (Extension);
-
-    Thin.Sourcei
-      (Source_ID => OpenAL.Source.To_Integer (Source),
-       Parameter => EFX_Thin.AL_DIRECT_FILTER,
-       Value     => Types.Integer_t (Filter));
-  end Direct_Filter;
-
-  --
-  -- Direct_Filter_Gain_HF_Auto
-  --
-
-  procedure Direct_Filter_Gain_HF_Auto
-    (Extension : in Extension_t;
-     Source    : in OpenAL.Source.Source_t;
-     Enable    : in Boolean) is
-  begin
-    Check_Loaded (Extension);
-
-    Thin.Sourcei
-      (Source_ID => OpenAL.Source.To_Integer (Source),
-       Parameter => EFX_Thin.AL_DIRECT_FILTER_GAINHF_AUTO,
-       Value     => Types.Integer_t (Boolean'Pos (Enable)));
-  end Direct_Filter_Gain_HF_Auto;
 
   --
   -- Effect_Is_Valid
@@ -261,30 +138,6 @@ package body OpenAL.Extension.EFX is
   -- Get_Effect_Type
   --
 
-  function Map_To_Effect_Type (Effect_Type : in Types.Integer_t) return Effect_Type_t is
-    Value : Effect_Type_t;
-  begin
-    case Effect_Type is
-      when EFX_Thin.AL_EFFECT_NULL              => Value := Null_Effect;
-      when EFX_Thin.AL_EFFECT_REVERB            => Value := Reverb;
-      when EFX_Thin.AL_EFFECT_CHORUS            => Value := Chorus;
-      when EFX_Thin.AL_EFFECT_DISTORTION        => Value := Distortion;
-      when EFX_Thin.AL_EFFECT_ECHO              => Value := Echo;
-      when EFX_Thin.AL_EFFECT_FLANGER           => Value := Flanger;
-      when EFX_Thin.AL_EFFECT_FREQUENCY_SHIFTER => Value := Frequency_Shifter;
-      when EFX_Thin.AL_EFFECT_VOCAL_MORPHER     => Value := Vocal_Morpher;
-      when EFX_Thin.AL_EFFECT_PITCH_SHIFTER     => Value := Pitch_Shifter;
-      when EFX_Thin.AL_EFFECT_RING_MODULATOR    => Value := Ring_Modulator;
-      when EFX_Thin.AL_EFFECT_AUTOWAH           => Value := Autowah;
-      when EFX_Thin.AL_EFFECT_COMPRESSOR        => Value := Compressor;
-      when EFX_Thin.AL_EFFECT_EQUALIZER         => Value := Equalizer;
-      when EFX_Thin.AL_EFFECT_EAXREVERB         => Value := EAX_Reverb;
-      when others                               => Value := Unknown_Effect;
-    end case;
-
-    return Value;
-  end Map_To_Effect_Type;
-
   function Get_Effect_Type
     (Extension   : in Extension_t;
      Effect      : in Effect_t) return Effect_Type_t
@@ -305,20 +158,6 @@ package body OpenAL.Extension.EFX is
   -- Get_Filter_Type
   --
 
-  function Map_To_Filter_Type (Filter_Type : in Types.Integer_t) return Filter_Type_t is
-    Value : Filter_Type_t;
-  begin
-    case Filter_Type is
-      when EFX_Thin.AL_FILTER_NULL     => Value := Null_Filter;
-      when EFX_Thin.AL_FILTER_LOWPASS  => Value := Low_Pass_Filter;
-      when EFX_Thin.AL_FILTER_HIGHPASS => Value := High_Pass_Filter;
-      when EFX_Thin.AL_FILTER_BANDPASS => Value := Band_Pass_Filter;
-      when others                      => Value := Unknown_Filter;
-    end case;
-
-    return Value;
-  end Map_To_Filter_Type;
-
   function Get_Filter_Type
     (Extension   : in Extension_t;
      Filter      : in Filter_t) return Filter_Type_t
@@ -334,6 +173,66 @@ package body OpenAL.Extension.EFX is
 
     return Map_To_Filter_Type (Filter_Type);
   end Get_Filter_Type;
+
+  --
+  -- Get_Major_Version
+  --
+
+  function Get_Major_Version
+    (Extension : in Extension_t) return Natural
+  is
+    Value : aliased Types.Integer_t := 0;
+  begin
+    Check_Loaded (Extension);
+
+    ALC_Thin.Get_Integerv
+      (Device => Context.Device_Data (Context.Get_Context_Device (Extension.Owner_Context)),
+       Token  => EFX_Thin.ALC_EFX_MAJOR_VERSION,
+       Size   => 1,
+       Data   => Value'Address);
+
+    return Natural (Value);
+  end Get_Major_Version;
+
+  --
+  -- Get_Maximum_Auxiliary_Sends
+  --
+
+  function Get_Maximum_Auxiliary_Sends
+    (Extension : in Extension_t) return Source_Auxiliary_Send_t
+  is
+    Value : aliased Types.Integer_t := 0;
+  begin
+    Check_Loaded (Extension);
+
+    ALC_Thin.Get_Integerv
+      (Device => Context.Device_Data (Context.Get_Context_Device (Extension.Owner_Context)),
+       Token  => EFX_Thin.ALC_MAX_AUXILIARY_SENDS,
+       Size   => 1,
+       Data   => Value'Address);
+
+    return Source_Auxiliary_Send_t (Value);
+  end Get_Maximum_Auxiliary_Sends;
+
+  --
+  -- Get_Minor_Version
+  --
+
+  function Get_Minor_Version
+    (Extension : in Extension_t) return Natural
+  is
+    Value : aliased Types.Integer_t := 0;
+  begin
+    Check_Loaded (Extension);
+
+    ALC_Thin.Get_Integerv
+      (Device => Context.Device_Data (Context.Get_Context_Device (Extension.Owner_Context)),
+       Token  => EFX_Thin.ALC_EFX_MAJOR_VERSION,
+       Size   => 1,
+       Data   => Value'Address);
+
+    return Natural (Value);
+  end Get_Minor_Version;
 
   --
   -- Is_Present
@@ -365,96 +264,67 @@ package body OpenAL.Extension.EFX is
   end Load_Extension;
 
   --
-  -- Maximum_Auxiliary_Sends
+  -- Map_To_Effect_Type
   --
 
-  function Maximum_Auxiliary_Sends
-    (Extension : in Extension_t) return Source_Auxiliary_Send_t
-  is
-    Value : aliased Types.Integer_t := 0;
+  function Map_To_Effect_Type (Effect_Type : in Types.Integer_t) return Effect_Type_t is
+    Value : Effect_Type_t;
   begin
-    Check_Loaded (Extension);
+    case Effect_Type is
+      when EFX_Thin.AL_EFFECT_NULL              => Value := Null_Effect;
+      when EFX_Thin.AL_EFFECT_REVERB            => Value := Reverb;
+      when EFX_Thin.AL_EFFECT_CHORUS            => Value := Chorus;
+      when EFX_Thin.AL_EFFECT_DISTORTION        => Value := Distortion;
+      when EFX_Thin.AL_EFFECT_ECHO              => Value := Echo;
+      when EFX_Thin.AL_EFFECT_FLANGER           => Value := Flanger;
+      when EFX_Thin.AL_EFFECT_FREQUENCY_SHIFTER => Value := Frequency_Shifter;
+      when EFX_Thin.AL_EFFECT_VOCAL_MORPHER     => Value := Vocal_Morpher;
+      when EFX_Thin.AL_EFFECT_PITCH_SHIFTER     => Value := Pitch_Shifter;
+      when EFX_Thin.AL_EFFECT_RING_MODULATOR    => Value := Ring_Modulator;
+      when EFX_Thin.AL_EFFECT_AUTOWAH           => Value := Autowah;
+      when EFX_Thin.AL_EFFECT_COMPRESSOR        => Value := Compressor;
+      when EFX_Thin.AL_EFFECT_EQUALIZER         => Value := Equalizer;
+      when EFX_Thin.AL_EFFECT_EAXREVERB         => Value := EAX_Reverb;
+      when others                               => Value := Unknown_Effect;
+    end case;
 
-    ALC_Thin.Get_Integerv
-      (Device => Context.Device_Data (Context.Get_Context_Device (Extension.Owner_Context)),
-       Token  => EFX_Thin.ALC_MAX_AUXILIARY_SENDS,
-       Size   => 1,
-       Data   => Value'Address);
-
-    return Source_Auxiliary_Send_t (Value);
-  end Maximum_Auxiliary_Sends;
+    return Value;
+  end Map_To_Effect_Type;
 
   --
-  -- Major_Version
+  -- Map_To_Filter_Type
   --
 
-  function Major_Version
-    (Extension : in Extension_t) return Natural
-  is
-    Value : aliased Types.Integer_t := 0;
+  function Map_To_Filter_Type (Filter_Type : in Types.Integer_t) return Filter_Type_t is
+    Value : Filter_Type_t;
   begin
-    Check_Loaded (Extension);
+    case Filter_Type is
+      when EFX_Thin.AL_FILTER_NULL     => Value := Null_Filter;
+      when EFX_Thin.AL_FILTER_LOWPASS  => Value := Low_Pass_Filter;
+      when EFX_Thin.AL_FILTER_HIGHPASS => Value := High_Pass_Filter;
+      when EFX_Thin.AL_FILTER_BANDPASS => Value := Band_Pass_Filter;
+      when others                      => Value := Unknown_Filter;
+    end case;
 
-    ALC_Thin.Get_Integerv
-      (Device => Context.Device_Data (Context.Get_Context_Device (Extension.Owner_Context)),
-       Token  => EFX_Thin.ALC_EFX_MAJOR_VERSION,
-       Size   => 1,
-       Data   => Value'Address);
-
-    return Natural (Value);
-  end Major_Version;
-
-  --
-  -- Minor_Version
-  --
-
-  function Minor_Version
-    (Extension : in Extension_t) return Natural
-  is
-    Value : aliased Types.Integer_t := 0;
-  begin
-    Check_Loaded (Extension);
-
-    ALC_Thin.Get_Integerv
-      (Device => Context.Device_Data (Context.Get_Context_Device (Extension.Owner_Context)),
-       Token  => EFX_Thin.ALC_EFX_MAJOR_VERSION,
-       Size   => 1,
-       Data   => Value'Address);
-
-    return Natural (Value);
-  end Minor_Version;
+    return Value;
+  end Map_To_Filter_Type;
 
   --
-  -- Meters_Per_Unit
+  -- Set_Air_Absorption_Factor
   --
 
-  procedure Meters_Per_Unit
-    (Extension : in Extension_t;
-     Meters    : in Meters_t) is
-  begin
-    Check_Loaded (Extension);
-
-    Thin.Listenerf
-      (Parameter => EFX_Thin.AL_METERS_PER_UNIT,
-       Value     => Types.Float_t (Meters));
-  end Meters_Per_Unit;
-
-  --
-  -- Room_Rolloff_Factor
-  --
-
-  procedure Room_Rolloff_Factor
+  procedure Set_Air_Absorption_Factor
     (Extension : in Extension_t;
      Source    : in OpenAL.Source.Source_t;
-     Factor    : in Room_Rolloff_Factor_t) is
+     Factor    : in Air_Absorption_Factor_t) is
   begin
     Check_Loaded (Extension);
 
     Thin.Sourcef
       (Source_ID => OpenAL.Source.To_Integer (Source),
-       Parameter => EFX_Thin.AL_ROOM_ROLLOFF_FACTOR,
+       Parameter => EFX_Thin.AL_AIR_ABSORPTION_FACTOR,
        Value     => Types.Float_t (Factor));
-  end Room_Rolloff_Factor;
+  end Set_Air_Absorption_Factor;
 
   --
   -- Set_Auxiliary_Effect_Slot_Auto_Send
@@ -506,6 +376,112 @@ package body OpenAL.Extension.EFX is
        Parameter => EFX_Thin.AL_EFFECTSLOT_GAIN,
        Value     => Gain);
   end Set_Auxiliary_Effect_Slot_Gain;
+
+  --
+  -- Set_Auxiliary_Send_Filter
+  --
+
+  procedure Set_Auxiliary_Send_Filter
+    (Extension   : in Extension_t;
+     Source      : in OpenAL.Source.Source_t;
+     Slot        : in Auxiliary_Effect_Slot_t;
+     Source_Send : in Source_Auxiliary_Send_t := 0;
+     Filter      : in Filter_t                := No_Filter) is
+  begin
+    Check_Loaded (Extension);
+
+    Thin.Source_3i
+      (Source_ID => OpenAL.Source.To_Integer (Source),
+       Parameter => EFX_Thin.AL_AUXILIARY_SEND_FILTER,
+       Value_1   => Types.Integer_t (Slot),
+       Value_2   => Types.Integer_t (Source_Send),
+       Value_3   => Types.Integer_t (Filter));
+  end Set_Auxiliary_Send_Filter;
+
+  --
+  -- Set_Auxiliary_Send_Filter_Gain_Auto
+  --
+
+  procedure Set_Auxiliary_Send_Filter_Gain_Auto
+    (Extension : in Extension_t;
+     Source    : in OpenAL.Source.Source_t;
+     Enable    : in Boolean) is
+  begin
+    Check_Loaded (Extension);
+
+    Thin.Sourcei
+      (Source_ID => OpenAL.Source.To_Integer (Source),
+       Parameter => EFX_Thin.AL_AUXILIARY_SEND_FILTER_GAIN_AUTO,
+       Value     => Types.Integer_t (Boolean'Pos (Enable)));
+  end Set_Auxiliary_Send_Filter_Gain_Auto;
+
+  --
+  -- Set_Auxiliary_Send_Filter_Gain_HF_Auto
+  --
+
+  procedure Set_Auxiliary_Send_Filter_Gain_HF_Auto
+    (Extension : in Extension_t;
+     Source    : in OpenAL.Source.Source_t;
+     Enable    : in Boolean) is
+  begin
+    Check_Loaded (Extension);
+
+    Thin.Sourcei
+      (Source_ID => OpenAL.Source.To_Integer (Source),
+       Parameter => EFX_Thin.AL_AUXILIARY_SEND_FILTER_GAINHF_AUTO,
+       Value     => Types.Integer_t (Boolean'Pos (Enable)));
+  end Set_Auxiliary_Send_Filter_Gain_HF_Auto;
+
+  --
+  -- Set_Cone_Outer_Gain_HF
+  --
+
+  procedure Set_Cone_Outer_Gain_HF
+    (Extension : in Extension_t;
+     Source    : in OpenAL.Source.Source_t;
+     Factor    : in Cone_Outer_Gain_HF_t) is
+  begin
+    Check_Loaded (Extension);
+
+    Thin.Sourcef
+      (Source_ID => OpenAL.Source.To_Integer (Source),
+       Parameter => EFX_Thin.AL_CONE_OUTER_GAINHF,
+       Value     => Types.Float_t (Factor));
+  end Set_Cone_Outer_Gain_HF;
+
+  --
+  -- Set_Direct_Filter
+  --
+
+  procedure Set_Direct_Filter
+    (Extension : in Extension_t;
+     Source    : in OpenAL.Source.Source_t;
+     Filter    : in Filter_t) is
+  begin
+    Check_Loaded (Extension);
+
+    Thin.Sourcei
+      (Source_ID => OpenAL.Source.To_Integer (Source),
+       Parameter => EFX_Thin.AL_DIRECT_FILTER,
+       Value     => Types.Integer_t (Filter));
+  end Set_Direct_Filter;
+
+  --
+  -- Set_Direct_Filter_Gain_HF_Auto
+  --
+
+  procedure Set_Direct_Filter_Gain_HF_Auto
+    (Extension : in Extension_t;
+     Source    : in OpenAL.Source.Source_t;
+     Enable    : in Boolean) is
+  begin
+    Check_Loaded (Extension);
+
+    Thin.Sourcei
+      (Source_ID => OpenAL.Source.To_Integer (Source),
+       Parameter => EFX_Thin.AL_DIRECT_FILTER_GAINHF_AUTO,
+       Value     => Types.Integer_t (Boolean'Pos (Enable)));
+  end Set_Direct_Filter_Gain_HF_Auto;
 
   --
   -- Set_Effect_Parameter
@@ -608,42 +584,13 @@ package body OpenAL.Extension.EFX is
      Parameter   : in Effect_Parameter_t;
      Value       : in Types.Float_t) is
   begin
-    Check_Loaded (Extension);    
+    Check_Loaded (Extension);
 
     Extension.API.Effectf
       (Effect    => Types.Unsigned_Integer_t (Effect),
        Parameter => Map_Effect_Parameter (Parameter),
        Value     => Value);
   end Set_Effect_Parameter;
-
-  --
-  -- Set_Filter_Parameter
-  --
-
-  type Map_Filter_Parameter_t is array (Filter_Parameter_t) of Types.Enumeration_t;
-
-  Map_Filter_Parameter : constant Map_Filter_Parameter_t :=
-    (Low_Pass_Gain     => EFX_Thin.AL_LOWPASS_GAIN,
-     Low_Pass_Gain_HF  => EFX_Thin.AL_LOWPASS_GAINHF,
-     High_Pass_Gain    => EFX_Thin.AL_HIGHPASS_GAIN,
-     High_Pass_Gain_LF => EFX_Thin.AL_HIGHPASS_GAINLF,
-     Band_Pass_Gain    => EFX_Thin.AL_BANDPASS_GAIN,
-     Band_Pass_Gain_LF => EFX_Thin.AL_BANDPASS_GAINLF,
-     Band_Pass_Gain_HF => EFX_Thin.AL_BANDPASS_GAINHF);
-
-  procedure Set_Filter_Parameter
-    (Extension   : in Extension_t;
-     Filter      : in Filter_t;
-     Parameter   : in Filter_Parameter_t;
-     Value       : in Types.Float_t) is
-  begin
-    Check_Loaded (Extension);    
-
-    Extension.API.Filterf
-      (Filter    => Types.Unsigned_Integer_t (Filter),
-       Parameter => Map_Filter_Parameter (Parameter),
-       Value     => Value);
-  end Set_Filter_Parameter;
 
   --
   -- Set_Effect_Type
@@ -671,13 +618,42 @@ package body OpenAL.Extension.EFX is
      Effect      : in Effect_t;
      Effect_Type : in Valid_Effect_Type_t) is
   begin
-    Check_Loaded (Extension);    
+    Check_Loaded (Extension);
 
     Extension.API.Effecti
       (Effect    => Types.Unsigned_Integer_t (Effect),
        Parameter => EFX_Thin.AL_EFFECT_TYPE,
        Value     => Map_Effect_Type (Effect_Type));
   end Set_Effect_Type;
+
+  --
+  -- Set_Filter_Parameter
+  --
+
+  type Map_Filter_Parameter_t is array (Filter_Parameter_t) of Types.Enumeration_t;
+
+  Map_Filter_Parameter : constant Map_Filter_Parameter_t :=
+    (Low_Pass_Gain     => EFX_Thin.AL_LOWPASS_GAIN,
+     Low_Pass_Gain_HF  => EFX_Thin.AL_LOWPASS_GAINHF,
+     High_Pass_Gain    => EFX_Thin.AL_HIGHPASS_GAIN,
+     High_Pass_Gain_LF => EFX_Thin.AL_HIGHPASS_GAINLF,
+     Band_Pass_Gain    => EFX_Thin.AL_BANDPASS_GAIN,
+     Band_Pass_Gain_LF => EFX_Thin.AL_BANDPASS_GAINLF,
+     Band_Pass_Gain_HF => EFX_Thin.AL_BANDPASS_GAINHF);
+
+  procedure Set_Filter_Parameter
+    (Extension   : in Extension_t;
+     Filter      : in Filter_t;
+     Parameter   : in Filter_Parameter_t;
+     Value       : in Types.Float_t) is
+  begin
+    Check_Loaded (Extension);
+
+    Extension.API.Filterf
+      (Filter    => Types.Unsigned_Integer_t (Filter),
+       Parameter => Map_Filter_Parameter (Parameter),
+       Value     => Value);
+  end Set_Filter_Parameter;
 
   --
   -- Set_Filter_Type
@@ -695,12 +671,44 @@ package body OpenAL.Extension.EFX is
      Filter      : in Filter_t;
      Filter_Type : in Valid_Filter_Type_t) is
   begin
-    Check_Loaded (Extension);    
+    Check_Loaded (Extension);
 
     Extension.API.Filteri
       (Filter    => Types.Unsigned_Integer_t (Filter),
        Parameter => EFX_Thin.AL_FILTER_TYPE,
        Value     => Map_Filter_Type (Filter_Type));
   end Set_Filter_Type;
+
+  --
+  -- Set_Meters_Per_Unit
+  --
+
+  procedure Set_Meters_Per_Unit
+    (Extension : in Extension_t;
+     Meters    : in Meters_t) is
+  begin
+    Check_Loaded (Extension);
+
+    Thin.Listenerf
+      (Parameter => EFX_Thin.AL_METERS_PER_UNIT,
+       Value     => Types.Float_t (Meters));
+  end Set_Meters_Per_Unit;
+
+  --
+  -- Set_Room_Rolloff_Factor
+  --
+
+  procedure Set_Room_Rolloff_Factor
+    (Extension : in Extension_t;
+     Source    : in OpenAL.Source.Source_t;
+     Factor    : in Room_Rolloff_Factor_t) is
+  begin
+    Check_Loaded (Extension);
+
+    Thin.Sourcef
+      (Source_ID => OpenAL.Source.To_Integer (Source),
+       Parameter => EFX_Thin.AL_ROOM_ROLLOFF_FACTOR,
+       Value     => Types.Float_t (Factor));
+  end Set_Room_Rolloff_Factor;
 
 end OpenAL.Extension.EFX;
