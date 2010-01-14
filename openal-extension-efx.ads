@@ -20,6 +20,25 @@ package OpenAL.Extension.EFX is
 
   No_Effect : constant Effect_t;
 
+  type Effect_Type_t is
+    (Unknown_Effect,
+     Null_Effect,
+     Reverb,
+     Chorus,
+     Distortion,
+     Echo,
+     Flanger,
+     Frequency_Shifter,
+     Vocal_Morpher,
+     Pitch_Shifter,
+     Ring_Modulator,
+     Autowah,
+     Compressor,
+     Equalizer,
+     EAX_Reverb);
+
+  subtype Valid_Effect_Type_t is Effect_Type_t range Null_Effect .. Effect_Type_t'Last;
+
   -- proc_map : alGenEffects
   procedure Generate_Effects
     (Extension : in     Extension_t;
@@ -34,6 +53,113 @@ package OpenAL.Extension.EFX is
   function Effect_Is_Valid
     (Extension : in Extension_t;
      Effect    : in Effect_t) return Boolean;
+
+  -- proc_map : alEffecti
+  procedure Set_Effect_Type
+    (Extension   : in Extension_t;
+     Effect      : in Effect_t;
+     Effect_Type : in Valid_Effect_Type_t);
+
+  -- proc_map : alEffecti
+  function Get_Effect_Type
+    (Extension   : in Extension_t;
+     Effect      : in Effect_t) return Effect_Type_t;
+
+  type Effect_Parameter_t is
+   (Autowah_Attack_Time,
+    Autowah_Peak_Gain,
+    Autowah_Release_Time,
+    Autowah_Resonance,
+    Chorus_Delay,
+    Chorus_Depth,
+    Chorus_Feedback,
+    Chorus_Phase,
+    Chorus_Rate,
+    Chorus_Waveform,
+    Distortion_Edge,
+    Distortion_EQ_Bandwidth,
+    Distortion_EQ_Center,
+    Distortion_Gain,
+    Distortion_Lowpass_Cutoff,
+    EAX_Reverb_Air_Absorption_Gain_HF,
+    EAX_Reverb_Decay_HF_Limit,
+    EAX_Reverb_Decay_HF_Ratio,
+    EAX_Reverb_Decay_LF_Ratio,
+    EAX_Reverb_Decay_Time,
+    EAX_Reverb_Density,
+    EAX_Reverb_Diffusion,
+    EAX_Reverb_Echo_Depth,
+    EAX_Reverb_Echo_Time,
+    EAX_Reverb_Gain,
+    EAX_Reverb_Gain_HF,
+    EAX_Reverb_Gain_LF,
+    EAX_Reverb_HF_Reference,
+    EAX_Reverb_Late_Reverb_Delay,
+    EAX_Reverb_Late_Reverb_Gain,
+    EAX_Reverb_Late_Reverb_Pan,
+    EAX_Reverb_LF_Reference,
+    EAX_Reverb_Modulation_Depth,
+    EAX_Reverb_Modulation_Time,
+    EAX_Reverb_Reflections_Delay,
+    EAX_Reverb_Reflections_Gain,
+    EAX_Reverb_Reflections_Pan,
+    EAX_Reverb_Room_Rolloff_Factor,
+    Echo_Damping,
+    Echo_Delay,
+    Echo_Feedback,
+    Echo_LR_Delay,
+    Echo_Spread,
+    Equalizer_High_Cutoff,
+    Equalizer_High_Gain,
+    Equalizer_Low_Cutoff,
+    Equalizer_Low_Gain,
+    Equalizer_Mid1_Center,
+    Equalizer_Mid1_Gain,
+    Equalizer_Mid1_Width,
+    Equalizer_Mid2_Center,
+    Equalizer_Mid2_Gain,
+    Equalizer_Mid2_Width,
+    Flanger_Delay,
+    Flanger_Depth,
+    Flanger_Feedback,
+    Flanger_Phase,
+    Flanger_Rate,
+    Flanger_Waveform,
+    Frequency_Shifter_Frequency,
+    Frequency_Shifter_Left_Direction,
+    Frequency_Shifter_Right_Direction,
+    Pitch_Shifter_Coarse_Tune,
+    Pitch_Shifter_Fine_Tune,
+    Reverb_Air_Absorption_Gain_HF,
+    Reverb_Decay_HF_Limit,
+    Reverb_Decay_HF_Ratio,
+    Reverb_Decay_Time,
+    Reverb_Density,
+    Reverb_Diffusion,
+    Reverb_Gain,
+    Reverb_Gainhf,
+    Reverb_Late_Reverb_Delay,
+    Reverb_Late_Reverb_Gain,
+    Reverb_Reflections_Delay,
+    Reverb_Reflections_Gain,
+    Reverb_Room_Rolloff_Factor,
+    Ring_Modulator_Frequency,
+    Ring_Modulator_Highpass_Cutoff,
+    Ring_Modulator_Waveform,
+    Vocal_Morpher_Phoneme_A,
+    Vocal_Morpher_Phoneme_A_Coarse_Tuning,
+    Vocal_Morpher_Phoneme_B,
+    Vocal_Morpher_Phoneme_B_Coarse_Tuning,
+    Vocal_Morpher_Rate,
+    Vocal_Morpher_Waveform,
+    Compressor_On_Off);
+
+  -- proc_map : alEffectf
+  procedure Set_Effect_Parameter
+    (Extension   : in Extension_t;
+     Effect      : in Effect_t;
+     Parameter   : in Effect_Parameter_t;
+     Value       : in Types.Float_t);
 
   --
   -- Filters.
