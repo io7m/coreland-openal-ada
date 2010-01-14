@@ -1,3 +1,7 @@
+ALC_EFX_MAJOR_VERSION                               : 20001
+ALC_EFX_MINOR_VERSION                               : 20002
+ALC_MAX_AUXILIARY_SENDS                             : 20003
+AL_AIR_ABSORPTION_FACTOR                            : 20007
 AL_AUTOWAH_ATTACK_TIME                              : 0001
 AL_AUTOWAH_DEFAULT_ATTACK_TIME                      : 0.06f
 AL_AUTOWAH_DEFAULT_PEAK_GAIN                        : 11.22f
@@ -14,6 +18,9 @@ AL_AUTOWAH_MIN_RESONANCE                            : 2.0f
 AL_AUTOWAH_PEAK_GAIN                                : 0004
 AL_AUTOWAH_RELEASE_TIME                             : 0002
 AL_AUTOWAH_RESONANCE                                : 0003
+AL_AUXILIARY_SEND_FILTER                            : 20006
+AL_AUXILIARY_SEND_FILTER_GAINHF_AUTO                : 2000C
+AL_AUXILIARY_SEND_FILTER_GAIN_AUTO                  : 2000B
 AL_BANDPASS_GAIN                                    : 0001
 AL_BANDPASS_GAINHF                                  : 0003
 AL_BANDPASS_GAINLF                                  : 0002
@@ -47,6 +54,9 @@ AL_COMPRESSOR_DEFAULT_ONOFF                         : 1
 AL_COMPRESSOR_MAX_ONOFF                             : 1
 AL_COMPRESSOR_MIN_ONOFF                             : 0
 AL_COMPRESSOR_ONOFF                                 : 0001
+AL_CONE_OUTER_GAINHF                                : 20009
+AL_DIRECT_FILTER                                    : 20005
+AL_DIRECT_FILTER_GAINHF_AUTO                        : 2000A
 AL_DISTORTION_DEFAULT_EDGE                          : 0.2f
 AL_DISTORTION_DEFAULT_EQBANDWIDTH                   : 3600.0f
 AL_DISTORTION_DEFAULT_EQCENTER                      : 3600.0f
@@ -284,6 +294,7 @@ AL_HIGHPASS_GAIN                                    : 0001
 AL_HIGHPASS_GAINLF                                  : 0002
 AL_LOWPASS_GAIN                                     : 0001
 AL_LOWPASS_GAINHF                                   : 0002
+AL_METERS_PER_UNIT                                  : 20004
 AL_PITCH_SHIFTER_COARSE_TUNE                        : 0001
 AL_PITCH_SHIFTER_DEFAULT_COARSE_TUNE                : 12
 AL_PITCH_SHIFTER_DEFAULT_FINE_TUNE                  : 0
@@ -359,6 +370,7 @@ AL_RING_MODULATOR_SAWTOOTH                          : 1
 AL_RING_MODULATOR_SINUSOID                          : 0
 AL_RING_MODULATOR_SQUARE                            : 2
 AL_RING_MODULATOR_WAVEFORM                          : 0003
+AL_ROOM_ROLLOFF_FACTOR                              : 20008
 AL_VOCAL_MORPHER_DEFAULT_PHONEMEA                   : 0
 AL_VOCAL_MORPHER_DEFAULT_PHONEMEA_COARSE_TUNING     : 0
 AL_VOCAL_MORPHER_DEFAULT_PHONEMEB                   : 10

@@ -5,6 +5,10 @@ with OpenAL.Types;
 
 package OpenAL.Extension.EFX_Thin is
 
+  ALC_EFX_MAJOR_VERSION                            : constant := 16#20001#;
+  ALC_EFX_MINOR_VERSION                            : constant := 16#20002#;
+  ALC_MAX_AUXILIARY_SENDS                          : constant := 16#20003#;
+  AL_AIR_ABSORPTION_FACTOR                         : constant := 16#20007#;
   AL_AUTOWAH_ATTACK_TIME                           : constant := 16#0001#;
   AL_AUTOWAH_DEFAULT_ATTACK_TIME                   : constant := 0.06;
   AL_AUTOWAH_DEFAULT_PEAK_GAIN                     : constant := 11.22;
@@ -21,6 +25,9 @@ package OpenAL.Extension.EFX_Thin is
   AL_AUTOWAH_PEAK_GAIN                             : constant := 16#0004#;
   AL_AUTOWAH_RELEASE_TIME                          : constant := 16#0002#;
   AL_AUTOWAH_RESONANCE                             : constant := 16#0003#;
+  AL_AUXILIARY_SEND_FILTER                         : constant := 16#20006#;
+  AL_AUXILIARY_SEND_FILTER_GAINHF_AUTO             : constant := 16#2000C#;
+  AL_AUXILIARY_SEND_FILTER_GAIN_AUTO               : constant := 16#2000B#;
   AL_BANDPASS_GAIN                                 : constant := 16#0001#;
   AL_BANDPASS_GAINHF                               : constant := 16#0003#;
   AL_BANDPASS_GAINLF                               : constant := 16#0002#;
@@ -54,6 +61,9 @@ package OpenAL.Extension.EFX_Thin is
   AL_COMPRESSOR_MAX_ONOFF                          : constant := 16#1#;
   AL_COMPRESSOR_MIN_ONOFF                          : constant := 16#0#;
   AL_COMPRESSOR_ONOFF                              : constant := 16#0001#;
+  AL_CONE_OUTER_GAINHF                             : constant := 16#20009#;
+  AL_DIRECT_FILTER                                 : constant := 16#20005#;
+  AL_DIRECT_FILTER_GAINHF_AUTO                     : constant := 16#2000A#;
   AL_DISTORTION_DEFAULT_EDGE                       : constant := 0.2;
   AL_DISTORTION_DEFAULT_EQBANDWIDTH                : constant := 3600.0;
   AL_DISTORTION_DEFAULT_EQCENTER                   : constant := 3600.0;
@@ -291,6 +301,7 @@ package OpenAL.Extension.EFX_Thin is
   AL_HIGHPASS_GAINLF                               : constant := 16#0002#;
   AL_LOWPASS_GAIN                                  : constant := 16#0001#;
   AL_LOWPASS_GAINHF                                : constant := 16#0002#;
+  AL_METERS_PER_UNIT                               : constant := 16#20004#;
   AL_PITCH_SHIFTER_COARSE_TUNE                     : constant := 16#0001#;
   AL_PITCH_SHIFTER_DEFAULT_COARSE_TUNE             : constant := 16#12#;
   AL_PITCH_SHIFTER_DEFAULT_FINE_TUNE               : constant := 16#0#;
@@ -366,6 +377,7 @@ package OpenAL.Extension.EFX_Thin is
   AL_RING_MODULATOR_SINUSOID                       : constant := 16#0#;
   AL_RING_MODULATOR_SQUARE                         : constant := 16#2#;
   AL_RING_MODULATOR_WAVEFORM                       : constant := 16#0003#;
+  AL_ROOM_ROLLOFF_FACTOR                           : constant := 16#20008#;
   AL_VOCAL_MORPHER_DEFAULT_PHONEMEA                : constant := 16#0#;
   AL_VOCAL_MORPHER_DEFAULT_PHONEMEA_COARSE_TUNING  : constant := 16#0#;
   AL_VOCAL_MORPHER_DEFAULT_PHONEMEB                : constant := 16#10#;
