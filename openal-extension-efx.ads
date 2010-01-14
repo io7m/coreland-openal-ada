@@ -61,7 +61,7 @@ package OpenAL.Extension.EFX is
      Effect      : in Effect_t;
      Effect_Type : in Valid_Effect_Type_t);
 
-  -- proc_map : alEffecti
+  -- proc_map : alGetEffecti
   function Get_Effect_Type
     (Extension   : in Extension_t;
      Effect      : in Effect_t) return Effect_Type_t;
@@ -201,7 +201,7 @@ package OpenAL.Extension.EFX is
      Filter      : in Filter_t;
      Filter_Type : in Valid_Filter_Type_t);
 
-  -- proc_map : alFilteri
+  -- proc_map : alGetFilteri
   function Get_Filter_Type
     (Extension   : in Extension_t;
      Filter      : in Filter_t) return Filter_Type_t;
@@ -302,13 +302,13 @@ package OpenAL.Extension.EFX is
      Source    : in OpenAL.Source.Source_t;
      Factor    : in Room_Rolloff_Factor_t);
 
-  type Cone_Outer_Gain_HF_t is new Types.Float_t range 0.0 .. 10.0;
+  type Cone_Outer_Gain_HF_Factor_t is new Types.Float_t range 0.0 .. 10.0;
 
   -- proc_map : alSourcef
   procedure Set_Cone_Outer_Gain_HF
     (Extension : in Extension_t;
      Source    : in OpenAL.Source.Source_t;
-     Factor    : in Cone_Outer_Gain_HF_t);
+     Factor    : in Cone_Outer_Gain_HF_Factor_t);
 
   -- proc_map : alSourcei
   procedure Set_Direct_Filter_Gain_HF_Auto

@@ -439,7 +439,7 @@ package body OpenAL.Extension.EFX is
   procedure Set_Cone_Outer_Gain_HF
     (Extension : in Extension_t;
      Source    : in OpenAL.Source.Source_t;
-     Factor    : in Cone_Outer_Gain_HF_t) is
+     Factor    : in Cone_Outer_Gain_HF_Factor_t) is
   begin
     Check_Loaded (Extension);
 
