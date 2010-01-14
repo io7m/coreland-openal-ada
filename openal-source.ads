@@ -574,6 +574,12 @@ package OpenAL.Source is
   -- proc_map : alSourceRewindv
   procedure Rewind_List (Sources : in Source_Array_t);
 
+  --
+  -- Private conveniences.
+  --
+
+  function To_Integer (Source : in Source_t) return Types.Unsigned_Integer_t;
+
 private
 
   type Source_t is new Types.Unsigned_Integer_t;

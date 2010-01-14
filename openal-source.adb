@@ -1159,6 +1159,15 @@ package body OpenAL.Source is
   end Stop_List;
 
   --
+  -- To_Integer
+  --
+
+  function To_Integer (Source : in Source_t) return Types.Unsigned_Integer_t is
+  begin
+    return Types.Unsigned_Integer_t (Source);
+  end To_Integer;
+
+  --
   -- Unqueue_Buffers
   --
 
