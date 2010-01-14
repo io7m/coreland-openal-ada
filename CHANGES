@@ -4,3 +4,4 @@
 20100114 code: parameter renaming in OpenAL.Extension.EFX_Thin (Values -> Value).
 20100114 code: all previously missing parameter constants now available
                in OpenAL.Extension.EFX_Thin.
+20100114 code: OpenAL.Extension.EFX effect type/parameter setting implemented.
