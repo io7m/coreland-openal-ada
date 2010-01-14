@@ -1,3 +1,4 @@
 20100113 version: openal-ada 1.1.0
 20100113 code: imported installer 2.3.1
 20100113 version: openal-ada 1.1.1
+20100114 code: parameter renaming in OpenAL.Extension.EFX_Thin (Values -> Value).

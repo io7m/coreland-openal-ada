@@ -348,7 +348,7 @@ package OpenAL.Extension.EFX_Thin is
   type Get_Effectf_t is access procedure
     (Effect    : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
-     Values    : System.Address);
+     Value     : System.Address);
   pragma Convention (C, Get_Effectf_t);
 
   -- alGetEffectfv
@@ -362,7 +362,7 @@ package OpenAL.Extension.EFX_Thin is
   type Get_Effecti_t is access procedure
     (Effect    : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
-     Values    : System.Address);
+     Value     : System.Address);
   pragma Convention (C, Get_Effecti_t);
 
   -- alGetEffectiv
@@ -376,7 +376,7 @@ package OpenAL.Extension.EFX_Thin is
   type Get_Filterf_t is access procedure
     (Filter    : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
-     Values    : System.Address);
+     Value     : System.Address);
   pragma Convention (C, Get_Filterf_t);
 
   -- alGetFilterfv
@@ -390,7 +390,7 @@ package OpenAL.Extension.EFX_Thin is
   type Get_Filteri_t is access procedure
     (Filter    : Types.Unsigned_Integer_t;
      Parameter : Types.Enumeration_t;
-     Values    : System.Address);
+     Value     : System.Address);
   pragma Convention (C, Get_Filteri_t);
 
   -- alGetFilteriv

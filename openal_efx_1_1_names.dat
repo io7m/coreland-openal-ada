@@ -20,13 +20,13 @@ GetAuxiliaryEffectSlotf     : Slot    : Parameter : Values
 GetAuxiliaryEffectSlotfv    : Slot    : Parameter : Values
 GetAuxiliaryEffectSloti     : Slot    : Parameter : Values
 GetAuxiliaryEffectSlotiv    : Slot    : Parameter : Values
-GetEffectf                  : Effect  : Parameter : Values
+GetEffectf                  : Effect  : Parameter : Value
 GetEffectfv                 : Effect  : Parameter : Values
-GetEffecti                  : Effect  : Parameter : Values
+GetEffecti                  : Effect  : Parameter : Value
 GetEffectiv                 : Effect  : Parameter : Values
-GetFilterf                  : Filter  : Parameter : Values
+GetFilterf                  : Filter  : Parameter : Value
 GetFilterfv                 : Filter  : Parameter : Values
-GetFilteri                  : Filter  : Parameter : Values
+GetFilteri                  : Filter  : Parameter : Value
 GetFilteriv                 : Filter  : Parameter : Values
 IsAuxiliaryEffectSlot       : Slot
 IsEffect                    : Effect
