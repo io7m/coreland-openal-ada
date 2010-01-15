@@ -561,7 +561,7 @@ package body OpenAL.Extension.EFX is
     Reverb_Density                        => EFX_Thin.AL_REVERB_DENSITY,
     Reverb_Diffusion                      => EFX_Thin.AL_REVERB_DIFFUSION,
     Reverb_Gain                           => EFX_Thin.AL_REVERB_GAIN,
-    Reverb_Gainhf                         => EFX_Thin.AL_REVERB_GAINHF,
+    Reverb_Gain_HF                        => EFX_Thin.AL_REVERB_GAINHF,
     Reverb_Late_Reverb_Delay              => EFX_Thin.AL_REVERB_LATE_REVERB_DELAY,
     Reverb_Late_Reverb_Gain               => EFX_Thin.AL_REVERB_LATE_REVERB_GAIN,
     Reverb_Reflections_Delay              => EFX_Thin.AL_REVERB_REFLECTIONS_DELAY,

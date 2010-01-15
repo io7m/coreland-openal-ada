@@ -138,7 +138,7 @@ package OpenAL.Extension.EFX is
     Reverb_Density,
     Reverb_Diffusion,
     Reverb_Gain,
-    Reverb_Gainhf,
+    Reverb_Gain_HF,
     Reverb_Late_Reverb_Delay,
     Reverb_Late_Reverb_Gain,
     Reverb_Reflections_Delay,
