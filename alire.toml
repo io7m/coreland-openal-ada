@@ -1,0 +1,11 @@
+name = "openal_ada"
+description = "Ada bindings to OpenAL"
+version = "1.1.1-dev"
+
+authors = ["Mark Raynsford io7m"]
+maintainers = ["Manuel Gomez <mgrojo@gmail.com>"]
+maintainers-logins = ["mgrojo"]
+
+licenses = "ISC"
+website = "https://github.com/io7m/coreland-openal-ada"
+tags = ["audio", "binding", "openal"]
